@@ -8,6 +8,16 @@
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/party-tag.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+  </script>
 </head>
 
 <body>
@@ -17,7 +27,8 @@
        	  <header id="logo"><h1><a href="index.html">國會調查兵團 CIC Congressional Investigation Corps</a></h1></header>
           <nav id="first-nav">
           	<ul>
-            	<li><a href="people-list.html">找立委</a></li>
+            	<li><a href="new-record-list.html">最新調查</a></li>
+<li><a href="people-list.html">找立委</a></li>
             	<li><a href="login.html">登入</a></li>
             	<li><a href="regist.html">加入兵團</a></li>
             	<li><a href="#">兵團計畫說明</a></li>
@@ -25,7 +36,8 @@
           </nav>
         </div>
         <div id="main-wrap">
-        <div id="pinfo">
+        <aside class="pinfo-inner-aside">
+<div class="pinfo pinfo-inner">
             <section class="people-info-block"> <a href="people-single.html" class="people-img"><img src="images/people.jpg" title="鄭天財Sra.Kacaw(立委姓名)"><em class="party-kmt party-tag">中國國民黨</em></a>
                     <h2><a href="people-single.html">鄭天財Sra.Kacaw</a></h2>
                     <ul class="info-number">
@@ -38,18 +50,7 @@
                       <li> <em>質詢數</em>
                         <a href="people-single-talk.html">1000</a></li>
                       </ul>
-                    <div class="selector-info si-newest">
-                      <div class="si01">第8屆</div>  
-                      <div class="si02">高雄第3選區</div>  <div class="si03">中國國民黨</div></div>
-                    <div class="selector-info">
-                      <div class="si01">第7屆</div>  
-                      <div class="si02">高雄第3選區</div>  <div class="si03">中國國民黨</div></div>
-                    <div class="selector-info">
-                      <div class="si01">第6屆</div>  
-                      <div class="si02">高雄第3選區</div>  <div class="si03">中國國民黨</div></div>
-                    <div class="selector-info">
-                      <div class="si01">第5屆</div>  
-                      <div class="si02">高雄第3選區</div>  <div class="si03">中國國民黨</div></div>
+                    
                   </section>
           <ul class="pinfo-btn">
           	<li><a href="people-single-news.html">看新聞紀錄</a></li>
@@ -57,11 +58,41 @@
           	<li><a href="people-single-video.html">看影片紀錄</a></li>
           </ul>
           </div>
+<div class="pinfo pinfo-inner">
+            <section class="people-info-block"> <a href="people-single.html" class="people-img"><img src="images/people.jpg" title="鄭天財Sra.Kacaw(立委姓名)"><em class="party-kmt party-tag">中國國民黨</em></a>
+                    <h2><a href="people-single.html">鄭天財Sra.Kacaw</a></h2>
+                    <ul class="info-number">
+                      <li>
+                        <em>影片數</em>
+                        <a href="people-single-video.html">1000</a></li>
+                      
+                      <li> <em>新聞數</em>
+                        <a href="people-single-news.html">1000</a></li>
+                      <li> <em>質詢數</em>
+                        <a href="people-single-talk.html">1000</a></li>
+                      </ul>
+                    
+                  </section>
+          <ul class="pinfo-btn">
+          	<li><a href="people-single-news.html">看新聞紀錄</a></li>
+          	<li><a href="people-single-talk.html">看質詢紀錄</a></li>
+          	<li><a href="people-single-video.html">看影片紀錄</a></li>
+          </ul>
+          </div>
+</aside>
+          
         <section class="single-page-inner">
         <header>
           <h3>自經區說明會　藍委黃昭順被嗆</h3></header>
-          <ul id="sinner-info">
-          	<li><span>屆次</span>  <em>第9屆</em></li>
+          <ul class="sinner-info">
+          	<li><span>立委</span>  <em>黃昭順</em></li>
+            <li><span>屆次</span>  <em>第9屆</em></li>
+            <li><span>選區</span>  <em>高雄市第3選區</em></li>
+            <li><span>黨籍</span>  <em>中國國民黨</em></li>
+          </ul>
+          <ul class="sinner-info">
+          	<li><span>立委</span>  <em>黃昭順</em></li>
+            <li><span>屆次</span>  <em>第9屆</em></li>
             <li><span>選區</span>  <em>高雄市第3選區</em></li>
             <li><span>黨籍</span>  <em>中國國民黨</em></li>
           </ul>
@@ -94,7 +125,10 @@
 	<li><a href="#">刪除</a></li>
 </ul>
 </div>                   <aside id="aside-info">
-        	<ul class="video-other-list">
+        	<div id="accordion">
+  <h3>立委名 1</h3>
+  <div>
+    <ul class="video-other-list">
             	<li>
                 <a href="#" class="vo-img"><img src="images/video-pic.jpg" width="135" height="102"></a><a href="#" class="vo-title">黃昭順質詢陳保基粽子與
 物價問題（2014-03-13）
@@ -104,6 +138,47 @@
 物價問題（2014-03-13）
 價問題（2014-03-13）</a></li>
             </ul>
+  </div>
+  <h3>立委名 2</h3>
+  <div>
+    <ul class="video-other-list">
+            	<li>
+                <a href="#" class="vo-img"><img src="images/video-pic.jpg" width="135" height="102"></a><a href="#" class="vo-title">黃昭順質詢陳保基粽子與
+物價問題（2014-03-13）
+價問題（2014-03-13）</a></li>
+<li>
+                <a href="#" class="vo-img"><img src="images/video-pic.jpg" width="135" height="102"></a><a href="#" class="vo-title">黃昭順質詢陳保基粽子與
+物價問題（2014-03-13）
+價問題（2014-03-13）</a></li>
+            </ul>
+  </div>
+  <h3>立委名 3</h3>
+  <div>
+    <ul class="video-other-list">
+            	<li>
+                <a href="#" class="vo-img"><img src="images/video-pic.jpg" width="135" height="102"></a><a href="#" class="vo-title">黃昭順質詢陳保基粽子與
+物價問題（2014-03-13）
+價問題（2014-03-13）</a></li>
+<li>
+                <a href="#" class="vo-img"><img src="images/video-pic.jpg" width="135" height="102"></a><a href="#" class="vo-title">黃昭順質詢陳保基粽子與
+物價問題（2014-03-13）
+價問題（2014-03-13）</a></li>
+            </ul>
+  </div>
+  <h3>立委名 4</h3>
+  <div>
+    <ul class="video-other-list">
+            	<li>
+                <a href="#" class="vo-img"><img src="images/video-pic.jpg" width="135" height="102"></a><a href="#" class="vo-title">黃昭順質詢陳保基粽子與
+物價問題（2014-03-13）
+價問題（2014-03-13）</a></li>
+<li>
+                <a href="#" class="vo-img"><img src="images/video-pic.jpg" width="135" height="102"></a><a href="#" class="vo-title">黃昭順質詢陳保基粽子與
+物價問題（2014-03-13）
+價問題（2014-03-13）</a></li>
+            </ul>
+  </div>
+</div>
         </aside>
         </section>
       </div>

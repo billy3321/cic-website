@@ -47,27 +47,17 @@ h1,h2,h3,h4,h5,h6,p,ul,ol{
 	border-right:1px solid #3c3c3c;
 	border-left:1px solid #3c3c3c;
 	border-bottom:1px solid #3c3c3c;
-	margin:0 0 0 -1px ;
-	-webkit-transform: skew(40deg);
-			-moz-transform: skew(40deg);
-			-o-transform: skew(40deg);
-			-ms-transform: skew(40deg);
-			transform: skew(40deg);}
+	margin:0 0 0 -1px ;}
 #first-nav li:hover{
 	background:#3c3c3c;}
 #first-nav{
 	float:right;
-	margin:0 20px 0 0;}
+	}
 #first-nav li a{
 	text-decoration:none;
 	font-weight:bold;
 	display:block;
-	-webkit-transform: skew(-40deg);
-			-moz-transform: skew(-40deg);
-			-o-transform: skew(-40deg);
-			-ms-transform: skew(-40deg);
-			transform: skew(-40deg);
-			padding:4px 20px;
+			padding:4px 17px;
 			color:#e60012;
 			
 	}
@@ -226,19 +216,6 @@ h1,h2,h3,h4,h5,h6,p,ul,ol{
 	-moz-background-size:cover;
 -webkit-background-size:cover;
 -o-background-size:cover;}
-.party-dpp{
-	background:url(../images/party-dpp.gif);
-	}
-.party-kmt{
-	background:url(../images/party-kmt.gif);}
-.party-nsu{
-	background:url(../images/party-nsu.gif);}
-.party-tsu{
-	background:url(../images/party-tsu.gif);}
-.party-pfp{
-	background:url(../images/party-pfp.gif);}
-.party-null{
-	background:url(../images/party-null.gif);}
 .people-info-block h2{
 	font-size:15px;
 	margin:3px 0 9px 2%;
@@ -275,10 +252,11 @@ margin:0 2% 0 0;}
 .si03{width:34%;}
 #people-single-top{
 	overflow:hidden;}
-#pinfo{
+.pinfo-mlist,.pinfo-inner-aside{
 	float:left;
 	margin:0 0 0 1%;
 	width:27%;}
+
 #people-single-top .big-video-show{
 	float:right;
 	margin:0 1% 0 0;
@@ -316,7 +294,10 @@ margin:0 2% 0 0;}
 	right:0px;
 	bottom:0px;}
 .pinfo-btn {
-	margin:5px 0 0 0;}
+	margin:5px 0;
+	overflow:hidden;
+	clear:both;
+	}
 .pinfo-btn li{
 	float:left;
 	width:31%;
@@ -344,11 +325,15 @@ margin:0 2% 0 0;}
 	width:27%;}
 .side-sblock{
 	overflow:hidden;}
-.side-sblock h3{
+.side-sblock h3,#v-title h3{
 	float:left;}
-.side-sblock .more{
+.side-sblock .more,#v-title .more{
 	float:right;
 	margin:3px 0 0 0;}
+#v-title{
+	overflow:hidden;
+	clear:both;
+	margin:0 0 10px 0;}
 #news-list ul{
 	clear:both;
 	font-size:13px;
@@ -449,20 +434,20 @@ margin:0 2% 0 0;}
 .single-page-inner h3{
 	font-size:24px;
 	margin:0 0 1% 0;}
-#sinner-info{
+.sinner-info{
 	overflow:hidden;
 	margin:0 0 1% 0;}
-#sinner-info li{
+.sinner-info li{
 	float:left;
 	font-size:13px;
 	padding:0 2% 0 0;
 	}
-#sinner-info li span{
+.sinner-info li span{
 	background:#abdbe1;
 	padding:1px 8px;
 	border-radius:12px;
 	}
-#sinner-info li em{
+.sinner-info li em{
 	font-style:normal;}
 #sinner-src-list{
 	clear:both;
@@ -652,10 +637,33 @@ background:#000;
 color:#fff;
 }
 
+/*資料列表*/
+
+.all-list .big-video-show,.all-list #video-list,.all-list#news-show-list,.all-list{
+width:99%;}
+
+
+/*不分立委影片資料列表*/
+.all-list#video-show-list .big-video-show .img_url_l{
+	width:47%;
+	margin-left:1.5%;
+	padding-top:35.5%;}
+.all-list#video-show-list .big-video-show h3,.all-list#video-show-list .big-video-show .inner-content,.all-list#video-show-list .big-video-show .time{
+	width:46.5%;}
+.all-list#video-show-list .small-video-show {
+	width:44%;
+	margin-left:1.5%;
+	float:left;}
+.all-list#video-show-list .small-video-show .img_url_l{
+width:45%;
+padding-top:34.5%;}
+.all-list#video-show-list .small-video-show h3,.all-list#video-show-list .small-video-show .inner-content{
+	width:53.5%;}
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
-padding:4px 14px;}
+padding:4px 6px;
+}
 /*首頁*/
 #index-video-block{
 	width:100%;
@@ -711,32 +719,34 @@ padding:0 0 0 14%;}
 	float:left;
 	margin:0 5% 7px 0;}
 /*立委內頁*/
-#pinfo{
-	width:99%;
+.pinfo-inner-aside{width:99%;
 	margin-bottom:10px;}
-#pinfo .people-info-block{
+.pinfo{margin-bottom:10px;}
+.pinfo .people-info-block{
 	max-width:99%;}
-#pinfo .selector-info{
+.pinfo .selector-info{
 	float:left;
 	clear:none;
 	min-width:95px;
 	border-right:1px solid #d4d4d4;
 	border-bottom:1px solid #d4d4d4;
 	}
-#pinfo .selector-info div{
+.pinfo .selector-info div{
 	float:none;
 	padding:0px 5px;
 	margin:0px;
 	width:auto;}
-#pinfo{
+.pinfo.pinfo-inner .people-img {
+	width:8%;}
+.pinfo{
 	overflow:hidden;}
-#pinfo h2{
+.pinfo h2{
 	width:auto;
 	margin-left:1%;}
-#pinfo .info-number{
+.pinfo .info-number{
 	width:60%;
 	margin:6px 0 7px 8px;}
-#pinfo .info-number li{
+.pinfo .info-number li{
 	margin-right:1%;}
 .pinfo-btn {
 	width:101%;}
@@ -746,6 +756,10 @@ padding:0 0 0 14%;}
 	text-align:center;}
 .pinfo-btn li a{
 	padding:6px 0;}
+.pinfo.pinfo-inner .pinfo-btn{
+	margin:-37px 0 0px 15%;
+	width:40%;
+	float:right;}
 .big-video-show{
 	width:98%;
 	}
@@ -761,6 +775,7 @@ padding:0 0 0 14%;}
 	width:98%;}
 }
 
+
 @media only screen and (max-width: 640px){
 /*表頭*/
 #logo{
@@ -775,19 +790,10 @@ padding:0 0 0 14%;}
 	border:1px solid #3c3c3c;
 	border-bottom:none;
 	margin:0 0 0 -1px ;
-	-webkit-transform: skew(0deg);
-			-moz-transform: skew(0deg);
-			-o-transform: skew(0deg);
-			-ms-transform: skew(0deg);
-			transform: skew(0deg);}
+	}
 
 
 #first-nav li a{
-	-webkit-transform: skew(0deg);
-			-moz-transform: skew(0deg);
-			-o-transform: skew(0deg);
-			-ms-transform: skew(0deg);
-			transform: skew(0deg);
 			display:inline;
 			
 	}
@@ -825,21 +831,27 @@ padding:0 0 0 11%;}
 .info-number{
 	width:79%;
 	}
+.pinfo.pinfo-inner .people-info-block .people-img{
+	max-width:70px;
+	width:15%;}
+.pinfo.pinfo-inner .pinfo-btn {
+	display:none;}
+
 /*立委內頁*/
-#pinfo .people-info-block h2{
+.pinfo .people-info-block h2{
 	margin-bottom:0px;
 	margin-left:10px;}
-#pinfo .info-number{
+.pinfo .info-number{
 	width:70%;}
-#pinfo .selector-info{
+.pinfo .selector-info{
 display:none;}
-#pinfo .selector-info.si-newest{
+.pinfo .selector-info.si-newest{
 float:none;
 clear:both;
 display:block;
 border-right:none;
 border-bottom:none;}
-#pinfo .selector-info.si-newest div{
+.pinfo .selector-info.si-newest div{
 	float:left;
 	}
 #video-list,#news-list,#say-list{
@@ -875,6 +887,21 @@ border-bottom:none;}
     width: 99%;
     float: none;
 }
+/*不分立委影片資料列表*/
+.all-list#video-show-list .big-video-show .img_url_l{
+	width:57%;
+	margin-left:1.5%;
+	padding-top:43.5%;}
+.all-list#video-show-list .big-video-show h3,.all-list#video-show-list .big-video-show .inner-content,.all-list#video-show-list .big-video-show .time{
+	width:37.5%;}
+.all-list#video-show-list .small-video-show {
+	width:95%;
+	float:none;}
+.all-list#video-show-list .small-video-show .img_url_l{
+width:25%;
+padding-top:19.5%;}
+.all-list#video-show-list .small-video-show h3,.all-list#video-show-list .small-video-show .inner-content{
+	width:72.5%;}
 }	
 
 
@@ -913,7 +940,7 @@ padding:0 0 0 9%;}
 	width:63%;
 	}
 /*立委內頁*/
-#pinfo .info-number{
+.pinfo .info-number{
 	width:60%;}
 #news-list li{
 	width:99%;
@@ -947,7 +974,30 @@ padding:0 0 0 9%;}
 .news-info-list li{
 	padding:0 0 0 4%;
 	}
-
+.sinner-info li{
+	margin:0 0 7px 0;}
+/*不分立委影片資料列表*/ 
+.all-list#video-show-list .big-video-show{
+	margin-bottom:10px;}
+.all-list#video-show-list .big-video-show .img_url_l{
+	width:100%;
+float: none;
+	 padding-top: 76%;
+	margin-left:2.5%;}
+.all-list#video-show-list .big-video-show h3,.all-list#video-show-list .big-video-show .inner-content,.all-list#video-show-list .big-video-show .time{
+    width: 100%;
+    float: none;
+	margin:0 0 0px 2.5%;
+}
+.all-list#video-show-list .small-video-show .img_url_l{
+	width:35%;
+	padding-top:27.5%;
+	}
+.all-list#video-show-list .small-video-show h3 {
+	width:62%}
+.pinfo-inner-aside{
+	display:none;
+	margin:0px;}
 }	
 
 @media only screen and (max-width: 360px){
@@ -959,9 +1009,6 @@ padding:0 0 0 9%;}
 .small-video-show h3 {
 	width:56%;
 	font-size:15px;}
-/*影片內頁*/
-#sinner-info li{
-	margin:0 0 7px 0;}
 /*登入頁*/
 #out-login .f img{
 	width:135px;

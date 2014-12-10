@@ -52,13 +52,14 @@ h1,h2,h3,h4,h5,h6,p,ul,ol{
 	border-left:1px solid #3c3c3c;
 	margin:0 auto;
 	overflow:hidden;
-	width:760px;}
+	width:800px;
+}
 #first-nav li a{
 	text-decoration:none;
 	font-weight:bold;
 	display:block;
-			padding:4px 15px;
-			color:#e60012;
+	padding:4px 10px;
+	color:#e60012;
 			
 	}
 #login-out-block{
