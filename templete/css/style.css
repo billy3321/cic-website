@@ -659,6 +659,9 @@ width:45%;
 padding-top:34.5%;}
 .all-list#video-show-list .small-video-show h3,.all-list#video-show-list .small-video-show .inner-content{
 	width:53.5%;}
+#login-out-block.wid-block{
+	max-width:400px;
+	margin:0 auto 20px auto;}
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
