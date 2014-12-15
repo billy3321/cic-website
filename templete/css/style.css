@@ -662,6 +662,22 @@ padding-top:34.5%;}
 #login-out-block.wid-block{
 	max-width:400px;
 	margin:0 auto 20px auto;}
+/*修jQuary的css*/
+.ui-widget-content a{
+	color:#058e97;}
+.ui-accordion .ui-accordion-header {
+	font-size:15px;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+	background:#EFEFEF;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+	background:#d8d8d8;}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus{
+	background:#d8d8d8;}
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
