@@ -1,3 +1,7 @@
 class Legislator < ActiveRecord::Base
-  belongs_to :electrions
+  has_many :elections
+  has_many :ads, through => :election
+  has_and_belongs_to_many :news
+  has_and_belongs_to_many :questions
+  has_and_belongs_to_many :videos
 end

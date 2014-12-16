@@ -3,7 +3,7 @@ class CreateNews < ActiveRecord::Migration
     create_table :news do |t|
       t.string :title
       t.text :content
-      t.integer :author_id
+      t.integer :user_id
       t.string :source
       t.date :date
 
