@@ -3,5 +3,5 @@ h1 Editing video
 = simple_form_for(@video, html: {class: 'form-horizontal center' }) do |f|
   = render :partial => 'form', :locals => { :f => f }
 
-= link_to 'Show', video_path(@video), class: "btn"
-= link_to 'Back', videos_path, class: "btn"
+= link_to '查看', video_path(@video), class: "btn"
+= link_to '回到列表', videos_path, class: "btn"

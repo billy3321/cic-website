@@ -11,10 +11,10 @@ table class="table"
     - @videos.each do |video| 
       tr
         td = video.title
-        td = link_to 'Show', video_path(video), class: "btn"
-        td = link_to 'Edit', edit_video_path(video), class: "btn"
-        td = link_to 'Destroy', video_path(video), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+        td = link_to '顯示', video_path(video), class: "btn"
+        td = link_to '修改', edit_video_path(video), class: "btn"
+        td = link_to '刪除', video_path(video), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
 
 br
 
-= link_to 'New Video', new_video_path(@video_group), class: "btn"
+= link_to '新影片', new_video_path(@video_group), class: "btn"
