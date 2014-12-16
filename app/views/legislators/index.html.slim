@@ -1,0 +1,17 @@
+h1 立法委員列表
+
+table class="table"
+  thead
+    tr
+      th Name
+      th
+
+
+  tbody
+    - @legislators.each do |legislator| 
+      tr
+        td = legislator.name
+        td = link_to '顯示', legislator_path(legislator), class: "btn"
+
+br
+

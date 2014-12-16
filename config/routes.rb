@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :legislators, :only => [:show, :index]
   resources :entries
   resources :questions
   resources :videos
