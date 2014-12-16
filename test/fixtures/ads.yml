@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  vote_date: 2014-12-16
+  term_start: 2014-12-16
+  term_end: 2014-12-16
+
+two:
+  name: MyText
+  vote_date: 2014-12-16
+  term_start: 2014-12-16
+  term_end: 2014-12-16
