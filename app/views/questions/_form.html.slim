@@ -11,7 +11,7 @@
 = f.association :legislators, collection: Legislator.all, input_html: { class: 'chosen-select' }
 = f.association :committee, as: :select
 = f.input :content, as: :text
-= f.input :ivod
+= f.input :ivod_url
 = f.input :date, as: :string, input_html: { class: "datepicker" }
 = f.input :comment, as: :text
 = f.submit '確定送出'

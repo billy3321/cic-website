@@ -2,16 +2,17 @@ class Video < ActiveRecord::Base
   has_and_belongs_to_many :legislators
   belongs_to :user
   belongs_to :committee
-  validates_presence_of :yotuube_id
+  validates_presence_of :youtube_url, :ivod_url
   validate :has_at_least_one_legislator
-  validate :is_youtube_url
+  validate :is_youtube_url, :is_ivod_url
 
-  before_save :update_other_values
+  before_save :update_youtube_values, :update_ivod_values
 
-  def update_other_values
+  def update_youtube_values
     self.youtube_id = extract_youtube_id(self.youtube_url)
+    self.youtube_url = "https://www.youtube.com/watch?v=" + youtube_id
     api_url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + youtube_id + '&key=' + Setting.google_public_key.api_key
-    response = HTTPClient.get(api_url)
+    response = HTTParty.get(api_url)
     result = JSON.parse(response.body)
     if result['items'][0]['snippet']['thumbnails'].key?('maxres')
       self.image = result['items'][0]['snippet']['thumbnails']['maxres']['url']
@@ -32,6 +33,29 @@ class Video < ActiveRecord::Base
     end
     if self.content.blank?
       self.content = result['items'][0]['snippet']['description'].gsub(/[\n]/,"<br />")
+    end
+  end
+
+  def update_ivod_values
+    unless self.ivod_url
+      return nil
+    end
+    ivod_uri = URI.parse(ivod)
+    html = Nokogiri::HTML(open(self.ivod_url))
+    info_section = html.css('div.movie_box div.text')[0]
+    committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
+    meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
+    self.committee_id = Committee.where(name: committee_name).first.id
+    self.meeting_description = meeting_description
+    if ivod_uri.path.split('/')[2] == 'Full'
+      date = info_section.css('p')[1].text.sub('會  議  時  間：', '').split(' ')[0].strip
+      self.date = date
+    elsif ivod_uri.path.split('/')[2] == 'VOD'
+      legislator_name = info_section.css('p')[1].text.sub('委  員  名  稱：', '').strip
+      date = info_section.css('p')[4].text.sub('會  議  時  間：', '').split(' ')[0].strip
+      legislator = Legislator.where(name: legislator_name).first
+      self.legislators << legislator unless self.legislators.include?(legislator)
+      self.date = date
     end
   end
 
@@ -56,6 +80,14 @@ class Video < ActiveRecord::Base
   def is_youtube_url
     youtube_uri = URI.parse(self.youtube_url)
     errors.add(:base, 'is not youtube url') unless ['www.youtube.com', 'youtu.be'].include?(youtube_uri.try(:host))
+  end
+
+  def is_ivod_url
+    unless self.ivod_url
+      return nil
+    end
+    youtube_uri = URI.parse(self.ivod_url)
+    errors.add(:base, 'is not ivod url') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
   end
 
   def has_at_least_one_legislator

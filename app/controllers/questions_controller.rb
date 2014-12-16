@@ -53,6 +53,6 @@ class QuestionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
       params.require(:question).permit(:title, :content, {:legislator_ids => []},
-        :user_id, :ivod, :committee_id, :meeting_description, :date, :comment)
+        :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment)
     end
 end

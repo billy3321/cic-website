@@ -4,7 +4,7 @@ class CreateEntries < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.integer :user_id
-      t.string :source
+      t.string :source_url
       t.date :date
 
       t.timestamps

@@ -53,6 +53,6 @@ class EntriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
       params.require(:entry).permit(:title, :content, {:legislator_ids => []},
-        :user_id, :date, :source)
+        :user_id, :date, :source_url)
     end
 end

@@ -4,4 +4,8 @@ class Legislator < ActiveRecord::Base
   has_and_belongs_to_many :entries
   has_and_belongs_to_many :questions
   has_and_belongs_to_many :videos
+
+  def party
+    self.elections.last.party
+  end
 end

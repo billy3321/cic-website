@@ -6,7 +6,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :user_id
       t.integer :committee_id
       t.text :meeting_description
-      t.string :ivod
+      t.string :ivod_url
       t.date :date
       t.text :comment
 

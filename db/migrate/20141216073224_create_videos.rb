@@ -9,8 +9,8 @@ class CreateVideos < ActiveRecord::Migration
       t.string :youtube_url
       t.string :youtube_id
       t.string :image
-      t.string :ivod
-      t.string :source
+      t.string :ivod_url
+      t.string :source_url
       t.date :date
 
       t.timestamps

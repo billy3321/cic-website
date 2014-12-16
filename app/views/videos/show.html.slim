@@ -4,6 +4,8 @@ p
   strong 標題
   = @video.title
 
+  = image_tag @video.image, {:alt => @video.title, :class => "single-img-2"}
+
 
 = link_to '修改', edit_video_path(@video), class: "btn"
 = link_to '回到列表', videos_path, class: "btn"
