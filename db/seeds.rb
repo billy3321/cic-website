@@ -112,7 +112,12 @@ committees = [
   {:id => 13, :name => '程序委員會'},
   {:id => 17, :name => '外交及國防委員會'},
   {:id => 18, :name => '司法及法制委員會'},
-  {:id => 19, :name => '院會'}]
+  {:id => 19, :name => '院會'},
+  {:id => 28, :name => '紀律委員會'},
+  {:id => 29, :name => '修憲委員會'},
+  {:id => 30, :name => '經費稽核委員會'},
+  {:id => 41, :name => '全院委員會'}
+]
 
 Committee.delete_all
 committees.each do |c|
