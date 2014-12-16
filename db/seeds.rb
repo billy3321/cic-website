@@ -28,7 +28,7 @@ ads = [{
 
 ads.each do |a|
   ad = Ad.new(a)
-  ad.id = a['id']
+  ad.id = a[:id]
   ad.save
 end
 
@@ -95,7 +95,7 @@ legislators.each do |l|
   legislator.image = l['id'].to_s + '.jpg'
   election = Election.new()
   election.legislator_id = l['id']
-  election.ad_id = 8
+  election.ad_id = ads.first[:id]
   election.party_id = Party.where(abbreviation: l['party']).first.id
   election.constituency = constituency_parser(l['constituency'])
   legislator.save
@@ -117,8 +117,8 @@ committees = [
 Committee.delete_all
 committees.each do |c|
   committee = Committee.new()
-  committee.id = c['id']
-  committee.name = c['name']
+  committee.id = c[:id]
+  committee.name = c[:name]
   committee.save
 end
 
