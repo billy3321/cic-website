@@ -40,6 +40,21 @@ ActiveRecord::Schema.define(version: 20141216084825) do
     t.datetime "updated_at"
   end
 
+  create_table "entries", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.string   "source"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "entries_legislators", id: false, force: true do |t|
+    t.integer "legislator_id"
+    t.integer "entry_id"
+  end
+
   create_table "legislators", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -47,11 +62,6 @@ ActiveRecord::Schema.define(version: 20141216084825) do
     t.boolean  "in_office"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "legislators_news", id: false, force: true do |t|
-    t.integer "legislator_id"
-    t.integer "new_id"
   end
 
   create_table "legislators_questions", id: false, force: true do |t|
@@ -62,16 +72,6 @@ ActiveRecord::Schema.define(version: 20141216084825) do
   create_table "legislators_videos", id: false, force: true do |t|
     t.integer "legislator_id"
     t.integer "video_id"
-  end
-
-  create_table "news", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "user_id"
-    t.string   "source"
-    t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "parties", force: true do |t|
