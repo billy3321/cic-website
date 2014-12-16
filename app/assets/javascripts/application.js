@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-ui/datepicker
+//= require chosen-jquery
 //= require_tree .
 
 var ready = function(){
