@@ -6,38 +6,32 @@ class Video < ActiveRecord::Base
   validate :has_at_least_one_legislator
   validate :is_youtube_url
 
-  before_save do |youtube_url|
-    begin
-      youtube_url = extract_youtube_id(video.youtube_url)
-      #"https://www.youtube.com/watch?v=oeRo-ydS0UE"
-      #"http://youtu.be/oeRo-ydS0UE"
-      video.youtube_id = youtube_id
-      api_url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + youtube_id + '&key=' + Setting.google_public_key.api_key
-      response = HTTPClient.get(api_url)
-      result = JSON.parse(response.body)
-      if result['items'][0]['snippet']['thumbnails'].key?('maxres')
-        video.image = result['items'][0]['snippet']['thumbnails']['maxres']['url']
-      elsif result['items'][0]['snippet']['thumbnails'].key?('standard')
-        video.image = result['items'][0]['snippet']['thumbnails']['standard']['url']
-      elsif result['items'][0]['snippet']['thumbnails'].key?('high')
-        video.image = result['items'][0]['snippet']['thumbnails']['high']['url']
-      elsif result['items'][0]['snippet']['thumbnails'].key?('medium')
-        video.image = result['items'][0]['snippet']['thumbnails']['medium']['url']
-      elsif result['items'][0]['snippet']['thumbnails'].key?('default')
-        video.image = result['items'][0]['snippet']['thumbnails']['default']['url']
-      else
-        video.image = ''
-      end
+  before_save :update_other_values
 
-      if video.title.blank?
-        video.title = result['items'][0]['snippet']['title']
-      end
-      if video.content.blank?
-        video.content = result['items'][0]['snippet']['description'].gsub(/[\n]/,"<br />")
-      end
-    # rescue => err
-    #   puts ">>>>>>", err.inspect
-    #   video.image = nil
+  def update_other_values
+    self.youtube_id = extract_youtube_id(self.youtube_url)
+    api_url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + youtube_id + '&key=' + Setting.google_public_key.api_key
+    response = HTTPClient.get(api_url)
+    result = JSON.parse(response.body)
+    if result['items'][0]['snippet']['thumbnails'].key?('maxres')
+      self.image = result['items'][0]['snippet']['thumbnails']['maxres']['url']
+    elsif result['items'][0]['snippet']['thumbnails'].key?('standard')
+      self.image = result['items'][0]['snippet']['thumbnails']['standard']['url']
+    elsif result['items'][0]['snippet']['thumbnails'].key?('high')
+      self.image = result['items'][0]['snippet']['thumbnails']['high']['url']
+    elsif result['items'][0]['snippet']['thumbnails'].key?('medium')
+      self.image = result['items'][0]['snippet']['thumbnails']['medium']['url']
+    elsif result['items'][0]['snippet']['thumbnails'].key?('default')
+      self.image = result['items'][0]['snippet']['thumbnails']['default']['url']
+    else
+      self.image = ''
+    end
+
+    if self.title.blank?
+      self.title = result['items'][0]['snippet']['title']
+    end
+    if self.content.blank?
+      self.content = result['items'][0]['snippet']['description'].gsub(/[\n]/,"<br />")
     end
   end
 
@@ -60,7 +54,7 @@ class Video < ActiveRecord::Base
   private
 
   def is_youtube_url
-    youtube_uri = URI.parse(self.youtube_id)
+    youtube_uri = URI.parse(self.youtube_url)
     errors.add(:base, 'is not youtube url') unless ['www.youtube.com', 'youtu.be'].include?(youtube_uri.try(:host))
   end
 
