@@ -1,0 +1,7 @@
+h1 Editing video
+
+= simple_form_for(@video, html: {class: 'form-horizontal center' }) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
+= link_to 'Show', video_path(@video), class: "btn"
+= link_to 'Back', videos_path, class: "btn"

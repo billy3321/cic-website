@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  root 'static_pages#home'
+  match '/recent',    to: 'static_pages#recent',    via: 'get'
+
+  resources :videos
+
   devise_for :models
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,20 @@
+h1 Listing videos
+
+table class="table"
+  thead
+    tr
+      th Name
+      th colspan="3"
+
+
+  tbody
+    - @videos.each do |video| 
+      tr
+        td = video.title
+        td = link_to 'Show', video_path(video), class: "btn"
+        td = link_to 'Edit', edit_video_path(video), class: "btn"
+        td = link_to 'Destroy', video_path(video), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+
+br
+
+= link_to 'New Video', new_video_path(@video_group), class: "btn"
