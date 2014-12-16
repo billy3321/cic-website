@@ -29,7 +29,7 @@ ads = [{
 ads.each do |a|
   ad = Ad.new(a)
   ad.id = a['id']
-  a.save
+  ad.save
 end
 
 ISO3166TW = {
@@ -117,8 +117,8 @@ committees = [
 Committee.delete_all
 committees.each do |c|
   committee = Committee.new()
-  committee.id = c.id
-  committee.name = c.name
+  committee.id = c['id']
+  committee.name = c['name']
   committee.save
 end
 
