@@ -8,8 +8,12 @@
       li = message
 
 = f.input :title
+= f.association :legislators, collection: Legislator.all, input_html: { class: 'chosen-select' }
+= f.association :committee, as: :select
 = f.input :content, as: :text
+= f.input :youtube_url
+= f.input :ivod
 = f.input :source
-= f.input :date
+= f.input :date, as: :string, input_html: { class: "datepicker" }
 = f.submit '確定送出'
   

@@ -6,9 +6,9 @@ class Video < ActiveRecord::Base
   validate :has_at_least_one_legislator
   validate :is_youtube_url
 
-  before_save do |youtube_id|
+  before_save do |youtube_url|
     begin
-      youtube_id = extract_youtube_id(video.url)
+      youtube_url = extract_youtube_id(video.youtube_url)
       #"https://www.youtube.com/watch?v=oeRo-ydS0UE"
       #"http://youtu.be/oeRo-ydS0UE"
       video.youtube_id = youtube_id

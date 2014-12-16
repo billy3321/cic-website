@@ -1,7 +1,7 @@
-h1 修改影片
+h1 修改質詢
 
-= simple_form_for(@video, html: {class: 'form-horizontal center' }) do |f|
+= simple_form_for(@question, html: {class: 'form-horizontal center' }) do |f|
   = render :partial => 'form', :locals => { :f => f }
 
-= link_to '查看', video_path(@video), class: "btn"
-= link_to '回到列表', videos_path, class: "btn"
+= link_to '查看', question_path(@question), class: "btn"
+= link_to '回到列表', questions_path, class: "btn"
