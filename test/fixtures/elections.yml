@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  legislator_id: 1
+  constituency: MyText
+  ad_id: 
+
+two:
+  legislator_id: 1
+  constituency: MyText
+  ad_id: 
