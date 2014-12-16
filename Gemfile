@@ -29,6 +29,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'factory_girl_rails'
+gem 'rspec-rails'
 
 
 # Use ActiveModel has_secure_password
