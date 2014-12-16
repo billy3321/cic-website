@@ -36,6 +36,8 @@ gem 'jquery-ui-rails'
 gem 'chosen-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'settingslogic'
+
 
 group :development, :test do
   gem 'minitest'

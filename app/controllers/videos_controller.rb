@@ -23,7 +23,7 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     if @video.save
-        redirect_to @video, notice: 'Video was successfully created.'
+        redirect_to @video, notice: '影片建立成功'
     else
       render :new
     end
@@ -32,7 +32,7 @@ class VideosController < ApplicationController
   # PATCH/PUT /videos/1
   def update
     if @video.update(video_params)
-      redirect_to @video, notice: 'Video was successfully updated.'
+      redirect_to @video, notice: '影片更新成功'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class VideosController < ApplicationController
   # DELETE /videos/1
   def destroy
     @video.destroy
-    redirect_to videos_url, notice: 'Video was successfully destroyed.'
+    redirect_to videos_url, notice: '影片已刪除'
   end
 
   private
@@ -52,6 +52,7 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:name)
+      params.require(:video).permit(:title, :content, {:legislator_ids => []},
+        :user_id, :ivod, :committee_id, :meeting_description, :date, :youtube_id, :source)
     end
 end
