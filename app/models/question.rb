@@ -1,10 +1,13 @@
 class Question < ActiveRecord::Base
   has_and_belongs_to_many :legislators
+  has_and_belongs_to_many :keywords
   belongs_to :user
   belongs_to :committee
+  belongs_to :ad_session
   validates_presence_of :ivod_url
   validate :has_at_least_one_legislator
   validate :is_ivod_url
+  delegate :ad, :to => :ad_session, :allow_nil => true
 
   before_save :update_ivod_values
 

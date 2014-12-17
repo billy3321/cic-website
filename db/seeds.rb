@@ -32,6 +32,28 @@ ads.each do |a|
   ad.save
 end
 
+AdSession.delete_all
+
+ad_sessions = [
+  {:ad_id => ads.first[:id], :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15'},
+  {:ad_id => ads.first[:id], :name => '第1會期第1次臨時會', :date_start => '2012-07-24', :date_end => '2012-07-26'},
+  {:ad_id => ads.first[:id], :name => '第2會期', :date_start => '2012-09-18', :date_end => '2013-01-15'},
+  {:ad_id => ads.first[:id], :name => '第3會期', :date_start => '2013-02-26', :date_end => '2013-05-31'},
+  {:ad_id => ads.first[:id], :name => '第3會期第1次臨時會', :date_start => '2013-06-13', :date_end => '2013-06-27'},
+  {:ad_id => ads.first[:id], :name => '第3會期第2次臨時會', :date_start => '2013-07-30', :date_end => '2013-08-06'},
+  {:ad_id => ads.first[:id], :name => '第4會期', :date_start => '2013-09-17', :date_end => '2014-01-14'},
+  {:ad_id => ads.first[:id], :name => '第4會期第1次臨時會', :date_start => '2014-01-27', :date_end => '2014-01-28'},
+  {:ad_id => ads.first[:id], :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30'},
+  {:ad_id => ads.first[:id], :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04'},
+  {:ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08'},
+  {:ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => nil}
+]
+
+ad_sessions.each do |a|
+  ad_session = AdSession.new(a)
+  ad_session.save
+end
+
 ISO3166TW = {
   "CHA" => "彰化縣",
   "CYI" => "嘉義市",

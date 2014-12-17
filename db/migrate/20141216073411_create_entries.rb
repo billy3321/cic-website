@@ -6,6 +6,7 @@ class CreateEntries < ActiveRecord::Migration
       t.integer :user_id
       t.string :source_url
       t.date :date
+      t.boolean :published, :default => true
 
       t.timestamps
     end

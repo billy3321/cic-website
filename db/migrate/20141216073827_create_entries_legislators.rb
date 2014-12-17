@@ -4,5 +4,7 @@ class CreateEntriesLegislators < ActiveRecord::Migration
       t.belongs_to :legislator
       t.belongs_to :entry
     end
+
+    add_index :entries_legislators, [:legislator_id, :entry_id], :unique => true
   end
 end

@@ -1,8 +1,10 @@
 class Entry < ActiveRecord::Base
   has_and_belongs_to_many :legislators
+  has_and_belongs_to_many :keywords
   belongs_to :user
   belongs_to :committee
   validate :has_at_least_one_legislator
+  delegate :ad, :to => :ad_session, :allow_nil => true
 
   private
 

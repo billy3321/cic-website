@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217033543) do
+ActiveRecord::Schema.define(version: 20141217055951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,14 +55,44 @@ ActiveRecord::Schema.define(version: 20141217033543) do
     t.integer  "user_id"
     t.string   "source_url"
     t.date     "date"
+    t.boolean  "published",  default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "entries_keywords", id: false, force: true do |t|
+    t.integer "keyword_id"
+    t.integer "entry_id"
+  end
+
+  add_index "entries_keywords", ["keyword_id", "entry_id"], name: "index_entries_keywords_on_keyword_id_and_entry_id", unique: true, using: :btree
 
   create_table "entries_legislators", id: false, force: true do |t|
     t.integer "legislator_id"
     t.integer "entry_id"
   end
+
+  add_index "entries_legislators", ["legislator_id", "entry_id"], name: "index_entries_legislators_on_legislator_id_and_entry_id", unique: true, using: :btree
+
+  create_table "keywords", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "keywords_questions", id: false, force: true do |t|
+    t.integer "keyword_id"
+    t.integer "question_id"
+  end
+
+  add_index "keywords_questions", ["keyword_id", "question_id"], name: "index_keywords_questions_on_keyword_id_and_question_id", unique: true, using: :btree
+
+  create_table "keywords_videos", id: false, force: true do |t|
+    t.integer "keyword_id"
+    t.integer "video_id"
+  end
+
+  add_index "keywords_videos", ["keyword_id", "video_id"], name: "index_keywords_videos_on_keyword_id_and_video_id", unique: true, using: :btree
 
   create_table "legislators", force: true do |t|
     t.string   "name"
@@ -78,10 +108,14 @@ ActiveRecord::Schema.define(version: 20141217033543) do
     t.integer "question_id"
   end
 
+  add_index "legislators_questions", ["legislator_id", "question_id"], name: "index_legislators_questions_on_legislator_id_and_question_id", unique: true, using: :btree
+
   create_table "legislators_videos", id: false, force: true do |t|
     t.integer "legislator_id"
     t.integer "video_id"
   end
+
+  add_index "legislators_videos", ["legislator_id", "video_id"], name: "index_legislators_videos_on_legislator_id_and_video_id", unique: true, using: :btree
 
   create_table "parties", force: true do |t|
     t.string   "name"
@@ -96,10 +130,12 @@ ActiveRecord::Schema.define(version: 20141217033543) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "committee_id"
+    t.integer  "ad_session_id"
     t.text     "meeting_description"
     t.string   "ivod_url"
     t.date     "date"
     t.text     "comment"
+    t.boolean  "published",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -137,6 +173,7 @@ ActiveRecord::Schema.define(version: 20141217033543) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "committee_id"
+    t.integer  "ad_session_id"
     t.text     "meeting_description"
     t.string   "youtube_url"
     t.string   "youtube_id"
@@ -144,6 +181,7 @@ ActiveRecord::Schema.define(version: 20141217033543) do
     t.string   "ivod_url"
     t.string   "source_url"
     t.date     "date"
+    t.boolean  "published",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

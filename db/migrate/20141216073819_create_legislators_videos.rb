@@ -4,5 +4,7 @@ class CreateLegislatorsVideos < ActiveRecord::Migration
       t.belongs_to :legislator
       t.belongs_to :video
     end
+
+    add_index :legislators_videos, [:legislator_id, :video_id], :unique => true
   end
 end
