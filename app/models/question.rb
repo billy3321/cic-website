@@ -16,9 +16,14 @@ class Question < ActiveRecord::Base
     unless self.ivod_url
       return nil
     end
-    ivod_uri = URI.parse(ivod)
+    ivod_uri = URI.parse(self.ivod_url)
     html = Nokogiri::HTML(open(self.ivod_url))
     info_section = html.css('div.movie_box div.text')[0]
+    unless info_section
+      # the ivod url is error
+      self.ivod_url = nil
+      return nil
+    end
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
     meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
     self.committee_id = Committee.where(name: committee_name).first.id
@@ -41,8 +46,13 @@ class Question < ActiveRecord::Base
     unless self.ivod_url
       return nil
     end
-    youtube_uri = URI.parse(self.ivod_url)
+    ivod_uri = URI.parse(self.ivod_url)
     errors.add(:base, 'is not ivod url') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
+    begin
+      errors.add(:base, 'ivod url error') unless HTTParty.get(self.ivod_url).code == 200
+    rescue
+      errors.add(:base, 'ivod url error')
+    end
   end
 
   def has_at_least_one_legislator

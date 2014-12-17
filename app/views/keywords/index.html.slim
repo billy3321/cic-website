@@ -10,7 +10,7 @@ table class="table"
   tbody
     - @keywords.each do |keyword| 
       tr
-        td = keyword.title
+        td = keyword.name
         td = link_to '顯示', keyword_path(keyword), class: "btn"
         td = link_to '修改', edit_keyword_path(keyword), class: "btn"
         td = link_to '刪除', keyword_path(keyword), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
