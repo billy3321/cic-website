@@ -39,6 +39,8 @@ gem 'mini_magick'
 gem 'settingslogic'
 gem 'httparty'
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'ckeditor'
+gem 'ransack'
 
 
 group :development, :test do
