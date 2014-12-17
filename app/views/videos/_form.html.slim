@@ -10,7 +10,7 @@
 = f.input :title
 = f.association :legislators, collection: Legislator.all, input_html: { class: 'chosen-select' }
 = f.association :committee, as: :select
-= f.input :content, as: :text
+= f.cktext_area :content
 = f.input :youtube_url
 = f.input :ivod_url
 = f.input :source_url

@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require jquery-ui/datepicker
 //= require chosen-jquery
+//= require ckeditor/init
 //= require_tree .
 
 var ready = function(){
