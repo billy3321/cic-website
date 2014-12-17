@@ -1,0 +1,12 @@
+- if @keyword.errors.any? 
+  .error_explanation
+    h2 
+      = pluralize(@keyword.errors.count, "error") 
+      prohibited this keyword from being saved:
+    ul
+      - @keyword.errors.full_messages.each do |message|
+        li = message
+
+= f.input :name
+= f.submit '確定送出'
+  

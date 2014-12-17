@@ -1,0 +1,20 @@
+h1 關鍵字列表
+
+table class="table"
+  thead
+    tr
+      th Name
+      th colspan="3"
+
+
+  tbody
+    - @keywords.each do |keyword| 
+      tr
+        td = keyword.title
+        td = link_to '顯示', keyword_path(keyword), class: "btn"
+        td = link_to '修改', edit_keyword_path(keyword), class: "btn"
+        td = link_to '刪除', keyword_path(keyword), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
+
+br
+
+= link_to '建立影片', new_keyword_path, class: "btn"

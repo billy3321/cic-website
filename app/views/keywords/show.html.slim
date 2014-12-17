@@ -1,0 +1,8 @@
+p id="notice" = notice
+
+p
+  strong 名稱
+  = @keyword.name
+
+= link_to '修改', edit_keyword_path(@keyword), class: "btn"
+= link_to '回到列表', keywords_path, class: "btn"

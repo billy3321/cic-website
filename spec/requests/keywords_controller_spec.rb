@@ -1,39 +1,39 @@
 require "spec_helper"
 
-describe "Video" do
+describe "Keyword" do
 
 
-  let(:video) { FactoryGirl.create(:video) }
-  let(:new_video) do
+  let(:keyword) { FactoryGirl.create(:keyword) }
+  let(:new_keyword) do
     {
-      :title => "new_video_title",
+      :name => "new_keyword_name",
     }
   end
 
   describe "#index" do
     it "success" do
-      get "/videos/"
+      get "/keywords/"
       expect(response).to be_success
     end
   end
 
   describe "#show" do
     it "success" do
-      get "/videos/#{video.id}"
+      get "/keywords/#{keyword.id}"
       expect(response).to be_success
     end
   end
 
   describe "#new" do
     it "success" do
-      get "/videos/new"
+      get "/keywords/new"
       expect(response).to be_success
     end
   end
 
   describe "#edit" do
     it "success" do
-      get "/videos/#{video.id}/edit"
+      get "/keywords/#{keyword.id}/edit"
       expect(response).to be_success
     end
   end
@@ -41,29 +41,29 @@ describe "Video" do
   describe "#create" do
     it "success" do
       expect {
-        post "/videos", :video => new_video
-      }.to change { Video.count }.by(1)
+        post "/keywords", :keyword => new_keyword
+      }.to change { Keyword.count }.by(1)
       expect(response).to be_redirect
     end
   end
 
   describe "#update" do
     it "success" do
-      video
-      update_data = { :title => "new_title" }
-      put "/videos/#{video.id}", :video => update_data
+      keyword
+      update_data = { :name => "new_name" }
+      put "/keywords/#{keyword.id}", :keyword => update_data
       expect(response).to be_redirect
-      video.reload
-      expect(video.name).to match(update_data[:title])
+      keyword.reload
+      expect(keyword.name).to match(update_data[:title])
     end
   end
 
   describe "#destroy" do
     it "success" do
-      video
+      keyword
       expect {
-        delete "/videos/#{video.id}"
-      }.to change { Video.count }.by(-1)
+        delete "/keywords/#{keyword.id}"
+      }.to change { Keyword.count }.by(-1)
       expect(response).to be_redirect
     end
   end
