@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :keyword do
-    name "MyString"
+    sequence(:name)  { |n| "Keyword #{n}" }
   end
-
 end

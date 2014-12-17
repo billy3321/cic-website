@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :ad_session do
     sequence(:name)  { |n| "AdSession #{n}" }
-    date_start "2014-01-01"
-    date_end "2014-06-01"
+    sequence(:date_start) { |n| Date.today - ( 6.months * ( n ) }
+    sequence(:date_end) { |n| Date.today - ( 6.months * ( n - 1 ) }
     ad { FactoryGirl.create(:ad) }
   end
 end
