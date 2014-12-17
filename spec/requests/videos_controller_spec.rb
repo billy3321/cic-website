@@ -7,6 +7,9 @@ describe "Video" do
   let(:new_video) do
     {
       :title => "new_video_title",
+      :legislator_ids => [ FactoryGirl.create(:legislator).id ],
+      :ivod_url => 'http://ivod.ly.gov.tw/Play/VOD/77018/300K',
+      :youtube_url => 'https://www.youtube.com/watch?v=6tg_I9O-dV0'
     }
   end
 
@@ -54,7 +57,7 @@ describe "Video" do
       put "/videos/#{video.id}", :video => update_data
       expect(response).to be_redirect
       video.reload
-      expect(video.name).to match(update_data[:title])
+      expect(video.title).to match(update_data[:title])
     end
   end
 

@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, except: [:index, :entry]
+  before_action :set_entry, except: [:index, :new]
 
   # GET /entries
   def index
@@ -11,7 +11,7 @@ class EntriesController < ApplicationController
   end
 
   # GET /entries/entry
-  def entry
+  def new
     @entry = Entry.new
   end
 
@@ -47,7 +47,7 @@ class EntriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_entry
-      @entry = params[:id] ? Entry.find(params[:id]) : Entry.entry(entry_params)
+      @entry = params[:id] ? Entry.find(params[:id]) : Entry.new(entry_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

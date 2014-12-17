@@ -1,5 +1,11 @@
 require "spec_helper"
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) {FactoryGirl.create(:user)}
+
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :user
+    }.to change { User.count }.by(1)
+  end
 end

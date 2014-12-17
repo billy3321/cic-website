@@ -47,6 +47,7 @@ group :development, :test do
   gem 'minitest'
   gem "capybara"
   gem 'rspec-rails', '2.13.1'
+  gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password

@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe AdSession do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:ad_session) {FactoryGirl.create(:ad_session)}
+
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :ad_session
+    }.to change { AdSession.count }.by(1)
+  end
 end

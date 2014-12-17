@@ -9,7 +9,6 @@
 
 = f.input :title
 = f.association :legislators, collection: Legislator.all, input_html: { class: 'chosen-select' }
-= f.association :committee, as: :select
 = f.cktext_area :content
 = f.input :source_url
 = f.input :date, as: :string, input_html: { class: "datepicker" }

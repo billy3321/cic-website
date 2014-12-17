@@ -1,5 +1,11 @@
 require "spec_helper"
 
-RSpec.describe Legislator, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Legislator do
+  let(:legislator) {FactoryGirl.create(:legislator)}
+
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :legislator
+    }.to change { Legislator.count }.by(1)
+  end
 end

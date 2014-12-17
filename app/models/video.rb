@@ -10,13 +10,18 @@ class Video < ActiveRecord::Base
   delegate :ad, :to => :ad_session, :allow_nil => true
   before_save :update_youtube_values, :update_ivod_values
   default_scope { order(created_at: :desc) }
+  scope :published, -> { where(published: true) }
 
 
   def update_youtube_values
-    self.youtube_id = extract_youtube_id(self.youtube_url)
-    self.youtube_url = "https://www.youtube.com/watch?v=" + youtube_id
-    api_url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + youtube_id + '&key=' + Setting.google_public_key.api_key
-    puts api_url
+    youtube_id = extract_youtube_id(self.youtube_url)
+    if self.youtube_id == youtube_id
+      # means that youtube is the same, no need to update.
+      return nil
+    end
+    self.youtube_id = youtube_id
+    self.youtube_url = "https://www.youtube.com/watch?v=" + self.youtube_id
+    api_url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + self.youtube_id + '&key=' + Setting.google_public_key.api_key
     response = HTTParty.get(api_url)
     result = JSON.parse(response.body)
     if result['items'][0]['snippet']['thumbnails'].key?('maxres')
@@ -55,7 +60,7 @@ class Video < ActiveRecord::Base
     end
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
     meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
-    self.committee_id = Committee.where(name: committee_name).first.id
+    self.committee_id = Committee.where(name: committee_name).first.try(:id)
     self.meeting_description = meeting_description
     if ivod_uri.path.split('/')[2] == 'Full'
       date = info_section.css('p')[1].text.sub('會  議  時  間：', '').split(' ')[0].strip
@@ -64,8 +69,10 @@ class Video < ActiveRecord::Base
       legislator_name = info_section.css('p')[1].text.sub('委  員  名  稱：', '').strip
       date = info_section.css('p')[4].text.sub('會  議  時  間：', '').split(' ')[0].strip
       legislator = Legislator.where(name: legislator_name).first
-      self.legislators << legislator unless self.legislators.include?(legislator)
       self.date = date
+      if legislator
+        self.legislators << legislator unless self.legislators.include?(legislator)
+      end
     end
   end
 

@@ -11,6 +11,7 @@ class Question < ActiveRecord::Base
 
   before_save :update_ivod_values
   default_scope { order(created_at: :desc) }
+  scope :published, -> { where(published: true) }
 
   def update_ivod_values
     unless self.ivod_url
@@ -26,7 +27,7 @@ class Question < ActiveRecord::Base
     end
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
     meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
-    self.committee_id = Committee.where(name: committee_name).first.id
+    self.committee_id = Committee.where(name: committee_name).first.try(:id)
     self.meeting_description = meeting_description
     if ivod_uri.path.split('/')[2] == 'Full'
       date = info_section.css('p')[1].text.sub('會  議  時  間：', '').split(' ')[0].strip
@@ -35,8 +36,10 @@ class Question < ActiveRecord::Base
       legislator_name = info_section.css('p')[1].text.sub('委  員  名  稱：', '').strip
       date = info_section.css('p')[4].text.sub('會  議  時  間：', '').split(' ')[0].strip
       legislator = Legislator.where(name: legislator_name).first
-      self.legislators << legislator unless self.legislators.include?(legislator)
       self.date = date
+      if legislator
+        self.legislators << legislator unless self.legislators.include?(legislator)
+      end
     end
   end
 

@@ -6,6 +6,6 @@ class Legislator < ActiveRecord::Base
   has_and_belongs_to_many :videos
 
   def party
-    self.elections.any? ? self.elections.last.party : nil
+    self.elections.any? ? self.elections.last.party : Party.where(abbreviation: nil).first
   end
 end

@@ -7,6 +7,7 @@ describe "Entry" do
   let(:new_entry) do
     {
       :title => "new_entry_title",
+      :legislator_ids => [ FactoryGirl.create(:legislator).id ]
     }
   end
 
@@ -54,7 +55,7 @@ describe "Entry" do
       put "/entries/#{entry.id}", :entry => update_data
       expect(response).to be_redirect
       entry.reload
-      expect(entry.name).to match(update_data[:title])
+      expect(entry.title).to match(update_data[:title])
     end
   end
 

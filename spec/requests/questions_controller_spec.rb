@@ -7,6 +7,8 @@ describe "Question" do
   let(:new_question) do
     {
       :title => "new_question_title",
+      :legislator_ids => [ FactoryGirl.create(:legislator).id ],
+      :ivod_url => 'http://ivod.ly.gov.tw/Play/VOD/77018/300K'
     }
   end
 
@@ -54,7 +56,7 @@ describe "Question" do
       put "/questions/#{question.id}", :question => update_data
       expect(response).to be_redirect
       question.reload
-      expect(question.name).to match(update_data[:title])
+      expect(question.title).to match(update_data[:title])
     end
   end
 
