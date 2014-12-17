@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
   validate :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
 
-  before_save :update_ivod_values
+  before_save :update_ivod_values, :update_ad_session_values
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
 
@@ -41,6 +41,13 @@ class Question < ActiveRecord::Base
         self.legislators << legislator unless self.legislators.include?(legislator)
       end
     end
+  end
+
+  def update_ad_session_values
+    unless self.date
+      return nil
+    end
+    self.ad_session = AdSession.current_ad_session(self.date).first
   end
 
   private

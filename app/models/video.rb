@@ -8,7 +8,7 @@ class Video < ActiveRecord::Base
   validate :has_at_least_one_legislator
   validate :is_youtube_url, :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
-  before_save :update_youtube_values, :update_ivod_values
+  before_save :update_youtube_values, :update_ivod_values, :update_ad_session_values
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
 
@@ -74,6 +74,13 @@ class Video < ActiveRecord::Base
         self.legislators << legislator unless self.legislators.include?(legislator)
       end
     end
+  end
+
+  def update_ad_session_values
+    unless self.date
+      return nil
+    end
+    self.ad_session = AdSession.current_ad_session(self.date).first
   end
 
   def extract_youtube_id(url)
