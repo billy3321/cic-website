@@ -38,6 +38,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'settingslogic'
 gem 'httparty'
+gem "recaptcha", :require => "recaptcha/rails"
 
 
 group :development, :test do

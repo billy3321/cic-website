@@ -1,9 +1,6 @@
 FactoryGirl.define do
   factory :legislator do
-    name "MyText"
-description "MyText"
-image "MyString"
-electrions nil
+    sequence(:name)  { |n| "Legislator #{n}" }
+    election { FactoryGirl.create(:election) }
   end
-
 end

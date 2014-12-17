@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :committee do
-    name "MyString"
+    sequence(:name)  { |n| "Committee #{n}" }
   end
-
 end
