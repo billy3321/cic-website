@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :video do
-    sequence(:title)  { |n| "Video #{n}" }
-    sequence(:content) { |n| "Video_#{n} Content"}
+  factory :entry do
+    sequence(:title)  { |n| "Entry #{n}" }
+    sequence(:content) { |n| "Entry_#{n} Content"}
     user { FactoryGirl.create(:user) }
     legislator { FactoryGirl.create(:legislator) }
   end
