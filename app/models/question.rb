@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
   delegate :ad, :to => :ad_session, :allow_nil => true
 
   before_save :update_ivod_values
-
+  default_scope { order(created_at: :desc) }
 
   def update_ivod_values
     unless self.ivod_url
