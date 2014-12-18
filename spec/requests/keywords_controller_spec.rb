@@ -13,28 +13,28 @@ describe "Keyword" do
   describe "#index" do
     it "success" do
       get "/keywords/"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
   describe "#show" do
     it "success" do
       get "/keywords/#{keyword.id}"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
   describe "#new" do
     it "success" do
       get "/keywords/new"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
   describe "#edit" do
     it "success" do
       get "/keywords/#{keyword.id}/edit"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
@@ -43,7 +43,7 @@ describe "Keyword" do
       expect {
         post "/keywords", :keyword => new_keyword
       }.to change { Keyword.count }.by(1)
-      expect(response).to be_redirect
+      response.should be_redirect
     end
   end
 
@@ -52,9 +52,9 @@ describe "Keyword" do
       keyword
       update_data = { :name => "new_name" }
       put "/keywords/#{keyword.id}", :keyword => update_data
-      expect(response).to be_redirect
+      response.should be_redirect
       keyword.reload
-      expect(keyword.name).to match(update_data[:title])
+      expect(keyword.name).to match(update_data[:name])
     end
   end
 
@@ -64,7 +64,7 @@ describe "Keyword" do
       expect {
         delete "/keywords/#{keyword.id}"
       }.to change { Keyword.count }.by(-1)
-      expect(response).to be_redirect
+      response.should be_redirect
     end
   end
 

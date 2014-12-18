@@ -16,28 +16,28 @@ describe "Video" do
   describe "#index" do
     it "success" do
       get "/videos/"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
   describe "#show" do
     it "success" do
       get "/videos/#{video.id}"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
   describe "#new" do
     it "success" do
       get "/videos/new"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
   describe "#edit" do
     it "success" do
       get "/videos/#{video.id}/edit"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
@@ -46,7 +46,7 @@ describe "Video" do
       expect {
         post "/videos", :video => new_video
       }.to change { Video.count }.by(1)
-      expect(response).to be_redirect
+      response.should be_redirect
     end
   end
 
@@ -55,7 +55,7 @@ describe "Video" do
       video
       update_data = { :title => "new_title" }
       put "/videos/#{video.id}", :video => update_data
-      expect(response).to be_redirect
+      response.should be_redirect
       video.reload
       expect(video.title).to match(update_data[:title])
     end
@@ -67,7 +67,7 @@ describe "Video" do
       expect {
         delete "/videos/#{video.id}"
       }.to change { Video.count }.by(-1)
-      expect(response).to be_redirect
+      response.should be_redirect
     end
   end
 

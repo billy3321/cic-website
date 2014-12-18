@@ -8,14 +8,14 @@ describe "Legislator" do
   describe "#index" do
     it "success" do
       get "/legislators/"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 
   describe "#show" do
     it "success" do
       get "/legislators/#{legislator.id}"
-      expect(response).to be_success
+      response.should be_success
     end
   end
 

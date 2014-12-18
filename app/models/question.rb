@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
-  has_and_belongs_to_many :legislators
-  has_and_belongs_to_many :keywords
+  has_and_belongs_to_many :legislators, -> { uniq }
+  has_and_belongs_to_many :keywords, -> { uniq }
   belongs_to :user
   belongs_to :committee
   belongs_to :ad_session

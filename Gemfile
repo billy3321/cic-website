@@ -41,6 +41,8 @@ gem 'httparty'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'ckeditor'
 gem 'ransack'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 
 group :development, :test do
