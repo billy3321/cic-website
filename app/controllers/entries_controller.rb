@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
   # GET /entries
   def index
     @q = Entry.search(params[:q])
-    @entries = @q.result.page params[:page]
+    @entries = @q.result(:distinct => true).page params[:page]
   end
 
   # GET /entries/1

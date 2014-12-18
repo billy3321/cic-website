@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   # GET /videos
   def index
     @q = Video.search(params[:q])
-    @videos = @q.result.page params[:page]
+    @videos = @q.result(:distinct => true).page params[:page]
   end
 
   # GET /videos/1

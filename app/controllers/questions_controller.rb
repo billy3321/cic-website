@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   def index
     @q = Question.search(params[:q])
-    @questions = @q.result.page params[:page]
+    @questions = @q.result(:distinct => true).page params[:page]
   end
 
   # GET /questions/1
