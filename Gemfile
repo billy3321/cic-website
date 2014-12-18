@@ -43,6 +43,7 @@ gem 'ckeditor'
 gem 'ransack'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 
 group :development, :test do

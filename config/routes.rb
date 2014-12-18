@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   match '/recent',    to: 'static_pages#recent',    via: 'get'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :legislators, :only => [:show, :index]
   resources :entries
