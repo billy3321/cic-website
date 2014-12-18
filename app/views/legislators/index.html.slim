@@ -14,4 +14,6 @@ table class="table"
         td = link_to '顯示', legislator_path(legislator), class: "btn"
 
 br
+= paginate @legislators
 
+= render 'search_form'

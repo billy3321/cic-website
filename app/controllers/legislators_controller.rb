@@ -3,7 +3,8 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators
   def index
-    @legislators = Legislator.all.page params[:page]
+    @q = Legislator.search(params[:q])
+    @legislators = @q.result.page params[:page]
   end
 
   # GET /legislators/1

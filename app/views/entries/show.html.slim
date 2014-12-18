@@ -1,9 +1,31 @@
 p id="notice" = notice
 
-p
-  strong Name:
-  = @entry.title
+br
+strong Title
+= @entry.title
 
+br
+| legislators
+br
+- entry.legislators.each do |l|
+  = l.name
+  br
+
+br
+| content
+br
+= @entry.content.html_safe
+
+br
+| source_url
+br
+= @entry.source_url
+
+br
+| date
+br
+= @entry.date
+br
 
 = link_to '修改', edit_entry_path(@entry), class: "btn"
 = link_to '回到列表', entries_path, class: "btn"

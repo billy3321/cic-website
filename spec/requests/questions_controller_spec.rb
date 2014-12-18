@@ -42,10 +42,6 @@ describe "Question" do
 
   describe "#create" do
     it "success" do
-      puts Question.count
-      post "/questions", :question => new_question
-      puts response.body.inspect
-      puts Question.count
       expect {
         post "/questions", :question => new_question
       }.to change { Question.count }.by(1)

@@ -1,8 +1,12 @@
 p id="notice" = notice
 
-p
-  strong 姓名
-  = @legislator.name
-
+strong 姓名
+br
+= @legislator.name
+br
+| 黨派
+br
+= @legislator.party.name
+br
 
 = link_to '回到列表', legislators_path, class: "btn"

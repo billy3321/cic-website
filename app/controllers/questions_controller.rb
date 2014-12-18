@@ -3,7 +3,8 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    @questions = Question.all.page params[:page]
+    @q = Question.search(params[:q])
+    @questions = @q.result.page params[:page]
   end
 
   # GET /questions/1

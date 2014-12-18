@@ -3,7 +3,8 @@ class VideosController < ApplicationController
 
   # GET /videos
   def index
-    @videos = Video.all.page params[:page]
+    @q = Video.search(params[:q])
+    @videos = @q.result.page params[:page]
   end
 
   # GET /videos/1

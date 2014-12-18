@@ -1,8 +1,51 @@
 p id="notice" = notice
 
-p
-  strong 標題
-  = @question.title
+br
+strong 標題
+= @question.title
+
+br
+| content
+br
+= @question.content.html_safe
+
+br
+| committee
+br
+= @question.committee.try(:name)
+
+br
+| ad_session
+br
+= @question.ad_session.try(:name)
+
+br
+| ad
+br
+= @question.ad.try(:name)
+
+br
+| legislators
+br
+- @question.legislators.each do |l|
+  = l.name
+  br
+
+br
+| ivod_url
+br
+= @question.ivod_url
+
+br
+| date
+br
+= @question.date
+
+br
+| comment
+br
+= @question.comment.html_safe
+br
 
 
 = link_to '修改', edit_question_path(@question), class: "btn"

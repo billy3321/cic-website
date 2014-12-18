@@ -1,11 +1,45 @@
 p id="notice" = notice
 
-p
-  strong 標題
-  = @video.title
 
-  = image_tag @video.image, {:alt => @video.title, :class => "single-img-2"}
+strong 標題
 
+= @video.title
+br
+| legislators
+br
+- @video.legislators.each do |l|
+  = l.name
+  br
+
+| committee
+br
+= @video.committee.try(:name)
+br
+
+| ad_session
+br
+= @video.ad_session.try(:name)
+br
+| ad
+br
+= @video.ad.try(:name)
+br
+| ivod_url
+br
+= @video.ivod_url
+br
+| youtube_url
+br
+= @video.youtube_url
+br
+| image
+br
+= image_tag @video.image, {:alt => @video.title, :class => "single-img-2"}
+br
+| date
+br
+= @video.date
+br
 
 = link_to '修改', edit_video_path(@video), class: "btn"
 = link_to '回到列表', videos_path, class: "btn"

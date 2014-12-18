@@ -3,7 +3,8 @@ class EntriesController < ApplicationController
 
   # GET /entries
   def index
-    @entries = Entry.all.page params[:page]
+    @q = Entry.search(params[:q])
+    @entries = @q.result.page params[:page]
   end
 
   # GET /entries/1
