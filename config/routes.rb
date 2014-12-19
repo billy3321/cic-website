@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   root 'static_pages#home'
   match '/recent',    to: 'static_pages#recent',    via: 'get'
+  match '/report',    to: 'static_pages#report',    via: 'get'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 

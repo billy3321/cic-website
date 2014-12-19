@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
 
   def recent
   end
+
+  def report
+  end
 end
