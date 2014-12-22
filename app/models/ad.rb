@@ -6,6 +6,6 @@ class Ad < ActiveRecord::Base
   has_many :entries, through: :ad_sessions
   has_many :questions, through: :ad_sessions
   has_many :videos, through: :ad_sessions
+  validates_presence_of :name, :vote_date, :term_start, :term_end
   default_scope { order(vote_date: :asc) }
-
 end

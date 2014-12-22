@@ -29,11 +29,14 @@
 #people-rank
   h3 立委質詢紀錄排行榜
   p 以紀錄數量排行
-  ul id="people-rank-list"
-    - num = 1
-    - @legislators.each do |l|
-      li
-        div = num
-        - num += 1
-        em = link_to l.name, legislator_path(l)
-        span = link_to l.party.name, '#'
+  - unless @legislators.empty?
+    ul id="people-rank-list"
+      - num = 1
+      - @legislators.each do |l|
+        li
+          div = num
+          - num += 1
+          em = link_to l.name, legislator_path(l)
+          span = link_to l.party.name, '#'
+  - else
+    .blank 目前尚無資料

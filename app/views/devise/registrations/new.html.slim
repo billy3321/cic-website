@@ -1,0 +1,30 @@
+#login-out-block
+  h2 加入我們吧！
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    ul class="form-list"
+      li
+        p Email
+        p = f.input :email, required: true, autofocus: true
+      li
+        p 設定密碼
+        p class="snote" 請輸入英文或數字，最少8個字。
+        p = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+      li
+        p 再輸入一次密碼
+        p = f.input :password_confirmation, required: true
+      li
+        p 暱稱
+        p class="snote" 您回報的資料會顯示您的暱稱，不可重複，之後不可以修改。
+        p = f.input :name, required: true
+      li 
+        p 驗證碼
+        p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
+        p = recaptcha_tags
+      li
+        = f.button :submit, "註冊", html: {class: "form-btn"}
+      = render "devise/shared/links"
+
+#out-login
+  p 您也可以使用以下帳號登入
+  = link_to image_tag('login-fb.png', width: "151", height: "64"), user_omniauth_authorize_path(:facebook)
+  = link_to image_tag('login-google.png', width: "151", height: "64"), user_omniauth_authorize_path(:google_oauth2)

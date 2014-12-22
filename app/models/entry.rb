@@ -7,6 +7,7 @@ class Entry < ActiveRecord::Base
   delegate :ad, :to => :ad_session, :allow_nil => true
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
+  validates_presence_of :title, :content, :source_url
 
   private
 

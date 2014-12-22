@@ -1,1 +1,21 @@
-h1 This is recent
+#choose-block
+  h2 回報立委資訊─請選擇要回報的類型
+  ul class="form-list"
+    li 
+      = link_to image_tag("post-v.png", width: "64", height: "48"), new_video_path
+      p = link_to '回報影片片段', new_video_path
+      p class="snote"
+        | 立委在ivod上、或是電視節目上有那些精彩表現被您剪輯成影片並上傳到youtube了嗎？剪好的影片歡迎來登錄！
+        = link_to '回報影片說明>>', '#'
+    li 
+      = link_to image_tag("post-n.png", width: "64", height: "48"), new_entry_path
+      p = link_to '回報新聞資訊', new_entry_path
+      p class="snote"
+        | 立委最近有甚麼精彩或荒謬的新聞嗎？一起來紀錄！
+        = link_to '回報新聞資訊說明>>', '#'
+    li 
+      = link_to image_tag("post-t.png", width: "64", height: "48"), new_question_path
+      p = link_to '回報質詢文字紀錄', new_question_path
+      p class="snote"
+        | 立委在ivod上的質詢有那些言行該被噓或該被讚的嗎？趕快來回報！
+        = link_to '回報質詢紀錄說明>>', '#'

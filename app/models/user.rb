@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :entries
   has_many :questions
   has_many :videos
+  validates_presence_of :name, :email
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :provider_uid => auth.uid).first

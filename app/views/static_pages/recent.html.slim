@@ -1,1 +1,40 @@
-h1 This is recent
+= render 'search_form'
+
+#info-show-list
+  #video-list
+    #v-title
+      h3 【最新影片】
+      - unless @videos.empty?
+        = link_to '更多', videos_path, html: {class: 'more'}
+        - @videos.each do |v|
+          section class="small-video-show"
+            = link_to image_tag(v.image, {alt: v.title}), video_path(v), html: {class: "img_url_l"}
+            header
+              h3 = link_to v.title, video_path(v)
+            time class="time"
+              = v.date.strftime('%Y-%m-%d')
+            .inner-content
+              = display_shorter(v.content, 80)
+      - else
+        section class="small-video-show"
+          .blank 目前尚無資料
+
+  #new-list.side-sblock
+    h3 【最新新聞】
+    - unless @entries.empty?
+      = link_to '更多', entries_path, html: {class: 'more'}
+      ul
+        - @entries.each do |e|
+          li = link_to e.title, entry_path(e)
+    - else
+      .blank 目前尚無資料
+  #say-list.side-sblock
+    h3 【最新質詢】
+    - unless @questions.empty?
+      = link_to '更多', questions_path, html: {class: 'more'}
+      ul
+        - @questions.each do |q|
+          = link_to question_path(q) do
+            li = q.title
+    - else
+      .blank 目前尚無資料

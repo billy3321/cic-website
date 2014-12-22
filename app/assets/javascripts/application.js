@@ -29,6 +29,17 @@ var ready = function(){
     width: '200px',
   });
   $(".chosen-select").trigger('chosen:updated');
+  $(".recent-search-form-select").change(function() {
+    var selected_value = this.value;
+    $.each(this.children, function(){
+      var form_class = '.' + this.value + '-search';
+      if (selected_value == this.value){
+        $(form_class).show();
+      }else{
+        $(form_class).hide();
+      }
+    });
+  });
 };
 
 $(document).ready(ready);

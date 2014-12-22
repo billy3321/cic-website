@@ -1,0 +1,27 @@
+p 您也可以使用以下帳號登入
+= link_to image_tag('login-fb.png', width: "151", height: "64"), user_omniauth_authorize_path(:facebook)
+= link_to image_tag('login-google.png', width: "151", height: "64"), user_omniauth_authorize_path(:google_oauth2)
+#login-out-block
+  h2 準備回報立委表現了嗎？登入吧！
+
+
+
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    ul class="form-list"
+      li 
+        p Email
+        = f.input :email, required: false, autofocus: true, html:{id: "textfield"}
+      li
+        p 密碼
+        = f.input :password, required: false, html:{id: "textfield"}
+      li
+        p 驗證碼
+        p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
+        = recaptcha_tags
+      li
+        p 記住我
+        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+      = render "devise/shared/links"
+   
+    .form-actions
+      = f.button :submit, "Log in", html:{class: "form-btn"}
