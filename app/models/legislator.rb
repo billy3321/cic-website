@@ -5,6 +5,10 @@ class Legislator < ActiveRecord::Base
   has_and_belongs_to_many :questions, -> { uniq }
   has_and_belongs_to_many :videos, -> { uniq }
 
+  scope :current_legislators, -> {
+    where(in_office: true)
+  }
+
   scope :order_by_videos_count, -> {
     select("legislators.*, count(legislators_videos.video_id) AS videos_count").
     joins(:legislators_videos).
@@ -24,11 +28,16 @@ class Legislator < ActiveRecord::Base
     order("questions_count DESC") }
 
   scope :order_by_all_count, -> {
-    select("legislators.*, (count(legislators_videos.video_id) + count(legislators_questions.question_id) + count(entries_legislators.entry_id)) AS associations_count").
+    select("legislators.*, (count(legislators_videos.video_id) +
+      count(legislators_questions.question_id) +
+      count(entries_legislators.entry_id)) AS associations_count").
     joins('LEFT OUTER JOIN "legislators_videos" ON "legislators_videos"."legislator_id" = "legislators"."id"
       LEFT OUTER JOIN "legislators_questions" ON "legislators_questions"."legislator_id" = "legislators"."id"
       LEFT OUTER JOIN "entries_legislators" ON "entries_legislators"."legislator_id" = "legislators"."id"').
     group("legislators.id").
+    having("(count(legislators_videos.video_id) +
+      count(legislators_questions.question_id) +
+      count(entries_legislators.entry_id)) > 0").
     order("associations_count DESC") }
 
   def party
