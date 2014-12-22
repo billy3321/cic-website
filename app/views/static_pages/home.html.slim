@@ -1,5 +1,3 @@
-h1 This is root
-
 - if user_signed_in?
   = current_user.name
   = current_user.provider
@@ -7,3 +5,35 @@ h1 This is root
   = link_to '登出', destroy_user_session_path, method: :delete
 - else
   = link_to '登入', new_user_session_path
+
+
+#index-video-block
+  section id="index-main-video" class=" video-a"
+    - if @main_video
+      = link_to image_tag(@main_video.image, {alt: @main_video.title}), video_path(@main_video), {class: "img_url_l"}
+      h2 = link_to display_shorter(@main_video.title, 26), video_path(@main_video)
+      p = display_shorter(@main_video.content, 85)
+    - else
+      = link_to '#', {class: "img_url_l"} do
+        .blank 目前尚無資料
+
+  - @sub_videos.each do |v|
+    section class="index-sub-video video-a"
+      - if v
+        = link_to image_tag(v.image, {alt: v.title}), video_path(v)
+        h2 = link_to display_shorter(v.title, 20), video_path(v)
+      - else
+        = link_to '#', {class: "img_url_l"} do
+          .blank 目前尚無資料
+
+#people-rank
+  h3 立委質詢紀錄排行榜
+  p 以紀錄數量排行
+  ul id="people-rank-list"
+    - num = 1
+    - @legislators.each do |l|
+      li
+        div = num
+        - num += 1
+        em = link_to l.name, legislator_path(l)
+        span = link_to l.party.name, '#'

@@ -16,7 +16,7 @@ br
 br
 | meeting_description
 br
-= @video.meeting_description
+= @question.meeting_description
 br
 
 | ad_session
@@ -48,7 +48,7 @@ br
 br
 | comment
 br
-= @question.comment.html_safe
+= @question.comment.try(:html_safe)
 br
 
 

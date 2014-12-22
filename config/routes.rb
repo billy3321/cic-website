@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   match '/recent',    to: 'static_pages#recent',    via: 'get'
   match '/report',    to: 'static_pages#report',    via: 'get'
+  match '/about',     to: 'static_pages#about',    via: 'get'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 

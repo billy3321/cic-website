@@ -44,6 +44,8 @@ gem 'ransack'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'meta-tags'
+gem 'unicode-display_width'
 
 
 group :development, :test do

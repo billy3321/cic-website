@@ -1,6 +1,6 @@
 class Video < ActiveRecord::Base
-  has_and_belongs_to_many :legislators
-  has_and_belongs_to_many :keywords
+  has_and_belongs_to_many :legislators, -> { uniq }
+  has_and_belongs_to_many :keywords, -> { uniq }
   belongs_to :user
   belongs_to :committee
   belongs_to :ad_session
@@ -11,7 +11,6 @@ class Video < ActiveRecord::Base
   before_save :update_youtube_values, :update_ivod_values, :update_ad_session_values
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
-
 
   def update_youtube_values
     youtube_id = extract_youtube_id(self.youtube_url)
@@ -42,7 +41,7 @@ class Video < ActiveRecord::Base
       self.title = result['items'][0]['snippet']['title']
     end
     if self.content.blank?
-      self.content = result['items'][0]['snippet']['description'].gsub(/[\n]/,"<br />")
+      self.content = result['items'][0]['snippet']['description'].gsub(/[\n]/,"<br />").gsub(/[\r]/,"")
     end
   end
 

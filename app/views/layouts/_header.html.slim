@@ -1,0 +1,14 @@
+#top
+  header id="logo"
+    h1 = link_to "國會調查兵團 CIC Congressional Investigation Corps", root_path
+  nav id="first-nav"
+    ul
+      li = link_to "最新調查", recent_path
+      li = link_to "找立委", legislators_path
+      - if user_signed_in?
+        li = link_to "修改密碼", edit_user_password_path
+        li = link_to "回報立委資訊", report_path
+        li = link_to '登出', destroy_user_session_path, method: :delete
+      - else
+        li = link_to "登入", new_user_session_path
+      li = link_to "兵團計畫說明", about_path

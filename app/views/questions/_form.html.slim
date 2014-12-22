@@ -5,7 +5,7 @@
       prohibited this question from being saved:
     ul
       - @question.errors.full_messages.each do |message|
-      li = message
+        li = message
 
 = f.input :title
 = f.association :legislators, collection: Legislator.all, input_html: { class: 'chosen-select' }

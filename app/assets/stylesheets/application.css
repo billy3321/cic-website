@@ -14,4 +14,7 @@
  *= require_self
  *= require jquery-ui/datepicker
  *= require chosen
+ *= require style
+ *= require party-tag
+ *= require magnific-popup
  */

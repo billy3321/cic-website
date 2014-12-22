@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+.party-dpp{
+	background:url(../images/party-dpp.gif);
+	}
+.party-kmt{
+	background:url(../images/party-kmt.gif);}
+.party-nsu{
+	background:url(../images/party-nsu.gif);}
+.party-tsu{
+	background:url(../images/party-tsu.gif);}
+.party-pfp{
+	background:url(../images/party-pfp.gif);}
+.party-null{
+	background:url(../images/party-null.gif);}
