@@ -8,7 +8,14 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :legislators, :only => [:show, :index]
+  resources :legislators, :only => [:show, :index] do
+    member do
+      get 'entries'
+      get 'questions'
+      get 'videos'
+    end
+  end
+
   resources :entries
   resources :questions
   resources :videos

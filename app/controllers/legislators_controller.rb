@@ -11,6 +11,21 @@ class LegislatorsController < ApplicationController
   def show
   end
 
+  # GET /legislators/1/entries
+  def entries
+    @entries = @legislator.entries
+  end
+
+  # GET /legislators/1/questions
+  def questions
+    @questions = @legislator.questions
+  end
+
+  # GET /legislators/1/videos
+  def videos
+    @videos = @legislator.videos
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_legislator

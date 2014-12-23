@@ -1,0 +1,18 @@
+#login-out-block
+  h2 沒收到會員E-mail認證信？
+  .sys-info
+    p 請填寫您加入兵團時使用的Email，確認無誤後兵團將重新寄出「Email認證信」，請依照信件內容指示修改密碼。
+  = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = f.error_notification
+    = f.full_error :confirmation_token
+    ul class="form-list"
+      li
+        p Email
+        p = f.input :email, required: true, autofocus: true
+      li 
+        p 驗證碼
+        p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
+        p = recaptcha_tags
+    = f.button :submit, "重新寄出認證信"
+
+= render "devise/shared/links"

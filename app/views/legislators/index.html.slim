@@ -1,19 +1,37 @@
-h1 立法委員列表
 
-table class="table"
-  thead
-    tr
-      th Name
-      th
+nav id="sec-nav"
+  ul id="secn01"
+    li = link_to '所有立委', '#', html:{class: "current"}
+    li = link_to '已有資料', '#'
+    li = link_to '尚無資料', '#'
+  ul id="secn02"
+    li = link_to '不分黨籍', '#', html:{class: "current"}
+    - @parties.each do |p|
+      li = link_to p.name, '#'
 
+#people-all-list
+  - @legislators.each do |l|
+    section class="people-info-block"
+      = link_to legislator_path(l) do
+        image_tag l.image, {alt: l.name, title: l.name}
+        em class="party-#{l.party.abbreviation} party_tag" l.party.name
+      header
+        h2 link_to l.name, legislator_path(l)
+        ul class="info-number"
+          li
+            em 影片數
+            = link_to l.videos.count, videos_legislator_path(l)
+          li
+            em 新聞數
+            = link_to l.entries.count, entries_legislator_path(l)
+          li
+            em 質詢數
+            = link_to l.questions.count, questions_legislator_path(l)
+        .selector-info
+          .si01 = l.ads.last.name
+          .si02 = l.elections.last.constituency
+          .si30 = l.party.name
 
-  tbody
-    - @legislators.each do |legislator| 
-      tr
-        td = legislator.name
-        td = link_to '顯示', legislator_path(legislator), class: "btn"
-
-br
-= paginate @legislators
+  = paginate @legislators
 
 = render 'search_form'
