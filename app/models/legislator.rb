@@ -6,6 +6,7 @@ class Legislator < ActiveRecord::Base
   has_and_belongs_to_many :questions, -> { uniq }
   has_and_belongs_to_many :videos, -> { uniq }
   validates_presence_of :name
+  default_scope { order(name: :asc) }
 
   scope :current_legislators, -> {
     where(in_office: true)
