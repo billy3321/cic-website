@@ -1,0 +1,22 @@
+h2 修改多個影片
+
+= form_tag update_videos_path, method: :put do
+  table
+    tr
+      th
+      th 標題
+      th 編輯
+      th 刪除
+  - @videos.each do |v|
+    tr
+      = hidden_field_tag "video_ids[]", v.id
+      - if v.published
+        td = check_box_tag "published_ids[]", v.id, true
+      - else
+        td = check_box_tag "published_ids[]", v.id, false
+      td = v.title
+      td = link_to "Edit", edit_video_path(v)
+      td = link_to "Destroy", video_path(v), :confirm => 'Are you sure?', :method => :delete
+  
+  = paginate @videos
+  = submit_tag "Edit Checked"

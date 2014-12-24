@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   match '/recent',    to: 'static_pages#recent',    via: 'get'
   match '/report',    to: 'static_pages#report',    via: 'get'
-  match '/about',     to: 'static_pages#about',    via: 'get'
+  match '/about',     to: 'static_pages#about',     via: 'get'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -19,6 +19,16 @@ Rails.application.routes.draw do
   resources :entries
   resources :questions
   resources :videos
+  scope '/admin' do
+    resources :users
+    resources :parties
+    match 'entries',          to: 'admins#entries',          via: 'get'
+    match 'questions',        to: 'admins#questions',        via: 'get'
+    match 'videos',           to: 'admins#videos',           via: 'get'
+    match 'update_entries',   to: 'admins#update_entries',   via: 'put'
+    match 'update_questions', to: 'admins#update_questions', via: 'put'
+    match 'update_videos',    to: 'admins#update_videos',    via: 'put'
+  end
   # resources :keywords
 
   # The priority is based upon order of creation: first created -> highest priority.

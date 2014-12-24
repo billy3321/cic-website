@@ -1,0 +1,22 @@
+h2 修改多個新聞
+
+= form_tag update_entries_path, method: :put do
+  table
+    tr
+      th
+      th 標題
+      th 編輯
+      th 刪除
+  - @entries.each do |e|
+    tr
+      = hidden_field_tag "entry_ids[]", e.id
+      - if e.published
+        td = check_box_tag "published_ids[]", e.id, true
+      - else
+        td = check_box_tag "published_ids[]", e.id, false
+      td = e.title
+      td = link_to "Edit", edit_entry_path(e)
+      td = link_to "Destroy", entry_path(e), :confirm => 'Are you sure?', :method => :delete
+  
+  = paginate @entries
+  = submit_tag "Edit Checked"

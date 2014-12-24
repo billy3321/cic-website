@@ -1,0 +1,22 @@
+h2 修改多個質詢
+
+= form_tag update_questions_path, method: :put do
+  table
+    tr
+      th
+      th 標題
+      th 編輯
+      th 刪除
+  - @questions.each do |q|
+    tr
+      = hidden_field_tag "question_ids[]", q.id
+      - if q.published
+        td = check_box_tag "published_ids[]", q.id, true
+      - else
+        td = check_box_tag "published_ids[]", q.id, false
+      td = q.title
+      td = link_to "Edit", edit_question_path(q)
+      td = link_to "Destroy", question_path(q), :confirm => 'Are you sure?', :method => :delete
+  
+  = paginate @questions
+  = submit_tag "Edit Checked"
