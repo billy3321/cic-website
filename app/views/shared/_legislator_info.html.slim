@@ -6,13 +6,13 @@ section class="people-info-block"
   ul class="info-number"
     li
       em 影片數
-      = link_to l.videos.count, videos_legislator_path(l)
+      = link_to l.videos.published.count, videos_legislator_path(l)
     li
       em 新聞數
-      = link_to l.entries.count, entries_legislator_path(l)
+      = link_to l.entries.published.count, entries_legislator_path(l)
     li
       em 質詢數
-      = link_to l.questions.count, questions_legislator_path(l)
+      = link_to l.questions.published.count, questions_legislator_path(l)
   .selector-info.si-newest
   - elections_num = 1
   - l.elections.each do |e|

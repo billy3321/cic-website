@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_entry, except: [:index, :new]
 
   # GET /entries

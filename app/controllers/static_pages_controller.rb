@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :authenticate_user!, only: [:report]
   def home
     videos = Video.order(created_at: :desc).first(3)
     while videos.length < 3

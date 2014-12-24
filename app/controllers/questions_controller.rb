@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, except: [:index, :new]
+  before_action :authenticate_user!, except: [:show, :index]
 
   # GET /questions
   def index
