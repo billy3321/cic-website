@@ -6,22 +6,14 @@ class StaticPagesController < ApplicationController
     end
     @main_video = videos.shift
     @sub_videos = videos
-    @legislators = Legislator.order_by_all_count.first(12)
+    @legislators = Legislator.has_records.first(12)
   end
 
   def recent
     q = params[:q]
-    #@videos    = Video.search(title_cont: q).result
-    #@entries   = Entry.search(title_cont: q).result
-    #@questions = Question.search(title_cont: q).result
-
-
-    @q_videos = Video.search(params[:q_videos])
-    @videos = Video.first(10)
-    @q_entries = Entry.search(params[:q_entries])
-    @entries = Entry.first(10)
-    @q_questions = Question.search(params[:q_questions])
-    @questions = Question.first(5)
+    @videos    = Video.published.search(title_or_content_or_meeting_description_cont: q).result.first(10)
+    @entries   = Entry.published.search(title_or_content_cont: q).result.first(10)
+    @questions = Question.published.search(title_or_content_or_meeting_description_cont: q).result.first(5)
   end
 
   def report

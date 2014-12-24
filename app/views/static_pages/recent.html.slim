@@ -4,7 +4,7 @@
   #video-list
     #v-title
       h3 【最新影片】
-      - unless @videos.empty?
+      - if @videos.any?
         = link_to '更多', videos_path, html: {class: 'more'}
         - @videos.each do |v|
           section class="small-video-show"
@@ -12,7 +12,7 @@
             header
               h3 = link_to v.title, video_path(v)
             time class="time"
-              = v.date.strftime('%Y-%m-%d')
+              = v.created_at.strftime('%Y-%m-%d')
             .inner-content
               = display_shorter(v.content, 80)
       - else
@@ -21,7 +21,7 @@
 
   #new-list.side-sblock
     h3 【最新新聞】
-    - unless @entries.empty?
+    - if @entries.any?
       = link_to '更多', entries_path, html: {class: 'more'}
       ul
         - @entries.each do |e|
@@ -30,7 +30,7 @@
       .blank 目前尚無資料
   #say-list.side-sblock
     h3 【最新質詢】
-    - unless @questions.empty?
+    - if @questions.any?
       = link_to '更多', questions_path, html: {class: 'more'}
       ul
         - @questions.each do |q|

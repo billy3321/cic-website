@@ -93,12 +93,18 @@ h1,h2,h3,h4,h5,h6,p,ul,ol{
 	overflow:hidden;
 	display:block;
 	background:#000;
+	
 }
 .img_url_l img{
 	position:absolute;
 	left:0px;
 	top:0px;
 	width:100%;}
+a.img_url_l div.blank{
+	position:absolute;
+	left:0px;
+	top:0px;
+	color:#fff;}
 #people-rank h3{
 	font-size:18px;}
 #people-rank p{
@@ -315,7 +321,8 @@ margin:0 2% 0 0;}
 #video-list{
 	float:right;
 	width:70%;
-	margin:0 1% 0 0;}
+	margin:0 1% 0 0;
+	min-height:500px;}
 #news-list{
 	float:left;
 	width:27%;
@@ -573,7 +580,10 @@ margin:0 2% 0 0;}
 	display:block;
 	text-decoration:none;
 	text-align:center;
-	border-radius:10px;}
+	border-radius:10px;
+	width:100%;
+	cursor:pointer;
+	border:none;}
 #out-login{
 		max-width:305px;
 	width:95%;
@@ -678,6 +688,53 @@ padding-top:34.5%;}
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus{
 	background:#d8d8d8;}
+	
+/*沒有資料的時候的樣式*/
+.blank{
+	clear:both;
+	padding:1em;
+	color:#CDCDCD;}
+.big-news-show .blank,.big-video-show .blank{
+	min-height:250px;}	
+	
+	
+/*搜尋bar*/
+#search-bar{
+	padding:0px 1%;
+	background:#d4d4d4;
+	border-radius:5px;
+	padding:10px;
+	margin:0 0 5px 0;}
+#search-bar select,.keyin,.submit-btn{
+	font-size:18px;}
+.submit-btn{
+	cursor:pointer;}
+.keyin{
+	width:60%;}
+
+/*提示訊息樣式*/
+.alert{
+	font-size:13px;
+	max-width:280px;
+	margin:0 auto 5px auto;
+	background:#ECECEC;
+	border-radius:5px;
+	padding:5px 15px;
+	text-align:center;
+	}
+.alert-error{
+	background:#f9dbdb;}
+.alert-success{
+	background:#caebb9;}
+#error_explanation{
+	font-size:13px;
+	text-align:center;
+	margin:0 0 5px 0;}
+#error_explanation li{
+	display:inline-block;}
+#error_explanation li::after{
+	content: "、";}
+
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
@@ -737,6 +794,8 @@ padding:0 0 0 14%;}
 .info-number li{
 	float:left;
 	margin:0 5% 7px 0;}
+.pinfo-mlist{
+	width:99%;}
 /*立委內頁*/
 .pinfo-inner-aside{width:99%;
 	margin-bottom:10px;}
@@ -789,9 +848,15 @@ padding:0 0 0 14%;}
 #video-show-list #video-list,#news-show-list{
 	width:98%;
 	}
+#video-list{
+	min-height:50px;}
 /*影片內頁*/
 .single-page-inner{
 	width:98%;}
+	
+/*無資料列表*/
+.big-news-show .blank,.big-video-show .blank{
+	min-height:50px;}	
 }
 
 

@@ -3,12 +3,25 @@ class EntriesController < ApplicationController
 
   # GET /entries
   def index
-    @q = Entry.search(params[:q])
-    @entries = @q.result(:distinct => true).page params[:page]
+    if user_signed_in? and current_user.admin?
+      @q = Entry.search(params[:q])
+    else
+      @q = Entry.published.search(params[:q])
+    end
+    @entries = @q.result(:distinct => true).page(params[:page])
+    entries = @entries.to_a
+    @main_entry = entries.shift
+    @sub_entries = entries
   end
 
   # GET /entries/1
   def show
+    unless @entry.published
+      if user_signed_in? and current_user.admin?
+      else
+        not_found
+      end
+    end
   end
 
   # GET /entries/entry
@@ -18,6 +31,12 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
+    unless @entry.published
+      if user_signed_in? and current_user.admin?
+      else
+        not_found
+      end
+    end
   end
 
   # POST /entries
@@ -26,7 +45,7 @@ class EntriesController < ApplicationController
     if @entry.save
         redirect_to @entry, notice: '新聞建立成功'
     else
-      render :entry
+      render :new
     end
   end
 

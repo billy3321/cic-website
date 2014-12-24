@@ -4,7 +4,7 @@ class Video < ActiveRecord::Base
   belongs_to :user
   belongs_to :committee
   belongs_to :ad_session
-  validates_presence_of :youtube_url, :ivod_url
+  validates_presence_of :youtube_url
   validate :has_at_least_one_legislator
   validate :is_youtube_url, :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
@@ -46,15 +46,15 @@ class Video < ActiveRecord::Base
   end
 
   def update_ivod_values
-    unless self.ivod_url
-      return nil
+    if self.ivod_url.empty? or self.video_type == 'news'
+      return true
     end
     ivod_uri = URI.parse(self.ivod_url)
     html = Nokogiri::HTML(open(self.ivod_url))
     info_section = html.css('div.movie_box div.text')[0]
     unless info_section
       # the ivod url is error
-      self.ivod_url = nil
+      self.ivod_url = ''
       return nil
     end
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
@@ -111,8 +111,8 @@ class Video < ActiveRecord::Base
   end
 
   def is_ivod_url
-    unless self.ivod_url
-      return nil
+    if self.ivod_url.empty? or self.video_type == 'news'
+      return true
     end
     ivod_uri = URI.parse(self.ivod_url)
     errors.add(:base, 'is not ivod url') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))

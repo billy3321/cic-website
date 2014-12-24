@@ -1,0 +1,26 @@
+.pinfo.pinfo-mlist
+  = render partial: 'shared/legislator_info', locals: { l: @legislator }
+
+#news-show-list
+  section class="big-news-show"
+    - if @main_entry
+      header
+        h3 = link_to @main_entry.title, entry_path(@main_entry)
+      time class="time"
+        = @main_entry.create_at.strftime('%Y-%m-%d')
+      .inner-content
+        = display_shorter(@main_entry.content, 75)
+    - else
+      .blank 目前尚無資料
+
+- @sub_entries.each do |e|
+  #news-inner-list
+    section class="small-news-show"
+      header
+        h3 = link_to e.title, entry_path(e)
+      time class="time"
+        = e.create_at.strftime('%Y-%m-%d')
+      .inner-content
+        = display_shorter(e.content, 75)
+#page
+  = paginate @entries

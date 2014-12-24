@@ -15,12 +15,15 @@
 //= require turbolinks
 //= require jquery-ui/datepicker
 //= require chosen-jquery
+//= require jquery.timepicker.js
 //= require ckeditor/init
 //= require_tree .
 
 var ready = function(){
-  // datapicker
+  // datepicker
   $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+  // timepicker
+  $( ".timepicker" ).timepicker({timeFormat: "H:i:s", scrollDefault: '00:00:00', step: 0.25});
   // enable chosen js
   $('.chosen-select').chosen({
     search_contains: true,
@@ -40,6 +43,135 @@ var ready = function(){
       }
     });
   });
+  $("#accordion").accordion();
+
+  $('.all_record_button').click(function(){
+    $('.has_record').show();
+    $('.no_record').show();
+    $('.all_record_button').addClass('current');
+    $('.has_record_button').removeClass('current');
+    $('.no_record_button').removeClass('current');
+  });
+  $('.has_record_button').click(function(){
+    $('.has_record').show();
+    $('.no_record').hide();
+    $('.all_record_button').removeClass('current');
+    $('.has_record_button').addClass('current');
+    $('.no_record_button').removeClass('current');
+  });
+  $('.no_record_button').click(function(){
+    $('.no_record').show();
+    $('.has_record').hide();
+    $('.all_record_button').removeClass('current');
+    $('.no_record_button').addClass('current');
+    $('.has_record_button').removeClass('current');
+  });
+  $('.all_party_button').click(function(){
+    $('.kmt').show();
+    $('.dpp').show();
+    $('.pfp').show();
+    $('.nsu').show();
+    $('.tsu').show();
+    $('.null').show();
+    $('.all_party_button').addClass('current');
+    $('.kmt_party_button').removeClass('current');
+    $('.dpp_party_button').removeClass('current');
+    $('.pfp_party_button').removeClass('current');
+    $('.nsu_party_button').removeClass('current');
+    $('.tsu_party_button').removeClass('current');
+    $('.null_party_button').removeClass('current');
+  });
+  $('.kmt_party_button').click(function(){
+    $('.kmt').show();
+    $('.dpp').hide();
+    $('.pfp').hide();
+    $('.nsu').hide();
+    $('.tsu').hide();
+    $('.null').hide();
+    $('.all_party_button').removeClass('current');
+    $('.kmt_party_button').addClass('current');
+    $('.dpp_party_button').removeClass('current');
+    $('.pfp_party_button').removeClass('current');
+    $('.nsu_party_button').removeClass('current');
+    $('.tsu_party_button').removeClass('current');
+    $('.null_party_button').removeClass('current');
+  });
+  $('.dpp_party_button').click(function(){
+    $('.kmt').hide();
+    $('.dpp').show();
+    $('.pfp').hide();
+    $('.nsu').hide();
+    $('.tsu').hide();
+    $('.null').hide();
+    $('.all_party_button').removeClass('current');
+    $('.kmt_party_button').removeClass('current');
+    $('.dpp_party_button').addClass('current');
+    $('.pfp_party_button').removeClass('current');
+    $('.nsu_party_button').removeClass('current');
+    $('.tsu_party_button').removeClass('current');
+    $('.null_party_button').removeClass('current');
+  });
+  $('.pfp_party_button').click(function(){
+    $('.kmt').hide();
+    $('.dpp').hide();
+    $('.pfp').show();
+    $('.nsu').hide();
+    $('.tsu').hide();
+    $('.null').hide();
+    $('.all_party_button').removeClass('current');
+    $('.kmt_party_button').removeClass('current');
+    $('.dpp_party_button').removeClass('current');
+    $('.pfp_party_button').addClass('current');
+    $('.nsu_party_button').removeClass('current');
+    $('.tsu_party_button').removeClass('current');
+    $('.null_party_button').removeClass('current');
+  });
+  $('.nsu_party_button').click(function(){
+    $('.kmt').hide();
+    $('.dpp').hide();
+    $('.pfp').hide();
+    $('.nsu').show();
+    $('.tsu').hide();
+    $('.null').hide();
+    $('.all_party_button').removeClass('current');
+    $('.kmt_party_button').removeClass('current');
+    $('.dpp_party_button').removeClass('current');
+    $('.pfp_party_button').removeClass('current');
+    $('.nsu_party_button').addClass('current');
+    $('.tsu_party_button').removeClass('current');
+    $('.null_party_button').removeClass('current');
+  });
+  $('.tsu_party_button').click(function(){
+    $('.kmt').hide();
+    $('.dpp').hide();
+    $('.pfp').hide();
+    $('.nsu').hide();
+    $('.tsu').show();
+    $('.null').hide();
+    $('.all_party_button').removeClass('current');
+    $('.kmt_party_button').removeClass('current');
+    $('.dpp_party_button').removeClass('current');
+    $('.pfp_party_button').removeClass('current');
+    $('.nsu_party_button').removeClass('current');
+    $('.tsu_party_button').addClass('current');
+    $('.null_party_button').removeClass('current');
+  });
+  $('.null_party_button').click(function(){
+    $('.kmt').hide();
+    $('.dpp').hide();
+    $('.pfp').hide();
+    $('.nsu').hide();
+    $('.tsu').hide();
+    $('.null').show();
+    $('.all_party_button').removeClass('current');
+    $('.kmt_party_button').removeClass('current');
+    $('.dpp_party_button').removeClass('current');
+    $('.pfp_party_button').removeClass('current');
+    $('.nsu_party_button').removeClass('current');
+    $('.tsu_party_button').removeClass('current');
+    $('.null_party_button').addClass('current');
+  });
+
 };
 
 $(document).ready(ready);

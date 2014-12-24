@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+
+
   protected
 
   def configure_devise_permitted_parameters
@@ -19,5 +21,9 @@ class ApplicationController < ActionController::Base
         |u| u.permit(registration_params)
       }
     end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 end

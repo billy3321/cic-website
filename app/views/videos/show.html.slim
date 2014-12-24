@@ -1,49 +1,53 @@
-p id="notice" = notice
+aside class="pinfo-inner-aside"
+  - @video.legislators.each do |l|
+    .pinfo.pinfo-inner
+      = render partial: 'shared/legislator_info', locals: { l: l }
 
+section class="single-page-inner"
+  header
+    h3 = @video.title
+  - @video.legislators.each do |l|
+    = render partial: 'shared/legislator_short_info', locals: { l: l }
+  ul id="sinner-src-list"
+    - if @video.video_type == 'news'
+      li 電視出處：
+        = @video.source_name
+        = link_to @video.source_url, @video.source_url
+    - elsif @video.video_type == 'ivod'
+      li ivod出處：
+        = link_to @video.ivod_url, @video.ivod_url
+      li 會期：
+        = @video.ad_session.ad.name
+        = @video.ad_session.name
+      li 會議時間：
+        = @video.date.strftime('%Y-%m-%d')
+      li 會議別：
+        = @video.committee.name
+      li 會議簡介：
+        = @video.meeting_description
+  .inner-content-txt
+    .vidoe-inner-show
+      iframe src="http://www.youtube.com/embed/#{@video.youtube_id}" frameborder="0" class="video-play" allowfullscreen="1"
+    .video-inner-txt
+      = @video.content.try(:html_safe)
+  .writer
+    span 資料回報者
+    = @video.user.try(:name)
+    time class="time"
+      = @video.created_at.strftime('%Y-%m-%d')
+  - if @video.user == current_user or current_user.admin?
+    .edit-block
+      ul class="edit-btn"
+        li = link_to '修改編輯', edit_video_path(@video)
+        li = link_to '刪除', video_path(@video), method: :delete, data: { confirm: '確認要刪除嗎？' }
+  aside id="aside-info"
+    #accordion
+      - @video.legislators.each do |l|
+        h3 = l.name
+        div
+          ul class="video-other-list"
+            - l.videos.published.first(6).each do |v|
+              li 
+                = link_to image_tag(v.image, width: "135", height: "102"), video_path(v)
+                = link_to v.title, video_path(v)
 
-strong 標題
-
-= @video.title
-br
-| legislators
-br
-- @video.legislators.each do |l|
-  = l.name
-  br
-
-| committee
-br
-= @video.committee.try(:name)
-br
-| meeting_description
-br
-= @video.meeting_description
-br
-
-| ad_session
-br
-= @video.ad_session.try(:name)
-br
-| ad
-br
-= @video.ad.try(:name)
-br
-| ivod_url
-br
-= @video.ivod_url
-br
-| youtube_url
-br
-= @video.youtube_url
-br
-| image
-br
-= image_tag @video.image, {:alt => @video.title, :class => "single-img-2"}
-br
-| date
-br
-= @video.date
-br
-
-= link_to '修改', edit_video_path(@video), class: "btn"
-= link_to '回到列表', videos_path, class: "btn"

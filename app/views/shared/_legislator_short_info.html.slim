@@ -1,0 +1,13 @@
+ul class="sinner-info"
+  li
+    span 立委
+    em = l.name
+  li
+    span 屆次
+    em = l.elections.last.ad.name
+  li
+    span 選區
+    em = l.elections.last.constituency
+  li
+    span 黨籍
+    em = l.elections.last.party.name

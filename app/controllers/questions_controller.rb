@@ -3,12 +3,25 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    @q = Question.search(params[:q])
-    @questions = @q.result(:distinct => true).page params[:page]
+    if user_signed_in? and current_user.admin?
+      @q = Question.search(params[:q])
+    else
+      @q = Question.published.search(params[:q])
+    end
+    @questions = @q.result(:distinct => true).page(params[:page])
+    questions = @questions.to_a
+    @main_question = questions.shift
+    @sub_questions = questions
   end
 
   # GET /questions/1
   def show
+    unless @question.published
+      if user_signed_in? and current_user.admin?
+      else
+        not_found
+      end
+    end
   end
 
   # GET /questions/new
@@ -18,6 +31,12 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
+    unless @question.published
+      if user_signed_in? and current_user.admin?
+      else
+        not_found
+      end
+    end
   end
 
   # POST /questions

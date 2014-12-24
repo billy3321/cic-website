@@ -3,12 +3,25 @@ class VideosController < ApplicationController
 
   # GET /videos
   def index
-    @q = Video.search(params[:q])
-    @videos = @q.result(:distinct => true).page params[:page]
+    if user_signed_in? and current_user.admin?
+      @q = Video.search(params[:q])
+    else
+      @q = Video.published.search(params[:q])
+    end
+    @videos = @q.result(:distinct => true).page(params[:page])
+    videos = @videos.to_a
+    @main_video = videos.shift
+    @sub_videos = videos
   end
 
   # GET /videos/1
   def show
+    unless @video.published
+      if user_signed_in? and current_user.admin?
+      else
+        not_found
+      end
+    end
   end
 
   # GET /videos/new
@@ -18,6 +31,12 @@ class VideosController < ApplicationController
 
   # GET /videos/1/edit
   def edit
+    unless @video.published
+      if user_signed_in? and current_user.admin?
+      else
+        not_found
+      end
+    end
   end
 
   # POST /videos
@@ -54,6 +73,7 @@ class VideosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
       params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-        :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url, :published)
+        :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
+        :source_name, :published, :time_start, :time_end, :target)
     end
 end

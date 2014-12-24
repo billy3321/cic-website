@@ -1,7 +1,4 @@
-h1 修改影片
-
-= simple_form_for(@video, html: {class: 'form-horizontal center' }) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to '查看', video_path(@video), class: "btn"
-= link_to '回到列表', videos_path, class: "btn"
+#post-block
+  h2 編輯立委影片片段
+  = simple_form_for(@video) do |f|
+    = render :partial => 'form', :locals => { :f => f }

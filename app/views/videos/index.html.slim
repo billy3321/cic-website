@@ -1,22 +1,29 @@
-h1 影片列表
+#search-bar
+  = render 'search_form'
 
-table class="table"
-  thead
-    tr
-      th Name
-      th colspan="3"
+#video-show-list.all-list
+  section class="big-video-show"
+    - if @main_video
+      = link_to image_tag(@main_video.image), video_path(@main_video), class: "img_url_l"
+      header
+        h3 = link_to display_shorter(@main_video.title, 26), video_path(@main_video)
+      time class="time"
+        = @main_video.date.try(:strftime, '%Y-%m-%d')
+      .inner-content
+        = display_shorter(@main_video.content, 75)
+    - else
+      .blank 目前尚無資料
 
+  #video-list
+    - @sub_videos.each do |v|
+      section class="small-video-show"
+        = link_to image_tag(v.image), video_path(v), class: "img_url_l"
+        header
+          h3 = link_to display_shorter(v.title, 26), video_path(v)
+        time class="time"
+          = v.date.try(:strftime, '%Y-%m-%d')
+        .inner-content
+          = display_shorter(v.content, 65)
 
-  tbody
-    - @videos.each do |video| 
-      tr
-        td = video.title
-        td = link_to '顯示', video_path(video), class: "btn"
-        td = link_to '修改', edit_video_path(video), class: "btn"
-        td = link_to '刪除', video_path(video), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
-
-br
-
-= render 'search_form'
-
-= link_to '建立影片', new_video_path, class: "btn"
+#page
+  = paginate @videos

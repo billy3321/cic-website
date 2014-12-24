@@ -8,6 +8,9 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :ad_session_id
       t.text :meeting_description
       t.string :ivod_url
+      t.time :time_start
+      t.time :time_end
+      t.string :target
       t.date :date
       t.text :comment
       t.boolean :published, :default => true

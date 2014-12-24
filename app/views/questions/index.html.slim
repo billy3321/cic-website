@@ -1,22 +1,26 @@
-h1 質詢列表
+#search-bar
+  = render 'search_form'
 
-table class="table"
-  thead
-    tr
-      th Name
-      th colspan="3"
+#news-show-list.all-list
+  section class="big-news-show"
+    - if @main_question
+      header
+        h3 = link_to @main_question.title, question_path(@main_question)
+      time class="time"
+        = @main_question.create_at.strftime('%Y-%m-%d')
+      .inner-content
+        = @main_question.content.try(:html_safe)
+    - else
+      .blank 目前尚無資料
+  .news-inner-list
+    - @sub_questions.each do |q|
+      section class="small-news-show"
+        header
+          h3 = link_to q.title, question_path(q)
+        time class="class"
+          = q.create_at.strftime('%Y-%m-%d')
+        .inner-content
+          = q.content.try(:html_safe)
 
-
-  tbody
-    - @questions.each do |question| 
-      tr
-        td = question.title
-        td = link_to '顯示', question_path(question), class: "btn"
-        td = link_to '修改', edit_question_path(question), class: "btn"
-        td = link_to '刪除', question_path(question), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
-
-br
-
-= render 'search_form'
-
-= link_to '建立質詢', new_question_path, class: "btn"
+#page
+  = paginate @questions

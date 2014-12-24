@@ -70,8 +70,9 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.text     "content"
     t.integer  "user_id"
     t.string   "source_url"
+    t.string   "source_name"
     t.date     "date"
-    t.boolean  "published",  default: true
+    t.boolean  "published",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -149,6 +150,9 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.integer  "ad_session_id"
     t.text     "meeting_description"
     t.string   "ivod_url"
+    t.time     "time_start"
+    t.time     "time_end"
+    t.string   "target"
     t.date     "date"
     t.text     "comment"
     t.boolean  "published",           default: true
@@ -190,6 +194,7 @@ ActiveRecord::Schema.define(version: 20141218132723) do
   create_table "videos", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.text     "video_type"
     t.integer  "user_id"
     t.integer  "committee_id"
     t.integer  "ad_session_id"
@@ -199,6 +204,9 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.string   "image"
     t.string   "ivod_url"
     t.string   "source_url"
+    t.string   "source_name"
+    t.time     "time_start"
+    t.time     "time_end"
     t.date     "date"
     t.boolean  "published",           default: true
     t.datetime "created_at"

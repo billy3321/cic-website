@@ -2,15 +2,15 @@
 /* CSS Document */
 
 .party-dpp{
-	background:url(../images/party-dpp.gif);
+	background:url(/images/parties/dpp.gif);
 	}
 .party-kmt{
-	background:url(../images/party-kmt.gif);}
+	background:url(/images/parties/kmt.gif);}
 .party-nsu{
-	background:url(../images/party-nsu.gif);}
+	background:url(/images/parties/nsu.gif);}
 .party-tsu{
-	background:url(../images/party-tsu.gif);}
+	background:url(/images/parties/tsu.gif);}
 .party-pfp{
-	background:url(../images/party-pfp.gif);}
+	background:url(/images/parties/pfp.gif);}
 .party-null{
-	background:url(../images/party-null.gif);}
+	background:url(/images/parties/null.gif);}

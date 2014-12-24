@@ -1,31 +1,40 @@
-p id="notice" = notice
+aside class="pinfo-inner-aside"
+  - @entry.legislators.each do |l|
+    .pinfo.pinfo-inner
+      = render partial: 'shared/legislator_info', locals: { l: l }
 
-br
-strong Title
-= @entry.title
+section class="single-page-inner"
+  header
+    h3 = @entry.title
+  - @entry.legislators.each do |l|
+    = render partial: 'shared/legislator_short_info', locals: { l: l }
+  ul id="sinner-src-list"
+    li 新聞連結：
+      = link_to @entry.source_url, @entry.source_url
+    li 新聞來源：
+      = @entry.source_name
+    li 新聞日期：
+      = @entry.date.strftime('%Y-%m-%d')
+  .inner-content-txt
+    .video-inner-txt
+      = @entry.content.try(:html_safe)
 
-br
-| legislators
-br
-- @entry.legislators.each do |l|
-  = l.name
-  br
+  .writer
+    span 資料回報者
+    = @entry.user.name
+    time class="time"
+      = @entry.create_at.strftime('%Y-%m-%d')
 
-br
-| content
-br
-= @entry.content.html_safe
-
-br
-| source_url
-br
-= @entry.source_url
-
-br
-| date
-br
-= @entry.date
-br
-
-= link_to '修改', edit_entry_path(@entry), class: "btn"
-= link_to '回到列表', entries_path, class: "btn"
+  - if @entry.user == current_user or current_user.admin?
+    .edit-block
+      ul class="edit-btn"
+        li = link_to '修改編輯', edit_entry_path(@entry)
+        li = link_to '刪除', delete_entry_path(@entry), method: :delete, data: { confirm: '確認要刪除嗎？' }
+  aside id="aside-info"
+    #accordion
+      - @entry.legislators.each do |l|
+        h3 = l.name
+        div
+          ul class="news-info-list two-col-list"
+            - l.entries.published.first(6).each do |e|
+              li = link_to e.title, entry_path(e)

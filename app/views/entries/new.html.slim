@@ -1,6 +1,6 @@
-h1 建立新聞
-
-= simple_form_for(@entry) do |f|
-  = render :partial => 'form', :locals => { :f => f }
+#post-block
+  h2 回報立委新聞紀錄
+  = simple_form_for(@entry) do |f|
+    = render :partial => 'form', :locals => { :f => f }
 
 = link_to '回到列表', entries_path, class: "btn"

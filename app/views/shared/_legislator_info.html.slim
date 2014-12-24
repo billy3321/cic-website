@@ -1,0 +1,34 @@
+section class="people-info-block"
+  = link_to legislator_path(l), class: "people-img" do
+    = image_tag("legislators/160x214/#{l.image}", alt: l.name, title: l.name)
+    em class="party-#{l.party.abbr_name} party_tag" = l.party.name
+  h2 = link_to l.name, legislator_path(l)
+  ul class="info-number"
+    li
+      em 影片數
+      = link_to l.videos.count, videos_legislator_path(l)
+    li
+      em 新聞數
+      = link_to l.entries.count, entries_legislator_path(l)
+    li
+      em 質詢數
+      = link_to l.questions.count, questions_legislator_path(l)
+  .selector-info.si-newest
+  - elections_num = 1
+  - l.elections.each do |e|
+    - if elections_num == 1
+      .selector-info.si-newest
+        .si01 = e.ad.name
+        .si02 = e.constituency
+        .si30 = e.party.name
+    - else
+      .selector-info
+        .si01 = e.ad.name
+        .si02 = e.constituency
+        .si30 = e.party.name    
+    - elections_num += 1
+
+  ul class="pinfo-btn"
+    li = link_to '看新聞紀錄', entries_legislator_path(l)
+    li = link_to '看質詢紀錄', questions_legislator_path(l)
+    li = link_to '看影片紀錄', videos_legislator_path(l)

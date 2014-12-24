@@ -1,6 +1,5 @@
-h1 建立影片
+#post-block
+  h2 回報立委影片片段
+  = simple_form_for(@video) do |f|
+    = render :partial => 'form', :locals => { :f => f }
 
-= simple_form_for(@video) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to '回到列表', videos_path, class: "btn"

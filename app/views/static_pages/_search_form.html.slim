@@ -1,23 +1,4 @@
 .search-bar
-  select name="select" class="recent-search-form-select" id="select"
-    option value="video" selected="selected" 影片
-    option value="entry" 新聞
-    option value="question" 質詢
-
-
-  = search_form_for(@q_videos, url: videos_path, html: {class: "video-search"}) do |f|
-    = f.search_field :title_cont, html: {name: "textfield", id: "textfield", class: "keyin"}
-    = f.submit '搜尋', html: {name: "submit", id: "submit", class: "submit-btn"}
-  
-  = search_form_for(@q_entries, url: entries_path, html: {class: "entry-search", style: "display:none"}) do |f|
-    = f.search_field :title_cont, html: {name: "textfield", id: "textfield", class: "keyin"}
-    = f.submit '搜尋', html: {name: "submit", id: "submit", class: "submit-btn"}
-
-  = search_form_for(@q_questions, url: questions_path, html: {class: "question-search", style: "display:none"}) do |f|
-    = f.search_field :title_cont, html: {name: "textfield", id: "textfield", class: "keyin"}
-    = f.submit '搜尋', html: {name: "submit", id: "submit", class: "submit-btn"}
-
-
   = form_tag recent_path, method: :get do
     = text_field_tag :q, nil, html: {name: "textfield", id: "textfield", class: "keyin"}
     = submit_tag '搜尋', html: {name: "submit", id: "submit", class: "submit-btn"}

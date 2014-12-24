@@ -1,16 +1,32 @@
-- if @entry.errors.any? 
-  .error_explanation
-    h2 
-      = pluralize(@entry.errors.count, "error") 
-      prohibited this entry from being saved:
-    ul
-      - @entry.errors.full_messages.each do |message|
-      li = message
-
-= f.input :title
-= f.association :legislators, collection: Legislator.all, input_html: { class: 'chosen-select' }
-= f.cktext_area :content
-= f.input :source_url
-= f.input :date, as: :string, input_html: { class: "datepicker" }
-= f.submit '確定送出'
-  
+= render 'shared/error_messages', object: f.object
+ul class="form-list"
+  li
+    p class="snote" ＊為必填項目
+  li
+    p 立委姓名＊
+    p = f.association :legislators, label: false, collection: Legislator.all, input_html: { class: 'chosen-select' }
+  li
+    p 新聞連結＊
+    p class="snote" 請填寫新聞網路連結作為來源依據。
+    p = f.input :source_url, label: false
+  li
+    p 新聞來源＊
+    p class="snote" 請填寫此新聞由哪個媒體報導，例如：蘋果日報、Etoday。、中視
+    p = f.input :source_name, label: false
+  li
+    p 新聞標題＊
+    p = f.input :title, label: false
+  li
+    p 新聞日期＊
+    p = f.input :date, as: :string, label: false, input_html: { class: "datepicker" }
+  li
+    p 新聞內容＊
+    p class="snote" 請填寫新聞文字內容作為備份。
+      = link_to "可以回報新聞影片嗎>>", '#'
+      br
+    p = f.cktext_area :content, label: false
+  - if user_signed_in? and current_user.admin?
+    li
+      p 是否允許發佈
+      p = f.input :published, as: :boolean, label: false
+  li = f.submit '確定送出', class: "form-btn", id: "button"

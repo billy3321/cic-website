@@ -1,12 +1,54 @@
-p id="notice" = notice
+#people-single-top
+  .pinfo.pinfo-mlist
+    = render partial: 'shared/legislator_info', locals: { l: @legislator }
 
-strong 姓名
-br
-= @legislator.name
-br
-| 黨派
-br
-= @legislator.party.name
-br
+  section class="big-video-show"
+    - if @main_video
+      = link_to image_tag(@main_video.image), video_path(@main_video), class: "img_url_l"
+      header
+        h3 = link_to @main_video.title, video_path(@main_video)
+      time class="time"
+        = @main_video.date
+      .inner-content
+        = @main_video.content.try(:html_safe)
+      = link_to "更多影片", videos_legislators_path(@legislator)
+    - else
+      .blank 目前尚無資料
 
-= link_to '回到列表', legislators_path, class: "btn"
+#info-show-list
+  #video-list
+    - if @sub_videos.any?
+      - @sub_videos.each do |v|
+        section class="small-video-show"
+          = link_to image_tag(v.image), video_path(v), class: "img_url_l"
+          header
+            h3 = link_to v.title, video_path(v)
+          time class="time"
+            = v.date
+          .inner-content
+            = v.content.try(:html_safe)
+    - else
+      section class="small-video-show"
+        .blank 目前尚無資料
+
+#info-show-list
+  #new-list.side-sblock
+    h3 【新聞紀錄】
+    - if @entries.any?
+      = link_to "更多", entries_legislators_path(@legislator), class: "more"
+      ul
+        - @legislators.entries.each do |e|
+          li link_to e.title, entry_path(e)
+    - else
+      .blank 目前尚無資料
+
+  #say-list.side-sblock
+    h3 【質詢紀錄】
+    - if @questions.any?
+      = link_to "更多", questions_legislators_path(@legislator), class: "more"
+      ul
+        - @legislators.questions.each do |q|
+          li q.title
+    - else
+      .blank 目前尚無資料
+    

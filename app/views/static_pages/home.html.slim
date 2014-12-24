@@ -29,7 +29,7 @@
 #people-rank
   h3 立委質詢紀錄排行榜
   p 以紀錄數量排行
-  - unless @legislators.empty?
+  - if @legislators.any?
     ul id="people-rank-list"
       - num = 1
       - @legislators.each do |l|
