@@ -52,7 +52,8 @@ ul class="form-list"
   li
     p 簡介
     p = f.cktext_area :content, label: false
-  li
-    p 是否允許發佈
-    p = f.input :published, as: :boolean, label: false
+  - if user_signed_in? and current_user.admin?
+    li
+      p 是否允許發佈
+      p = f.input :published, as: :boolean, label: false
   li = f.submit '確定送出', class: "form-btn", id: "button"
