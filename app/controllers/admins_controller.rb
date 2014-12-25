@@ -1,5 +1,7 @@
 class AdminsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_admin
+
   def index
     @this_month = Date.today.beginning_of_month
     @last_month = @this_month - 1.month

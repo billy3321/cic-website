@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, except: [:index, :new]
   before_action :authenticate_user!
+  before_action :require_admin
+
   # GET /admin/users
   def index
     @users = User.all.page params[:page]

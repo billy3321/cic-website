@@ -1,5 +1,7 @@
 class PartiesController < ApplicationController
   before_action :set_party, except: [:index, :new]
+  before_action :authenticate_user!
+  before_action :require_admin
 
   # GET /parties
   def index
