@@ -1,5 +1,6 @@
 = render 'shared/error_messages', object: f.object
 ul class="form-list"
+  = f.hidden_field :user_id, :value => current_user.id
   li
     p class="snote" ＊為必填項目
   li
@@ -11,15 +12,15 @@ ul class="form-list"
   li
     p 相關委員會
     p class="snote" 請選擇相關的委員會
-    p = f.association :committee, as: :select, label: false
+    p = f.association :committee, as: :select, label: false, hint: '請選擇相關的委員會'
   li
     p 影片出處分類＊
-    p class="snote" （ivod與新聞回報所顯示的資料結果略有差異，將依據ivod確切內容進行修正）
-    p = f.input :video_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['新聞影片', 'news']], selected: 'ivod'
+    p class="snote" （ivod與新聞回報所顯示的資料結果略有差異，若選擇ivod，將依據ivod確切內容進行修正）
+    p = f.input :video_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['新聞影片', 'news']], selected: 'ivod', hint: '（ivod與新聞回報所顯示的資料結果略有差異，若選擇ivod，將依據ivod確切內容進行修正）'
   li
     p 立法院議事轉播ivod出處＊
     p class="snote" 請填寫ivod出處之影片連結。
-    p = f.input :ivod_url, label: false
+    p = f.input :ivod_url, label: false, hint: 
   li
     p ivod時間區間
     p class="snote" 
@@ -28,24 +29,24 @@ ul class="form-list"
     
     p class="time-data"
     p 
-      = f.input :time_start, as: :string, label: false, input_html: { class: "timepicker" }
+      = f.input :time_start, as: :string, label: false, hint: '請填寫此段質詢出現的時間區間。', input_html: { class: "timepicker" }
       |  ～ 
-      = f.input :time_end, as: :string, label: false, input_html: { class: "timepicker" }
+      = f.input :time_end, as: :string, label: false, hint: '請填寫此段質詢出現的時間區間。', input_html: { class: "timepicker" }
   li
     p 電視節目或新聞出處
     p class="snote" 請填寫電視出處的電視台名稱與節目名稱。
-    p = f.input :source_name, label: false
+    p = f.input :source_name, label: false, hint: 
   li
     p 電視節目或新聞網址
     p class="snote" 請填寫來源網址
-    p = f.input :source_url, label: false
+    p = f.input :source_url, label: false, hint: 
   li
     p youtube影片連結＊
     p class="snote" 
       | 請將您要回報的影片，先上傳至youtube，再回填您的youtube影片連結。
       br
       | 網址格式：https://www.youtube.com/watch?v=OF6Hr2oV9m4
-    p = f.input :youtube_url, label: false
+    p = f.input :youtube_url, label: false, hint: '請將您要回報的影片，先上傳至youtube，再回填您的youtube影片連結。'
   li
     p 日期
     p = f.input :date, as: :string, input_html: { class: "datepicker" }, label: false

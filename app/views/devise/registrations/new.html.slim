@@ -8,14 +8,14 @@
       li
         p 設定密碼
         p class="snote" 請輸入英文或數字，最少8個字。
-        p = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+        p = f.input :password, required: true, hint: ("請輸入至少#{@minimum_password_length}個字元。" if @validatable)
       li
         p 再輸入一次密碼
         p = f.input :password_confirmation, required: true
       li
         p 暱稱
         p class="snote" 您回報的資料會顯示您的暱稱，不可重複，之後不可以修改。
-        p = f.input :name, required: true
+        p = f.input :name, required: true, hint: '您回報的資料會顯示您的暱稱，不可重複，之後不可以修改。'
       li 
         p 驗證碼
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖

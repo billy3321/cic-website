@@ -17,6 +17,7 @@ class CreateVideos < ActiveRecord::Migration
       t.time :time_start
       t.time :time_end
       t.date :date
+      t.string :user_ip
       t.boolean :published, :default => true
 
       t.timestamps

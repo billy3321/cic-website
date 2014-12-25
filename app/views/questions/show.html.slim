@@ -9,19 +9,29 @@ section class="single-page-inner"
   - @question.legislators.each do |l|
     = render partial: 'shared/legislator_short_info', locals: { l: l }
   ul id="sinner-src-list"
-    li ivod出處：
+    li 
+      | ivod出處：
       = link_to @question.ivod_url, @question.ivod_url
-    li 開會時間：
+    li 
+      | 開會時間：
       = @question.date.strftime('%Y-%m-%d')
-    li 時間標記：
-      = @question.time_start.strftime('%H:%i:%s')
-      |>  ～ 
-      = @question.time_end.strftime('%H:%i:%s')
-    li 會議別：
+    li 
+      | 時間標記：
+      - if @question.time_start and @question.time_end
+        = @question.time_start.try(:strftime, '%H:%i:%s')
+        |  ～ 
+        = @question.time_end.try(:strftime, '%H:%i:%s')
+      - elsif @question.time_start
+        = @question.time_start.try(:strftime, '%H:%i:%s')
+      - else
+        | 無
+    li 
+      | 會議別：
       = @question.committee.name
-    li 會期：
-      = @video.ad_session.ad.name
-      = @video.ad_session.name
+    li 
+      | 會期：
+      = @question.ad_session.try(:ad).name
+      = @question.ad_session.try(:name)
   .inner-content-txt
     = @question.content.try(:html_safe)
 
@@ -29,20 +39,20 @@ section class="single-page-inner"
     span 資料回報者
     = @question.user.name
     time class="time"
-      = @question.create_at.strftime('%Y-%m-%d')
+      = @question.created_at.strftime('%Y-%m-%d')
   aside id="writer-say"
     = @question.comment.try(:html_safe)
 
-  - if @question.user == current_user or current_user.admin?
+  - if user_signed_in? and (@question.user == current_user or current_user.admin?)
     .edit-block
       ul class="edit-btn"
         li = link_to '修改編輯', edit_question_path(@question)
-        li = link_to '刪除', delete_question_path(@question), method: :delete, data: { confirm: '確認要刪除嗎？' }
+        li = link_to '刪除', question_path(@question), method: :delete, data: { confirm: '確認要刪除嗎？' }
   aside id="aside-info"
     #accordion
       - @question.legislators.each do |l|
         h3 = l.name
         div
           ul class="news-info-list"
-            - l.questions.published.first(6).each do |q|
-              li = link_to e.title, question_path(q)
+            - l.questions.published.first(5).each do |q|
+              li = link_to q.title, question_path(q)

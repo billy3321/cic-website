@@ -1,22 +1,35 @@
-h2 修改多個新聞
-
-= form_tag update_entries_path, method: :put do
-  table
-    tr
-      th
-      th 標題
-      th 編輯
-      th 刪除
-  - @entries.each do |e|
-    tr
-      = hidden_field_tag "entry_ids[]", e.id
-      - if e.published
-        td = check_box_tag "published_ids[]", e.id, true
-      - else
-        td = check_box_tag "published_ids[]", e.id, false
-      td = e.title
-      td = link_to "Edit", edit_entry_path(e)
-      td = link_to "Destroy", entry_path(e), :confirm => 'Are you sure?', :method => :delete
-  
-  = paginate @entries
-  = submit_tag "Edit Checked"
+#sys-block
+  = form_tag update_entries_path, method: :put do
+    h2 
+      | 新聞管理 ─ 僅供依回報時間條列查看，詳細內容請點選查看到前台觀看。
+      = submit_tag "批次刪除", class: "add-btn"
+    .inner-list
+      table.adm-table width="100%"
+        tr
+          th width="5%" = check_box_tag "check_all", 'yes', false, class: "check_all_box"
+          th width="54%" 新聞標題
+          th width="11%" 立委姓名
+          th width="10%" 回報時間
+          th width="13%" 回報者 / IP
+          th width="7%" 查看
+        - if @entries.any?
+          - @entries.each do |e|
+            tr 
+              = hidden_field_tag "entry_ids[]", e.id
+              - if e.published
+                td = check_box_tag "unpublished_ids[]", e.id, false, class: "published_box"
+              - else
+                td = check_box_tag "unpublished_ids[]", e.id, true, class: "published_box"
+              td = e.title
+              td
+                - e.legislators.each do |l|
+                  = l.name
+              td = e.created_at.strftime('%Y-%m-%d')
+              td
+                = e.user.name
+                br
+                = e.user_ip
+              td class="c" = link_to "查看", entry_path(e), target: "_blank"
+      #page-bar
+        #page
+          = paginate @entries

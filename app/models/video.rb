@@ -4,13 +4,15 @@ class Video < ActiveRecord::Base
   belongs_to :user
   belongs_to :committee
   belongs_to :ad_session
-  validates_presence_of :youtube_url
+  validates_presence_of :youtube_url, message: '必須填寫youtube網址'
+  validates_presence_of :title, message: '必須填寫影片標題'
   validate :has_at_least_one_legislator
   validate :is_youtube_url, :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
   before_save :update_youtube_values, :update_ivod_values, :update_ad_session_values
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
+  scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
 
   def update_youtube_values
     youtube_id = extract_youtube_id(self.youtube_url)
@@ -46,7 +48,7 @@ class Video < ActiveRecord::Base
   end
 
   def update_ivod_values
-    if self.ivod_url.empty? or self.video_type == 'news'
+    if self.ivod_url.empty? and self.video_type == 'news'
       return true
     end
     ivod_uri = URI.parse(self.ivod_url)
@@ -94,7 +96,7 @@ class Video < ActiveRecord::Base
     elsif youtube_uri.host == 'youtu.be'
       youtube_id = youtube_uri.path[1..-1]
     else
-      raise 'youtube id not found'
+      raise 'youtube id 解析錯誤'
     end
   end
 
@@ -102,28 +104,32 @@ class Video < ActiveRecord::Base
 
   def is_youtube_url
     youtube_uri = URI.parse(self.youtube_url)
-    errors.add(:base, 'is not youtube url') unless ['www.youtube.com', 'youtu.be'].include?(youtube_uri.try(:host))
+    errors.add(:base, '填寫網址非youtube網址') unless ['www.youtube.com', 'youtu.be'].include?(youtube_uri.try(:host))
     begin
-      errors.add(:base, 'youtube url error') unless HTTParty.get(self.youtube_url).code == 200
+      errors.add(:base, 'youtube網址無法存取') unless HTTParty.get(self.youtube_url).code == 200
     rescue
-      errors.add(:base, 'youtube url error')
+      errors.add(:base, 'youtube網址錯誤')
     end
   end
 
   def is_ivod_url
-    if self.ivod_url.empty? or self.video_type == 'news'
-      return true
+    if self.ivod_url.empty?
+      if self.video_type == 'news'
+        return true
+      else
+        errors.add(:base, '尚未填寫ivod網址')
+      end
     end
     ivod_uri = URI.parse(self.ivod_url)
-    errors.add(:base, 'is not ivod url') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
+    errors.add(:base, '填寫網址非ivod網址') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
     begin
-      errors.add(:base, 'ivod url error') unless HTTParty.get(self.ivod_url).code == 200
+      errors.add(:base, 'ivod網址無法存取') unless HTTParty.get(self.ivod_url).code == 200
     rescue
-      errors.add(:base, 'ivod url error')
+      errors.add(:base, 'ivod網址錯誤')
     end
   end
 
   def has_at_least_one_legislator
-    errors.add(:base, 'must add at least one legislator') if self.legislators.blank?
+    errors.add(:base, '必須加入至少一名立法委員！') if self.legislators.blank?
   end
 end

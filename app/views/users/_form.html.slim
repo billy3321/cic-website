@@ -1,12 +1,26 @@
-- if @user.errors.any? 
-  .error_explanation
-    h2 
-      = pluralize(@user.errors.count, "error") 
-      prohibited this user from being saved:
-    ul
-      - @user.errors.full_messages.each do |message|
-        li = message
-
-= f.input :name
-= f.submit '確定送出'
-  
+= render 'shared/error_messages', object: f.object
+ul class="form-list"
+  li
+    p 暱稱
+    p class="input-data"
+    p = f.input :name, label: false, disabled: true
+  li
+    p Email
+    p class="input-data"
+    p = f.input :email, label: false, disabled: true
+  li
+    p 會員等級
+    p class="input-data"
+      = f.input :admin, label: false, as: :select, collection: [['一般會員', false], ['管理員', true]], selected: false
+  li
+    p 來源
+    p class="input-data"
+      - if u.provider.empty?
+        | 本站註冊
+      - elsif u.provider == 'facebook'
+        | Facebook
+      - elsif u.provider == 'google_oauth2'
+        | Google
+      - else
+        | 不明
+  li = f.submit '確定送出', class: "form-btn", id: "button"

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-ui/accordion
 //= require jquery-ui/datepicker
 //= require chosen-jquery
 //= require jquery.timepicker.js
@@ -24,6 +25,19 @@ var ready = function(){
   $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
   // timepicker
   $( ".timepicker" ).timepicker({timeFormat: "H:i:s", scrollDefault: '00:00:00', step: 0.25});
+  $( ".monthpicker" ).datepicker( {
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
+    dateFormat: 'yy-mm-dd',
+    minDate: new Date(2014, 10, 1),
+    maxDate: new Date,
+    onClose: function(dateText, inst) { 
+        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+        $(this).datepicker('setDate', new Date(year, month, 1));
+    }
+  });
   // enable chosen js
   $('.chosen-select').chosen({
     search_contains: true,
@@ -172,6 +186,11 @@ var ready = function(){
     $('.null_party_button').addClass('current');
   });
 
+  $('.check_all_box').change(function(){
+    $.each($('.published_box'), function(){
+      this.checked = $('.check_all_box')[0].checked;
+    });
+  });
 };
 
 $(document).ready(ready);

@@ -1,12 +1,11 @@
-- if @party.errors.any? 
-  .error_explanation
-    h2 
-      = pluralize(@party.errors.count, "error") 
-      prohibited this party from being saved:
-    ul
-      - @party.errors.full_messages.each do |message|
-        li = message
-
-= f.input :name
-= f.submit '確定送出'
-  
+= render 'shared/error_messages', object: f.object
+ul class="form-list"
+  li
+    p 政黨名稱＊
+    p class="input-data"
+      = f.input :name, label: false
+  li
+    p 政黨縮寫
+    p class="input-data"
+      = f.input :abbreviation, label: false
+  li = f.submit '確定送出', class: "form-btn", id: "button"

@@ -9,27 +9,30 @@ section class="single-page-inner"
   - @entry.legislators.each do |l|
     = render partial: 'shared/legislator_short_info', locals: { l: l }
   ul id="sinner-src-list"
-    li 新聞連結：
+    li 
+      | 新聞連結：
       = link_to @entry.source_url, @entry.source_url
-    li 新聞來源：
+    li 
+      | 新聞來源：
       = @entry.source_name
-    li 新聞日期：
+    li 
+      | 新聞日期：
       = @entry.date.strftime('%Y-%m-%d')
   .inner-content-txt
     .video-inner-txt
-      = @entry.content.try(:html_safe)
+      = @entry.content.html_safe
 
   .writer
     span 資料回報者
     = @entry.user.name
     time class="time"
-      = @entry.create_at.strftime('%Y-%m-%d')
+      = @entry.created_at.strftime('%Y-%m-%d')
 
-  - if @entry.user == current_user or current_user.admin?
+  - if user_signed_in? and (@entry.user == current_user or current_user.admin?)
     .edit-block
       ul class="edit-btn"
         li = link_to '修改編輯', edit_entry_path(@entry)
-        li = link_to '刪除', delete_entry_path(@entry), method: :delete, data: { confirm: '確認要刪除嗎？' }
+        li = link_to '刪除', entry_path(@entry), method: :delete, data: { confirm: '確認要刪除嗎？' }
   aside id="aside-info"
     #accordion
       - @entry.legislators.each do |l|

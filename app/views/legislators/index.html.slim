@@ -1,4 +1,5 @@
-
+#search-bar
+  = render 'search_form'
 nav id="sec-nav"
   ul id="secn01"
     li = link_to '所有立委', '#', class: "all_record_button current"
@@ -13,6 +14,21 @@ nav id="sec-nav"
   - @legislators.each do |l|
     - if l.has_record?
       section class="people-info-block has_record #{l.party.abbr_name}"
+        = link_to legislator_path(l), class: "people-img" do
+          = image_tag("legislators/160x214/#{l.image}", alt: l.name, title: l.name)
+          em class="party-#{l.party.abbr_name} party_tag" = l.party.name
+        header
+          h2 = link_to l.name, legislator_path(l)
+          ul class="info-number"
+            li
+              em 影片數
+              = link_to l.videos.published.count, videos_legislator_path(l)
+            li
+              em 新聞數
+              = link_to l.entries.published.count, entries_legislator_path(l)
+            li
+              em 質詢數
+              = link_to l.questions.published.count, questions_legislator_path(l)
     - else
       section class="people-info-block no_record #{l.party.abbr_name}"
         = link_to legislator_path(l), class: "people-img" do
@@ -31,4 +47,4 @@ nav id="sec-nav"
               em 質詢數
               = link_to l.questions.published.count, questions_legislator_path(l)
 
-= render 'search_form'
+

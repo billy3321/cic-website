@@ -1,0 +1,34 @@
+#sys-block
+  h2 後臺首頁 ─ 數據總覽
+  .inner-list
+    table.adm-table width="100%"
+      tr
+        th width="25%" 影片紀錄總數
+        th width="25%" 質詢紀錄總數
+        th width="25%" 新聞紀錄總數
+        th width="25%" 兵團總人數
+      tr class="r"
+        td = Video.all.count
+        td = Question.all.count
+        td = Entry.all.count
+        td = User.all.count
+      tr
+        th 本月回報影片數
+        th 本月回報質詢紀錄數
+        th 本月回報新聞紀錄數
+        th 本月加入兵團人數
+      tr class="r"
+        td = Video.created_in_time_count(@this_month, 1.month)
+        td = Question.created_in_time_count(@this_month, 1.month)
+        td = Entry.created_in_time_count(@this_month, 1.month)
+        td = User.created_in_time_count(@this_month, 1.month)
+      tr
+        th 上個月回報影片數
+        th 上個月回報質詢紀錄數
+        th 上個月回報新聞紀錄數
+        th 上個月加入兵團人數
+      tr class="r"
+        td = Video.created_in_time_count(@last_month, 1.month)
+        td = Question.created_in_time_count(@last_month, 1.month)
+        td = Entry.created_in_time_count(@last_month, 1.month)
+        td = User.created_in_time_count(@last_month, 1.month)

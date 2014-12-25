@@ -21,7 +21,6 @@ class KeywordsController < ApplicationController
 
   # POST /keywords
   def create
-    @keyword = Keyword.new(keyword_params)
     if @keyword.save
         redirect_to @keyword, notice: '關鍵字建立成功'
     else

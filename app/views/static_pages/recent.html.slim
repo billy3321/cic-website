@@ -14,7 +14,7 @@
             time class="time"
               = v.created_at.strftime('%Y-%m-%d')
             .inner-content
-              = display_shorter(v.content, 80)
+              = display_shorter(v.content, 75)
       - else
         section class="small-video-show"
           .blank 目前尚無資料

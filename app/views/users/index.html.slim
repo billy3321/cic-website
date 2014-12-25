@@ -1,20 +1,35 @@
-h1 關鍵字列表
-
-table class="table"
-  thead
-    tr
-      th Name
-      th colspan="3"
-
-
-  tbody
-    - @users.each do |user| 
+#sys-block
+  h2 會員管理
+  .inner-list
+    table.adm-table width="100%"
       tr
-        td = user.name
-        td = link_to '顯示', user_path(user), class: "btn"
-        td = link_to '修改', edit_user_path(user), class: "btn"
-        td = link_to '刪除', user_path(user), method: :delete, data: { confirm: '確認要刪除嗎？' }, class: "btn"
+        th width="31%" 帳號
+        th width="32%" 會員等級
+        th width="22%" 來源
+        th width="15%" 操作
+      - @users.each do |u|
+        tr
+          td = u.email
+          - if u.admin?
+            td 管理員
+          - else
+            td 一般會員
 
-br
+          - if u.provider.empty?
+            td 本站註冊
+          - elsif u.provider == 'facebook'
+            td Facebook
+          - elsif u.provider == 'google_oauth2'
+            td Google
+          - else
+            td 不明
 
-= link_to '建立關鍵字', new_user_path, class: "btn"
+          td class="c"
+            = link_to "編輯", edit_user_path(u)
+            |  |
+            = link_to "刪除", user_path(u), method: :delete, data: { confirm: '確認要刪除嗎？' }
+    #page-bar
+      #page
+        = paginate @users
+
+

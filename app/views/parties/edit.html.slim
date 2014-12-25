@@ -1,7 +1,4 @@
-h1 修改關鍵字
-
-= simple_form_for(@party, html: {class: 'form-horizontal center' }) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to '查看', party_path(@party), class: "btn"
-= link_to '回到列表', parties_path, class: "btn"
+#sys-block
+  h2 編輯政黨資料
+  = simple_form_for(@party) do |f|
+    = render :partial => 'form', :locals => { :f => f }

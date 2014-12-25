@@ -1,7 +1,4 @@
-h1 修改關鍵字
-
-= simple_form_for(@keyword, html: {class: 'form-horizontal center' }) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to '查看', keyword_path(@keyword), class: "btn"
-= link_to '回到列表', keywords_path, class: "btn"
+#sys-block
+  h2 編輯關鍵字
+  = simple_form_for(@keyword) do |f|
+    = render :partial => 'form', :locals => { :f => f }

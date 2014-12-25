@@ -8,7 +8,7 @@
       header
         h3 = link_to display_shorter(@main_video.title, 26), video_path(@main_video)
       time class="time"
-        = @main_video.date.try(:strftime, '%Y-%m-%d')
+        = @main_video.created_at.strftime('%Y-%m-%d')
       .inner-content
         = display_shorter(@main_video.content, 75)
     - else
@@ -21,7 +21,7 @@
         header
           h3 = link_to display_shorter(v.title, 26), video_path(v)
         time class="time"
-          = v.date.try(:strftime, '%Y-%m-%d')
+          = v.created_at.strftime('%Y-%m-%d')
         .inner-content
           = display_shorter(v.content, 65)
 

@@ -6,12 +6,12 @@
     - if @main_video
       = link_to image_tag(@main_video.image), video_path(@main_video), class: "img_url_l"
       header
-        h3 = link_to @main_video.title, video_path(@main_video)
+        h3 = link_to display_shorter(@main_video.title, 26), video_path(@main_video)
       time class="time"
-        = @main_video.date
+        = @main_video.created_at.strftime('%Y-%m-%d')
       .inner-content
-        = @main_video.content.try(:html_safe)
-      = link_to "更多影片", videos_legislators_path(@legislator)
+        = display_shorter(@main_video.content, 75)
+      = link_to "更多影片", videos_legislator_path(@legislator)
     - else
       .blank 目前尚無資料
 
@@ -22,11 +22,11 @@
         section class="small-video-show"
           = link_to image_tag(v.image), video_path(v), class: "img_url_l"
           header
-            h3 = link_to v.title, video_path(v)
+            h3 = link_to display_shorter(v.title, 26), video_path(v)
           time class="time"
-            = v.date
+            = v.created_at.strftime('%Y-%m-%d')
           .inner-content
-            = v.content.try(:html_safe)
+            = display_shorter(v.content, 65)
     - else
       section class="small-video-show"
         .blank 目前尚無資料
@@ -35,9 +35,9 @@
   #new-list.side-sblock
     h3 【新聞紀錄】
     - if @entries.any?
-      = link_to "更多", entries_legislators_path(@legislator), class: "more"
+      = link_to "更多", entries_legislator_path(@legislator), class: "more"
       ul
-        - @legislators.entries.each do |e|
+        - @legislator.entries.each do |e|
           li link_to e.title, entry_path(e)
     - else
       .blank 目前尚無資料
@@ -45,9 +45,9 @@
   #say-list.side-sblock
     h3 【質詢紀錄】
     - if @questions.any?
-      = link_to "更多", questions_legislators_path(@legislator), class: "more"
+      = link_to "更多", questions_legislator_path(@legislator), class: "more"
       ul
-        - @legislators.questions.each do |q|
+        - @legislator.questions.each do |q|
           li q.title
     - else
       .blank 目前尚無資料

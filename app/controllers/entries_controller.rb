@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_entry, except: [:index, :new]
+  before_action :set_ip, only: [:create, :update]
 
   # GET /entries
   def index
@@ -42,7 +43,6 @@ class EntriesController < ApplicationController
 
   # POST /entries
   def create
-    @entry = Entry.new(entry_params)
     if @entry.save
         redirect_to @entry, notice: '新聞建立成功'
     else
@@ -74,6 +74,10 @@ class EntriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
       params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-        :user_id, :date, :source_url, :published)
+        :user_id, :date, :source_name, :source_url, :published)
+    end
+
+    def set_ip
+      @entry.user_ip = request.env['REMOTE_HOST']
     end
 end

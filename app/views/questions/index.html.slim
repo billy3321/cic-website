@@ -7,7 +7,7 @@
       header
         h3 = link_to @main_question.title, question_path(@main_question)
       time class="time"
-        = @main_question.create_at.strftime('%Y-%m-%d')
+        = @main_question.created_at.strftime('%Y-%m-%d')
       .inner-content
         = @main_question.content.try(:html_safe)
     - else
@@ -18,7 +18,7 @@
         header
           h3 = link_to q.title, question_path(q)
         time class="class"
-          = q.create_at.strftime('%Y-%m-%d')
+          = q.created_at.strftime('%Y-%m-%d')
         .inner-content
           = q.content.try(:html_safe)
 

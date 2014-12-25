@@ -4,25 +4,26 @@
 #video-show-list
   section class="big-video-show"
     - if @main_video
-      = link_to image_tat(@main_video.image), video_path(@main_video), class: "img_url_l"
+      = link_to image_tag(@main_video.image), video_path(@main_video), class: "img_url_l"
       header
-        h3 = link_to @main_video.title, video_path(@main_video)
+        h3 = link_to display_shorter(@main_video.title, 26), video_path(@main_video)
       time class="time"
-        = @main_video.create_at.strftime('%Y-%m-%d')
+        = @main_video.created_at.strftime('%Y-%m-%d')
       .inner-content
-        = @main_video.content
+        = display_shorter(@main_video.content, 75)
     - else
       .blank 目前尚無資料
   #video-list
-    - @sub_videos.each do |v|
-      #video-inner-list
-        section class="small-video-show"
-          = link_to image_tat(v.image), video_path(v), class: "img_url_l"
-          header
-            h3 = link_to v.title, video_path(v)
-          time class="time"
-            = v.create_at.strftime('%Y-%m-%d')
-          .inner-content
-            = v.content
+    - if @sub_videos
+      - @sub_videos.each do |v|
+        #video-inner-list
+          section class="small-video-show"
+            = link_to image_tag(v.image), video_path(v), class: "img_url_l"
+            header
+              h3 = link_to display_shorter(v.title, 26), video_path(v)
+            time class="time"
+              = v.created_at.strftime('%Y-%m-%d')
+            .inner-content
+              = display_shorter(v.content, 65)
 #page
   = paginate @videos

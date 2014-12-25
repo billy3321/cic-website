@@ -26,4 +26,16 @@ class ApplicationController < ActionController::Base
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
+
+  private
+
+  def require_admin
+    unless current_user.admin?
+      begin
+        redirect_to :back
+      rescue ActionController::RedirectBackError
+        redirect_to root_path
+      end
+    end
+  end
 end

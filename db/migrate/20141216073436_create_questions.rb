@@ -13,6 +13,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :target
       t.date :date
       t.text :comment
+      t.string :user_ip
       t.boolean :published, :default => true
 
       t.timestamps

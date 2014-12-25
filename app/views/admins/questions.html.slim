@@ -1,22 +1,35 @@
-h2 修改多個質詢
-
-= form_tag update_questions_path, method: :put do
-  table
-    tr
-      th
-      th 標題
-      th 編輯
-      th 刪除
-  - @questions.each do |q|
-    tr
-      = hidden_field_tag "question_ids[]", q.id
-      - if q.published
-        td = check_box_tag "published_ids[]", q.id, true
-      - else
-        td = check_box_tag "published_ids[]", q.id, false
-      td = q.title
-      td = link_to "Edit", edit_question_path(q)
-      td = link_to "Destroy", question_path(q), :confirm => 'Are you sure?', :method => :delete
-  
-  = paginate @questions
-  = submit_tag "Edit Checked"
+#sys-block
+  = form_tag update_questions_path, method: :put do
+    h2 
+      | 質詢管理 ─ 僅供依回報時間條列查看，詳細內容請點選查看到前台觀看。
+      = submit_tag "批次刪除", class: "add-btn"
+    .inner-list
+      table.adm-table width="100%"
+        tr
+          th width="5%" = check_box_tag "check_all", 'yes', false, class: "check_all_box"
+          th width="54%" 質詢標題
+          th width="11%" 立委姓名
+          th width="10%" 回報時間
+          th width="13%" 回報者 / IP
+          th width="7%" 查看
+        - if @questions.any?
+          - @questions.each do |q|
+            tr 
+              = hidden_field_tag "question_ids[]", q.id
+              - if q.published
+                td = check_box_tag "unpublished_ids[]", q.id, false, class: "published_box"
+              - else
+                td = check_box_tag "unpublished_ids[]", q.id, true, class: "published_box"
+              td = q.title
+              td
+                - q.legislators.each do |l|
+                  = l.name
+              td = q.created_at.strftime('%Y-%m-%d')
+              td
+                = q.user.name
+                br
+                = q.user_ip
+              td class="c" = link_to "查看", question_path(q), target: "_blank"
+      #page-bar
+        #page
+          = paginate @questions

@@ -1,14 +1,18 @@
 = render 'shared/error_messages', object: f.object
 ul class="form-list"
+  = f.hidden_field :user_id, :value => current_user.id
   li
     p class="snote" ＊為必填項目
   li
     p 立委姓名＊
     p = f.association :legislators, label: false, collection: Legislator.all, input_html: { class: 'chosen-select' }
   li
+    p 質詢標題＊
+    p = f.input :title, label: false
+  li
     p 立法院議事轉播ivod出處＊
     p class="snote" 請填寫ivod出處之影片連結。
-    p = f.input :ivod_url, label: false
+    p = f.input :ivod_url, label: false, hint: '請填寫ivod出處之影片連結。'
   li
     p ivod時間區間
     p class="snote" 
@@ -17,20 +21,20 @@ ul class="form-list"
     
     p class="time-data"
     p 
-      = f.input :time_start, as: :string, label: false, input_html: { class: "timepicker" }
+      = f.input :time_start, as: :string, label: false, hint: '請填寫此段質詢出現的時間區間。', input_html: { class: "timepicker" }
       |  ～ 
-      = f.input :time_end, as: :string, label: false, input_html: { class: "timepicker" }
+      = f.input :time_end, as: :string, label: false, hint: '請填寫此段質詢出現的時間區間。', input_html: { class: "timepicker" }
   li
     p 質詢內容＊
     p class="snote" 請填寫關鍵質詢內容對話文字稿。
-    p = f.cktext_area :content, label: false
+    p = f.cktext_area :content, label: false, hint: '請填寫關鍵質詢內容對話文字稿。'
   li
     p 質詢對象
     p class="snote" 請填寫本段質詢的對象姓名或職稱。
-    p = f.input :target, label: false
+    p = f.input :target, label: false, hint: '請填寫本段質詢的對象姓名或職稱。'
   li
     p 個人心得
-    p = f.cktext_area :content, label: false
+    p = f.cktext_area :comment, label: false
   - if user_signed_in? and current_user.admin?
     li
       p 是否允許發佈

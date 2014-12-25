@@ -1,12 +1,3 @@
-- if user_signed_in?
-  = current_user.name
-  = current_user.provider
-  = link_to "Change your password", edit_user_registration_path
-  = link_to '登出', destroy_user_session_path, method: :delete
-- else
-  = link_to '登入', new_user_session_path
-
-
 #index-video-block
   section id="index-main-video" class=" video-a"
     - if @main_video

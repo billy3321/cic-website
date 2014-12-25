@@ -10,20 +10,26 @@ section class="single-page-inner"
     = render partial: 'shared/legislator_short_info', locals: { l: l }
   ul id="sinner-src-list"
     - if @video.video_type == 'news'
-      li 電視出處：
+      li 
+        | 電視出處：
         = @video.source_name
         = link_to @video.source_url, @video.source_url
     - elsif @video.video_type == 'ivod'
-      li ivod出處：
+      li 
+        | ivod出處：
         = link_to @video.ivod_url, @video.ivod_url
-      li 會期：
-        = @video.ad_session.ad.name
-        = @video.ad_session.name
-      li 會議時間：
-        = @video.date.strftime('%Y-%m-%d')
-      li 會議別：
+      li 
+        | 會期：
+        = @video.ad_session.try(:ad).name
+        = @video.ad_session.try(:name)
+      li 
+        | 會議時間：
+        = @video.date.try(:strftime, '%Y-%m-%d')
+      li 
+        | 會議別：
         = @video.committee.name
-      li 會議簡介：
+      li 
+        | 會議簡介：
         = @video.meeting_description
   .inner-content-txt
     .vidoe-inner-show
@@ -32,10 +38,10 @@ section class="single-page-inner"
       = @video.content.try(:html_safe)
   .writer
     span 資料回報者
-    = @video.user.try(:name)
+    = @video.user.name
     time class="time"
       = @video.created_at.strftime('%Y-%m-%d')
-  - if @video.user == current_user or current_user.admin?
+  - if user_signed_in? and (@video.user == current_user or current_user.admin?)
     .edit-block
       ul class="edit-btn"
         li = link_to '修改編輯', edit_video_path(@video)

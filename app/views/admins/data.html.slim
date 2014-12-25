@@ -1,0 +1,43 @@
+#sys-block
+  h2 
+    = form_tag admin_data_path, method: :get do
+      | 數據報表 ─ 請選擇年分月份
+      = text_field_tag :date, @this_month.strftime('%Y-%m-%d'), class: "monthpicker"
+      = submit_tag "選擇", html: {name: "submit", id: "submit", class: "submit-btn"}
+
+  .inner-list
+    table.adm-table width="100%"
+      tr
+        th width="25%" 本月回報影片數
+        th width="25%" 本月回報質詢紀錄數
+        th width="25%" 本月回報新聞紀錄數
+        th width="25%" 本月加入兵團人數
+      tr class="r"
+        td = Video.created_in_time_count(@this_month, 1.month)
+        td = Question.created_in_time_count(@this_month, 1.month)
+        td = Entry.created_in_time_count(@this_month, 1.month)
+        td = User.created_in_time_count(@this_month, 1.month)
+    table.adm-table width="100%"
+      tr
+        th colspan="8" 每日記錄
+      tr
+        th width="13%" rowspan="2" 日期
+        th width="14%" rowspan="2" 回報影片數
+        th width="16%" rowspan="2" 回報質詢數
+        th width="16%" rowspan="2" 回報新聞數
+        th colspan="4" 加入兵團人數
+      tr
+        th width="9%" 本站註冊
+        th width="9%" FB登入
+        th width="11%" google登入
+        th width="12%" 總數
+      - @dates.each do |d|
+        tr class="r"
+          td class="c" = d.strftime('%Y-%m-%d')
+          td = Video.created_in_time_count(d, 1.day)
+          td = Question.created_in_time_count(d, 1.day)
+          td = Entry.created_in_time_count(d, 1.day)
+          td = User.login_from('').created_in_time_count(d, 1.day)
+          td = User.login_from('facebook').created_in_time_count(d, 1.day)
+          td = User.login_from('google_oauth2').created_in_time_count(d, 1.day)
+          td = User.created_in_time_count(d, 1.day)

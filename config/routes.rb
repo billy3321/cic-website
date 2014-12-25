@@ -20,11 +20,13 @@ Rails.application.routes.draw do
   resources :questions
   resources :videos
   scope '/admin' do
-    resources :users
+    resources :users, except: [:show, :new, :create]
     resources :parties
-    match 'entries',          to: 'admins#entries',          via: 'get'
-    match 'questions',        to: 'admins#questions',        via: 'get'
-    match 'videos',           to: 'admins#videos',           via: 'get'
+    root 'admins#index',             via: 'get', as: 'admin'
+    match 'entries',          to: 'admins#entries',          via: 'get', as: 'admin_entries'
+    match 'questions',        to: 'admins#questions',        via: 'get', as: 'admin_questions'
+    match 'videos',           to: 'admins#videos',           via: 'get', as: 'admin_videos'
+    match 'data',             to: 'admins#data',             via: 'get', as: 'admin_data'
     match 'update_entries',   to: 'admins#update_entries',   via: 'put'
     match 'update_questions', to: 'admins#update_questions', via: 'put'
     match 'update_videos',    to: 'admins#update_videos',    via: 'put'

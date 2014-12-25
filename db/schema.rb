@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.string   "source_url"
     t.string   "source_name"
     t.date     "date"
+    t.string   "user_ip"
     t.boolean  "published",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -155,6 +156,7 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.string   "target"
     t.date     "date"
     t.text     "comment"
+    t.string   "user_ip"
     t.boolean  "published",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -208,6 +210,7 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.time     "time_start"
     t.time     "time_end"
     t.date     "date"
+    t.string   "user_ip"
     t.boolean  "published",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"

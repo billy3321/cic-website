@@ -4,7 +4,8 @@ class Question < ActiveRecord::Base
   belongs_to :user
   belongs_to :committee
   belongs_to :ad_session
-  validates_presence_of :ivod_url
+  validates_presence_of :ivod_url, message: '必須填寫ivod出處之影片連結'
+  validates_presence_of :content, message: '必須填寫質詢內容'
   validate :has_at_least_one_legislator
   validate :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
@@ -13,6 +14,7 @@ class Question < ActiveRecord::Base
   before_save :update_ivod_values, :update_ad_session_values
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
+  scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
 
   def update_ivod_values
     unless self.ivod_url
@@ -58,15 +60,15 @@ class Question < ActiveRecord::Base
       return nil
     end
     ivod_uri = URI.parse(self.ivod_url)
-    errors.add(:base, 'is not ivod url') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
+    errors.add(:base, '填寫網址非ivod網址') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
     begin
-      errors.add(:base, 'ivod url error') unless HTTParty.get(self.ivod_url).code == 200
+      errors.add(:base, 'ivod網址無法存取') unless HTTParty.get(self.ivod_url).code == 200
     rescue
-      errors.add(:base, 'ivod url error')
+      errors.add(:base, 'ivod網址錯誤')
     end
   end
 
   def has_at_least_one_legislator
-    errors.add(:base, 'must add at least one legislator') if self.legislators.blank?
+    errors.add(:base, '必須加入至少一名立法委員！') if self.legislators.blank?
   end
 end

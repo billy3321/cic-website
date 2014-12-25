@@ -7,20 +7,20 @@
       header
         h3 = link_to @main_question.title, question_path(@main_question)
       time class="time"
-        = @main_question.create_at.strftime('%Y-%m-%d')
+        = @main_question.created_at.strftime('%Y-%m-%d')
       .inner-content
         = display_shorter(@main_question.content, 75)
     - else
       .blank 目前尚無資料
-
-- @sub_questions.each do |e|
-  #news-inner-list
-    section class="small-news-show"
-      header
-        h3 = link_to e.title, question_path(e)
-      time class="time"
-        = e.create_at.strftime('%Y-%m-%d')
-      .inner-content
-        = display_shorter(e.content, 75)
+- if @sub_questions
+  - @sub_questions.each do |e|
+    #news-inner-list
+      section class="small-news-show"
+        header
+          h3 = link_to e.title, question_path(e)
+        time class="time"
+          = e.created_at.strftime('%Y-%m-%d')
+        .inner-content
+          = display_shorter(e.content, 75)
 #page
   = paginate @questions

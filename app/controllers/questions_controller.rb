@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, except: [:index, :new]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_ip, only: [:create, :update]
 
   # GET /questions
   def index
@@ -42,7 +43,6 @@ class QuestionsController < ApplicationController
 
   # POST /questions
   def create
-    @question = Question.new(question_params)
     if @question.save
         redirect_to @question, notice: '質詢建立成功'
     else
@@ -75,5 +75,9 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
         :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published)
+    end
+
+    def set_ip
+      @question.user_ip = request.env['REMOTE_HOST']
     end
 end

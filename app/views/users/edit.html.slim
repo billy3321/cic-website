@@ -1,7 +1,5 @@
-h1 修改關鍵字
+#sys-block
+  h2 會員編輯
 
-= simple_form_for(@user, html: {class: 'form-horizontal center' }) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-
-= link_to '查看', user_path(@user), class: "btn"
-= link_to '回到列表', users_path, class: "btn"
+= simple_form_for(@user) do |f|
+  = render partial: 'form', locals: { f: f, u: @user }

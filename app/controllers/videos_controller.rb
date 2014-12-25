@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
   before_action :set_video, except: [:index, :new]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_ip, only: [:create, :update]
 
   # GET /videos
   def index
@@ -42,7 +43,6 @@ class VideosController < ApplicationController
 
   # POST /videos
   def create
-    @video = Video.new(video_params)
     if @video.save
         redirect_to @video, notice: '影片建立成功'
     else
@@ -75,6 +75,10 @@ class VideosController < ApplicationController
     def video_params
       params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
         :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
-        :source_name, :published, :time_start, :time_end, :target)
+        :source_name, :published, :time_start, :time_end, :target, :video_type)
+    end
+
+    def set_ip
+      @video.user_ip = request.env['REMOTE_HOST']
     end
 end
