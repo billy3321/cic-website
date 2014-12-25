@@ -38,7 +38,7 @@ section class="single-page-inner"
       = @video.content.try(:html_safe)
   .writer
     span 資料回報者
-    = @video.user.name
+    = @video.user.try(:name)
     time class="time"
       = @video.created_at.strftime('%Y-%m-%d')
   - if user_signed_in? and (@video.user == current_user or current_user.admin?)

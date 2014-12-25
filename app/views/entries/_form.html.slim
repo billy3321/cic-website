@@ -9,23 +9,23 @@ ul class="form-list"
   li
     p 新聞連結＊
     p class="snote" 請填寫新聞網路連結作為來源依據。
-    p = f.input :source_url, label: false, hint: '請填寫新聞網路連結作為來源依據。'
+    p = f.input :source_url, label: false, hint: '請填寫新聞網路連結作為來源依據。', required: true
   li
     p 新聞來源＊
     p class="snote" 請填寫此新聞由哪個媒體報導，例如：蘋果日報、Etoday。、中視
-    p = f.input :source_name, label: false, hint: '請填寫此新聞由哪個媒體報導。'
+    p = f.input :source_name, label: false, hint: '請填寫此新聞由哪個媒體報導。', required: true
   li
     p 新聞標題＊
-    p = f.input :title, label: false
+    p = f.input :title, label: false, required: true
   li
     p 新聞日期＊
-    p = f.input :date, as: :string, label: false, input_html: { class: "datepicker" }
+    p = f.input :date, as: :string, label: false, input_html: { class: "datepicker" }, required: true
   li
     p 新聞內容＊
     p class="snote" 請填寫新聞文字內容作為備份。
       = link_to "可以回報新聞影片嗎>>", '#'
       br
-    p = f.cktext_area :content, label: false, hint:'請填寫新聞文字內容作為備份。'
+    p = f.cktext_area :content, label: false, hint:'請填寫新聞文字內容作為備份。', required: true
   - if user_signed_in? and current_user.admin?
     li
       p 是否允許發佈

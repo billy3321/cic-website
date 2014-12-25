@@ -15,7 +15,7 @@ ul class="form-list"
   li
     p 來源
     p class="input-data"
-      - if u.provider.empty?
+      - if not u.provider
         | 本站註冊
       - elsif u.provider == 'facebook'
         | Facebook

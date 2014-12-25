@@ -4,5 +4,5 @@ ul class="form-list"
     p class="snote" ＊為必填項目
   li
     p 關鍵字名稱＊
-    p = f.input :name, label: false
+    p = f.input :name, label: false, required: true
   li = f.submit '確定送出', class: "form-btn", id: "button"

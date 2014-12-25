@@ -3,9 +3,9 @@ ul class="form-list"
   li
     p 政黨名稱＊
     p class="input-data"
-      = f.input :name, label: false
+      = f.input :name, label: false, required: true
   li
-    p 政黨縮寫
+    p 政黨縮寫＊
     p class="input-data"
-      = f.input :abbreviation, label: false
+      = f.input :abbreviation, label: false, required: true
   li = f.submit '確定送出', class: "form-btn", id: "button"

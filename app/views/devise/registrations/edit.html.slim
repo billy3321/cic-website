@@ -6,21 +6,21 @@
       li
         p Email
         p class="input-data"
-        = current_user.email
+        = f.input :email, disabled: true
       li
         p 暱稱
         p class="input-data"
-        = current_user.name
+        = f.input :name, disabled: true
       li
         p 原始密碼
-        p = f.input :current_password, hint: "請輸入當前密碼以進行修改。", required: true
+        p = f.input :current_password, hint: "請輸入當前密碼以進行修改。", required: true, label: false
       li
         p 設定新密碼
         p class="sonte" 請輸入英文或數字，最少8個字。
-        p = f.input :password, autocomplete: "off", hint: "如果你不想修改，請保持空白。", required: false
+        p = f.input :password, autocomplete: "off", hint: "如果你不想修改，請保持空白。", required: false, label: false
       li
         p 再輸入一次密碼
-        p = f.input :password_confirmation, required: false
+        p = f.input :password_confirmation, required: false, label: false
       li 
         p 驗證碼
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖

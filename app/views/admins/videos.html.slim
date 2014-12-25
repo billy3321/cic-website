@@ -26,7 +26,7 @@
                   = l.name
               td = v.created_at.strftime('%Y-%m-%d')
               td
-                = v.user.name
+                = v.user.try(:name)
                 br
                 = v.user_ip
               td class="c" = link_to "查看", video_path(v), target: "_blank"

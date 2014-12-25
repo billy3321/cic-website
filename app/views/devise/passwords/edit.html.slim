@@ -8,10 +8,10 @@
       li
         p 設定新密碼
         p class="sonte" 請輸入英文或數字，最少8個字。
-        p = f.input :password, label: "New password", required: true, autofocus: true
+        p = f.input :password, label: "New password", required: true, autofocus: true, label: false
       li
         p 再輸入一次密碼
-        p = f.input :password_confirmation, label: "Confirm your new password", required: true
+        p = f.input :password_confirmation, label: "Confirm your new password", required: true, label: false
       li 
         p 驗證碼
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖

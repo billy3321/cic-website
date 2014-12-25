@@ -5,14 +5,14 @@ ul class="form-list"
     p class="snote" ＊為必填項目
   li
     p 立委姓名＊
-    p = f.association :legislators, label: false, collection: Legislator.all, input_html: { class: 'chosen-select' }
+    p = f.association :legislators, label: false, collection: Legislator.all, input_html: { class: 'chosen-select' }, required: true
   li
     p 質詢標題＊
-    p = f.input :title, label: false
+    p = f.input :title, label: false, required: true
   li
     p 立法院議事轉播ivod出處＊
     p class="snote" 請填寫ivod出處之影片連結。
-    p = f.input :ivod_url, label: false, hint: '請填寫ivod出處之影片連結。'
+    p = f.input :ivod_url, label: false, hint: '請填寫ivod出處之影片連結。', required: true
   li
     p ivod時間區間
     p class="snote" 
@@ -27,7 +27,7 @@ ul class="form-list"
   li
     p 質詢內容＊
     p class="snote" 請填寫關鍵質詢內容對話文字稿。
-    p = f.cktext_area :content, label: false, hint: '請填寫關鍵質詢內容對話文字稿。'
+    p = f.cktext_area :content, label: false, hint: '請填寫關鍵質詢內容對話文字稿。', required: true
   li
     p 質詢對象
     p class="snote" 請填寫本段質詢的對象姓名或職稱。

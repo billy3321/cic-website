@@ -10,18 +10,18 @@ p 您也可以使用以下帳號登入
     ul class="form-list"
       li 
         p Email
-        = f.input :email, required: false, autofocus: true, html:{id: "textfield"}
+        = f.input :email, required: false, autofocus: true, html:{id: "textfield"}, label: false
       li
         p 密碼
-        = f.input :password, required: false, html:{id: "textfield"}
+        = f.input :password, required: false, html:{id: "textfield"}, label: false
       li
         p 驗證碼
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
-        = recaptcha_tags
+        p = recaptcha_tags
       li
         p 記住我
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
       = render "devise/shared/links"
    
     .form-actions
-      = f.button :submit, "Log in", html:{class: "form-btn"}
+      = f.button :submit, "登入", html:{class: "form-btn"}

@@ -26,7 +26,7 @@
                   = l.name
               td = q.created_at.strftime('%Y-%m-%d')
               td
-                = q.user.name
+                = q.user.try(:name)
                 br
                 = q.user_ip
               td class="c" = link_to "查看", question_path(q), target: "_blank"

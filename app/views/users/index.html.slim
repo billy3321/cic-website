@@ -15,7 +15,7 @@
           - else
             td 一般會員
 
-          - if u.provider.empty?
+          - if not u.provider
             td 本站註冊
           - elsif u.provider == 'facebook'
             td Facebook

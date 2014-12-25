@@ -8,7 +8,7 @@ ul class="form-list"
     p = f.association :legislators, label: false, collection: Legislator.all, input_html: { class: 'chosen-select' }
   li
     p 標題＊
-    p = f.input :title, label: false
+    p = f.input :title, label: false, required: true
   li
     p 相關委員會
     p class="snote" 請選擇相關的委員會
@@ -20,7 +20,7 @@ ul class="form-list"
   li
     p 立法院議事轉播ivod出處＊
     p class="snote" 請填寫ivod出處之影片連結。
-    p = f.input :ivod_url, label: false, hint: 
+    p = f.input :ivod_url, label: false, hint: '請填寫ivod出處之影片連結。'
   li
     p ivod時間區間
     p class="snote" 
@@ -46,7 +46,7 @@ ul class="form-list"
       | 請將您要回報的影片，先上傳至youtube，再回填您的youtube影片連結。
       br
       | 網址格式：https://www.youtube.com/watch?v=OF6Hr2oV9m4
-    p = f.input :youtube_url, label: false, hint: '請將您要回報的影片，先上傳至youtube，再回填您的youtube影片連結。'
+    p = f.input :youtube_url, label: false, hint: '請將您要回報的影片，先上傳至youtube，再回填您的youtube影片連結。', required: true
   li
     p 日期
     p = f.input :date, as: :string, input_html: { class: "datepicker" }, label: false
