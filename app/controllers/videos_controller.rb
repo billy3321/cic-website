@@ -18,17 +18,31 @@ class VideosController < ApplicationController
     meta_legislators = Legislator.order_by_videos_created.limit(3)
     meta_keywords_list = meta_legislators.map { | l | "#{l.name}影片" }
     legislator_names = meta_legislators.map { | l | l.name }.join('、')
-    set_meta_tags({
-      title: "最新立委影片",
-      description: "最新影片由立委#{@main_video.legislators.first.name}出場。#{@main_video.title}",
-      keywords: ["最新影片"] + meta_keywords_list,
-      og: {
-        type: 'article',
-        description: "本期最新回報紀錄為#{legislator_names}",
-        title: "最新立委影片調查報告",
-        image: @main_video.image
-      }
-    })
+    if @main_video
+      set_meta_tags({
+        title: "最新立委影片",
+        description: "最新影片由立委#{@main_video.legislators.first.name}出場。#{@main_video.title}",
+        keywords: ["最新影片"] + meta_keywords_list,
+        og: {
+          type: 'article',
+          description: "本期最新回報紀錄為#{legislator_names}",
+          title: "最新立委影片調查報告",
+          image: @main_video.image
+        }
+      })
+    else
+      set_meta_tags({
+        title: "最新立委影片",
+        description: "尚無影片。",
+        keywords: ["最新影片"] + meta_keywords_list,
+        og: {
+          type: 'article',
+          description: "本期最新回報紀錄為#{legislator_names}",
+          title: "最新立委影片調查報告",
+          image: @main_video.image
+        }
+      })
+    end
   end
 
   # GET /videos/1

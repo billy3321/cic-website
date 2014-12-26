@@ -18,16 +18,29 @@ class QuestionsController < ApplicationController
     meta_legislators = Legislator.order_by_questions_created.limit(3)
     meta_keywords_list = meta_legislators.map { | l | "#{l.name}質詢" }
     legislator_names = meta_legislators.map { | l | l.name }.join('、')
-    set_meta_tags({
-      title: "最新立委質詢",
-      description: "最新質詢由立委#{@main_question.legislators.first.name}出場。#{@main_question.title}",
-      keywords: ["最新質詢"] + meta_keywords_list,
-      og: {
-        type: 'article',
-        description: "本期最新回報紀錄為#{legislator_names}",
-        title: "最新立委質詢調查報告"
-      }
-    })
+    if @main_question
+      set_meta_tags({
+        title: "最新立委質詢",
+        description: "最新質詢由立委#{@main_question.legislators.first.name}出場。#{@main_question.title}",
+        keywords: ["最新質詢"] + meta_keywords_list,
+        og: {
+          type: 'article',
+          description: "本期最新回報紀錄為#{legislator_names}",
+          title: "最新立委質詢調查報告"
+        }
+      })
+    else
+      set_meta_tags({
+        title: "最新立委質詢",
+        description: "尚無立委質詢",
+        keywords: ["最新質詢"] + meta_keywords_list,
+        og: {
+          type: 'article',
+          description: "本期最新回報紀錄為#{legislator_names}",
+          title: "最新立委質詢調查報告"
+        }
+      })
+    end
   end
 
   # GET /questions/1

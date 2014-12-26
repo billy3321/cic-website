@@ -34,7 +34,7 @@ class StaticPagesController < ApplicationController
       og: {
         title: "國會調查兵團最新調查報告",
         description: @videos.first.try(:title),
-        image: @videos.first.image
+        image: @videos.first.try(:image)
       }
     })
   end
