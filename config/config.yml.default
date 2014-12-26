@@ -1,0 +1,29 @@
+defaults: &defaults
+  google_auth_key:
+    client_id: ""
+    client_secret: ""
+
+  google_public_key:
+    api_key: ""
+
+  facebook_auth_key:
+    app_id: ""
+    app_secret: ""
+
+  recaptcha:
+    public_key: ""
+    private_key: ""
+
+development:
+  <<: *defaults
+  admin_email: "admin@test.com"
+  smtp_settings:
+    mail_username: ""
+    mail_password: ""
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
