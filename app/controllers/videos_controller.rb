@@ -38,8 +38,7 @@ class VideosController < ApplicationController
         og: {
           type: 'article',
           description: "本期最新回報紀錄為#{legislator_names}",
-          title: "最新立委影片調查報告",
-          image: @main_video.image
+          title: "最新立委影片調查報告"
         }
       })
     end
