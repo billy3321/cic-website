@@ -54,5 +54,5 @@ section class="single-page-inner"
         h3 = l.name
         div
           ul class="news-info-list"
-            - l.questions.published.first(5).each do |q|
+            - l.questions.published.created_after(@question.created_at).first(5).each do |q|
               li = link_to q.title, question_path(q)

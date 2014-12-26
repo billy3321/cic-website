@@ -4,6 +4,7 @@ class Video < ActiveRecord::Base
   belongs_to :user
   belongs_to :committee
   belongs_to :ad_session
+  paginates_per 9
   validates_presence_of :youtube_url, message: '必須填寫youtube網址'
   validates_presence_of :title, message: '必須填寫影片標題'
   validate :has_at_least_one_legislator
@@ -13,6 +14,7 @@ class Video < ActiveRecord::Base
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
+  scope :created_after, -> (date) { where("created_at > ?", date) }
 
   def update_youtube_values
     youtube_id = extract_youtube_id(self.youtube_url)

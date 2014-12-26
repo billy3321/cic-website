@@ -16,6 +16,7 @@
 //= require jquery-ui/accordion
 //= require jquery-ui/datepicker
 //= require chosen-jquery
+//= require magnific-popup
 //= require jquery.timepicker.js
 //= require ckeditor/init
 //= require_tree .
@@ -57,29 +58,19 @@ var ready = function(){
       }
     });
   });
-  $("#accordion").accordion();
 
-  $('.all_record_button').click(function(){
-    $('.has_record').show();
-    $('.no_record').show();
-    $('.all_record_button').addClass('current');
-    $('.has_record_button').removeClass('current');
-    $('.no_record_button').removeClass('current');
+  $(".video_type").change(function(){
+    if (this.value == 'ivod'){
+      $('.ivod_field').show();
+      $('.news_field').hide();
+    }else if (this.value == 'news'){
+      $('.ivod_field').hide();
+      $('.news_field').show();
+    }
   });
-  $('.has_record_button').click(function(){
-    $('.has_record').show();
-    $('.no_record').hide();
-    $('.all_record_button').removeClass('current');
-    $('.has_record_button').addClass('current');
-    $('.no_record_button').removeClass('current');
-  });
-  $('.no_record_button').click(function(){
-    $('.no_record').show();
-    $('.has_record').hide();
-    $('.all_record_button').removeClass('current');
-    $('.no_record_button').addClass('current');
-    $('.has_record_button').removeClass('current');
-  });
+  $(".video_type").change();
+
+  $("#accordion").accordion();
   $('.all_party_button').click(function(){
     $('.kmt').show();
     $('.dpp').show();
@@ -186,11 +177,45 @@ var ready = function(){
     $('.null_party_button').addClass('current');
   });
 
+  $('.all_record_button').click(function(){
+    $('.has_record').show();
+    $('.no_record').show();
+    $('.all_record_button').addClass('current');
+    $('.has_record_button').removeClass('current');
+    $('.no_record_button').removeClass('current');
+    $('.all_party_button').click()
+  });
+  $('.has_record_button').click(function(){
+    $('.has_record').show();
+    $('.no_record').hide();
+    $('.all_record_button').removeClass('current');
+    $('.has_record_button').addClass('current');
+    $('.no_record_button').removeClass('current');
+    $('.all_party_button').click()
+  });
+  $('.no_record_button').click(function(){
+    $('.no_record').show();
+    $('.has_record').hide();
+    $('.all_record_button').removeClass('current');
+    $('.no_record_button').addClass('current');
+    $('.has_record_button').removeClass('current');
+    $('.all_party_button').click()
+  });
+
   $('.check_all_box').change(function(){
     $.each($('.published_box'), function(){
       this.checked = $('.check_all_box')[0].checked;
     });
   });
+  if ($('.alert').length > 0) {
+    $.magnificPopup.open({
+      items: {
+        src: $('.alert'), // can be a HTML string, jQuery object, or CSS selector
+        type: 'inline',
+        removalDelay: 500
+      }
+    });
+  }
 };
 
 $(document).ready(ready);

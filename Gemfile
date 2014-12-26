@@ -47,6 +47,7 @@ gem 'omniauth-google-oauth2'
 gem 'meta-tags'
 gem 'unicode-display_width'
 gem 'jquery-timepicker-rails'
+gem 'magnific-popup-rails'
 
 
 group :development, :test do

@@ -11,10 +11,11 @@ class Question < ActiveRecord::Base
   delegate :ad, :to => :ad_session, :allow_nil => true
   validates_presence_of :title
 
-  before_save :update_ivod_values, :update_ad_session_values
+  before_save :update_ivod_values, :update_ad_session_values, :update_title_values
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
+  scope :created_after, -> (date) { where("created_at > ?", date) }
 
   def update_ivod_values
     unless self.ivod_url
@@ -28,6 +29,7 @@ class Question < ActiveRecord::Base
       self.ivod_url = nil
       return nil
     end
+    立委姓名 + 屆次會期 + 委員會 + 開會時間
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
     meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
     self.committee_id = Committee.where(name: committee_name).first.try(:id)
@@ -51,6 +53,17 @@ class Question < ActiveRecord::Base
       return nil
     end
     self.ad_session = AdSession.current_ad_session(self.date).first
+  end
+
+  def update_title_values
+    if self.title.blank?
+      legislator_name = self.legislators.map{ |l| l.name }.join('、')
+      if self.ad_session
+        self.title = "#{legislator_name} #{self.ad.name}#{self.ad_session.name} #{self.date.strftime('%Y-%m-%d')}"
+      else
+        self.title = "#{legislator_name} #{self.date.strftime('%Y-%m-%d')}"
+      end
+    end
   end
 
   private

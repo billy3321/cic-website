@@ -52,7 +52,7 @@ section class="single-page-inner"
         h3 = l.name
         div
           ul class="video-other-list"
-            - l.videos.published.first(6).each do |v|
+            - l.videos.published.created_after(@video.created_at).first(6).each do |v|
               li 
                 = link_to image_tag(v.image, width: "135", height: "102"), video_path(v)
                 = link_to v.title, video_path(v)

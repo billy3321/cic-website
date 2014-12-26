@@ -7,6 +7,7 @@ p 您也可以使用以下帳號登入
 
 
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = render 'shared/error_messages', object: f.object
     ul class="form-list"
       li 
         p Email
@@ -17,7 +18,7 @@ p 您也可以使用以下帳號登入
       li
         p 驗證碼
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
-        p = recaptcha_tags
+        p = recaptcha_tags ajax: true
       li
         p 記住我
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
@@ -25,3 +26,5 @@ p 您也可以使用以下帳號登入
    
     .form-actions
       = f.button :submit, "登入", html:{class: "form-btn"}
+
+- set_meta_tags({title: "登入", og: {title: "登入"}})

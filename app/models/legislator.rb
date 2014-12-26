@@ -16,6 +16,11 @@ class Legislator < ActiveRecord::Base
     joins(elections: :party).where(parties: {abbreviation: abbr_name})
   }
 
+  scope :order_by_videos_created, -> {
+    unscoped.
+    joins(:videos).
+    order("videos.created_at DESC") }
+
   scope :has_records, -> {
     select("legislators.*, (count(legislators_videos.video_id) +
       count(legislators_questions.question_id) +

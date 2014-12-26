@@ -39,5 +39,5 @@ section class="single-page-inner"
         h3 = l.name
         div
           ul class="news-info-list two-col-list"
-            - l.entries.published.first(6).each do |e|
+            - l.entries.published.created_after(@entry.created_at).first(6).each do |e|
               li = link_to e.title, entry_path(e)

@@ -14,6 +14,21 @@ class VideosController < ApplicationController
     videos = @videos.to_a
     @main_video = videos.shift
     @sub_videos = videos
+
+    meta_legislators = Legislator.order_by_videos_created.limit(3)
+    meta_keywords_list = meta_legislators.map { | l | "#{l.name}影片" }
+    legislator_names = meta_legislators.map { | l | l.name }.join('、')
+    set_meta_tags({
+      title: "最新立委影片",
+      description: "最新影片由立委#{@main_video.legislators.first.name}出場。#{@main_video.title}",
+      keywords: ["最新影片"] + meta_keywords_list,
+      og: {
+        type: 'article',
+        description: "本期最新回報紀錄為#{legislator_names}",
+        title: "最新立委影片調查報告",
+        image: @main_video.image
+      }
+    })
   end
 
   # GET /videos/1
@@ -24,11 +39,29 @@ class VideosController < ApplicationController
         not_found
       end
     end
+
+    set_meta_tags({
+      title: [@video.legislators.first.name, @video.title],
+      description: @video.title,
+      keywords: [@video.legislators.first.name, "#{@video.legislators.first.name}影片調查"],
+      og: {
+        type: 'video.tv_show',
+        description: @video.title,
+        title: "#{@video.legislators.first.name} － #{@video.title}",
+        image: @video.image
+      }
+    })
   end
 
   # GET /videos/new
   def new
     @video = Video.new
+    set_meta_tags({
+      title: "回報立委影片片段紀錄",
+      og: {
+        title: "回報立委影片片段紀錄"
+      }
+    })
   end
 
   # GET /videos/1/edit

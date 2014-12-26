@@ -121,6 +121,7 @@ GEM
       activesupport (>= 3.0.0)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
+    magnific-popup-rails (0.9.9.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     meta-tags (2.0.0)
@@ -273,6 +274,7 @@ DEPENDENCIES
   jquery-timepicker-rails
   jquery-ui-rails
   kaminari
+  magnific-popup-rails
   meta-tags
   mini_magick
   minitest

@@ -1,12 +1,11 @@
 doctype html
 html
   head
-    = display_meta_tags :site => '國會調查兵團 CIC - Congressional Investigation Corps'
     meta charset="utf-8"
-    meta 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = display_meta_tags(default_meta_tags)
     /[if lt IE9]
       script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"
     meta name="viewport" content="width=device-width, initial-scale=1.0"

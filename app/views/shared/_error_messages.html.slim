@@ -3,4 +3,6 @@
     .alert.alert-error 表單有#{object.errors.count}個錯誤
     ul
       - object.errors.full_messages.each do |msg|
-        li = msg
+        li
+          .alert.alert-error data-effect="mfp-zoom-in" = msg
+

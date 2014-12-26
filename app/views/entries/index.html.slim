@@ -9,7 +9,7 @@
       time class="time"
         = @main_entry.created_at.strftime('%Y-%m-%d')
       .inner-content
-        = @main_entry.content.try(:html_safe)
+        = display_shorter(@main_entry.content, 75)
     - else
       .blank 目前尚無資料
   .news-inner-list
@@ -20,7 +20,7 @@
         time class="class"
           = e.created_at.strftime('%Y-%m-%d')
         .inner-content
-          = e.content.try(:html_safe)
+          = display_shorter(e.content, 75)
 
 #page
   = paginate @entries

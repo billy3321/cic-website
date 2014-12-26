@@ -732,8 +732,6 @@ padding-top:34.5%;}
 	margin:0 0 5px 0;}
 #error_explanation li{
 	display:inline-block;}
-#error_explanation li::after{
-	content: "、";}
 
 @media only screen and (max-width: 800px){
 /*表頭*/
