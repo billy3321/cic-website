@@ -6,9 +6,15 @@ Rails.application.routes.draw do
   match '/report',    to: 'static_pages#report',    via: 'get'
   match '/about',     to: 'static_pages#about',     via: 'get'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks",
+    sessions: "users/sessions",
+    registrations: "users/registrations",
+    passwords: "users/passwords",
+    confimations: "users/confirmations"
+   }
 
-  resources :legislators, :only => [:show, :index] do
+  resources :legislators, only: [:show, :index] do
     member do
       get 'entries'
       get 'questions'

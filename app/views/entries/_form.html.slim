@@ -20,10 +20,6 @@ ul class="form-list"
   li
     p 新聞日期＊
     p = f.input :date, as: :string, label: false, input_html: { class: "datepicker" }, required: true
-  li 
-        p 驗證碼
-        p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
-        p = recaptcha_tags ajax: true
   li
     p 新聞內容＊
     p class="snote" 請填寫新聞文字內容作為備份。
