@@ -15,7 +15,7 @@ class EntriesController < ApplicationController
     @main_entry = entries.shift
     @sub_entries = entries
 
-    meta_legislators = Legislator.order_by_videos_created.limit(3)
+    meta_legislators = Legislator.order_by_entries_created.limit(3)
     meta_keywords_list = meta_legislators.map { | l | "#{l.name}新聞" }
     legislator_names = meta_legislators.map { | l | l.name }.join('、')
     if @main_entry

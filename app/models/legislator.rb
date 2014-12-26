@@ -16,6 +16,16 @@ class Legislator < ActiveRecord::Base
     joins(elections: :party).where(parties: {abbreviation: abbr_name})
   }
 
+  scope :order_by_entries_created, -> {
+    unscoped.
+    joins(:entries).
+    order("entries.created_at DESC") }
+
+  scope :order_by_questions_created, -> {
+    unscoped.
+    joins(:questions).
+    order("questions.created_at DESC") }
+
   scope :order_by_videos_created, -> {
     unscoped.
     joins(:videos).
