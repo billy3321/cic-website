@@ -19,7 +19,7 @@ class Question < ActiveRecord::Base
   scope :created_after, -> (date) { where("created_at > ?", date) }
 
   def update_ivod_values
-    if not self.ivod_url or self.ivod_url.empty?
+    if self.ivod_url.to_s == ''
       return nil
     end
     ivod_uri = URI.parse(self.ivod_url)
@@ -72,7 +72,8 @@ class Question < ActiveRecord::Base
   private
 
   def is_ivod_url
-    unless self.ivod_url
+    self.ivod_url.to_s == ''
+      errors.add(:base, '尚未填寫ivod網址')
       return nil
     end
     ivod_uri = URI.parse(self.ivod_url)

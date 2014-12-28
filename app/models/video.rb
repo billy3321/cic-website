@@ -51,7 +51,7 @@ class Video < ActiveRecord::Base
   end
 
   def update_ivod_values
-    if (not self.ivod_url or self.ivod_url.empty?) and self.video_type == 'news'
+    if self.ivod_url.to_s == '' and self.video_type == 'news'
       return true
     end
     ivod_uri = URI.parse(self.ivod_url)
@@ -118,7 +118,7 @@ class Video < ActiveRecord::Base
   end
 
   def is_ivod_url
-    if not self.ivod_url or self.ivod_url.empty?
+    if self.ivod_url.to_s == ''
       if self.video_type == 'news'
         return true
       else

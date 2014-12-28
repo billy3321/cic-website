@@ -18,7 +18,7 @@ describe Video do
     #raise v.inspect
     expect(v.date).to eq(Date.parse('2014-10-08'))
     expect(v.committee.name).to eq('內政委員會')
-    expect(v.legislators.first.name).to eq('陳節如')
+    expect(v.legislators.last.name).to eq('陳節如')
   end
 
   it "#ivod_update_full_work" do
@@ -36,6 +36,5 @@ describe Video do
     v.youtube_url = 'https://www.youtube.com/watch?v=Gh1zJVwHhjw'
     v.update_youtube_values
     expect(v.image).to eq("https://i.ytimg.com/vi/Gh1zJVwHhjw/maxresdefault.jpg")
-    expect(v.title).to eq("陳淳杰／發光的靈魂   ～《牽阮的手》插曲")
   end
 end
