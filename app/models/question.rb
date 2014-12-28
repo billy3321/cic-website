@@ -19,7 +19,7 @@ class Question < ActiveRecord::Base
   scope :created_after, -> (date) { where("created_at > ?", date) }
 
   def update_ivod_values
-    if not self.ivod_url or self.ivod_url.empty?
+    if self.ivod_url.to_s == ''
       return nil
     end
     ivod_uri = URI.parse(self.ivod_url)
@@ -32,7 +32,6 @@ class Question < ActiveRecord::Base
       return nil
     end
     self.ivod_url.sub!(/300K$/, '1M')
-    立委姓名 + 屆次會期 + 委員會 + 開會時間
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
     meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
     self.committee_id = Committee.where(name: committee_name).first.try(:id)
@@ -72,7 +71,8 @@ class Question < ActiveRecord::Base
   private
 
   def is_ivod_url
-    unless self.ivod_url
+    if self.ivod_url.to_s == ''
+      errors.add(:base, '尚未填寫ivod網址')
       return nil
     end
     ivod_uri = URI.parse(self.ivod_url)
