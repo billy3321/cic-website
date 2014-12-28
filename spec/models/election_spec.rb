@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe Election do
-  let(:election) {FactoryGirl.create(:election)}
 
   it "#factory_creat_success" do
     expect {
-      FactoryGirl.create :election
+      FactoryGirl.create :election, legislator: Legislator.first
     }.to change { Election.count }.by(1)
   end
 end

@@ -6,6 +6,7 @@ class Question < ActiveRecord::Base
   belongs_to :ad_session
   validates_presence_of :ivod_url, message: '必須填寫ivod出處之影片連結'
   validates_presence_of :content, message: '必須填寫質詢內容'
+  validates_presence_of :user_id, message: '必須有回報者'
   validate :has_at_least_one_legislator
   validate :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
@@ -18,7 +19,7 @@ class Question < ActiveRecord::Base
   scope :created_after, -> (date) { where("created_at > ?", date) }
 
   def update_ivod_values
-    unless self.ivod_url
+    if not self.ivod_url or self.ivod_url.empty?
       return nil
     end
     ivod_uri = URI.parse(self.ivod_url)
@@ -27,8 +28,10 @@ class Question < ActiveRecord::Base
     unless info_section
       # the ivod url is error
       self.ivod_url = nil
+      errors.add(:base, 'ivod網址出錯')
       return nil
     end
+    self.ivod_url.sub!(/300K$/, '1M')
     立委姓名 + 屆次會期 + 委員會 + 開會時間
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
     meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip

@@ -12,6 +12,7 @@ class Entry < ActiveRecord::Base
   validates_presence_of :source_url, message: '請填寫來源網址'
   validates_presence_of :source_name, message: '請填寫新聞來源'
   validates_presence_of :date, message: '請填寫新聞日期'
+  validates_presence_of :user_id, message: '必須有回報者'
   scope :published, -> { where(published: true) }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
   scope :created_after, -> (date) { where("created_at > ?", date) }

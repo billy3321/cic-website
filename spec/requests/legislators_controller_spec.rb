@@ -19,4 +19,25 @@ describe "Legislator" do
     end
   end
 
+  describe "#entries" do
+    it "success" do
+      get "/legislators/#{legislator.id}/entries"
+      response.should be_success
+    end
+  end
+
+  describe "#questions" do
+    it "success" do
+      get "/legislators/#{legislator.id}/questions"
+      response.should be_success
+    end
+  end
+
+  describe "#videos" do
+    it "success" do
+      get "/legislators/#{legislator.id}/videos"
+      response.should be_success
+    end
+  end
+
 end

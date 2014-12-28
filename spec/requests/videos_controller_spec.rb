@@ -3,13 +3,14 @@ require "spec_helper"
 describe "Video" do
 
 
-  let(:video) { FactoryGirl.create(:video) }
+  let(:video) { FactoryGirl.create(:video_news) }
   let(:new_video) do
     {
       :title => "new_video_title",
       :legislator_ids => [ FactoryGirl.create(:legislator).id ],
       :ivod_url => 'http://ivod.ly.gov.tw/Play/VOD/77018/300K',
-      :youtube_url => 'https://www.youtube.com/watch?v=6tg_I9O-dV0'
+      :youtube_url => 'https://www.youtube.com/watch?v=6tg_I9O-dV0',
+      :video_type => 'news'
     }
   end
 

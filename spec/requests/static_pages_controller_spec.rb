@@ -16,4 +16,11 @@ describe "Static pages" do
     end
   end
 
+  describe "#report" do
+    it "success" do
+      get "/report"
+      response.should be_success
+    end
+  end
+
 end

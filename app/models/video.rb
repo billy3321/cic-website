@@ -7,6 +7,7 @@ class Video < ActiveRecord::Base
   paginates_per 9
   validates_presence_of :youtube_url, message: '必須填寫youtube網址'
   validates_presence_of :title, message: '必須填寫影片標題'
+  validates_presence_of :user_id, message: '必須有回報者'
   validate :has_at_least_one_legislator
   validate :is_youtube_url, :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
@@ -50,7 +51,7 @@ class Video < ActiveRecord::Base
   end
 
   def update_ivod_values
-    if self.ivod_url.empty? and self.video_type == 'news'
+    if (not self.ivod_url or self.ivod_url.empty?) and self.video_type == 'news'
       return true
     end
     ivod_uri = URI.parse(self.ivod_url)
@@ -58,9 +59,11 @@ class Video < ActiveRecord::Base
     info_section = html.css('div.movie_box div.text')[0]
     unless info_section
       # the ivod url is error
-      self.ivod_url = ''
+      self.ivod_url = nil
+      errors.add(:base, 'ivod網址出錯')
       return nil
     end
+    self.ivod_url.sub!(/300K$/, '1M')
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
     meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
     self.committee_id = Committee.where(name: committee_name).first.try(:id)
@@ -81,7 +84,7 @@ class Video < ActiveRecord::Base
 
   def update_ad_session_values
     unless self.date
-      return nil
+      errors.add(:base, '尚未填寫ivod網址')
     end
     self.ad_session = AdSession.current_ad_session(self.date).first
   end
@@ -115,7 +118,7 @@ class Video < ActiveRecord::Base
   end
 
   def is_ivod_url
-    if self.ivod_url.empty?
+    if not self.ivod_url or self.ivod_url.empty?
       if self.video_type == 'news'
         return true
       else
