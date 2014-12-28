@@ -108,9 +108,9 @@ class Video < ActiveRecord::Base
   private
 
   def is_youtube_url
-    youtube_uri = URI.parse(self.youtube_url)
-    errors.add(:base, '填寫網址非youtube網址') unless ['www.youtube.com', 'youtu.be'].include?(youtube_uri.try(:host))
     begin
+      youtube_uri = URI.parse(self.youtube_url)
+      errors.add(:base, '填寫網址非youtube網址') unless ['www.youtube.com', 'youtu.be'].include?(youtube_uri.try(:host))
       errors.add(:base, 'youtube網址無法存取') unless HTTParty.get(self.youtube_url).code == 200
     rescue
       errors.add(:base, 'youtube網址錯誤')
@@ -125,9 +125,9 @@ class Video < ActiveRecord::Base
         errors.add(:base, '尚未填寫ivod網址')
       end
     end
-    ivod_uri = URI.parse(self.ivod_url)
-    errors.add(:base, '填寫網址非ivod網址') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
     begin
+      ivod_uri = URI.parse(self.ivod_url)
+      errors.add(:base, '填寫網址非ivod網址') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
       errors.add(:base, 'ivod網址無法存取') unless HTTParty.get(self.ivod_url).code == 200
     rescue
       errors.add(:base, 'ivod網址錯誤')

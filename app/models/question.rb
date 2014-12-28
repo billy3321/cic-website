@@ -75,9 +75,9 @@ class Question < ActiveRecord::Base
       errors.add(:base, '尚未填寫ivod網址')
       return nil
     end
-    ivod_uri = URI.parse(self.ivod_url)
-    errors.add(:base, '填寫網址非ivod網址') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
     begin
+      ivod_uri = URI.parse(self.ivod_url)
+      errors.add(:base, '填寫網址非ivod網址') unless ['ivod.ly.gov.tw'].include?(ivod_uri.try(:host))
       errors.add(:base, 'ivod網址無法存取') unless HTTParty.get(self.ivod_url).code == 200
     rescue
       errors.add(:base, 'ivod網址錯誤')
