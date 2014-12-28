@@ -29,7 +29,7 @@ class Question < ActiveRecord::Base
       # the ivod url is error
       self.ivod_url = nil
       errors.add(:base, 'ivod網址出錯')
-      return nil
+      return false
     end
     self.ivod_url.sub!(/300K$/, '1M')
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
