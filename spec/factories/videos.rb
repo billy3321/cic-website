@@ -5,7 +5,7 @@ FactoryGirl.define do
     user { FactoryGirl.create(:user) }
     legislators {[ FactoryGirl.create(:legislator) ]}
     ad_session { FactoryGirl.create(:ad_session) }
-    sequence(:source_url) { |n| "http://source_${n}/url"}
+    source_url "http://www.google.com"
     sequence(:date) { |n| Date.today - ( 6 * ( (1..10).to_a[n % 10] )).days }
     youtube_url 'https://www.youtube.com/watch?v=Gh1zJVwHhjw'
   end
