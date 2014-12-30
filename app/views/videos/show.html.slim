@@ -27,7 +27,7 @@ section class="single-page-inner"
         = @video.date.try(:strftime, '%Y-%m-%d')
       li 
         | 會議別：
-        = @video.committee.name
+        = @video.committee.try(:name)
       li 
         | 會議簡介：
         = @video.meeting_description

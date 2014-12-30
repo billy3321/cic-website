@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, except: [:index, :new]
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_ip, only: [:create, :update]
+  before_action :check_author, only: [:edit, :update, :destroy]
 
   # GET /questions
   def index
@@ -79,7 +80,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     unless @question.published
-      if user_signed_in? and current_user.admin?
+      if current_user.admin?
       else
         not_found
       end
@@ -118,11 +119,22 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-        :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published)
+      if user_signed_in? and current_user.admin?
+        params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published)
+      else
+        params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment)
+      end
     end
 
     def set_ip
       @question.user_ip = request.env['REMOTE_HOST']
+    end
+
+    def check_author
+      unless current_user == @question.user or current_user.admin?
+        redirect_to question_path(@question)
+      end
     end
 end

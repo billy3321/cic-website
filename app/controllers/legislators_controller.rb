@@ -49,11 +49,11 @@ class LegislatorsController < ApplicationController
 
     set_meta_tags({
       title: "#{@legislator.name}新聞列表",
-      description: @main_entry.title,
+      description: @main_entry.try(:title),
       keywords: "#{@legislator.name},#{@legislator.name}新聞調查",
       og: {
         type: 'article',
-        description: @main_entry.title,
+        description: @main_entry.try(:title),
         title: "#{@legislator.name}新聞調查報告",
         image: "/images/legislators/160x214/#{@legislator.image}"
       }
@@ -69,11 +69,11 @@ class LegislatorsController < ApplicationController
 
     set_meta_tags({
       title: "#{@legislator.name}質詢列表",
-      description: @main_question.title,
+      description: @main_question.try(:title),
       keywords: "#{@legislator.name},#{@legislator.name}質詢調查",
       og: {
         type: 'article',
-        description: @main_question.title,
+        description: @main_question.try(:title),
         title: "#{@legislator.name}質詢調查報告",
         image: "/images/legislators/160x214/#{@legislator.image}"
       }
@@ -89,11 +89,11 @@ class LegislatorsController < ApplicationController
 
     set_meta_tags({
       title: "#{@legislator.name}影片列表",
-      description: @main_video.title,
+      description: @main_video.try(:title),
       keywords: "#{@legislator.name},#{@legislator.name}影片調查",
       og: {
         type: 'video.tv_show',
-        description: @main_video.title,
+        description: @main_video.try(:title),
         title: "#{@legislator.name}影片調查報告",
         image: "/images/legislators/160x214/#{@legislator.image}"
       }

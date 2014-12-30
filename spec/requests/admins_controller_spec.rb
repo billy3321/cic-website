@@ -3,7 +3,8 @@ require "spec_helper"
 describe "Question" do
 
 
-  let(:user) { FactoryGirl.create(:admin) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:admin) { FactoryGirl.create(:admin) }
   let(:new_admin) do
     {
       :title => "new_admin_title",
@@ -12,69 +13,105 @@ describe "Question" do
     }
   end
 
-  describe "#index" do
-    it "success" do
+  describe "before login" do
+    it "redirect" do
       get "/admin/"
-      response.should be_success
+      expect(response).to be_redirect
     end
   end
 
-  describe "#data" do
-    it "success" do
-      get "/admin/data"
-      response.should be_success
+  describe "login as user" do
+    before { sign_in(user) }
+    after { sign_out }
+
+    it "redirect" do
+      get "/admin"
+      expect(response).to be_redirect
     end
   end
 
-  describe "#entries" do
-    it "success" do
-      get "/admin/entries"
-      response.should be_success
+  describe "login as admin" do
+    before { sign_in(admin) }
+    after { sign_out }
+
+    describe "#index" do
+      it "success" do
+        get "/admin/"
+        response.should be_success
+      end
+    end
+
+    describe "#data" do
+      it "success" do
+        get "/admin/data"
+        response.should be_success
+      end
+    end
+
+    describe "#entries" do
+      it "success" do
+        get "/admin/entries"
+        response.should be_success
+      end
+    end
+
+    describe "#questions" do
+      it "success" do
+        get "/admin/questions"
+        response.should be_success
+      end
+    end
+
+    describe "#videos" do
+      it "success" do
+        get "/admin/videos"
+        response.should be_success
+      end
+    end
+
+    describe "#update_questions" do
+      it "success" do
+        question1 = FactoryGirl.create :question
+        question2 = FactoryGirl.create :question
+        question3 = FactoryGirl.create :question
+        update_data = {
+          question_ids: [question1.id, question2.id, question3.id],
+          unpublished_ids: [question1.id, question3.id]
+        }
+        put "/admin/update_questions", update_data
+        response.should be_redirect
+        expect(Question.published).to eq([question2])
+      end
+    end
+
+    describe "#update_videos" do
+      it "success" do
+        video1 = FactoryGirl.create :video_news
+        video2 = FactoryGirl.create :video_news
+        video3 = FactoryGirl.create :video_ivod
+        update_data = {
+          video_ids: [video1.id, video2.id, video3.id],
+          unpublished_ids: [video1.id, video3.id]
+        }
+        put "/admin/update_videos", update_data
+        response.should be_redirect
+        expect(Video.published).to eq([video2])
+      end
+    end
+
+    describe "#update_entries" do
+      it "success" do
+        entry1 = FactoryGirl.create :entry
+        entry2 = FactoryGirl.create :entry
+        entry3 = FactoryGirl.create :entry
+        update_data = {
+          entry_ids: [entry1.id, entry2.id, entry3.id],
+          unpublished_ids: [entry1.id, entry3.id]
+        }
+        put "/admin/update_entries", update_data
+        response.should be_redirect
+        expect(Entry.published).to eq([entry2])
+      end
     end
   end
-
-  describe "#questions" do
-    it "success" do
-      get "/admin/questions"
-      response.should be_success
-    end
-  end
-
-  describe "#videos" do
-    it "success" do
-      get "/admin/videos"
-      response.should be_success
-    end
-  end
-
-  describe "#create" do
-    it "success" do
-      expect {
-        post "/admin", :admin => new_admin
-      }.to change { Question.count }.by(1)
-      response.should be_redirect
-    end
-  end
-
-  describe "#update" do
-    it "success" do
-      admin
-      update_data = { :title => "new_title" }
-      put "/admin/#{admin.id}", :admin => update_data
-      response.should be_redirect
-      admin.reload
-      expect(admin.title).to match(update_data[:title])
-    end
-  end
-
-  describe "#destroy" do
-    it "success" do
-      admin
-      expect {
-        delete "/admin/#{admin.id}"
-      }.to change { Question.count }.by(-1)
-      response.should be_redirect
-    end
-  end
-
 end

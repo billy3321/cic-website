@@ -2,6 +2,7 @@ class VideosController < ApplicationController
   before_action :set_video, except: [:index, :new]
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_ip, only: [:create, :update]
+  before_action :check_author, only: [:edit, :create, :update, :destroy]
 
   # GET /videos
   def index
@@ -119,12 +120,24 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-        :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
-        :source_name, :published, :time_start, :time_end, :target, :video_type)
+      if user_signed_in? and current_user.admin?
+        params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
+          :source_name, :published, :time_start, :time_end, :target, :video_type)
+      else
+        params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
+          :source_name, :time_start, :time_end, :target, :video_type)
+      end
     end
 
     def set_ip
       @video.user_ip = request.env['REMOTE_HOST']
+    end
+
+    def check_author
+      unless current_user == @video.user or current_user.admin?
+        redirect_to video_path(@video)
+      end
     end
 end

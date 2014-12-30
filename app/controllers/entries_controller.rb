@@ -2,6 +2,7 @@ class EntriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_entry, except: [:index, :new]
   before_action :set_ip, only: [:create, :update]
+  before_action :check_author, only: [:edit, :create, :update, :destroy]
 
   # GET /entries
   def index
@@ -118,11 +119,22 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-        :user_id, :date, :source_name, :source_url, :published)
+      if user_signed_in? and current_user.admin?
+        params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          :user_id, :date, :source_name, :source_url, :published)
+      else
+        params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          :user_id, :date, :source_name, :source_url)
+      end
     end
 
     def set_ip
       @entry.user_ip = request.env['REMOTE_HOST']
+    end
+
+    def check_author
+      unless current_user == @entry.user or current_user.admin?
+        redirect_to entry_path(@entry)
+      end
     end
 end

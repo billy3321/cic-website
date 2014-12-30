@@ -95,7 +95,7 @@ class AdminsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_params
-    params.permit({:entry_ids => []}, {:questions_ids => []},
+    params.permit({:entry_ids => []}, {:question_ids => []},
       {:video_ids => []}, {:unpublished_ids => []}, :date)
   end
 

@@ -27,10 +27,10 @@ section class="single-page-inner"
         | 無
     li 
       | 會議別：
-      = @question.committee.name
+      = @question.committee.try(:name)
     li 
       | 會期：
-      = @question.ad_session.try(:ad).name
+      = @question.ad_session.try(:ad).try(:name)
       = @question.ad_session.try(:name)
   .inner-content-txt
     = @question.content.try(:html_safe)
