@@ -28,7 +28,7 @@
 
 #out-login
   p 您也可以使用以下帳號登入
-  = link_to image_tag('login-fb.png', width: "151", height: "64"), user_omniauth_authorize_path(:facebook)
-  = link_to image_tag('login-google.png', width: "151", height: "64"), user_omniauth_authorize_path(:google_oauth2)
+  = link_to image_tag('login-fb.png', width: "151", height: "64", class: "f"), user_omniauth_authorize_path(:facebook)
+  = link_to image_tag('login-google.png', width: "151", height: "64", class: "g"), user_omniauth_authorize_path(:google_oauth2)
 
 - set_meta_tags({title: "加入兵團", og: {title: "加入兵團"}})
