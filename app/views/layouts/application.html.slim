@@ -14,8 +14,6 @@ html
     #outer
       article id="all-wrap"
         = render 'layouts/header'
-        - flash.each do |key, value|
-          = content_tag(:div, value, class: "alert alert-#{key}")
         #main-wrap
           - flash.each do |key, value|
             = content_tag(:div, value, class: "alert alert-#{key}")

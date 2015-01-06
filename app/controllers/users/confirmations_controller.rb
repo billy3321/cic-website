@@ -10,7 +10,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       super
     else
       build_resource
-      flash[:error] = "Captcha has wrong, try a again."
+      flash[:error] = "驗證碼輸入錯誤。"
       respond_with_navigational(resource) { render :new }
     end
   end

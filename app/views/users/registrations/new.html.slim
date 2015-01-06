@@ -22,8 +22,9 @@
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
         p = recaptcha_tags ajax: true
       li
-        = f.button :submit, "註冊", html: {class: "form-btn"}
-      = render "devise/shared/links"
+        = f.button :submit, "註冊", class: "form-btn"
+      li class="login-o-link"
+        = render "users/shared/links"
 
 #out-login
   p 您也可以使用以下帳號登入

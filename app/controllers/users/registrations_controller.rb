@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       else
         build_resource(sign_up_params)
         clean_up_passwords(resource)
-        flash[:alert] = "There was an error with the recaptcha code below. Please re-enter the code."
+        flash[:alert] = "驗證碼輸入錯誤。"
         #use render :new for 2.x version of devise
         render :new
       end
@@ -38,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       build_resource
       clean_up_passwords(resource)
-      flash.now[:alert] = "There was an error with the recaptcha code below. Please re-enter the code."
+      flash.now[:alert] = "驗證碼輸入錯誤。"
       flash.delete :recaptcha_error
       respond_with_navigational(resource) { render :edit }
     end
