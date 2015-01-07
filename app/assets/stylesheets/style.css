@@ -515,7 +515,7 @@ margin:0 2% 0 0;}
 	font-size:13px;
 	font-weight:bold;}
 #login-out-block{
-	max-width:290px;
+	max-width:380px;
 	width:95%;
 	border:5px solid #aaaaaa;
 	margin:0 auto 20px auto;}
@@ -732,6 +732,8 @@ padding-top:34.5%;}
 	margin:0 0 5px 0;}
 #error_explanation li{
 	display:inline-block;}
+#error_explanation li::after{
+	content: "、";}
 
 @media only screen and (max-width: 800px){
 /*表頭*/
@@ -1100,3 +1102,22 @@ float: none;
 	width:135px;
 	height:auto;}
 }
+
+
+
+/*---------0107新增樣式---------start*/
+.error{
+	font-size:12px;
+	font-weight:bold;
+	color:#FF0004;}
+.form-list div input{
+	width:98%;
+	border:1px solid #d4d4d4;
+	height:30px;
+	font-size:18px;}
+.user_remember_me{
+	font-size:12px;
+	color:#5d5d5d;
+	font-weight:normal;
+	}
+/*---------0107新增樣式---------end*/
