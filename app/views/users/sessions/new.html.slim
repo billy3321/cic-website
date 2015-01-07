@@ -19,7 +19,7 @@
         p = recaptcha_tags ajax: true
       li
         p 記住我
-        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        = f.input :remember_me, as: :boolean, label: false if devise_mapping.rememberable?
       li
         = f.button :submit, "登入", class: "form-btn"
       li class="login-o-link"
