@@ -180,6 +180,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
+    rails-i18n (4.0.3)
+      i18n (~> 0.6)
+      railties (~> 4.0)
     railties (4.2.0.rc3)
       actionpack (= 4.2.0.rc3)
       activesupport (= 4.2.0.rc3)
@@ -283,6 +286,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   rails (= 4.2.0.rc3)
+  rails-i18n (~> 4.0.0)
   ransack
   recaptcha
   rspec-rails (= 2.13.1)

@@ -48,6 +48,7 @@ gem 'meta-tags'
 gem 'unicode-display_width'
 gem 'jquery-timepicker-rails'
 gem 'magnific-popup-rails'
+gem 'rails-i18n', '~> 4.0.0'
 
 
 group :development, :test do

@@ -9,6 +9,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     if verify_recaptcha
       super
     else
+      flash.delete(:recaptcha_error)
       build_resource
       flash[:error] = "驗證碼輸入錯誤。"
       respond_with_navigational(resource) { render :new }

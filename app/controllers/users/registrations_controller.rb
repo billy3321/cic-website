@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         super
         session[:omniauth] = nil unless @user.new_record? #OmniAuth
       else
+        flash.delete(:recaptcha_error)
         build_resource(sign_up_params)
         clean_up_passwords(resource)
         flash[:alert] = "驗證碼輸入錯誤。"
@@ -36,6 +37,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if verify_recaptcha
       super
     else
+      flash.delete(:recaptcha_error)
       build_resource
       clean_up_passwords(resource)
       flash.now[:alert] = "驗證碼輸入錯誤。"

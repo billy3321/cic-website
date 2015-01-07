@@ -33,7 +33,7 @@ nav id="sec-nav"
       section class="people-info-block no_record #{l.party.abbr_name}"
         = link_to legislator_path(l), class: "people-img" do
           = image_tag("legislators/160x214/#{l.image}", alt: l.name, title: l.name)
-          em class="party-#{l.party.abbr_name} party_tag" = l.party.name
+          em class="party-#{l.party.abbr_name} party-tag" = l.party.name
         header
           h2 = link_to l.name, legislator_path(l)
           ul class="info-number"

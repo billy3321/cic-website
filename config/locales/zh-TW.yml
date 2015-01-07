@@ -19,5 +19,24 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+zh-TW:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        name: "暱稱"
+        email: "電子信箱"
+        passeords: "密碼"
+        password_confirmation: "密碼"
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "兩次輸入不同"
+            password:
+              blank: "必填"
+            name:
+              blank: "必填"
+            email:
+              blank: "必填"
