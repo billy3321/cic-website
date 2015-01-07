@@ -18,8 +18,9 @@
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
         p = recaptcha_tags ajax: true
       li
-        p 記住我
-        = f.input :remember_me, as: :boolean, label: false if devise_mapping.rememberable?
+        p 
+          = f.input :remember_me, as: :boolean, label: false if devise_mapping.rememberable?
+          | 記住我
       li
         = f.button :submit, "登入", class: "form-btn"
       li class="login-o-link"
