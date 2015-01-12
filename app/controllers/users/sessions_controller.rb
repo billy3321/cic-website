@@ -5,7 +5,13 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     if user_signed_in?
-      redirect_to root_path
+      if flash[:error] = "驗證碼輸入錯誤。"
+        puts 'recaptcha error!!'
+        flash[:error] = ""
+        destroy
+      else
+        redirect_to root_path
+      end
     else
       super
     end
