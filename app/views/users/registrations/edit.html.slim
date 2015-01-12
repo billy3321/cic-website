@@ -27,12 +27,12 @@
         p = recaptcha_tags ajax: true
       li
         = f.button :submit, "確定修改", html: {class: "form-btn"}
+  .delete-id
+    h3 刪除帳號
 
-  h3 刪除帳號
-
-  p 
-    | 不高興嗎？
-    = link_to "刪除帳號", registration_path(resource_name), data: { confirm: "確定嗎？" }, method: :delete
+    p 
+      | 不高興嗎？
+      = link_to "刪除帳號", registration_path(resource_name), data: { confirm: "確定嗎？" }, method: :delete
 
 = link_to "回到上一頁", :back
 

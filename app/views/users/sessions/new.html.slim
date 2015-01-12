@@ -1,7 +1,7 @@
 #out-login
   p 您也可以使用以下帳號登入
-  = link_to image_tag('login-fb.png', width: "151", height: "64", class: "f"), user_omniauth_authorize_path(:facebook)
-  = link_to image_tag('login-google.png', width: "151", height: "64", class: "g"), user_omniauth_authorize_path(:google_oauth2)
+  = link_to image_tag('login-fb.png', width: "151", height: "64"), user_omniauth_authorize_path(:facebook), class: "f"
+  = link_to image_tag('login-google.png', width: "151", height: "64"), user_omniauth_authorize_path(:google_oauth2), class: "g"
 #login-out-block
   h2 準備回報立委表現了嗎？登入吧！
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
@@ -18,8 +18,9 @@
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
         p = recaptcha_tags ajax: true
       li
-        p.controls 記住我
         p.controls = f.input :remember_me, as: :boolean, label: false if devise_mapping.rememberable?
+        p.controls 記住我
+        
           
       li
         = f.button :submit, "登入", class: "form-btn"
