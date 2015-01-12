@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  has_and_belongs_to_many :legislators, -> { uniq }
+  has_and_belongs_to_many :legislators, touch: true, -> { uniq }
   has_and_belongs_to_many :keywords, -> { uniq }
   belongs_to :user
   belongs_to :committee

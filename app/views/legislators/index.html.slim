@@ -11,40 +11,42 @@ nav id="sec-nav"
       li = link_to p.name, '#', class: "#{p.abbr_name}_party_button"
 
 #people-all-list
-  - @legislators.each do |l|
-    - if l.has_record?
-      section class="people-info-block has_record #{l.party.abbr_name}"
-        = link_to legislator_path(l), class: "people-img" do
-          = image_tag("legislators/160x214/#{l.image}", alt: l.name, title: l.name)
-          em class="party-#{l.party.abbr_name} party-tag" = l.party.name
-        header
-          h2 = link_to l.name, legislator_path(l)
-          ul class="info-number"
-            li
-              em 影片數
-              = link_to l.videos.published.count, videos_legislator_path(l)
-            li
-              em 新聞數
-              = link_to l.entries.published.count, entries_legislator_path(l)
-            li
-              em 質詢數
-              = link_to l.questions.published.count, questions_legislator_path(l)
-    - else
-      section class="people-info-block no_record #{l.party.abbr_name}"
-        = link_to legislator_path(l), class: "people-img" do
-          = image_tag("legislators/160x214/#{l.image}", alt: l.name, title: l.name)
-          em class="party-#{l.party.abbr_name} party-tag" = l.party.name
-        header
-          h2 = link_to l.name, legislator_path(l)
-          ul class="info-number"
-            li
-              em 影片數
-              = link_to l.videos.published.count, videos_legislator_path(l)
-            li
-              em 新聞數
-              = link_to l.entries.published.count, entries_legislator_path(l)
-            li
-              em 質詢數
-              = link_to l.questions.published.count, questions_legislator_path(l)
+  - cache [:list, @legislators]
+    - @legislators.each do |l|
+      - cache l do
+        - if l.has_record?
+          section class="people-info-block has_record #{l.party.abbr_name}"
+            = link_to legislator_path(l), class: "people-img" do
+              = image_tag("legislators/160x214/#{l.image}", alt: l.name, title: l.name)
+              em class="party-#{l.party.abbr_name} party-tag" = l.party.name
+            header
+              h2 = link_to l.name, legislator_path(l)
+              ul class="info-number"
+                li
+                  em 影片數
+                  = link_to l.videos.published.count, videos_legislator_path(l)
+                li
+                  em 新聞數
+                  = link_to l.entries.published.count, entries_legislator_path(l)
+                li
+                  em 質詢數
+                  = link_to l.questions.published.count, questions_legislator_path(l)
+        - else
+          section class="people-info-block no_record #{l.party.abbr_name}"
+            = link_to legislator_path(l), class: "people-img" do
+              = image_tag("legislators/160x214/#{l.image}", alt: l.name, title: l.name)
+              em class="party-#{l.party.abbr_name} party-tag" = l.party.name
+            header
+              h2 = link_to l.name, legislator_path(l)
+              ul class="info-number"
+                li
+                  em 影片數
+                  = link_to l.videos.published.count, videos_legislator_path(l)
+                li
+                  em 新聞數
+                  = link_to l.entries.published.count, entries_legislator_path(l)
+                li
+                  em 質詢數
+                  = link_to l.questions.published.count, questions_legislator_path(l)
 
 
