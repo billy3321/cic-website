@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  has_and_belongs_to_many :legislators, touch: true, -> { uniq }
+  has_and_belongs_to_many :legislators, -> { uniq }
   has_and_belongs_to_many :keywords, -> { uniq }
   belongs_to :user
   belongs_to :committee
@@ -12,6 +12,7 @@ class Video < ActiveRecord::Base
   validate :is_youtube_url, :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
   before_save :update_youtube_values, :update_ivod_values, :update_ad_session_values
+  after_save :touch_legislators
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
@@ -103,6 +104,10 @@ class Video < ActiveRecord::Base
     else
       raise 'youtube id 解析錯誤'
     end
+  end
+
+  def touch_legislators
+    self.legislators.each(&:touch)
   end
 
   private

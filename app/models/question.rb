@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  has_and_belongs_to_many :legislators, touch: true, -> { uniq }
+  has_and_belongs_to_many :legislators, -> { uniq }
   has_and_belongs_to_many :keywords, -> { uniq }
   belongs_to :user
   belongs_to :committee
@@ -13,6 +13,7 @@ class Question < ActiveRecord::Base
   validates_presence_of :title
 
   before_save :update_ivod_values, :update_ad_session_values, :update_title_values
+  after_save :touch_legislators
   default_scope { order(created_at: :desc) }
   scope :published, -> { where(published: true) }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
@@ -66,6 +67,10 @@ class Question < ActiveRecord::Base
         self.title = "#{legislator_name} #{self.date.strftime('%Y-%m-%d')}"
       end
     end
+  end
+
+  def touch_legislators
+    self.legislators.each(&:touch)
   end
 
   private
