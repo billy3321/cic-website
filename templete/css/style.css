@@ -1127,4 +1127,10 @@ float: none;
 	width:auto;
 	float:left;
 	}
+.delete-id{
+	margin:10px 30px;
+	padding:10px 20px;
+	background:#E1E0E0;}
+.delete-id h3{
+	margin:0 0 7px 0;}
 /*---------0112新增樣式---------end*/
