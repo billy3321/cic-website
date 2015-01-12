@@ -1121,3 +1121,10 @@ float: none;
 	font-weight:normal;
 	}
 /*---------0107新增樣式---------end*/
+
+/*---------0112新增樣式---------start*/
+.form-list div .checkbox input{
+	width:auto;
+	float:left;
+	}
+/*---------0112新增樣式---------end*/
