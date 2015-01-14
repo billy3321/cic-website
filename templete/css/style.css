@@ -237,7 +237,8 @@ a.img_url_l div.blank{
 	font-style:normal;
 	background:#c5c5c5;
 	padding:2px 8px;
-	border-radius:10px;}
+	border-radius:10px;
+	margin:0 5px 0 0;}
 .info-number li{
 	margin:0 0 8px 0;}
 .selector-info{
