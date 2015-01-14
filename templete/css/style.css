@@ -156,7 +156,7 @@ a.img_url_l div.blank{
 	overflow:hidden;
 	width:206px;
 	margin:0 auto 12px auto;
-	
+	border-left:1px solid #d4d4d4;
 	}
 #secn01 li{
 	border:1px solid #d4d4d4;
@@ -454,6 +454,7 @@ margin:0 2% 0 0;}
 	background:#abdbe1;
 	padding:1px 8px;
 	border-radius:12px;
+	margin:0 5px 0 0;
 	}
 .sinner-info li em{
 	font-style:normal;}
