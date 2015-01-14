@@ -1135,3 +1135,10 @@ float: none;
 .delete-id h3{
 	margin:0 0 7px 0;}
 /*---------0112新增樣式---------end*/
+
+/*---------0114新增樣式---------start*/
+.form-list .question_time_start,.form-list .question_time_end{
+	display:inline-block;}
+.form-list .question_time_start input{
+	width:110px;}
+/*---------0114新增樣式---------end*/
