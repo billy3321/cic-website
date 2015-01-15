@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "rails_helper"
 
 describe AdSession do
   it "#factory_creat_success" do
