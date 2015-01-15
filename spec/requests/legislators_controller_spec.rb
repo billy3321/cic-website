@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "Legislator" do
+
   let(:legislator) { FactoryGirl.create(:legislator) }
 
   describe "#index" do

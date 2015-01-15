@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe "Entry" do
+
   let(:user) { FactoryGirl.create(:user) }
   let(:another_user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }

@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe Video do
+
    it "#factory_creat_video_ivod_success" do
     expect {
       FactoryGirl.create :video_ivod
