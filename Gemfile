@@ -54,7 +54,7 @@ gem 'rails-i18n', '~> 4.0.0'
 group :development, :test do
   gem 'minitest'
   gem "capybara"
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.99'
   gem 'database_cleaner'
 end
 
