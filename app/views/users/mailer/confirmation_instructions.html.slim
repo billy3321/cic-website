@@ -1,7 +1,7 @@
 div style="width:100%;border:5px solid #000;border-top:none;"
   div
-    div style="border-bottom:1px solid #d4d4d4; margin:0 0 15px 0; background:#000;">
-      image_tag 'logo-fix.png', alt: "國會調查兵團", width: "212", height: "76"
+    div style="border-bottom:1px solid #d4d4d4; margin:0 0 15px 0; background:#000;"
+      = image_tag 'logo-fix.png', alt: "國會調查兵團", width: "212", height: "76"
     div style="margin:0 0 15px 0;padding:0 25px;line-height:1.4em;"
       p 感謝您加入國會調查兵團！請點選以下連結進行信箱認證(若無法點選，請拷貝網址貼到網址列)
       p = link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token)
