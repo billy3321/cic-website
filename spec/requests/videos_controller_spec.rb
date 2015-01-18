@@ -21,7 +21,7 @@ describe "Video" do
     describe "#index with nothing" do
       it "success" do
         get "/videos/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -29,14 +29,14 @@ describe "Video" do
       it "success" do
         2.times { FactoryGirl.create(:video_news) }
         get "/videos/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#show" do
       it "success" do
         get "/videos/#{video.id}"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -54,21 +54,21 @@ describe "Video" do
     describe "#new" do
       it "redirect" do
         get "/videos/new"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
     describe "#edit" do
       it "redirect" do
         get "/videos/#{video.id}/edit"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
     describe "#create" do
       it "redirect" do
         post "/videos", :video => new_video
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -77,7 +77,7 @@ describe "Video" do
         video
         update_data = { :title => "new_title" }
         put "/videos/#{video.id}", :video => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -87,7 +87,7 @@ describe "Video" do
         expect {
           delete "/videos/#{video.id}"
         }.to change { Video.count }.by(0)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -109,14 +109,14 @@ describe "Video" do
     describe "#new" do
       it "success" do
         get "/videos/new"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/videos/#{video.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -137,7 +137,7 @@ describe "Video" do
         expect {
           post "/videos", :video => new_video
         }.to change { Video.count }.by(1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -146,7 +146,7 @@ describe "Video" do
         video
         update_data = { :title => "new_title" }
         put "/videos/#{video.id}", :video => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         video.reload
         expect(video.title).to match(update_data[:title])
       end
@@ -159,7 +159,7 @@ describe "Video" do
         video.save
         update_data = { :published => true }
         put "/videos/#{video.id}", :video => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         video.reload
         expect(video.published).to eq(false)
       end
@@ -171,7 +171,7 @@ describe "Video" do
         expect {
           delete "/videos/#{video.id}"
         }.to change { Video.count }.by(-1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -183,7 +183,7 @@ describe "Video" do
     describe "#edit" do
       it "redirect" do
         get "/videos/#{video.id}/edit"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -192,7 +192,7 @@ describe "Video" do
         video
         update_data = { :title => "new_title" }
         put "/videos/#{video.id}", :video => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -200,7 +200,7 @@ describe "Video" do
       it "failed" do
         video
         delete "/videos/#{video.id}"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -214,7 +214,7 @@ describe "Video" do
         video.published = false
         video.save
         get "/videos/#{video.id}"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -223,21 +223,21 @@ describe "Video" do
         video.published = false
         video.save
         get "/videos/#{video.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#new" do
       it "success" do
         get "/videos/new"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/videos/#{video.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -247,7 +247,7 @@ describe "Video" do
         expect {
           post "/videos", :video => new_video
         }.to change { Video.count }.by(1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -256,7 +256,7 @@ describe "Video" do
         video
         update_data = { :title => "new_title" }
         put "/videos/#{video.id}", :video => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         video.reload
         expect(video.title).to match(update_data[:title])
       end
@@ -269,7 +269,7 @@ describe "Video" do
         video.save
         update_data = { :published => true }
         put "/videos/#{video.id}", :video => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         video.reload
         expect(video.published).to eq(true)
       end
@@ -281,7 +281,7 @@ describe "Video" do
         expect {
           delete "/videos/#{video.id}"
         }.to change { Video.count }.by(-1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end

@@ -20,7 +20,7 @@ describe "Question" do
     describe "#index with nothing" do
       it "success" do
         get "/questions/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -28,7 +28,7 @@ describe "Question" do
       it "success" do
         2.times { FactoryGirl.create(:question) }
         get "/questions/#{question.id}"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -46,21 +46,21 @@ describe "Question" do
     describe "#new" do
       it "redirect" do
         get "/questions/new"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
     describe "#edit" do
       it "redirect" do
         get "/questions/#{question.id}/edit"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
     describe "#create" do
       it "redirect" do
         post "/questions", :question => new_question
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -69,7 +69,7 @@ describe "Question" do
         question
         update_data = { :title => "new_title" }
         put "/questions/#{question.id}", :question => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -79,7 +79,7 @@ describe "Question" do
         expect {
           delete "/questions/#{question.id}"
         }.to change { Question.count }.by(0)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -101,14 +101,14 @@ describe "Question" do
     describe "#new" do
       it "success" do
         get "/questions/new"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/questions/#{question.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -129,7 +129,7 @@ describe "Question" do
         expect {
           post "/questions", :question => new_question
         }.to change { Question.count }.by(1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -138,7 +138,7 @@ describe "Question" do
         question
         update_data = { :title => "new_title" }
         put "/questions/#{question.id}", :question => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         question.reload
         expect(question.title).to match(update_data[:title])
       end
@@ -151,7 +151,7 @@ describe "Question" do
         question.save
         update_data = { :published => true }
         put "/questions/#{question.id}", :question => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         question.reload
         expect(question.published).to eq(false)
       end
@@ -163,7 +163,7 @@ describe "Question" do
         expect {
           delete "/questions/#{question.id}"
         }.to change { Question.count }.by(-1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -175,7 +175,7 @@ describe "Question" do
     describe "#edit" do
       it "redirect" do
         get "/questions/#{question.id}/edit"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -184,7 +184,7 @@ describe "Question" do
         question
         update_data = { :title => "new_title" }
         put "/questions/#{question.id}", :question => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -192,7 +192,7 @@ describe "Question" do
       it "failed" do
         question
         delete "/questions/#{question.id}"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -206,7 +206,7 @@ describe "Question" do
         question.published = false
         question.save
         get "/questions/#{question.id}"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -215,21 +215,21 @@ describe "Question" do
         question.published = false
         question.save
         get "/questions/#{question.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#new" do
       it "success" do
         get "/questions/new"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/questions/#{question.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -239,7 +239,7 @@ describe "Question" do
         expect {
           post "/questions", :question => new_question
         }.to change { Question.count }.by(1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -248,7 +248,7 @@ describe "Question" do
         question
         update_data = { :title => "new_title" }
         put "/questions/#{question.id}", :question => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         question.reload
         expect(question.title).to match(update_data[:title])
       end
@@ -261,7 +261,7 @@ describe "Question" do
         question.save
         update_data = { :published => true }
         put "/questions/#{question.id}", :question => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         question.reload
         expect(question.published).to eq(true)
       end
@@ -273,7 +273,7 @@ describe "Question" do
         expect {
           delete "/questions/#{question.id}"
         }.to change { Question.count }.by(-1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end

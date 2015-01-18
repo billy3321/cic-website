@@ -9,7 +9,7 @@ describe "Static pages" do
     describe "#home with nothing" do
       it "success" do
         get "/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -19,14 +19,14 @@ describe "Static pages" do
         3.times { FactoryGirl.create :question }
         3.times { FactoryGirl.create :video_news }
         get "/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#recent with nothing" do
       it "success" do
         get "/recent"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -36,14 +36,14 @@ describe "Static pages" do
         3.times { FactoryGirl.create :question }
         3.times { FactoryGirl.create :video_news }
         get "/recent"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#report" do
       it "success" do
         get "/report"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -54,15 +54,15 @@ describe "Static pages" do
     describe "#home has logout" do
       it "success" do
         get "/"
-        response.body.should match("登出")
-        response.body.should match("回報立委資訊")
+        expect(response.body).to match("登出")
+        expect(response.body).to match("回報立委資訊")
       end
     end
 
     describe "#report" do
       it "success" do
         get "/report"
-        response.should be_success
+        expect(response).to be_success
       end
     end
   end
@@ -74,9 +74,9 @@ describe "Static pages" do
     describe "#home has logout" do
       it "success" do
         get "/"
-        response.body.should match("登出")
-        response.body.should match("回報立委資訊")
-        response.body.should match("後台首頁")
+        expect(response.body).to match("登出")
+        expect(response.body).to match("回報立委資訊")
+        expect(response.body).to match("後台首頁")
       end
     end
   end

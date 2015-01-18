@@ -30,12 +30,12 @@ describe Entry do
   it "validate has_at_least_one_legislator work" do
     entry = FactoryGirl.build(:entry)
     entry.legislators = []
-    expect{entry.save!}.to raise_error(ActiveRecord::RecordInvalid,'Validation failed: 必須加入至少一名立法委員！')
+    expect{entry.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: 必須加入至少一名立法委員！')
   end
 
   it "validate is_source_url work" do
     entry = FactoryGirl.build(:entry)
     entry.source_url = "not url string"
-    expect{entry.save!}.to raise_error(ActiveRecord::RecordInvalid,'Validation failed: 新聞來源網址錯誤')
+    expect{entry.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: 新聞來源網址錯誤')
   end
 end

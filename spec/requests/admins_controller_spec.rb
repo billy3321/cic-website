@@ -36,35 +36,35 @@ describe "Admin" do
     describe "#index" do
       it "success" do
         get "/admin/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#data" do
       it "success" do
         get "/admin/data"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#entries" do
       it "success" do
         get "/admin/entries"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#questions" do
       it "success" do
         get "/admin/questions"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#videos" do
       it "success" do
         get "/admin/videos"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -78,7 +78,7 @@ describe "Admin" do
           unpublished_ids: [question1.id, question3.id]
         }
         put "/admin/update_questions", update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         expect(Question.published).to eq([question2])
       end
     end
@@ -93,7 +93,7 @@ describe "Admin" do
           unpublished_ids: [video1.id, video3.id]
         }
         put "/admin/update_videos", update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         expect(Video.published).to eq([video2])
       end
     end
@@ -108,7 +108,7 @@ describe "Admin" do
           unpublished_ids: [entry1.id, entry3.id]
         }
         put "/admin/update_entries", update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         expect(Entry.published).to eq([entry2])
       end
     end

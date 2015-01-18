@@ -21,7 +21,7 @@ describe "Entry" do
     describe "#index with nothing" do
       it "success" do
         get "/entries/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -29,14 +29,14 @@ describe "Entry" do
       it "success" do
         2.times { FactoryGirl.create(:entry) }
         get "/entries/"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#show" do
       it "success" do
         get "/entries/#{entry.id}"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -54,21 +54,21 @@ describe "Entry" do
     describe "#new" do
       it "redirect" do
         get "/entries/new"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
     describe "#edit" do
       it "redirect" do
         get "/entries/#{entry.id}/edit"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
     describe "#create" do
       it "redirect" do
         post "/entries", :entry => new_entry
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -77,7 +77,7 @@ describe "Entry" do
         entry
         update_data = { :title => "new_title" }
         put "/entries/#{entry.id}", :entry => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -87,7 +87,7 @@ describe "Entry" do
         expect {
           delete "/entries/#{entry.id}"
         }.to change { Entry.count }.by(0)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -109,14 +109,14 @@ describe "Entry" do
     describe "#new" do
       it "success" do
         get "/entries/new"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/entries/#{entry.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -137,7 +137,7 @@ describe "Entry" do
         expect {
           post "/entries", :entry => new_entry
         }.to change { Entry.count }.by(1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -146,7 +146,7 @@ describe "Entry" do
         entry
         update_data = { :title => "new_title" }
         put "/entries/#{entry.id}", :entry => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         entry.reload
         expect(entry.title).to match(update_data[:title])
       end
@@ -159,7 +159,7 @@ describe "Entry" do
         entry.save
         update_data = { :published => true }
         put "/entries/#{entry.id}", :entry => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         entry.reload
         expect(entry.published).to eq(false)
       end
@@ -171,7 +171,7 @@ describe "Entry" do
         expect {
           delete "/entries/#{entry.id}"
         }.to change { Entry.count }.by(-1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -183,7 +183,7 @@ describe "Entry" do
     describe "#edit" do
       it "redirect" do
         get "/entries/#{entry.id}/edit"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -192,7 +192,7 @@ describe "Entry" do
         entry
         update_data = { :title => "new_title" }
         put "/entries/#{entry.id}", :entry => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -200,7 +200,7 @@ describe "Entry" do
       it "failed" do
         entry
         delete "/entries/#{entry.id}"
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end
@@ -214,7 +214,7 @@ describe "Entry" do
         entry.published = false
         entry.save
         get "/entries/#{entry.id}"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -223,21 +223,21 @@ describe "Entry" do
         entry.published = false
         entry.save
         get "/entries/#{entry.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#new" do
       it "success" do
         get "/entries/new"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
         get "/entries/#{entry.id}/edit"
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -247,7 +247,7 @@ describe "Entry" do
         expect {
           post "/entries", :entry => new_entry
         }.to change { Entry.count }.by(1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
 
@@ -256,7 +256,7 @@ describe "Entry" do
         entry
         update_data = { :title => "new_title" }
         put "/entries/#{entry.id}", :entry => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         entry.reload
         expect(entry.title).to match(update_data[:title])
       end
@@ -269,7 +269,7 @@ describe "Entry" do
         entry.save
         update_data = { :published => true }
         put "/entries/#{entry.id}", :entry => update_data
-        response.should be_redirect
+        expect(response).to be_redirect
         entry.reload
         expect(entry.published).to eq(true)
       end
@@ -281,7 +281,7 @@ describe "Entry" do
         expect {
           delete "/entries/#{entry.id}"
         }.to change { Entry.count }.by(-1)
-        response.should be_redirect
+        expect(response).to be_redirect
       end
     end
   end

@@ -54,13 +54,13 @@ describe Question do
   it "validate has_at_least_one_legislator work" do
     question = FactoryGirl.build(:question)
     question.legislators = []
-    expect{question.save!}.to raise_error(ActiveRecord::RecordInvalid,'Validation failed: 必須加入至少一名立法委員！')
+    expect{question.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: 必須加入至少一名立法委員！')
   end
 
   it "validate is_source_url work" do
     question = FactoryGirl.build(:question)
     question.ivod_url = "wrong ivod url"
-    expect{question.save!}.to raise_error(ActiveRecord::RecordInvalid,'Validation failed: ivod網址錯誤')
+    expect{question.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: ivod網址錯誤')
     question.ivod_url = "http://ivod.ly.gov.tw/Play/VOD/300K"
     question.save
     expect(question.errors.messages[:base].first).to eq('ivod網址出錯')
