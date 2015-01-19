@@ -46,6 +46,13 @@ describe "Static pages" do
         expect(response).to be_redirect
       end
     end
+
+    describe "#about" do
+      it "success" do
+        get "/about"
+        expect(response).to be_redirect
+      end
+    end
   end
   describe "after login" do
     before { sign_in(user) }
