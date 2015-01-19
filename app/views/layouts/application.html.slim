@@ -4,6 +4,8 @@ html
     meta charset="utf-8"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    - if params[:controller] == 'admins'
+      = stylesheet_link_tag 'admin-style'
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
     /[if lt IE9]

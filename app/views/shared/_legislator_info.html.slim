@@ -13,7 +13,6 @@ section class="people-info-block"
     li
       em 質詢數
       = link_to l.questions.published.count, questions_legislator_path(l)
-  .selector-info.si-newest
   - elections_num = 1
   - l.elections.each do |e|
     - if elections_num == 1
@@ -28,7 +27,7 @@ section class="people-info-block"
         .si30 = e.party.name    
     - elections_num += 1
 
-  ul class="pinfo-btn"
-    li = link_to '看新聞紀錄', entries_legislator_path(l)
-    li = link_to '看質詢紀錄', questions_legislator_path(l)
-    li = link_to '看影片紀錄', videos_legislator_path(l)
+ul class="pinfo-btn"
+  li = link_to '看新聞紀錄', entries_legislator_path(l)
+  li = link_to '看質詢紀錄', questions_legislator_path(l)
+  li = link_to '看影片紀錄', videos_legislator_path(l)

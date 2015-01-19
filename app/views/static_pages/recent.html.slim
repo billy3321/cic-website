@@ -5,24 +5,25 @@
     #v-title
       h3 【最新影片】
       - if @videos.any?
-        = link_to '更多', videos_path, html: {class: 'more'}
-        - @videos.each do |v|
-          section class="small-video-show"
-            = link_to image_tag(v.image, {alt: v.title}), video_path(v), html: {class: "img_url_l"}
-            header
-              h3 = link_to v.title, video_path(v)
-            time class="time"
-              = v.created_at.strftime('%Y-%m-%d')
-            .inner-content
-              = display_shorter(v.content, 75)
+        = link_to '更多', videos_path, class: 'more'
       - else
         section class="small-video-show"
           .blank 目前尚無資料
+    - if @videos.any?
+      - @videos.each do |v|
+        section class="small-video-show"
+          = link_to image_tag(v.image, {alt: v.title}), video_path(v), class: "img_url_l"
+          header
+            h3 = link_to v.title, video_path(v)
+          time class="time"
+            = v.created_at.strftime('%Y-%m-%d')
+          .inner-content
+            = display_shorter(v.content, 75)
 
-  #new-list.side-sblock
+  #news-list.side-sblock
     h3 【最新新聞】
     - if @entries.any?
-      = link_to '更多', entries_path, html: {class: 'more'}
+      = link_to '更多', entries_path, class: 'more'
       ul
         - @entries.each do |e|
           li = link_to e.title, entry_path(e)
@@ -31,7 +32,7 @@
   #say-list.side-sblock
     h3 【最新質詢】
     - if @questions.any?
-      = link_to '更多', questions_path, html: {class: 'more'}
+      = link_to '更多', questions_path, class: 'more'
       ul
         - @questions.each do |q|
           = link_to question_path(q) do

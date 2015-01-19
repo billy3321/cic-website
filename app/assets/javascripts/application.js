@@ -178,28 +178,28 @@ var ready = function(){
   });
 
   $('.all_record_button').click(function(){
+    $('.all_party_button').click();
     $('.has_record').show();
     $('.no_record').show();
     $('.all_record_button').addClass('current');
     $('.has_record_button').removeClass('current');
     $('.no_record_button').removeClass('current');
-    $('.all_party_button').click()
   });
   $('.has_record_button').click(function(){
+    $('.all_party_button').click();
     $('.has_record').show();
     $('.no_record').hide();
     $('.all_record_button').removeClass('current');
     $('.has_record_button').addClass('current');
     $('.no_record_button').removeClass('current');
-    $('.all_party_button').click()
   });
   $('.no_record_button').click(function(){
+    $('.all_party_button').click();
     $('.no_record').show();
     $('.has_record').hide();
     $('.all_record_button').removeClass('current');
     $('.no_record_button').addClass('current');
     $('.has_record_button').removeClass('current');
-    $('.all_party_button').click()
   });
 
   $('.check_all_box').change(function(){

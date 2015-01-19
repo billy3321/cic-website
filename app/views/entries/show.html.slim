@@ -36,8 +36,9 @@ section class="single-page-inner"
   aside id="aside-info"
     #accordion
       - @entry.legislators.each do |l|
-        h3 = l.name
-        div
-          ul class="news-info-list two-col-list"
-            - l.entries.published.created_after(@entry.created_at).first(6).each do |e|
-              li = link_to e.title, entry_path(e)
+        - if l.entries.published.created_after(@entry.created_at).any?
+          h3 = l.name
+          div
+            ul class="news-info-list two-col-list"
+              - l.entries.published.created_after(@entry.created_at).first(6).each do |e|
+                li = link_to e.title, entry_path(e)
