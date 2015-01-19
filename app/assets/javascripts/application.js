@@ -177,31 +177,6 @@ var ready = function(){
     $('.null_party_button').addClass('current');
   });
 
-  $('.all_record_button').click(function(){
-    $('.all_party_button').click();
-    $('.has_record').show();
-    $('.no_record').show();
-    $('.all_record_button').addClass('current');
-    $('.has_record_button').removeClass('current');
-    $('.no_record_button').removeClass('current');
-  });
-  $('.has_record_button').click(function(){
-    $('.all_party_button').click();
-    $('.has_record').show();
-    $('.no_record').hide();
-    $('.all_record_button').removeClass('current');
-    $('.has_record_button').addClass('current');
-    $('.no_record_button').removeClass('current');
-  });
-  $('.no_record_button').click(function(){
-    $('.all_party_button').click();
-    $('.no_record').show();
-    $('.has_record').hide();
-    $('.all_record_button').removeClass('current');
-    $('.no_record_button').addClass('current');
-    $('.has_record_button').removeClass('current');
-  });
-
   $('.check_all_box').change(function(){
     $.each($('.published_box'), function(){
       this.checked = $('.check_all_box')[0].checked;

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     confimations: "users/confirmations"
    }
 
+  match '/legislators/no_record',          to: 'legislators#no_record',          via: 'get', as: 'legislators_no_record'
+  match '/legislators/has_record',         to: 'legislators#has_record',         via: 'get', as: 'legislators_has_record'
   resources :legislators, only: [:show, :index] do
     member do
       get 'entries'

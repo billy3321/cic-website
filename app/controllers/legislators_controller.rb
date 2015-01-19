@@ -19,6 +19,42 @@ class LegislatorsController < ApplicationController
     })
   end
 
+  # GET /legislators/no_record
+  def no_record
+    @q = Legislator.has_no_record.search(params[:q])
+    @legislators = @q.result(:distinct => true).all
+    @parties = Party.all
+
+    set_meta_tags({
+      title: '立委列表',
+      description: '看看現任立委在國會殿堂的表現吧！',
+      keywords: '立法委員,立委,國民黨,民進黨,台聯,親民黨,無黨籍,國會委員',
+      og: {
+        type: 'website',
+        title: '國會立委列表',
+        description: '看看現任立委在國會殿堂的表現吧！'
+      }
+    })
+  end
+
+  # GET /legislators/has_record
+  def has_record
+    @q = Legislator.has_records.search(params[:q])
+    @legislators = @q.result(:distinct => true).all
+    @parties = Party.all
+
+    set_meta_tags({
+      title: '立委列表',
+      description: '看看現任立委在國會殿堂的表現吧！',
+      keywords: '立法委員,立委,國民黨,民進黨,台聯,親民黨,無黨籍,國會委員',
+      og: {
+        type: 'website',
+        title: '國會立委列表',
+        description: '看看現任立委在國會殿堂的表現吧！'
+      }
+    })
+  end
+
   # GET /legislators/1
   def show
     @videos = @legislator.videos.published.first(5)
