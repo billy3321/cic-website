@@ -1,5 +1,5 @@
 class LegislatorsController < ApplicationController
-  before_action :set_legislator, except: [:index, :new]
+  before_action :set_legislator, except: [:index, :new, :no_record, :has_record]
 
   # GET /legislators
   def index
