@@ -11,6 +11,20 @@ describe "Legislator" do
     end
   end
 
+  describe "#no_record" do
+    it "success" do
+      get "/legislators/no_record"
+      expect(response).to be_success
+    end
+  end
+
+  describe "#has_record" do
+    it "success" do
+      get "/legislators/has_record"
+      expect(response).to be_success
+    end
+  end
+
   describe "#show" do
     it "no_record success" do
       get "/legislators/#{legislator.id}"
