@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     match 'update_questions', to: 'admins#update_questions', via: 'put'
     match 'update_videos',    to: 'admins#update_videos',    via: 'put'
   end
+
+  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
+  match "/422" => "errors#error422", via: [ :get, :post, :patch, :delete ]
+  match "/500" => "errors#error500", via: [ :get, :post, :patch, :delete ]
   # resources :keywords
 
   # The priority is based upon order of creation: first created -> highest priority.
