@@ -1151,4 +1151,39 @@ float: none;
 }
 a.form-btn{
 width:auto;}
+#secn01.txt-nav{
+	width:100%;
+	margin:0 1.5em 12px 1.5em;
+	line-height:24px;}
+#txt-info{
+	padding:0 1em;}
+#txt-info h2{
+	font-size:24px;
+	margin:0 0 0.5em 0;}
+#txt-info h3{
+	color:#267c71;
+	font-size:18px;}
+#txt-info p{
+	margin:0 0 1.7em 0;
+	line-height:1.5em;
+	letter-spacing:1px;}
+#txt-info ul{
+	margin:0 0 0 2em;}
+#txt-info li{
+	margin:0 0 0.2em 0;
+	list-style:disc;}
+.iright{
+	float:right;}
+.qc{margin:0 0 2em 0;}
+.tnote{
+	color:#fd8c47;
+	font-weight:bold;
+	margin:0 0 1em 0;}
+@media only screen and (max-width: 640px){
+	.iright{
+	float:none;
+	width:100%;
+	max-width:428px;
+	display:block;
+	margin:auto;}}
 /*---------0123新增樣式---------end*/
