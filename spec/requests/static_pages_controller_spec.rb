@@ -50,7 +50,7 @@ describe "Static pages" do
     describe "#about" do
       it "success" do
         get "/about"
-        expect(response).to be_redirect
+        expect(response).to be_success
       end
     end
   end
