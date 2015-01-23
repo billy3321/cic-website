@@ -622,11 +622,11 @@ margin:0 2% 0 0;}
 	overflow:hidden;
 	padding:0 0 15px 0;
 	border-bottom:1px solid #aaaaaa;}
-#edit-block{
+.edit-block{
 		overflow:hidden;
 	margin:10px 0;
 	font-size:13px;}
-#edit-block .edit-btn{
+.edit-block .edit-btn{
 	float:right;
 	}
 .edit-btn{
@@ -811,6 +811,7 @@ padding:0 0 0 14%;}
 	min-width:95px;
 	border-right:1px solid #d4d4d4;
 	border-bottom:1px solid #d4d4d4;
+	display:none;
 	}
 .pinfo .selector-info div{
 	float:none;
