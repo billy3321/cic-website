@@ -19,7 +19,7 @@ section class="single-page-inner"
         | ivod出處：
         = link_to @video.ivod_url, @video.ivod_url
       - if @video.time_start or @video.time_end
-        li ivod時間區間：#{@video.time_start.try(:strftime, '%H:%i:%s')}～#{@video.time_end.try(:strftime, '%H:%i:%s')}
+        li ivod時間區間：#{@video.time_start.try(:strftime, '%H:%M:%S')}～#{@video.time_end.try(:strftime, '%H:%M:%S')}
       - else
         li ivod時間區間：無指定
       li 
