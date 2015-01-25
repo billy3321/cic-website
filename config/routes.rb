@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   match '/recent',    to: 'static_pages#recent',    via: 'get'
   match '/report',    to: 'static_pages#report',    via: 'get'
   match '/about',     to: 'static_pages#about',     via: 'get'
+  match '/faq',       to: 'static_pages#faq',       via: 'get'
+  match '/service',   to: 'static_pages#service',   via: 'get'
+  match '/privacy',   to: 'static_pages#privacy',   via: 'get'
+  match '/tutorial',  to: 'static_pages#tutorial',  via: 'get'
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",
@@ -40,7 +44,7 @@ Rails.application.routes.draw do
     match 'update_videos',    to: 'admins#update_videos',    via: 'put'
   end
 
-  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
+  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'not_found'
   match "/422" => "errors#error422", via: [ :get, :post, :patch, :delete ]
   match "/500" => "errors#error500", via: [ :get, :post, :patch, :delete ]
   # resources :keywords

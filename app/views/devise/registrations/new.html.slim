@@ -22,6 +22,10 @@
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
         p = recaptcha_tags ajax: true
       li
+        = f.input :agreement, as: :boolean, label: false, id: 'checkbox'
+        | 我已詳細閱讀
+        = link_to '會員條款', service_path, target: '_blank'
+      li
         = f.button :submit, "註冊", html: {class: "form-btn"}
 
 #out-login

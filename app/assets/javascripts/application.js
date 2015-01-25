@@ -19,7 +19,7 @@
 //= require magnific-popup
 //= require jquery.timepicker.js
 //= require ckeditor/init
-//= require_tree .
+
 
 var ready = function(){
   // datepicker
@@ -33,7 +33,7 @@ var ready = function(){
     dateFormat: 'yy-mm-dd',
     minDate: new Date(2014, 10, 1),
     maxDate: new Date,
-    onClose: function(dateText, inst) { 
+    onClose: function(dateText, inst) {
         var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
         var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
         $(this).datepicker('setDate', new Date(year, month, 1));
@@ -191,6 +191,11 @@ var ready = function(){
       }
     });
   }
+
+  $("div.text").hide();
+  $(".box h3").click(function(){
+    $(this).next(".text").slideToggle("slow");
+  })
 };
 
 $(document).ready(ready);

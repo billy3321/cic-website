@@ -16,16 +16,20 @@ ul class="form-list"
   li
     p 影片出處分類＊
     p class="snote" （ivod與新聞回報所顯示的資料結果略有差異，若選擇ivod，將依據ivod確切內容進行修正）
-    p = f.input :video_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['新聞影片', 'news']], selected: 'ivod', input_html: { class: 'video_type' }
+    p = f.input :video_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['新聞影片', 'news']], input_html: { class: 'video_type' }
   li class="ivod_field"
     p 立法院議事轉播ivod出處＊
-    p class="snote" 請填寫ivod出處之影片連結。
+    p class="snote" 
+      | 請填寫ivod出處之影片連結。
+      = link_to '如何看影片連結>>', tutorial_path
+      br
+      | 網址格式：http://ivod.ly.gov.tw/Play/VOD/76736/1M
     p = f.input :ivod_url, label: false
   li class="ivod_field"
     p ivod時間區間
     p class="snote" 
       | 請填寫此段質詢出現的時間區間。
-      = link_to '如何看時間區間>>', '#'
+      = link_to '如何看時間區間>>', tutorial_path
     
     p class="time-data"
     p 

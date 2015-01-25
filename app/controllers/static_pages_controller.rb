@@ -51,4 +51,16 @@ class StaticPagesController < ApplicationController
 
   def about
   end
+
+  def faq
+  end
+
+  def service
+  end
+
+  def privacy
+  end
+
+  def tutorial
+  end
 end

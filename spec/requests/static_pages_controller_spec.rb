@@ -53,6 +53,34 @@ describe "Static pages" do
         expect(response).to be_success
       end
     end
+
+    describe "#faq" do
+      it "success" do
+        get "/faq"
+        expect(response).to be_success
+      end
+    end
+
+    describe "#service" do
+      it "success" do
+        get "/service"
+        expect(response).to be_success
+      end
+    end
+
+    describe "#privacy" do
+      it "success" do
+        get "/privacy"
+        expect(response).to be_success
+      end
+    end
+
+    describe "#tutorial" do
+      it "success" do
+        get "/tutorial"
+        expect(response).to be_success
+      end
+    end
   end
   describe "after login" do
     before { sign_in(user) }

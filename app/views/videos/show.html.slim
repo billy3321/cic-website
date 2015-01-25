@@ -18,13 +18,17 @@ section class="single-page-inner"
       li 
         | ivod出處：
         = link_to @video.ivod_url, @video.ivod_url
+      - if @video.time_start or @video.time_end
+        li ivod時間區間：#{@video.time_start.try(:strftime, '%H:%i:%s')}～#{@video.time_end.try(:strftime, '%H:%i:%s')}
+      - else
+        li ivod時間區間：無指定
       li 
         | 會期：
         = @video.ad_session.try(:ad).name
         = @video.ad_session.try(:name)
       li 
         | 會議時間：
-        = @video.date.try(:strftime, '%Y-%m-%d')
+        = @video.date.try(:strftime, '%Y年%m月%d日')
       li 
         | 會議別：
         = @video.committee.try(:name)

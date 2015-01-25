@@ -23,4 +23,16 @@ ul class="form-list"
         | Google
       - else
         | 不明
+  li
+    p 信箱認證狀態
+    - if u.confirmed?
+      p class="input-data" 已認證
+    - else
+      p class="input-data" 未認證
+  li
+    p 帳號狀態
+    - if u.access_locked?
+      p class="input-data" 停權
+    - else
+      p class="input-data" 正常
   li = f.submit '確定送出', class: "form-btn", id: "button"

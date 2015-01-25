@@ -3,10 +3,12 @@
   .inner-list
     table.adm-table width="100%"
       tr
-        th width="31%" 帳號
-        th width="32%" 會員等級
-        th width="22%" 來源
-        th width="15%" 操作
+        th width="23%" 帳號
+        th width="24%" 會員等級
+        th width="15%" 來源
+        th width="14%" 認證狀態
+        th width="11%" 帳號狀態
+        th width="13%" 操作
       - @users.each do |u|
         tr
           td = u.email
@@ -23,7 +25,14 @@
             td Google
           - else
             td 不明
-
+          - if u.confirmed?
+            td class="c" 已認證
+          - else
+            td class="c" 未認證
+          - if u.access_locked?
+            td class="c" 停權
+          - else
+            td class="c" 正常
           td class="c"
             = link_to "編輯", edit_user_path(u)
             |  |
@@ -31,5 +40,3 @@
     #page-bar
       #page
         = paginate @users
-
-

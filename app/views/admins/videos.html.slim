@@ -6,12 +6,13 @@
     .inner-list
       table.adm-table width="100%"
         tr
-          th width="5%" = check_box_tag "check_all", "check_all", false, class: "check_all_box"
-          th width="54%" 影片標題
+          th width="4%" = check_box_tag "check_all", "check_all", false, class: "check_all_box"
+          th width="43%" 影片標題
           th width="11%" 立委姓名
-          th width="10%" 回報時間
-          th width="13%" 回報者 / IP
-          th width="7%" 查看
+          th width="15%" 回報時間
+          th width="14%" 回報者 / IP
+          th width="8%" 狀態
+          th width="5%" 查看
         - if @videos.any?
           - @videos.each do |v|
             tr 
@@ -25,10 +26,14 @@
                 - v.legislators.each do |l|
                   = l.name
               td = v.created_at.strftime('%Y-%m-%d')
-              td
+              td class="c"
                 = v.user.try(:name)
                 br
                 = v.user_ip
+              - if e.published
+                td class="c" 已發布
+              - else
+                td class="c" 未發布
               td class="c" = link_to "查看", video_path(v), target: "_blank"
       #page-bar
         #page

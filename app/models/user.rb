@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :videos
   validates_presence_of :name, :email
+  validates :agreement, acceptance: { accept: true }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
   scope :login_from, -> (provider) { provider.to_s == '' ? where("provider IS NULL") : where("provider = ?", provider) }
 

@@ -13,18 +13,12 @@ section class="single-page-inner"
       | ivod出處：
       = link_to @question.ivod_url, @question.ivod_url
     li 
-      | 開會時間：
-      = @question.date.strftime('%Y-%m-%d')
-    li 
-      | 時間標記：
-      - if @question.time_start and @question.time_end
-        = @question.time_start.try(:strftime, '%H:%i:%s')
-        |  ～ 
-        = @question.time_end.try(:strftime, '%H:%i:%s')
-      - elsif @question.time_start
-        = @question.time_start.try(:strftime, '%H:%i:%s')
-      - else
-        | 無
+      | 會議時間：
+      = @question.date.strftime('%Y年%m月%d日')
+    - if @question.time_start or @question.time_end
+      li ivod時間區間：#{@question.time_start.try(:strftime, '%H:%i:%s')}～#{@question.time_end.try(:strftime, '%H:%i:%s')}
+    - else
+      li ivod時間區間：無指定
     li 
       | 會議別：
       = @question.committee.try(:name)

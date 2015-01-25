@@ -119,6 +119,7 @@ class Video < ActiveRecord::Base
       errors.add(:base, 'youtube網址無法存取') unless HTTParty.get(self.youtube_url).code == 200
     rescue
       errors.add(:base, 'youtube網址錯誤')
+      return false
     end
   end
 
@@ -127,7 +128,8 @@ class Video < ActiveRecord::Base
       if self.video_type == 'news'
         return true
       else
-        errors.add(:base, '尚未填寫ivod網址')
+        errors.add(:base, '必須填寫ivod出處網址')
+        return false
       end
     end
     begin
@@ -136,10 +138,11 @@ class Video < ActiveRecord::Base
       errors.add(:base, 'ivod網址無法存取') unless HTTParty.get(self.ivod_url).code == 200
     rescue
       errors.add(:base, 'ivod網址錯誤')
+      return false
     end
   end
 
   def has_at_least_one_legislator
-    errors.add(:base, '必須加入至少一名立法委員！') if self.legislators.blank?
+    errors.add(:base, '必須填寫立委姓名！') if self.legislators.blank?
   end
 end

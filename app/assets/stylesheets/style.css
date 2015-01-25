@@ -586,6 +586,7 @@ margin:0 2% 0 0;}
 	width:100%;
 	cursor:pointer;
 	border:none;}
+
 #out-login{
 		max-width:305px;
 	width:95%;
@@ -621,11 +622,11 @@ margin:0 2% 0 0;}
 	overflow:hidden;
 	padding:0 0 15px 0;
 	border-bottom:1px solid #aaaaaa;}
-#edit-block{
+.edit-block{
 		overflow:hidden;
 	margin:10px 0;
 	font-size:13px;}
-#edit-block .edit-btn{
+.edit-block .edit-btn{
 	float:right;
 	}
 .edit-btn{
@@ -810,6 +811,7 @@ padding:0 0 0 14%;}
 	min-width:95px;
 	border-right:1px solid #d4d4d4;
 	border-bottom:1px solid #d4d4d4;
+	display:none;
 	}
 .pinfo .selector-info div{
 	float:none;
@@ -1137,9 +1139,67 @@ float: none;
 	margin:0 0 7px 0;}
 /*---------0112新增樣式---------end*/
 
-/*---------0114新增樣式---------start*/
+/*---------0123新增樣式---------start*/
 .form-list .question_time_start,.form-list .question_time_end{
 	display:inline-block;}
-.form-list .question_time_start input{
+.form-list .question_time_start input,.form-list .question_time_end input{
 	width:110px;}
-/*---------0114新增樣式---------end*/
+.form-list .video_time_start,.form-list .video_time_end{
+	display:inline-block;}
+.form-list #video_time_end, .form-list #video_time_start {
+    width: 110px;
+}
+a.form-btn{
+width:auto;}
+#secn01.txt-nav{
+	width:100%;
+	margin:0 1.5em 12px 1.5em;
+	line-height:24px;}
+#txt-info{
+	padding:0 1em;}
+#txt-info h2{
+	font-size:24px;
+	margin:0 0 0.5em 0;}
+#txt-info h3{
+	color:#267c71;
+	font-size:18px;}
+#txt-info p{
+	margin:0 0 1.7em 0;
+	line-height:1.5em;
+	letter-spacing:1px;}
+#txt-info ul{
+	margin:0 0 0 2em;}
+#txt-info li{
+	margin:0 0 0.2em 0;
+	list-style:disc;}
+.iright{
+	float:right;}
+.qc{margin:0 0 2em 0;}
+.tnote{
+	color:#fd8c47;
+	font-weight:bold;
+	margin:0 0 1em 0;}
+@media only screen and (max-width: 640px){
+	.iright{
+	float:none;
+	width:100%;
+	max-width:428px;
+	display:block;
+	margin:auto;}}
+/*---------0123新增樣式---------end*/
+
+/*---------0125新增樣式---------start*/
+#txt-info  .teach-info-txt ol li{
+	margin:0 3em 0.2em 3em;
+	list-style:decimal;
+	}
+	/* 收缩展开效果 */
+.text{line-height:1.6em;letter-spacing:1px;padding:0 6px;color:#666;}
+.box h3{padding:0 0 0.5em 0;height:22px;line-height:22px;font-weight:bold;
+cursor:pointer;}
+.box{position:relative;border-bottom:1px solid #e7e7e7;padding:10px;}
+.text img{
+	width:100%;}
+.form-list  select{
+	font-size:18px;}
+/*---------0123新增樣式---------end*/

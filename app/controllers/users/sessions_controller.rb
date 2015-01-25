@@ -6,7 +6,6 @@ class Users::SessionsController < Devise::SessionsController
   def new
     if user_signed_in?
       if flash[:error] = "驗證碼輸入錯誤。"
-        puts 'recaptcha error!!'
         flash[:error] = ""
         destroy
       else
@@ -24,6 +23,7 @@ class Users::SessionsController < Devise::SessionsController
     else
       flash.delete(:recaptcha_error)
       build_resource
+      clean_up_passwords(resource)
       flash[:error] = "驗證碼輸入錯誤。"
       respond_with_navigational(resource) { render :new }
     end
