@@ -1187,3 +1187,19 @@ width:auto;}
 	display:block;
 	margin:auto;}}
 /*---------0123新增樣式---------end*/
+
+/*---------0125新增樣式---------start*/
+#txt-info  .teach-info-txt ol li{
+	margin:0 3em 0.2em 3em;
+	list-style:decimal;
+	}
+	/* 收缩展开效果 */
+.text{line-height:1.6em;letter-spacing:1px;padding:0 6px;color:#666;}
+.box h3{padding:0 0 0.5em 0;height:22px;line-height:22px;font-weight:bold;
+cursor:pointer;}
+.box{position:relative;border-bottom:1px solid #e7e7e7;padding:10px;}
+.text img{
+	width:100%;}
+.form-list  select{
+	font-size:18px;}
+/*---------0123新增樣式---------end*/
