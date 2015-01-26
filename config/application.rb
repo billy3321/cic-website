@@ -20,6 +20,7 @@ module CicWebsite
     # config.i18n.default_locale = :de
     #config.i18n.default_locale = :en
     config.i18n.default_locale = "zh-TW"
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     require Rails.root.join("lib/custom_public_exceptions")
     config.exceptions_app = CustomPublicExceptions.new(Rails.public_path)
   end

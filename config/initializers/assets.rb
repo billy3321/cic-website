@@ -8,3 +8,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( admin-style.css )
 Rails.application.config.assets.precompile += %w( analytics.js )
+Rails.application.config.assets.precompile += Ckeditor.assets
+Rails.application.config.assets.precompile += %w( ckeditor/* )
