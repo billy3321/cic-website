@@ -1,4 +1,5 @@
 #search-bar
   = form_tag recent_path, method: :get do
     = text_field_tag :q, nil, name: "q", id: "textfield", class: "keyin"
-    = submit_tag '搜尋', name: "submit", id: "submit", class: "submit-btn"
+    | &nbsp;
+    = submit_tag '搜尋', name: "submit", id: "submit", class: "submit-btn", type: "search"
