@@ -47,7 +47,7 @@
       = link_to "更多", questions_legislator_path(@legislator), class: "more"
       ul
         - @legislator.questions.each do |q|
-          li = q.title
+          li = link_to q.title, question_path(q)
     - else
       .blank 目前尚無資料
     
