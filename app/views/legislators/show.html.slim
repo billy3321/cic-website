@@ -11,7 +11,7 @@
         = @main_video.created_at.strftime('%Y-%m-%d')
       .inner-content
         = display_shorter(@main_video.content, 75)
-      = link_to "更多影片", videos_legislator_path(@legislator)
+      = link_to "更多影片", videos_legislator_path(@legislator), class: "more mr"
     - else
       .blank 目前尚無資料
 
