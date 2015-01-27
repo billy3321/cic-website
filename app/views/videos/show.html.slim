@@ -37,7 +37,7 @@ section class="single-page-inner"
         = @video.meeting_description
   .inner-content-txt
     .vidoe-inner-show
-      iframe src="http://www.youtube.com/embed/#{@video.youtube_id}" frameborder="0" class="video-play" allowfullscreen="1"
+      iframe src="https://www.youtube.com/embed/#{@video.youtube_id}" frameborder="0" class="video-play" allowfullscreen="1"
     .video-inner-txt
       = @video.content.try(:html_safe)
   .writer
