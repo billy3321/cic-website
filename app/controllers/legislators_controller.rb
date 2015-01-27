@@ -121,7 +121,7 @@ class LegislatorsController < ApplicationController
     @videos = @legislator.videos.published.page(params[:page])
     videos = @videos.to_a
     @main_video = videos.shift
-    @sub_video = videos
+    @sub_videos = videos
 
     set_meta_tags({
       title: "#{@legislator.name}影片列表",
