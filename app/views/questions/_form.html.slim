@@ -7,7 +7,7 @@ ul class="form-list"
     p 立委姓名＊
     p = f.association :legislators, label: false, collection: Legislator.all, input_html: { class: 'chosen-select' }, required: true
   li
-    p 標題＊
+    p 標題
     p class="snote" 請填寫標題，若無則由系統產生。
     p = f.input :title, label: false
   li
