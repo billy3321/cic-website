@@ -1,7 +1,7 @@
 #sys-block
   h2 
     | 政黨管理
-    = link_to "新增政黨"
+    = link_to_if false, "新增政黨", new_party_path, class: "add-btn"
   .inner-list
     table.adm-table width="100%"
       tr
