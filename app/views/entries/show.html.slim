@@ -25,6 +25,7 @@ section class="single-page-inner"
   .writer
     span 資料回報者
     = @entry.user.try(:name)
+    | &nbsp;
     time class="time"
       = @entry.created_at.strftime('%Y-%m-%d')
 

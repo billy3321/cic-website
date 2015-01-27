@@ -32,6 +32,7 @@ section class="single-page-inner"
   .writer
     span 資料回報者
     = @question.user.try(:name)
+    | &nbsp;
     time class="time"
       = @question.created_at.strftime('%Y-%m-%d')
   aside id="writer-say"

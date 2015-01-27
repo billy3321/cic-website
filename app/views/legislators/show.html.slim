@@ -38,7 +38,7 @@
       = link_to "更多", entries_legislator_path(@legislator), class: "more"
       ul
         - @legislator.entries.each do |e|
-          li link_to e.title, entry_path(e)
+          li = link_to e.title, entry_path(e)
     - else
       .blank 目前尚無資料
 
@@ -48,7 +48,7 @@
       = link_to "更多", questions_legislator_path(@legislator), class: "more"
       ul
         - @legislator.questions.each do |q|
-          li q.title
+          li = q.title
     - else
       .blank 目前尚無資料
     
