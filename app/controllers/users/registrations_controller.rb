@@ -39,14 +39,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if verify_recaptcha
+    captcha_result = verify_recaptcha
+    if captcha_result
       super
     else
       flash.delete(:recaptcha_error)
       build_resource
       clean_up_passwords(resource)
-      flash.now[:alert] = "驗證碼輸入錯誤。"
-      flash.delete :recaptcha_error
       respond_with_navigational(resource) { render :edit }
     end
   end
