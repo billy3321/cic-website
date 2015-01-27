@@ -6,12 +6,14 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # POST /resource/confirmation
   def create
-    if verify_recaptcha
+    captcha_result = verify_recaptcha
+    if captcha_result
       super
     else
-      flash.delete(:recaptcha_error)
+      if captcha_result
+        flash.delete(:recaptcha_error)
+      end
       build_resource
-      flash[:error] = "驗證碼輸入錯誤。"
       respond_with_navigational(resource) { render :new }
     end
   end

@@ -6,12 +6,14 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    if verify_recaptcha
+    captcha_result = verify_recaptcha
+    if captcha_result
       super
     else
-      flash.delete(:recaptcha_error)
       build_resource
-      flash[:error] = "驗證碼輸入錯誤。"
+      if captcha_result
+        flash.delete(:recaptcha_error)
+      end
       respond_with_navigational(resource) { render :new }
     end
   end
@@ -23,12 +25,14 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # PUT /resource/password
   def update
-    if verify_recaptcha
+    captcha_result = verify_recaptcha
+    if captcha_result
       super
     else
-      flash.delete(:recaptcha_error)
       build_resource
-      flash[:error] = "驗證碼輸入錯誤。"
+      if captcha_result
+        flash.delete(:recaptcha_error)
+      end
       respond_with_navigational(resource) { render :edit }
     end
   end
