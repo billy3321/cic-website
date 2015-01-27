@@ -43,6 +43,8 @@ zh-TW:
     sessions:
       signed_in: "成功登入了。"
       signed_out: "成功登出了。"
+      user:
+        already_signed_out: "已經登出了。"
     unlocks:
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。"
       send_paranoid_instructions: "如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。"

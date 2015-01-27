@@ -10,17 +10,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     if session[:omniauth] == nil #OmniAuth
-      if verify_recaptcha && params[:agreement]
+      captcha_result = verify_recaptcha
+      if captcha_result && params[:user][:agreement] == "1"
         super
         session[:omniauth] = nil unless @user.new_record? #OmniAuth
       else
-        flash.delete(:recaptcha_error)
         build_resource(sign_up_params)
         clean_up_passwords(resource)
-        if !verify_recaptcha
-          flash.now[:alert] = "驗證碼輸入錯誤。"
+        if captcha_result
+          flash.delete(:recaptcha_error)
         end
-        if params[:agreement].nil?
+        if params[:user][:agreement] == "0"
           flash.now[:alert] = "請閱讀並同意使用條款。"
         end
         #use render :new for 2.x version of devise
