@@ -195,7 +195,24 @@ var ready = function(){
   $("div.text").hide();
   $(".box h3").click(function(){
     $(this).next(".text").slideToggle("slow");
-  })
+  });
+
+  CKEDITOR.on( 'dialogDefinition', function( ev ){
+    // Take the dialog name and its definition from the event
+    // data.
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+
+    // Check if the definition is from the dialog we're
+    // interested on (the Link and Image dialog).
+    if ( dialogName == 'link' || dialogName == 'image'  || dialogName == 'flash' )
+    {
+      // remove Upload tab
+      dialogDefinition.removeContents('Upload');
+      dialogDefinition.removeContents('upload');
+    }
+  });
+
 };
 
 $(document).ready(ready);
