@@ -14,7 +14,7 @@ ul class="form-list"
     p 立法院議事轉播ivod出處＊
     p class="snote" 
       | 請填寫ivod出處之影片連結。
-      = link_to '如何看影片連結>>', tutorial_path
+      = link_to '如何看影片連結>>', tutorial_path, target: "_blank"
       br
       | 網址格式：http://ivod.ly.gov.tw/Play/VOD/76736/1M
     p = f.input :ivod_url, label: false, required: true
@@ -22,7 +22,7 @@ ul class="form-list"
     p ivod時間區間
     p class="snote" 
       | 請填寫此段質詢出現的時間區間。
-      = link_to '如何看時間區間>>', tutorial_path
+      = link_to '如何看時間區間>>', tutorial_path, target: "_blank"
     
     p class="time-data"
     p 

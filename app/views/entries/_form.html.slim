@@ -24,7 +24,7 @@ ul class="form-list"
     p 新聞內容＊
     p class="snote" 
       | 請填寫新聞文字內容作為備份。
-      = link_to "可以回報新聞影片嗎>>", tutorial_path
+      = link_to "可以回報新聞影片嗎>>", tutorial_path, target: "_blank"
       br
     p = f.cktext_area :content, label: false, required: true
   - if user_signed_in? and current_user.admin?

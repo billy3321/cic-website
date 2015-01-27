@@ -13,11 +13,12 @@ section class="single-page-inner"
       li 
         | 電視出處：
         = @video.source_name
-        = link_to @video.source_url, @video.source_url
+        - unless @video.source_url.empty?
+          = link_to @video.source_url, @video.source_url, target: "_blank"
     - elsif @video.video_type == 'ivod'
       li 
         | ivod出處：
-        = link_to @video.ivod_url, @video.ivod_url
+        = link_to @video.ivod_url, @video.ivod_url, target: "_blank"
       - if @video.time_start or @video.time_end
         li ivod時間區間：#{@video.time_start.try(:strftime, '%H:%M:%S')}～#{@video.time_end.try(:strftime, '%H:%M:%S')}
       - else
