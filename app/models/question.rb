@@ -60,11 +60,14 @@ class Question < ActiveRecord::Base
   def update_title_values
     if self.title.blank?
       legislator_name = self.legislators.map{ |l| l.name }.join('、')
+      self.title = "#{legislator_name}"
       if self.ad_session
-        self.title = "#{legislator_name} #{self.ad.name}#{self.ad_session.name} #{self.date.strftime('%Y-%m-%d')}"
-      else
-        self.title = "#{legislator_name} #{self.date.strftime('%Y-%m-%d')}"
+        self.title += " #{self.ad.name}#{self.ad_session.name}"
       end
+      if self.committee
+        self.title += " #{self.committee.name}"
+      end
+      self.title += " #{self.date.strftime('%Y-%m-%d')}"
     end
   end
 
