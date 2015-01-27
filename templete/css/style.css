@@ -1203,3 +1203,41 @@ cursor:pointer;}
 .form-list  select{
 	font-size:18px;}
 /*---------0123新增樣式---------end*/
+
+/*---------0127新增樣式---------start*/
+#page span.page{
+	display:block;
+	float:left;
+	width:22px;
+	height:22px;
+	line-height:22px;
+	font-size:13px;
+	text-align:center;
+	margin:0 0 0 3px;
+	border:1px solid #d8d8d8;
+	background:#f4f4f4;}
+#page span.first,#page span.prev,#page span.next,#page span.last{
+		float:left;
+		width:54px;
+line-height:22px;
+	font-size:13px;
+	text-align:center;
+	margin:0 0 0 3px;
+	border:1px solid #d8d8d8;
+	background:#f4f4f4;}
+#page span a{
+	text-decoration:none;
+	color:#000;
+	display:block;
+	}
+#page .page.current{
+	background:#929292;
+	color:#fff;}
+.inner-content-txt ol li{
+	list-style:decimal;
+	margin:0 0 2px 2em;}
+
+.inner-content-txt ul li{
+	list-style:square; 
+	margin:0 0 2px 2em;}
+/*---------0127新增樣式---------end*
