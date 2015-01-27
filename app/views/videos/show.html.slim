@@ -25,7 +25,7 @@ section class="single-page-inner"
         li ivod時間區間：無指定
       li 
         | 會期：
-        = @video.ad_session.try(:ad).name
+        = @video.ad_session.try(:ad).try(:name)
         = @video.ad_session.try(:name)
       li 
         | 會議時間：

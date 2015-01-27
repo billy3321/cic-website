@@ -29,6 +29,11 @@ class Video < ActiveRecord::Base
     api_url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + self.youtube_id + '&key=' + Setting.google_public_key.api_key
     response = HTTParty.get(api_url)
     result = JSON.parse(response.body)
+    unless result['items'].any?
+      self.youtube_url = nil
+      errors.add(:base, 'youtube網址解攜出錯')
+      return false
+    end
     if result['items'][0]['snippet']['thumbnails'].key?('maxres')
       self.image = result['items'][0]['snippet']['thumbnails']['maxres']['url']
     elsif result['items'][0]['snippet']['thumbnails'].key?('standard')
@@ -62,7 +67,7 @@ class Video < ActiveRecord::Base
       # the ivod url is error
       self.ivod_url = nil
       errors.add(:base, 'ivod網址出錯')
-      return nil
+      return false
     end
     self.ivod_url.sub!(/300K$/, '1M')
     committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip

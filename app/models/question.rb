@@ -10,7 +10,6 @@ class Question < ActiveRecord::Base
   validate :has_at_least_one_legislator
   validate :is_ivod_url
   delegate :ad, :to => :ad_session, :allow_nil => true
-  validates_presence_of :title
 
   before_save :update_ivod_values, :update_ad_session_values, :update_title_values
   after_save :touch_legislators
