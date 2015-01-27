@@ -30,7 +30,7 @@
                 = q.user.try(:name)
                 br
                 = q.user_ip
-              - if e.published
+              - if q.published
                 td class="c" 已發布
               - else
                 td class="c" 未發布
