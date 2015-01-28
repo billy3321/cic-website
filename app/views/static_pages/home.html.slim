@@ -1,7 +1,7 @@
 #index-video-block
   section id="index-main-video" class=" video-a"
     - if @main_video
-      = link_to image_tag(@main_video.image, {alt: @main_video.title}), video_path(@main_video), {class: "img_url_l"}
+      = link_to image_tag(@main_video.image, {alt: @main_video.title}), video_path(@main_video), class: "img_url_l"
       h2 = link_to display_shorter(@main_video.title, 26), video_path(@main_video)
       p = display_shorter(@main_video.content, 85)
     - else
@@ -11,7 +11,7 @@
   - @sub_videos.each do |v|
     section class="index-sub-video video-a"
       - if v
-        = link_to image_tag(v.image, {alt: v.title}), video_path(v)
+        = link_to image_tag(v.image, {alt: v.title}), video_path(v), class: "img_url_l"
         h2 = link_to display_shorter(v.title, 20), video_path(v)
       - else
         = link_to '#', {class: "img_url_l"} do
