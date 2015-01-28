@@ -70,7 +70,10 @@ var ready = function(){
   });
   $(".video_type").change();
 
-  $("#accordion").accordion();
+  $("#accordion").accordion({
+    heightStyle: "content"
+  });
+
   $('.all_party_button').click(function(){
     $('.kmt').show();
     $('.dpp').show();
