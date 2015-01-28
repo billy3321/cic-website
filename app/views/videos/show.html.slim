@@ -62,7 +62,7 @@ section class="single-page-inner"
       - @video.legislators.each do |l|
         - if l.videos.published.created_after(@video.created_at).any?
           h3 = l.name
-          div style="height: #{105 * l.videos.published.created_after(@video.created_at).first(6).length}px;"
+          div style="height: #{(105 * ((l.videos.published.created_after(@video.created_at).first(6).length + 1) / 2))}px;"
             ul class="video-other-list"
               - l.videos.published.created_after(@video.created_at).first(6).each do |v|
                 li 
