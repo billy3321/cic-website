@@ -12,9 +12,10 @@ section class="single-page-inner"
     - if @video.video_type == 'news'
       li 
         | 電視出處：
-        = @video.source_name
         - unless @video.source_url.empty?
-          = link_to @video.source_url, @video.source_url, target: "_blank"
+          = link_to @video.source_name, @video.source_url, target: "_blank"
+        - else
+          = @video.source_name
     - elsif @video.video_type == 'ivod'
       li 
         | ivod出處：

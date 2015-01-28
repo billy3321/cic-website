@@ -20,6 +20,11 @@ class Video < ActiveRecord::Base
 
   def update_youtube_values
     youtube_id = extract_youtube_id(self.youtube_url)
+    unless youtube_id
+      self.youtube_url = nil
+      errors.add(:base, 'youtube網址錯誤')
+      return false
+    end
     if self.youtube_id == youtube_id
       # means that youtube is the same, no need to update.
       return nil
@@ -31,7 +36,7 @@ class Video < ActiveRecord::Base
     result = JSON.parse(response.body)
     unless result['items'].any?
       self.youtube_url = nil
-      errors.add(:base, 'youtube網址出錯')
+      errors.add(:base, 'youtube網址錯誤')
       return false
     end
     if result['items'][0]['snippet']['thumbnails'].key?('maxres')
@@ -66,7 +71,7 @@ class Video < ActiveRecord::Base
     unless info_section
       # the ivod url is error
       self.ivod_url = nil
-      errors.add(:base, 'ivod網址出錯')
+      errors.add(:base, 'ivod網址錯誤')
       return false
     end
     self.ivod_url.sub!(/300K$/, '1M')
@@ -107,7 +112,9 @@ class Video < ActiveRecord::Base
     elsif youtube_uri.host == 'youtu.be'
       youtube_id = youtube_uri.path[1..-1]
     else
-      raise 'youtube網址錯誤'
+      self.youtube_url = nil
+      errors.add(:base, 'youtube網址錯誤')
+      return false
     end
   end
 
