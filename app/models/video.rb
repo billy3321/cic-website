@@ -31,7 +31,7 @@ class Video < ActiveRecord::Base
     result = JSON.parse(response.body)
     unless result['items'].any?
       self.youtube_url = nil
-      errors.add(:base, 'youtube網址解攜出錯')
+      errors.add(:base, 'youtube網址出錯')
       return false
     end
     if result['items'][0]['snippet']['thumbnails'].key?('maxres')
@@ -107,7 +107,7 @@ class Video < ActiveRecord::Base
     elsif youtube_uri.host == 'youtu.be'
       youtube_id = youtube_uri.path[1..-1]
     else
-      raise 'youtube id 解析錯誤'
+      raise 'youtube網址錯誤'
     end
   end
 
