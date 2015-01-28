@@ -70,9 +70,7 @@ var ready = function(){
   });
   $(".video_type").change();
 
-  $("#accordion").accordion({
-    heightStyle: "content"
-  });
+  $("#accordion").accordion();
 
   $('.all_party_button').click(function(){
     $('.kmt').show();
