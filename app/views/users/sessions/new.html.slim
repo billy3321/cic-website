@@ -23,7 +23,7 @@
         
           
       li
-        = f.button :submit, "登入", class: "form-btn"
+        = f.button :submit, "登入", class: "form-btn", "data-no-turbolink" => true
       li class="login-o-link"
         = render "users/shared/links"
 

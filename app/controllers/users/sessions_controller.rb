@@ -23,12 +23,16 @@ class Users::SessionsController < Devise::SessionsController
     if captcha_result
       super
     else
+      build_resource
       if captcha_result
         flash.delete(:recaptcha_error)
+        respond_with_navigational(resource) { render :new }
+      else
+        flash.delete(:recaptcha_error)
+        resource.errors.add(:base, "驗證碼輸入錯誤。")
+        clean_up_passwords(resource)
+        destroy
       end
-      build_resource()
-      clean_up_passwords(resource)
-      respond_with_navigational(resource) { render :new }
     end
   end
 
