@@ -254,9 +254,9 @@ a.img_url_l div.blank{
 	}
 .si01{width:20%;
 padding:0 2% 0 4%;}
-.si02{width:34%;
+.si02{width:40%;
 margin:0 2% 0 0;}
-.si03{width:34%;}
+.si03{width:29%;}
 #people-single-top{
 	overflow:hidden;}
 .pinfo-mlist,.pinfo-inner-aside{
@@ -1202,7 +1202,7 @@ cursor:pointer;}
 	width:100%;}
 .form-list  select{
 	font-size:18px;}
-/*---------0123新增樣式---------end*/
+/*---------0125新增樣式---------end*/
 
 /*---------0127新增樣式---------start*/
 #page span.page{
@@ -1240,4 +1240,26 @@ line-height:22px;
 .inner-content-txt ul li{
 	list-style:square; 
 	margin:0 0 2px 2em;}
-/*---------0127新增樣式---------end*
+/*---------0127新增樣式---------end*/
+
+
+/*---------0128新增樣式---------start*/
+
+#aside-info h3.ui-accordion-header{
+padding:3px;
+margin-bottom: 0px;}
+
+
+#aside-info .ui-accordion-header-icon{
+display:inline-block;
+margin:0 3px 0 0;}
+
+
+#aside-info .ui-widget-content{
+border: 1px solid #aaa;
+border-top:none;
+margin:0 0 3px 0;
+padding:8px;
+}
+
+/*---------0128新增樣式---------end*/
