@@ -121,10 +121,10 @@ class QuestionsController < ApplicationController
     def question_params
       if user_signed_in? and current_user.admin?
         params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published)
+          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published, :time_start, :time_end, :target)
       else
         params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment)
+          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :time_start, :time_end, :target)
       end
     end
 

@@ -36,6 +36,10 @@ ul class="form-list"
       = f.input :time_start, as: :string, label: false, input_html: { class: "timepicker" }
       |  ～ 
       = f.input :time_end, as: :string, label: false, input_html: { class: "timepicker" }
+  li class="ivod_field"
+    p 質詢對象
+    p class="snote" 請填寫本段質詢的對象姓名或職稱。
+    p = f.input :target, label: false
   li class="news_field"
     p 電視節目或新聞出處
     p class="snote" 請填寫電視出處的電視台名稱與節目名稱。

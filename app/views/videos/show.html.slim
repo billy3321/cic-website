@@ -35,7 +35,11 @@ section class="single-page-inner"
         = @video.committee.try(:name)
       li 
         | 會議簡介：
+        br
         = @video.meeting_description
+      li 
+        | 質詢對象：
+        = @video.target
   .inner-content-txt
     .vidoe-inner-show
       iframe src="https://www.youtube.com/embed/#{@video.youtube_id}" frameborder="0" class="video-play" allowfullscreen="1"

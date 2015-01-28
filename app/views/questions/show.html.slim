@@ -26,6 +26,13 @@ section class="single-page-inner"
       | 會期：
       = @question.ad_session.try(:ad).try(:name)
       = @question.ad_session.try(:name)
+    li 
+      | 會議簡介：
+      br
+      = @question.meeting_description
+    li 
+      | 質詢對象：
+      = @question.target
   .inner-content-txt
     = @question.content.try(:html_safe)
 

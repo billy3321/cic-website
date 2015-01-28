@@ -73,7 +73,11 @@ class Legislator < ActiveRecord::Base
     order("questions_count DESC") }
 
   def party
-    self.elections.any? ? self.elections.last.party : Party.where(abbreviation: nil).first
+    if self.now_party_id
+      Party.find(self.now_party_id)
+    else
+      self.elections.any? ? self.elections.last.party : Party.where(abbreviation: nil).first
+    end
   end
 
   def has_record?

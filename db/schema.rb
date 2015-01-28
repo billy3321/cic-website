@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218132723) do
+ActiveRecord::Schema.define(version: 20150128140300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.boolean  "in_office"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "now_party_id"
   end
 
   create_table "legislators_questions", id: false, force: true do |t|
@@ -214,6 +215,7 @@ ActiveRecord::Schema.define(version: 20141218132723) do
     t.boolean  "published",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "target"
   end
 
 end
