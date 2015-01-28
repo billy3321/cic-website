@@ -25,6 +25,7 @@
               td
                 - e.legislators.each do |l|
                   = l.name
+                  | &nbsp;
               td = e.created_at.strftime('%Y-%m-%d')
               td class="c"
                 = e.user.try(:name)

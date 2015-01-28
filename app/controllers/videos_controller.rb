@@ -132,7 +132,11 @@ class VideosController < ApplicationController
     end
 
     def set_ip
-      @video.user_ip = request.env['REMOTE_HOST']
+      if request.env['HTTP_CF_CONNECTING_IP']
+        @video.user_ip = request.env['HTTP_CF_CONNECTING_IP']
+      else
+        @video.user_ip = request.env['REMOTE_ADDR']
+      end
     end
 
     def check_author

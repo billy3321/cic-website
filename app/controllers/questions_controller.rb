@@ -129,7 +129,11 @@ class QuestionsController < ApplicationController
     end
 
     def set_ip
-      @question.user_ip = request.env['REMOTE_HOST']
+      if request.env['HTTP_CF_CONNECTING_IP']
+        @question.user_ip = request.env['HTTP_CF_CONNECTING_IP']
+      else
+        @question.user_ip = request.env['REMOTE_ADDR']
+      end
     end
 
     def check_author

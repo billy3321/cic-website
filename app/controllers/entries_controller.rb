@@ -129,7 +129,11 @@ class EntriesController < ApplicationController
     end
 
     def set_ip
-      @entry.user_ip = request.env['REMOTE_HOST']
+      if request.env['HTTP_CF_CONNECTING_IP']
+        @entry.user_ip = request.env['HTTP_CF_CONNECTING_IP']
+      else
+        @entry.user_ip = request.env['REMOTE_ADDR']
+      end
     end
 
     def check_author
