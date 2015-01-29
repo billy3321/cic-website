@@ -19,6 +19,8 @@ class Question < ActiveRecord::Base
   scope :created_after, -> (date) { where("created_at > ?", date) }
   before_destroy { legislators.clear }
   before_destroy { keywords.clear }
+  before_destroy :prepare_touch_legislators
+  after_destroy :do_touch_legislators
 
   def update_ivod_values
     if self.ivod_url.to_s == ''
@@ -75,6 +77,14 @@ class Question < ActiveRecord::Base
 
   def touch_legislators
     self.legislators.each(&:touch)
+  end
+
+  def prepare_touch_legislators
+    @legislators = self.legislators
+  end
+
+  def do_touch_legislators
+    @legislators.each(&:touch)
   end
 
   private
