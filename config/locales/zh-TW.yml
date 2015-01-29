@@ -28,6 +28,18 @@ zh-TW:
         email: "電子信箱"
         passeords: "密碼"
         password_confirmation: "密碼"
+      entry:
+        title: ""
+        content: ""
+        source_url: ""
+        source_name: ""
+        date: ""
+      questioin:
+        ivod_url: ""
+        content: ""
+      video:
+        youtube_url: ""
+        title: ""
     errors:
       models:
         user:
