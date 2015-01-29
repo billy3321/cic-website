@@ -17,6 +17,8 @@ class Question < ActiveRecord::Base
   scope :published, -> { where(published: true) }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
   scope :created_after, -> (date) { where("created_at > ?", date) }
+  before_destroy { legislators.clear }
+  before_destroy { keywords.clear }
 
   def update_ivod_values
     if self.ivod_url.to_s == ''

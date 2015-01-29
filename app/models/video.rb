@@ -17,6 +17,8 @@ class Video < ActiveRecord::Base
   scope :published, -> { where(published: true) }
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
   scope :created_after, -> (date) { where("created_at > ?", date) }
+  before_destroy { legislators.clear }
+  before_destroy { keywords.clear }
 
   def update_youtube_values
     youtube_id = extract_youtube_id(self.youtube_url)
