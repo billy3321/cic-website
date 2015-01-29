@@ -10,10 +10,6 @@ ul class="form-list"
     p 標題＊
     p = f.input :title, label: false, required: true
   li
-    p 相關委員會
-    p class="snote" 請選擇相關的委員會
-    p = f.association :committee, as: :select, label: false
-  li
     p 影片出處分類＊
     p class="snote" （ivod與新聞回報所顯示的資料結果略有差異，若選擇ivod，將依據ivod確切內容進行修正）
     p = f.input :video_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['新聞影片', 'news']], input_html: { class: 'video_type' }, include_blank: false

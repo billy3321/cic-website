@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
     end
     @main_video = videos.shift
     @sub_videos = videos
-    @legislators = Legislator.has_records.first(12)
+    @legislators = Legislator.order_by_videos_count.first(12)
 
     set_meta_tags({
       title: 'Congressional Investigation Corps',

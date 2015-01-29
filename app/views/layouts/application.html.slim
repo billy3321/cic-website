@@ -9,7 +9,7 @@ html
     /[if lt IE9]
       script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    - if params[:controller] == 'admins'
+    - if ['admins', 'users'].include?(params[:controller])
       = stylesheet_link_tag 'admin-style'
     - else
       = javascript_include_tag 'analytics'

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   validates :agreement, acceptance: { accept: '1', message: "請閱讀並同意使用條款。" }, on: :create
   scope :created_in_time_count, ->(date, duration) { where(created_at: (date..(date + duration))).count }
   scope :login_from, -> (provider) { provider.to_s == '' ? where("provider IS NULL") : where("provider = ?", provider) }
+  default_scope { order(created_at: :desc) }
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :provider_uid => auth.uid).first

@@ -31,7 +31,7 @@ class Users::SessionsController < Devise::SessionsController
         flash.delete(:recaptcha_error)
         resource.errors.add(:base, "驗證碼輸入錯誤。")
         clean_up_passwords(resource)
-        destroy
+        destroy { set_flash_message(:error, :recaptcha_error) }
       end
     end
   end

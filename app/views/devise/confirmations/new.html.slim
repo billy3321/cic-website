@@ -13,8 +13,7 @@
         p 驗證碼
         p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
         p = recaptcha_tags ajax: true
-    = f.button :submit, "重新寄出認證信"
-
-= render "devise/shared/links"
+      li
+        p = f.button :submit, "重新寄出認證信", class: "form-btn"
 
 - set_meta_tags({title: "重寄認證信", og: {title: "重寄認證信"}})
