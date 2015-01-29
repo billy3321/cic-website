@@ -68,7 +68,7 @@ describe Video do
   it "validate has_at_least_one_legislator work" do
     video = FactoryGirl.build(:video_news)
     video.legislators = []
-    expect{video.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: 必須加入至少一名立法委員！')
+    expect{video.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: 必須填寫立委姓名！')
   end
 
   it "validate is_source_url work" do
@@ -77,7 +77,7 @@ describe Video do
     expect{video.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: ivod網址錯誤')
     video.ivod_url = "http://ivod.ly.gov.tw/Play/VOD/300K"
     video.save
-    expect(video.errors.messages[:base].first).to eq('ivod網址出錯')
+    expect(video.errors.messages[:base].first).to eq('ivod網址錯誤')
     expect(video.ivod_url).to eq(nil)
   end
 end

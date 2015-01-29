@@ -54,7 +54,7 @@ describe Question do
   it "validate has_at_least_one_legislator work" do
     question = FactoryGirl.build(:question)
     question.legislators = []
-    expect{question.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: 必須加入至少一名立法委員！')
+    expect{question.save!}.to raise_error(ActiveRecord::RecordInvalid,'校驗失敗: 必須填寫立委姓名！')
   end
 
   it "validate is_source_url work" do
