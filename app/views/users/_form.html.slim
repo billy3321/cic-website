@@ -35,8 +35,8 @@ ul class="form-list"
       p class="input-data" 停權
     - else
       p class="input-data" 正常
-  if u.created_at
+  - if u.created_at
     li
       p 註冊時間
-      p.input-data u.created_at.strftime(%Y-%m-%d %H:%M:%S)
+      p.input-data = u.created_at.strftime('%Y-%m-%d %H:%M:%S')
   li = f.submit '確定送出', class: "form-btn", id: "button"
