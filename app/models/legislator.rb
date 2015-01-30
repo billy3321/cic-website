@@ -55,18 +55,21 @@ class Legislator < ActiveRecord::Base
   }
 
   scope :order_by_videos_count, -> {
+    unscoped.
     select("legislators.*, count(legislators_videos.video_id) AS videos_count").
     joins(:legislators_videos).
     group("legislators.id").
     order("videos_count DESC") }
 
   scope :order_by_entries_count, -> {
+    unscoped.
     select("legislators.*, count(entries_legislators.entry_id) AS entries_count").
     joins(:legislators_entries).
     group("legislators.id").
     order("entries_count DESC") }
 
   scope :order_by_questions_count, -> {
+    unscoped.
     select("legislators.*, count(legislators_questions.question_id) AS questions_count").
     joins(:legislators_questions).
     group("legislators.id").
