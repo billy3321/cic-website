@@ -28,6 +28,6 @@
           div = num
           - num += 1
           em = link_to l.name, legislator_path(l)
-          span = link_to l.party.name, '#'
+          span = l.party.name
   - else
     .blank 目前尚無資料
