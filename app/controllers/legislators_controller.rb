@@ -17,6 +17,15 @@ class LegislatorsController < ApplicationController
         description: '看看現任立委在國會殿堂的表現吧！'
       }
     })
+
+    respond_to do |format|
+      format.html
+      format.json {render :json => @legislators,
+        except: [:now_party_id, :created_at, :updated_at],
+        include: {party: {except: [:created_at, :updated_at]}
+        }
+      }
+    end
   end
 
   # GET /legislators/no_record
@@ -35,6 +44,14 @@ class LegislatorsController < ApplicationController
         description: '看看現任立委在國會殿堂的表現吧！'
       }
     })
+    respond_to do |format|
+      format.html
+      format.json {render :json => @legislators,
+        except: [:now_party_id, :created_at, :updated_at],
+        include: {party: {except: [:created_at, :updated_at]}
+        }
+      }
+    end
   end
 
   # GET /legislators/has_record
@@ -53,6 +70,12 @@ class LegislatorsController < ApplicationController
         description: '看看現任立委在國會殿堂的表現吧！'
       }
     })
+    respond_to do |format|
+      format.html
+      format.json {render :json => @legislators,
+        except: [:now_party_id, :created_at, :updated_at],
+        include: {party: {except: [:created_at, :updated_at]}}}
+    end
   end
 
   # GET /legislators/1
@@ -74,12 +97,24 @@ class LegislatorsController < ApplicationController
         image: "/images/legislators/160x214/#{@legislator.image}"
       }
     })
+
+    respond_to do |format|
+      format.html
+      format.json {render :json => @legislator,
+        except: [:now_party_id, :created_at, :updated_at],
+        include: {
+          party: {except: [:created_at, :updated_at]},
+          elections: {except: [:created_at, :updated_at]},
+          questions: {}, entries:{}, videos:{}
+        }
+      }
+    end
   end
 
   # GET /legislators/1/entries
   def entries
     @entries = @legislator.entries.published.page(params[:page])
-    entries = @entries.to_a
+    entries = @entries.clone.to_a
     @main_entry = entries.shift
     @sub_entries = entries
 
@@ -94,14 +129,18 @@ class LegislatorsController < ApplicationController
         image: "/images/legislators/160x214/#{@legislator.image}"
       }
     })
+    respond_to do |format|
+      format.html
+      format.json { render :json => @entries }
+    end
   end
 
   # GET /legislators/1/questions
   def questions
     @questions = @legislator.questions.published.page(params[:page])
-    questions = @questions.to_a
+    questions = @questions.clone.to_a
     @main_question = questions.shift
-    @sub_questions = questions
+    @sub_questions = @questions
 
     set_meta_tags({
       title: "#{@legislator.name}質詢列表",
@@ -114,12 +153,22 @@ class LegislatorsController < ApplicationController
         image: "/images/legislators/160x214/#{@legislator.image}"
       }
     })
+    respond_to do |format|
+      format.html
+      format.json { render :json => @questions,
+        include: {
+          ad_session: { except: [:created_at, :updated_at] },
+          committee: { except: [:created_at, :updated_at] }
+          }
+        }
+    end
+
   end
 
   # GET /legislators/1/videos
   def videos
     @videos = @legislator.videos.published.page(params[:page])
-    videos = @videos.to_a
+    videos = @videos.clone.to_a
     @main_video = videos.shift
     @sub_videos = videos
 
@@ -134,6 +183,15 @@ class LegislatorsController < ApplicationController
         image: "/images/legislators/160x214/#{@legislator.image}"
       }
     })
+    respond_to do |format|
+      format.html
+      format.json { render :json => @videos,
+        include: {
+          ad_session: { except: [:created_at, :updated_at] },
+          committee: { except: [:created_at, :updated_at] }
+          }
+        }
+    end
   end
 
   private

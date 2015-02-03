@@ -12,7 +12,7 @@ class EntriesController < ApplicationController
       @q = Entry.published.search(params[:q])
     end
     @entries = @q.result(:distinct => true).page(params[:page])
-    entries = @entries.to_a
+    entries = @entries.clone.to_a
     @main_entry = entries.shift
     @sub_entries = entries
 
@@ -42,6 +42,16 @@ class EntriesController < ApplicationController
         }
       })
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @entries,
+        include: {
+          legislators: {
+            include: { party: {except: [:created_at, :updated_at]} },
+            except: [:now_party_id, :created_at, :updated_at] }
+          }
+        }
+    end
   end
 
   # GET /entries/1
@@ -64,6 +74,16 @@ class EntriesController < ApplicationController
         image: "/images/legislators/160x214/#{@entry.legislators.first.image}"
       }
     })
+    respond_to do |format|
+      format.html
+      format.json { render :json => @entry,
+        include: {
+          legislators: {
+            include: { party: {except: [:created_at, :updated_at]} },
+            except: [:now_party_id, :created_at, :updated_at] }
+          }
+        }
+    end
   end
 
   # GET /entries/entry

@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
       @q = Question.published.search(params[:q])
     end
     @questions = @q.result(:distinct => true).page(params[:page])
-    questions = @questions.to_a
+    questions = @questions.clone.to_a
     @main_question = questions.shift
     @sub_questions = questions
 
@@ -42,6 +42,18 @@ class QuestionsController < ApplicationController
         }
       })
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @questions,
+        include: {
+          legislators: {
+            include: { party: {except: [:created_at, :updated_at]} },
+            except: [:created_at, :updated_at] },
+          ad_session: { except: [:created_at, :updated_at] },
+          committee: { except: [:created_at, :updated_at] }
+          }
+        }
+    end
   end
 
   # GET /questions/1
@@ -64,6 +76,18 @@ class QuestionsController < ApplicationController
         image: "/images/legislators/160x214/#{@question.legislators.first.image}"
       }
     })
+    respond_to do |format|
+      format.html
+      format.json { render :json => @question,
+        include: {
+          legislators: {
+            include: { party: {except: [:created_at, :updated_at]} },
+            except: [:now_party_id, :created_at, :updated_at] },
+          ad_session: { except: [:created_at, :updated_at] },
+          committee: { except: [:created_at, :updated_at] }
+          }
+        }
+    end
   end
 
   # GET /questions/new

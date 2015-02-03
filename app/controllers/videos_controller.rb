@@ -12,7 +12,7 @@ class VideosController < ApplicationController
       @q = Video.published.search(params[:q])
     end
     @videos = @q.result(:distinct => true).page(params[:page])
-    videos = @videos.to_a
+    videos = @videos.clone.to_a
     @main_video = videos.shift
     @sub_videos = videos
 
@@ -43,6 +43,18 @@ class VideosController < ApplicationController
         }
       })
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @videos,
+        include: {
+          legislators: {
+            include: { party: {except: [:created_at, :updated_at]} },
+            except: [:now_party_id, :created_at, :updated_at] },
+          ad_session: { except: [:created_at, :updated_at] },
+          committee: { except: [:created_at, :updated_at] }
+          }
+        }
+    end
   end
 
   # GET /videos/1
@@ -65,6 +77,18 @@ class VideosController < ApplicationController
         image: @video.image
       }
     })
+    respond_to do |format|
+      format.html
+      format.json { render :json => @video,
+        include: {
+          legislators: {
+            include: { party: {except: [:created_at, :updated_at]} },
+            except: [:now_party_id, :created_at, :updated_at] },
+          ad_session: { except: [:created_at, :updated_at] },
+          committee: { except: [:created_at, :updated_at] }
+          }
+        }
+    end
   end
 
   # GET /videos/new
