@@ -51,8 +51,9 @@ class QuestionsController < ApplicationController
             except: [:created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
-          }
-        }
+        },
+        callback: params[:callback]
+      }
     end
   end
 
@@ -85,8 +86,9 @@ class QuestionsController < ApplicationController
             except: [:now_party_id, :created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
-          }
-        }
+        },
+        callback: params[:callback]
+      }
     end
   end
 

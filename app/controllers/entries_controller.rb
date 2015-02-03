@@ -49,8 +49,9 @@ class EntriesController < ApplicationController
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
             except: [:now_party_id, :created_at, :updated_at] }
-          }
-        }
+        },
+        callback: params[:callback]
+      }
     end
   end
 
@@ -81,8 +82,9 @@ class EntriesController < ApplicationController
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
             except: [:now_party_id, :created_at, :updated_at] }
-          }
-        }
+        },
+        callback: params[:callback]
+      }
     end
   end
 

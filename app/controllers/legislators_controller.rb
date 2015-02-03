@@ -23,7 +23,8 @@ class LegislatorsController < ApplicationController
       format.json {render :json => @legislators,
         except: [:now_party_id, :created_at, :updated_at],
         include: {party: {except: [:created_at, :updated_at]}
-        }
+        },
+        callback: params[:callback]
       }
     end
   end
@@ -48,8 +49,10 @@ class LegislatorsController < ApplicationController
       format.html
       format.json {render :json => @legislators,
         except: [:now_party_id, :created_at, :updated_at],
-        include: {party: {except: [:created_at, :updated_at]}
-        }
+        include: {
+          party: {except: [:created_at, :updated_at]}
+        },
+        callback: params[:callback]
       }
     end
   end
@@ -74,7 +77,10 @@ class LegislatorsController < ApplicationController
       format.html
       format.json {render :json => @legislators,
         except: [:now_party_id, :created_at, :updated_at],
-        include: {party: {except: [:created_at, :updated_at]}}}
+        include: {party: {except: [:created_at, :updated_at]}
+      },
+      callback: params[:callback]
+    }
     end
   end
 
@@ -106,7 +112,8 @@ class LegislatorsController < ApplicationController
           party: {except: [:created_at, :updated_at]},
           elections: {except: [:created_at, :updated_at]},
           questions: {}, entries:{}, videos:{}
-        }
+        },
+        callback: params[:callback]
       }
     end
   end
@@ -131,7 +138,8 @@ class LegislatorsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => @entries }
+      format.json { render :json => @entries,
+          callback: params[:callback] }
     end
   end
 
@@ -159,8 +167,9 @@ class LegislatorsController < ApplicationController
         include: {
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
-          }
-        }
+        },
+        callback: params[:callback]
+      }
     end
 
   end
@@ -189,8 +198,9 @@ class LegislatorsController < ApplicationController
         include: {
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
-          }
-        }
+        },
+        callback: params[:callback]
+      }
     end
   end
 
