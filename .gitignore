@@ -21,3 +21,4 @@ dump.rdb
 config/database.yml
 config/config.yml
 public/uploads/
+public/assets/
