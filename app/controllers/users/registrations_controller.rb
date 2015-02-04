@@ -85,4 +85,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  private
+
+  def authenticate_scope!
+    send(:"authenticate_user!", :force => true)
+    self.resource = send(:"current_user")
+  end
 end
