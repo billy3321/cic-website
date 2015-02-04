@@ -46,7 +46,8 @@ ad_sessions = [
   {:ad_id => ads.first[:id], :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30'},
   {:ad_id => ads.first[:id], :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04'},
   {:ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08'},
-  {:ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => nil}
+  {:ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23'}
+  {:ad_id => ads.first[:id], :name => '第7會期', :date_start => '2015-02-24', :date_end => nil}
 ]
 
 ad_sessions.each do |a|
