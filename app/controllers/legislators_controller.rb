@@ -21,7 +21,7 @@ class LegislatorsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render :json => @legislators,
-        except: [:now_party_id, :created_at, :updated_at],
+        except: [:description, :now_party_id, :created_at, :updated_at],
         include: {party: {except: [:created_at, :updated_at]}
         },
         callback: params[:callback]
@@ -48,7 +48,7 @@ class LegislatorsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render :json => @legislators,
-        except: [:now_party_id, :created_at, :updated_at],
+        except: [:description, :now_party_id, :created_at, :updated_at],
         include: {
           party: {except: [:created_at, :updated_at]}
         },
@@ -76,7 +76,7 @@ class LegislatorsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render :json => @legislators,
-        except: [:now_party_id, :created_at, :updated_at],
+        except: [:description, :now_party_id, :created_at, :updated_at],
         include: {party: {except: [:created_at, :updated_at]}
       },
       callback: params[:callback]
@@ -107,7 +107,7 @@ class LegislatorsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render :json => @legislator,
-        except: [:now_party_id, :created_at, :updated_at],
+        except: [:description, :now_party_id, :created_at, :updated_at],
         include: {
           party: {except: [:created_at, :updated_at]},
           elections: {except: [:created_at, :updated_at]},

@@ -48,7 +48,7 @@ class QuestionsController < ApplicationController
         include: {
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
-            except: [:created_at, :updated_at] },
+            except: [:description, :now_party_id, :created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
         },
@@ -83,7 +83,7 @@ class QuestionsController < ApplicationController
         include: {
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
-            except: [:now_party_id, :created_at, :updated_at] },
+            except: [:description, :now_party_id, :created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
         },
