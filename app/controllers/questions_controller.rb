@@ -65,6 +65,7 @@ class QuestionsController < ApplicationController
                 include: { party: {except: [:created_at, :updated_at]} },
                 except: [:description, :now_party_id, :created_at, :updated_at] },
               ad_session: { except: [:created_at, :updated_at] },
+              ad: { except: [:created_at, :updated_at] },
               committee: { except: [:created_at, :updated_at] }
             }, except: [:user_id, :user_ip, :published]})
           ),
@@ -105,6 +106,7 @@ class QuestionsController < ApplicationController
             include: { party: {except: [:created_at, :updated_at]} },
             except: [:description, :now_party_id, :created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
+          ad: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
           }, except: [:user_id, :user_ip, :published]}
           ))

@@ -239,6 +239,7 @@ class LegislatorsController < ApplicationController
           questions: JSON.parse(
             @questions.to_json({include: {
               ad_session: { except: [:created_at, :updated_at] },
+              ad: { except: [:created_at, :updated_at] },
               committee: { except: [:created_at, :updated_at] }
             }, except: [:user_id, :user_ip, :published]})
           ),
@@ -287,6 +288,7 @@ class LegislatorsController < ApplicationController
           videos: JSON.parse(
             @videos.to_json({include: {
               ad_session: { except: [:created_at, :updated_at] },
+              ad: { except: [:created_at, :updated_at] },
               committee: { except: [:created_at, :updated_at] }
             }, except: [:user_id, :user_ip, :published]})
           ),
