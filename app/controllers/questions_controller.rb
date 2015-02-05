@@ -66,7 +66,7 @@ class QuestionsController < ApplicationController
                 except: [:description, :now_party_id, :created_at, :updated_at] },
               ad_session: { except: [:created_at, :updated_at] },
               committee: { except: [:created_at, :updated_at] }
-            }, except: [:user_ip, :published]})
+            }, except: [:user_id, :user_ip, :published]})
           ),
           count: @questions_count
         },
@@ -106,7 +106,7 @@ class QuestionsController < ApplicationController
             except: [:description, :now_party_id, :created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
-          }, except: [:user_ip, :published]}
+          }, except: [:user_id, :user_ip, :published]}
           ))
         }, callback: params[:callback]
       }

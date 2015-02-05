@@ -64,7 +64,7 @@ class EntriesController < ApplicationController
               legislators: {
                 include: { party: {except: [:created_at, :updated_at]} },
                 except: [:description, :now_party_id, :created_at, :updated_at] }
-              }, except: [:user_ip, :published]
+              }, except: [:user_id, :user_ip, :published]
             })
           ),
           count: @entries_count
@@ -103,7 +103,7 @@ class EntriesController < ApplicationController
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
             except: [:description, :now_party_id, :created_at, :updated_at] }
-            }, except: [:user_ip, :published]}
+            }, except: [:user_id, :user_ip, :published]}
           ))
         }, callback: params[:callback]
       }

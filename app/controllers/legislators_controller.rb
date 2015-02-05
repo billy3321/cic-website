@@ -194,7 +194,7 @@ class LegislatorsController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          entries: JSON.parse(@entries.to_json({except: [:user_ip, :published]})),
+          entries: JSON.parse(@entries.to_json({except: [:user_id, :user_ip, :published]})),
           count: @legislator.entries.published.count
         },
         callback: params[:callback]
@@ -240,7 +240,7 @@ class LegislatorsController < ApplicationController
             @questions.to_json({include: {
               ad_session: { except: [:created_at, :updated_at] },
               committee: { except: [:created_at, :updated_at] }
-            }, except: [:user_ip, :published]})
+            }, except: [:user_id, :user_ip, :published]})
           ),
           count: @questions_count
         },
@@ -288,7 +288,7 @@ class LegislatorsController < ApplicationController
             @videos.to_json({include: {
               ad_session: { except: [:created_at, :updated_at] },
               committee: { except: [:created_at, :updated_at] }
-            }, except: [:user_ip, :published]})
+            }, except: [:user_id, :user_ip, :published]})
           ),
           count: @videos_count
         },
