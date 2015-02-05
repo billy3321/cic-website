@@ -18,9 +18,9 @@ describe "Legislator" do
     end
   end
 
-  describe "#has_record" do
+  describe "#has_records" do
     it "success" do
-      get "/legislators/has_record"
+      get "/legislators/has_records"
       expect(response).to be_success
     end
   end

@@ -1,5 +1,5 @@
 class LegislatorsController < ApplicationController
-  before_action :set_legislator, except: [:index, :new, :no_record, :has_record]
+  before_action :set_legislator, except: [:index, :new, :no_record, :has_records]
 
   # GET /legislators
   def index
@@ -83,8 +83,8 @@ class LegislatorsController < ApplicationController
     end
   end
 
-  # GET /legislators/has_record
-  def has_record
+  # GET /legislators/has_records
+  def has_records
     if params[:format] == "json"
       if params[:query]
         @legislators = Legislator.where("name LIKE '%#{params[:query]}%'").has_records.offset(params[:offset]).limit(params[:limit])

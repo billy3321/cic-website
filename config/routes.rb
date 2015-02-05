@@ -19,7 +19,7 @@ Rails.application.routes.draw do
    }
 
   match '/legislators/no_record',          to: 'legislators#no_record',          via: 'get', as: 'legislators_no_record'
-  match '/legislators/has_record',         to: 'legislators#has_record',         via: 'get', as: 'legislators_has_record'
+  match '/legislators/has_records',         to: 'legislators#has_records',         via: 'get', as: 'legislators_has_records'
   resources :legislators, only: [:show, :index] do
     member do
       get 'entries'
