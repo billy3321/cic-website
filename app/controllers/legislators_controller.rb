@@ -152,7 +152,11 @@ class LegislatorsController < ApplicationController
         except: [:description, :now_party_id, :created_at, :updated_at],
         include: {
           party: {except: [:created_at, :updated_at]},
-          elections: {except: [:created_at, :updated_at]},
+          elections: {
+            except: [:created_at, :updated_at],
+            include: {ad: {except: [:created_at, :updated_at]}
+            }
+          },
           questions: {}, entries:{}, videos:{}
         }))},
         callback: params[:callback]
