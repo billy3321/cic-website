@@ -3,8 +3,18 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators
   def index
-    @q = Legislator.search(params[:q])
-    @legislators = @q.result(:distinct => true).all
+    if params[:format] == "json"
+      if params[:query]
+        @legislators = Legislator.where("name LIKE '%#{params[:query]}%'").offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.where("name LIKE '%#{params[:query]}%'").count
+      else
+        @legislators = Legislator.offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.all.count
+      end
+    else
+      @q = Legislator.has_no_record.search(params[:q])
+      @legislators = @q.result(:distinct => true).all
+    end
     @parties = Party.all
 
     set_meta_tags({
@@ -20,10 +30,13 @@ class LegislatorsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render :json => @legislators,
-        except: [:description, :now_party_id, :created_at, :updated_at],
-        include: {party: {except: [:created_at, :updated_at]}
-        },
+      format.json {render :json => {
+        status: "success",
+        legislators: JSON.parse(@legislators.to_json(
+          except: [:description, :now_party_id, :created_at, :updated_at],
+          include: {party: {except: [:created_at, :updated_at]}
+          })),
+        count: @legislators_count},
         callback: params[:callback]
       }
     end
@@ -31,8 +44,18 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators/no_record
   def no_record
-    @q = Legislator.has_no_record.search(params[:q])
-    @legislators = @q.result(:distinct => true).all
+    if params[:format] == "json"
+      if params[:query]
+        @legislators = Legislator.where("name LIKE '%#{params[:query]}%'").has_no_record.offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.where("name LIKE '%#{params[:query]}%'").has_no_record.length
+      else
+        @legislators = Legislator.has_no_record.offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.has_no_record.length
+      end
+    else
+      @q = Legislator.has_no_record.search(params[:q])
+      @legislators = @q.result(:distinct => true).all
+    end
     @parties = Party.all
 
     set_meta_tags({
@@ -47,10 +70,13 @@ class LegislatorsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json {render :json => @legislators,
-        except: [:description, :now_party_id, :created_at, :updated_at],
-        include: {
-          party: {except: [:created_at, :updated_at]}
+      format.json {render :json => {
+        status: "success",
+        legislators: JSON.parse(@legislators.to_json(
+          except: [:description, :now_party_id, :created_at, :updated_at],
+          include: {party: {except: [:created_at, :updated_at]}
+          })),
+        count: @legislators_count
         },
         callback: params[:callback]
       }
@@ -59,8 +85,18 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators/has_record
   def has_record
-    @q = Legislator.has_records.search(params[:q])
-    @legislators = @q.result(:distinct => true).all
+    if params[:format] == "json"
+      if params[:query]
+        @legislators = Legislator.where("name LIKE '%#{params[:query]}%'").has_records.offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.where("name LIKE '%#{params[:query]}%'").has_records.length
+      else
+        @legislators = Legislator.has_records.offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.has_records.length
+      end
+    else
+      @q = Legislator.has_records.search(params[:q])
+      @legislators = @q.result(:distinct => true).all
+    end
     @parties = Party.all
 
     set_meta_tags({
@@ -75,12 +111,16 @@ class LegislatorsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json {render :json => @legislators,
-        except: [:associations_count, :description, :now_party_id, :created_at, :updated_at],
-        include: {party: {except: [:created_at, :updated_at]}
-      },
-      callback: params[:callback]
-    }
+      format.json {render :json => {
+        status: "success",
+        legislators: JSON.parse(@legislators.to_json(
+          except: [:associations_count, :description, :now_party_id, :created_at, :updated_at],
+          include: {party: {except: [:created_at, :updated_at]}
+          })),
+        count: @legislators_count
+        },
+        callback: params[:callback]
+      }
     end
   end
 
@@ -106,13 +146,15 @@ class LegislatorsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render :json => @legislator,
+      format.json {render :json => {
+        status: "success",
+        legislator: JSON.parse(@legislator.to_json(
         except: [:description, :now_party_id, :created_at, :updated_at],
         include: {
           party: {except: [:created_at, :updated_at]},
           elections: {except: [:created_at, :updated_at]},
           questions: {}, entries:{}, videos:{}
-        },
+        }))},
         callback: params[:callback]
       }
     end
@@ -120,7 +162,19 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators/1/entries
   def entries
-    @entries = @legislator.entries.published.page(params[:page])
+    if params[:format] == "json"
+      if params[:query]
+        @entries = @legislator.entries.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.offset(params[:offset]).limit(params[:limit])
+        @entries_count = @legislator.entries.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.count
+      else
+        @entries = @legislator.entries.published.offset(params[:offset]).limit(params[:limit])
+        @entries_count = @legislator.entries.published.count
+      end
+    else
+      @entries = @legislator.entries.published.page(params[:page])
+    end
     entries = @entries.clone.to_a
     @main_entry = entries.shift
     @sub_entries = entries
@@ -138,14 +192,31 @@ class LegislatorsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => @entries,
-          callback: params[:callback] }
+      format.json { render :json => {
+          status: "success",
+          entries: @entries,
+          count: @legislator.entries.published.count
+        },
+        callback: params[:callback]
+      }
     end
   end
 
   # GET /legislators/1/questions
   def questions
-    @questions = @legislator.questions.published.page(params[:page])
+    if params[:format] == "json"
+      if params[:query]
+        @questions = @legislator.questions.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.offset(params[:offset]).limit(params[:limit])
+        @questions_count = @legislator.questions.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.count
+      else
+        @questions = @legislator.questions.published.offset(params[:offset]).limit(params[:limit])
+        @questions_count = @legislator.questions.published.count
+      end
+    else
+      @questions = @legislator.questions.published.page(params[:page])
+    end
     questions = @questions.clone.to_a
     @main_question = questions.shift
     @sub_questions = @questions
@@ -163,10 +234,15 @@ class LegislatorsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => @questions,
-        include: {
-          ad_session: { except: [:created_at, :updated_at] },
-          committee: { except: [:created_at, :updated_at] }
+      format.json { render :json => {
+          status: "success",
+          questions: JSON.parse(
+            @questions.to_json({include: {
+              ad_session: { except: [:created_at, :updated_at] },
+              committee: { except: [:created_at, :updated_at] }
+            }})
+          ),
+          count: @questions_count
         },
         callback: params[:callback]
       }
@@ -176,7 +252,19 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators/1/videos
   def videos
-    @videos = @legislator.videos.published.page(params[:page])
+    if params[:format] == "json"
+      if params[:query]
+        @videos = @legislator.videos.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.offset(params[:offset]).limit(params[:limit])
+        @videos_count = @legislator.videos.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.count
+      else
+        @videos = @legislator.videos.published.offset(params[:offset]).limit(params[:limit])
+        @videos_count = @legislator.videos.published.count
+      end
+    else
+      @videos = @legislator.videos.published.page(params[:page])
+    end
     videos = @videos.clone.to_a
     @main_video = videos.shift
     @sub_videos = videos
@@ -194,10 +282,15 @@ class LegislatorsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => @videos,
-        include: {
-          ad_session: { except: [:created_at, :updated_at] },
-          committee: { except: [:created_at, :updated_at] }
+      format.json { render :json => {
+          status: "success",
+          videos: JSON.parse(
+            @videos.to_json({include: {
+              ad_session: { except: [:created_at, :updated_at] },
+              committee: { except: [:created_at, :updated_at] }
+            }})
+          ),
+          count: @videos_count
         },
         callback: params[:callback]
       }

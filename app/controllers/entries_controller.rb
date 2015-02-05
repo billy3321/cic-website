@@ -6,12 +6,25 @@ class EntriesController < ApplicationController
 
   # GET /entries
   def index
-    if user_signed_in? and current_user.admin?
-      @q = Entry.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @entries = Entry.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.offset(params[:offset]).limit(params[:limit])
+        @entries_count = Entry.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.count
+      else
+        @entries = Entry.published.offset(params[:offset]).limit(params[:limit])
+        @entries_count = Entry.published.count
+      end
     else
-      @q = Entry.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Entry.search(params[:q])
+        @entries = @q.result(:distinct => true).page(params[:page])
+      else
+        @q = Entry.published.search(params[:q])
+        @entries = @q.result(:distinct => true).page(params[:page])
+      end
     end
-    @entries = @q.result(:distinct => true).page(params[:page])
     entries = @entries.clone.to_a
     @main_entry = entries.shift
     @sub_entries = entries
@@ -44,11 +57,17 @@ class EntriesController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render :json => @entries,
-        include: {
-          legislators: {
-            include: { party: {except: [:created_at, :updated_at]} },
-            except: [:description, :now_party_id, :created_at, :updated_at] }
+      format.json { render :json => {
+          status: "success",
+          entries: JSON.parse(
+            @entries.to_json({include: {
+              legislators: {
+                    include: { party: {except: [:created_at, :updated_at]} },
+                    except: [:description, :now_party_id, :created_at, :updated_at] }
+                }
+            })
+          ),
+          count: @entries_count
         },
         callback: params[:callback]
       }
@@ -77,13 +96,16 @@ class EntriesController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => @entry,
+      format.json { render :json => {
+        status: "success",
+        entry: JSON.parse(@entry.to_json({
         include: {
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
             except: [:description, :now_party_id, :created_at, :updated_at] }
-        },
-        callback: params[:callback]
+            }}
+          ))
+        }, callback: params[:callback]
       }
     end
   end

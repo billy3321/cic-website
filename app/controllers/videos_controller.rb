@@ -6,12 +6,25 @@ class VideosController < ApplicationController
 
   # GET /videos
   def index
-    if user_signed_in? and current_user.admin?
-      @q = Video.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @videos = Video.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.offset(params[:offset]).limit(params[:limit])
+        @videos_count = Video.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.count
+      else
+        @videos = Video.published.offset(params[:offset]).limit(params[:limit])
+        @videos_count = Video.published.count
+      end
     else
-      @q = Video.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Video.search(params[:q])
+        @videos = @q.result(:distinct => true).page(params[:page])
+      else
+        @q = Video.published.search(params[:q])
+        @videos = @q.result(:distinct => true).page(params[:page])
+      end
     end
-    @videos = @q.result(:distinct => true).page(params[:page])
     videos = @videos.clone.to_a
     @main_video = videos.shift
     @sub_videos = videos
@@ -45,13 +58,18 @@ class VideosController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render :json => @videos,
-        include: {
-          legislators: {
-            include: { party: {except: [:created_at, :updated_at]} },
-            except: [:description, :now_party_id, :created_at, :updated_at] },
-          ad_session: { except: [:created_at, :updated_at] },
-          committee: { except: [:created_at, :updated_at] }
+      format.json { render :json => {
+          status: "success",
+          videos: JSON.parse(
+            @videos.to_json({include: {
+              legislators: {
+                include: { party: {except: [:created_at, :updated_at]} },
+                except: [:description, :now_party_id, :created_at, :updated_at] },
+              ad_session: { except: [:created_at, :updated_at] },
+              committee: { except: [:created_at, :updated_at] }
+            }})
+          ),
+          count: @videos_count
         },
         callback: params[:callback]
       }
@@ -80,15 +98,18 @@ class VideosController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => @video,
+      format.json { render :json => {
+        status: "success",
+        video: JSON.parse(@video.to_json({
         include: {
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
             except: [:description, :now_party_id, :created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
-        },
-        callback: params[:callback]
+            }}
+          ))
+        }, callback: params[:callback]
       }
     end
   end

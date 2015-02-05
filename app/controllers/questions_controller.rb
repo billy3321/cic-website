@@ -6,12 +6,25 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    if user_signed_in? and current_user.admin?
-      @q = Question.search(params[:q])
+    if params[:format] == "json"
+      if params[:query]
+        @questions = Question.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.offset(params[:offset]).limit(params[:limit])
+        @questions_count = Question.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+          .published.count
+      else
+        @questions = Question.published.offset(params[:offset]).limit(params[:limit])
+        @questions_count = Question.published.count
+      end
     else
-      @q = Question.published.search(params[:q])
+      if user_signed_in? and current_user.admin?
+        @q = Question.search(params[:q])
+        @questions = @q.result(:distinct => true).page(params[:page])
+      else
+        @q = Question.published.search(params[:q])
+        @questions = @q.result(:distinct => true).page(params[:page])
+      end
     end
-    @questions = @q.result(:distinct => true).page(params[:page])
     questions = @questions.clone.to_a
     @main_question = questions.shift
     @sub_questions = questions
@@ -44,13 +57,18 @@ class QuestionsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render :json => @questions,
-        include: {
-          legislators: {
-            include: { party: {except: [:created_at, :updated_at]} },
-            except: [:description, :now_party_id, :created_at, :updated_at] },
-          ad_session: { except: [:created_at, :updated_at] },
-          committee: { except: [:created_at, :updated_at] }
+      format.json { render :json => {
+          status: "success",
+          questions: JSON.parse(
+            @questions.to_json({include: {
+              legislators: {
+                include: { party: {except: [:created_at, :updated_at]} },
+                except: [:description, :now_party_id, :created_at, :updated_at] },
+              ad_session: { except: [:created_at, :updated_at] },
+              committee: { except: [:created_at, :updated_at] }
+            }})
+          ),
+          count: @questions_count
         },
         callback: params[:callback]
       }
@@ -79,15 +97,18 @@ class QuestionsController < ApplicationController
     })
     respond_to do |format|
       format.html
-      format.json { render :json => @question,
+      format.json { render :json => {
+        status: "success",
+        question: JSON.parse(@question.to_json({
         include: {
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
             except: [:description, :now_party_id, :created_at, :updated_at] },
           ad_session: { except: [:created_at, :updated_at] },
           committee: { except: [:created_at, :updated_at] }
-        },
-        callback: params[:callback]
+            }}
+          ))
+        }, callback: params[:callback]
       }
     end
   end
