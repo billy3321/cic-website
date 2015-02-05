@@ -12,7 +12,7 @@ class LegislatorsController < ApplicationController
         @legislators_count = Legislator.all.count
       end
     else
-      @q = Legislator.has_no_record.search(params[:q])
+      @q = Legislator.search(params[:q])
       @legislators = @q.result(:distinct => true).all
     end
     @parties = Party.all
