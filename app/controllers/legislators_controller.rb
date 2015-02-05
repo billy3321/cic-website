@@ -76,7 +76,7 @@ class LegislatorsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render :json => @legislators,
-        except: [:description, :now_party_id, :created_at, :updated_at],
+        except: [:associations_count, :description, :now_party_id, :created_at, :updated_at],
         include: {party: {except: [:created_at, :updated_at]}
       },
       callback: params[:callback]
