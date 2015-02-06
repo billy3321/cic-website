@@ -1,0 +1,731 @@
+@charset "utf-8";
+/* CSS Document */
+#all-wrap{
+	max-width:100%; /*桌機板寬度*/ 
+	}
+#top{
+	margin-bottom:0px;
+	}
+h2{
+	font-size:1.5em;
+	margin-bottom:4px;}
+a{
+	color:#5DAA32;
+	text-decoration:none;}
+#first-nav li {
+border:none;}
+#first-nav li a{
+color:#fff;}
+#first-nav li a:hover{
+color:#E60012;
+}
+#logo{
+background:url("../images/logo-fix.png") no-repeat left center;
+height:60px;}
+#top{
+margin:0px;
+padding:0px;}
+#footer{
+margin:0px;
+padding:1em 3em;}
+#secn01{
+border:none;}
+#secn01 li:nth-child(1){
+border-top-left-radius:5px;
+border-bottom-left-radius:5px;
+margin-left:0px;}
+#sec-nav{
+font-size:15px;
+padding:15px;}
+#secn01{
+width:auto;
+float:left;}
+#secn02{
+max-width:none;
+width:auto;
+float:right;
+clear:none;}
+#secn01 li a{
+height:30px;
+line-height:30px;
+padding:5px 15px;}
+#secn02 li a{
+height:25px;
+line-height:25px;
+padding:3px 15px 7px 15px;
+background:none;
+margin:0 5px 0 0;
+border-bottom:5px solid #D4D4D4;
+color:#D4D4D4;}
+#secn02 li a.current{
+border-bottom:5px solid #5DAA32;
+color:#5DAA32;}
+
+
+#secn01 li:nth-last-child(1){
+border-top-right-radius:5px;
+border-bottom-right-radius:5px;
+}
+.img_url_l{
+	padding-top:55%;	
+}
+#index-video-block{
+	float:none;
+	width:auto;
+	background:#f3f3f3;
+	margin-bottom:15px;
+	padding:15px 0 20px 0;
+	}
+#index-main-video{
+	max-width:100%;
+	border:none;
+	}	
+.index-sub-video{
+	max-width:100%;
+	border:none;
+	}
+.video-a{
+	margin-bottom:-15px;}
+.img_url_l{
+	margin-bottom:10px;
+	box-shadow:#9E9E9E 2px 2px 6px;
+	}
+.big-video-show .img_url_l{
+	width:55%;
+	margin-right:3%;}
+.small-video-show .img_url_l{
+margin-right:3%;}
+#video-show-list .big-video-show {
+padding:20px 30px 0 30px;
+background:#F3F3F3;
+margin:20px -20px 20px -30px;
+}
+#people-rank{
+	clear:both;
+	width:97%;
+	padding:0 25px;}
+#people-rank h3{
+	font-size:2.3em;
+	letter-spacing:2px;
+	float:left;
+	margin:0px;
+	}
+#people-rank p{
+	font-size:1.2em;
+	float:left;
+	padding:20px 0 0 10px;
+	margin:0px;
+	}
+#people-rank-list{
+	clear:both;
+	padding:20px 0;
+	overflow:hidden;}
+#people-rank-list li{
+	width:16.6%;
+	float:left;
+	margin:0 0 3px 0;
+			border-bottom:1px solid #d4d4d4;
+			padding:8px 0;}
+#people-rank-list li span{
+	float:none;
+	width:100%;
+		padding:0 0 0 20%;
+		margin:0;
+		overflow:hidden;
+	}
+#people-rank-list li span a,#people-rank-list li span{
+	color:#b0b0b0;}
+	
+#people-rank-list li em{
+float:none;
+		width:auto;
+		overflow:hidden;
+		padding:0 0 0 20%;}
+
+#search-bar{
+	border-radius:0px;}
+#news-list,#say-list{
+width:25%;
+margin-left:1.5%;}
+.side-sblock h3{
+	border-bottom:1px solid #000;margin-right:-1000px;
+	padding:5px 1000px 5px 10px;}
+.side-sblock .more,#v-title .more,.big-video-show .more{
+	margin-top:5px;
+	padding:5px 10px;}
+.side-sblock .more{
+border-top-right-radius:8px;
+border-top-left-radius:8px;}
+.big-video-show .more{
+border-radius:8px;}
+#v-title{
+	border-bottom:1px solid #000;}
+#v-title h3{
+	padding:5px 10px;}
+#say-list ul li{
+	border:none;
+	border-bottom:dotted 1px #D4D4D4;
+	margin:0px;
+	padding:20px 10px;}
+#news-list ul {
+margin:45px 0 15px 0;}
+#news-list ul li{
+margin-bottom:10px;}
+#people-single-top{
+	background:#f3f3f3;
+	padding:20px 0;}
+.big-video-show h3{
+	margin-bottom:20px;}
+.pinfo-inner-aside{
+width:25.5%;
+margin-left:1.5%;
+padding-top:20px;
+}
+.pinfo-inner-aside .pinfo-inner{
+margin-bottom:20px;
+}
+.pinfo.pinfo-mlist{
+margin-top:20px;}
+#people-single-top .pinfo.pinfo-mlist{margin-top:0px;}
+#news-show-list{
+padding-top:20px;}
+.people-info-block{
+	max-width:100%;
+	background:#F3F3F3;
+	border-top-right-radius:8px;
+	border-top-left-radius:8px;}
+.small-video-show{
+	border:none;
+	border-bottom:1px dotted #d4d4d4;
+	padding-bottom:30px;}
+
+.small-video-show .time{
+	right:1%;
+	bottom:30px;}
+.big-video-show .img_url_l{
+	padding-top:30.5%;}
+.small-video-show .img_url_l{
+	padding-top:18%;}
+
+.big-video-show h3{
+	font-size:2em;}
+.small-video-show h3{
+	font-size:1.5em;
+	margin-bottom:12px;
+	width:64%;}
+.small-video-show .inner-content{
+width:64%;}
+#video-show-list.all-list .small-video-show h3{
+width:52%;}
+#people-all-list{
+	max-width:97%;
+	margin:auto;}
+#people-all-list .people-info-block{
+	width:31%;
+	margin:1%;}
+.pinfo-mlist{
+	width:25.5%;
+	margin:0  1.5%;}
+.pinfo{
+	overflow:hidden;}
+.people-info-block h2{
+		font-size:20px;
+	max-width:none;
+	margin:2% 2% 0 3.5%;}
+.people-img{
+	max-width:none;
+	width:32%;
+	border-right:0.1%;
+	background:#fff;
+	min-height:148px;
+	}
+.info-number{
+	margin:2% 3.5% 0 3.5%;
+	width:60.5%;}
+.pinfo .people-img{
+	width:35%;
+	}
+.pinfo .info-number{
+	width:57%;
+	}
+.info-number li{
+	background:#fff;
+	padding:2%;
+	}
+.info-number em{
+	background:none;}
+.info-number a{
+	float:right;
+	padding:0 2% 0 0;}
+.pinfo-btn{
+	width:103%;}
+.pinfo-btn li a{
+	padding:9px 3%;
+	text-align:center;
+	background:#989898;
+	border-radius:5px;}
+.big-video-show{
+	width:68.5%;}
+#video-list{
+	width:69.5%;}
+.big-video-show .inner-content{
+		padding:15px 0 40px 0;}
+.single-page-inner {
+padding-top:20px;}
+.single-page-inner h3{
+font-size:34px;
+}
+.inner-content-txt{
+font-size:21px;
+line-height:1.7em;
+letter-spacing:1px;}
+.inner-content-txt p{
+line-height:1.7em;}
+.big-news-show{
+margin-bottom:30px;}
+.big-news-show h3{
+font-size:32px;}
+.small-news-show h3{
+font-size:24px;
+margin-bottom:15px;}
+#news-show-list.all-list{
+width:auto;
+padding:15px 0 0 15px;
+float:none;}
+.all-list .small-news-show{
+width:28%;
+margin:1%;
+height:180px;
+float:left;} 
+#login-out-block{
+max-width:460px;
+margin-top:25px;
+border:none;
+background:#F3F3F3;
+border-radius:10px;}
+#post-block{margin-top:25px;
+border:none;
+background:#F3F3F3;
+border-radius:10px;}
+#login-out-block h2,#post-block h2,#choose-block h2{
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+color:#000;
+background:#d7d7d7;
+padding:15px;}
+#login-out-block.wid-block{margin-top:25px;
+overflow:hidden;
+padding-bottom:20px;}
+#out-login{
+margin-top:25px;
+}
+#choose-block{
+margin-top:25px;
+border:none;
+background:#F3F3F3;
+border-radius:10px;}
+#choose-block a{
+font-size:36px;}
+#choose-block .snote,#choose-block .snote a{
+font-size:16px;}
+#choose-block .snote{
+clear:both;
+line-height:1.7em;
+padding:10px 0 5px 0;}
+#choose-block li{
+border-bottom:1px dotted #AAA;}
+#choose-block li:nth-last-child(1){
+border:none;}
+.form-list li{
+margin-bottom:25px;}
+#video-show-list.all-list{
+width:auto;
+float:none;
+margin:-20px 0 0 0;
+
+}
+#video-show-list.all-list .big-video-show{
+background:#F3F3F3;
+padding:25px 35px;
+width:auto;
+float:none;
+margin-right:0px;
+}
+
+#video-show-list.all-list .big-video-show .img_url_l{
+padding-top:26%;}
+#video-show-list.all-list .small-video-show .img_url_l{
+padding-top:25%;}
+#video-show-list.all-list .small-video-show{
+margin:0px;
+padding:2.5%;
+padding-top:3%;
+height:160px;}
+.all-list #video-list{
+width:auto;
+float:none;
+margin:0px;
+padding-left:20px;}
+#news-inner-list .small-news-show{
+margin-bottom:25px;}
+.video-inner-show{
+	position:relative;
+	height:0px;
+	padding-top:55%;
+	overflow:hidden;
+	display:block;
+	background:#000;
+	margin-bottom:20px;
+}
+.video-inner-show .video-play{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;}
+
+@media only screen and (max-width: 1152px){
+	#secn01 li a{
+padding:5px 8px;}
+	#secn02 li a{
+padding:3px 8px 7px 8px;
+}
+	#people-rank-list li{
+		width:25%;}
+	#people-rank-list li span{
+		float:left;
+		width:auto;
+		padding:4px 0 0 0;
+		}
+	#people-rank-list li em{
+		float:left;
+		padding:0 3% 0 14%;}
+		.big-video-show .inner-content{
+		float:none;
+		width:100%;
+		clear:both;
+		}
+		.all-list .small-news-show{
+height:210px;} 
+#video-show-list.all-list .big-video-show .inner-content{
+float:left;
+clear:none;}
+	}
+@media only screen and (max-width: 960px){
+#secn01 li a{
+padding:5px 15px;}
+	#secn02 li a{
+padding:3px 15px 7px 15px;
+}
+#secn01,#secn02{
+float:none;}
+	#people-rank-list li{
+		width:33%;}
+		#people-rank-list li em{
+		padding:0 3% 0 14%;}
+	.pinfo .people-img{
+	width:16%;
+	
+	}
+.pinfo .info-number{
+	width:80%;
+	margin:10px -8% 0 3%;
+	}
+	
+#people-all-list .people-info-block{
+	width:45.5%;
+	margin:1.7%;}
+	.people-img{
+		width:26%;
+		min-height:100px;}
+	.people-info-block h2{
+		width:66.5%;
+		font-size:20px;}
+	.pinfo-mlist .people-info-block h2{
+		margin-top:0px;}
+	.info-number{
+		width:70%;
+		margin-right:-20%;}
+	.info-number li{
+		width:29%;
+		margin:0px;
+		margin-right:2%;
+		padding:0px;
+		float:left;}
+	.pinfo .info-number li{
+		padding:1%;}
+	.info-number a,.info-number em{
+		float:none;
+		margin:0px;
+		display:block;
+		text-align:center;}
+		.pinfo .info-number em,.pinfo .info-number a{
+	text-align:left;
+	display:inline;}
+	.party-tag{
+		width:30px;
+		height:24px;}
+	.pinfo-mlist{
+	width:97%;
+	
+	}
+	
+	.pinfo-mlist .people-info-block{
+		
+		}
+	.pinfo-mlist .people-img{
+		border:none;}
+	.pinfo .selector-info{
+		border:#D4D4D4 1px solid;
+		margin:0 0 0 -1px;
+		float:left;
+		clear:none;
+		width:95px;
+		}
+	.pinfo .selector-info.si-newest{
+	margin-left:3%;
+	}
+	.pinfo .selector-info div{
+	float:none;
+	width:auto;
+	padding-left:7px;}
+	.big-video-show{
+		width:97.5%;
+		padding:3% 0 0 0;}	
+	#video-list{
+	width:97.5%;}
+	#news-list,#say-list{
+	width:44%;
+	margin:3%;}
+	.pinfo-inner-aside{
+	width:98%;}
+	.single-page-inner{
+	width:97.5%;}
+	#news-show-list.all-list .small-news-show{
+width:42.5%;
+margin:2%;
+height:180px;
+} 
+#news-show-list{
+width:auto;
+float:none;
+padding:15px 5px 0 15px;}
+	#news-show-list .small-news-show{
+width:42%;
+margin:2%;
+height:180px;
+float:left;} 
+#video-show-list.all-list .big-video-show .inner-content{
+display:none;}
+.small-video-show h3{
+font-size:18px;}
+#video-show-list.all-list .small-video-show{
+height:120px;}
+.small-video-show .img_url_l{
+margin-right:5%;}
+#video-show-list.all-list .small-video-show h3{
+width:50%;}
+#video-list .small-video-show .img_url_l{
+margin-right:3%;}
+
+#video-show-list .big-video-show {
+margin:20px -30px;
+}
+.pinfo .info-number{
+margin-bottom:7px;}
+.single-page-inner{
+padding-top:0px;}
+}
+
+
+@media only screen and (max-width: 800px){
+.pinfo-inner-aside{
+display:none;}
+#video-show-list.all-list .time{
+display:none;}
+#video-show-list.all-list .small-video-show{
+height:110px;}
+#news-show-list.all-list .small-news-show{
+height:220px;
+}
+					.pinfo .selector-info{
+			display:block;
+		}
+}
+
+@media only screen and (max-width: 720px){
+.big-video-show .inner-content,.small-video-show .inner-content{
+display:none;}
+.big-video-show .img_url_l{
+width:98%;
+padding-top:55%;}
+.big-video-show h3{
+width:100%;
+padding-top:15px;}
+#news-list ul{
+font-size:20px;
+line-height:1.3em;}
+#news-list ul li{
+margin-bottom:20px;}
+#say-list ul li{
+font-size:15px;
+line-height:1.7em;}
+#video-show-list.all-list .big-video-show .img_url_l{
+float:none;
+width:100%;
+padding-top:56%;}
+#video-show-list.all-list .big-video-show h3{
+float:none;
+width:100%;}
+#video-show-list.all-list .small-video-show{
+float:none;
+width:auto;
+height:185px;
+padding-top:5%;}
+
+#video-show-list.all-list .small-video-show .img_url_l{
+padding-top:25.5%;
+}
+#video-show-list.all-list .small-video-show h3{
+font-size:24px;}
+#video-show-list .big-video-show{
+padding-bottom:25px;}
+.pinfo .selector-info{
+display:none;}
+.pinfo .selector-info.si-newest{
+display:block;
+width:70%;
+border:none;
+}
+.pinfo .selector-info div{
+float:left;
+margin:0 10px 0 0;
+}
+}
+@media only screen and (max-width: 640px){
+	#people-rank h3{
+		font-size:2em;}
+	#people-rank p{
+		padding:17px 0 0 6px;
+		font-size:1em;}
+	#people-rank-list li em{
+		padding:0 3% 0 18%;}
+	#people-rank-list li span{
+		float:none;
+		clear:both;
+		padding:0 3% 0 18%;}
+		.video-a{
+	margin-bottom:10px;}
+	.index-sub-video{
+		float:none;
+		width:94%;}
+	.people-img{
+		width:17%;}
+	#people-all-list .people-info-block{
+		width:auto;
+		margin-bottom:4%;}
+	.info-number{
+		width:80%;}
+		.pinfo .selector-info.si-newest{
+			float:left;
+			border:#D4D4D4 1px solid;
+			clear:none;}
+		#news-list,#say-list{
+		width:94%;}
+		#news-list ul li{
+		width:auto;}
+		#say-list ul{
+		width:95%;}
+		#news-show-list.all-list .small-news-show{
+		float:none;
+		width:auto;
+height:auto;
+padding-bottom:30px;
+margin-bottom:30px;
+}
+#news-show-list .small-news-show{
+float:none;
+width:auto;
+height:auto;
+padding-bottom:30px;
+margin-bottom:30px;} 
+	#video-show-list.all-list .small-video-show .img_url_l{
+	width:45%;}
+.pinfo .selector-info.si-newest{
+border:none;
+}
+.pinfo .people-img{
+width:19%;
+}
+	
+	}
+@media only screen and (max-width: 480px){
+#first-nav li{
+border-bottom:1px solid #3C3C3C;}
+#secn01 li{
+width:32.5%;
+text-align:center;}
+	#secn02 li a{
+padding:3px 8px 7px 8px;
+margin-bottom:10px;
+}
+
+	#people-rank-list li{
+		width:42%;
+		border:none;
+		margin:0px;
+		}
+		#people-rank-list li em{
+		padding:0 3% 0 17%;}
+	#people-rank-list li:nth-child(1),#people-rank-list li:nth-child(2),#people-rank-list li:nth-child(3),#people-rank-list li:nth-child(4),#people-rank-list li:nth-child(5),#people-rank-list li:nth-child(6){
+	float:left;
+	clear:left;
+	border-right:1px solid #D4D4D4;
+	margin:0 15% 0 0;
+	}
+	#people-rank-list li:nth-child(7),#people-rank-list li:nth-child(8),#people-rank-list li:nth-child(9),#people-rank-list li:nth-child(10),#people-rank-list li:nth-child(11),#people-rank-list li:nth-child(12){
+	float:none;
+	}
+	#video-show-list.all-list .small-video-show{
+	height:auto;
+	padding-bottom:25px;}
+	.small-video-show .img_url_l{
+	display:none;}
+	.small-video-show h3,#video-show-list.all-list .small-video-show h3{
+	width:97.5%;
+	margin-bottom:0px;
+	font-size:22px;}
+	.people-img{
+	width:23%;}
+	.info-number{
+	width:74%;}
+	#video-show-list .time{
+	display:none;}
+.pinfo .selector-info.si-newest{
+display:block;
+width:100%;
+border:none;
+margin:0 0 0 10px;
+border-top:1px solid #D4D4D4;}
+.pinfo .selector-info.si-newest div:nth-child(1){
+padding:0px;}
+	}
+@media only screen and (max-width: 360px){
+#secn01 li a{
+height:auto;
+padding:5px;}
+	#people-rank-list li em{
+		padding:0 3% 0 22%;}
+		#people-rank-list li span{
+		padding:0 3% 0 22%;}
+		#people-rank-list li:nth-child(1),#people-rank-list li:nth-child(2),#people-rank-list li:nth-child(3),#people-rank-list li:nth-child(4),#people-rank-list li:nth-child(5),#people-rank-list li:nth-child(6){
+
+	margin:0 8% 0 0;
+	}
+	.people-img{
+	width:30%;}
+	.people-info-block h2{
+	width:63%;}
+	.info-number{
+	width:66%;}
+	}
