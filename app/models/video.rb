@@ -9,7 +9,7 @@ class Video < ActiveRecord::Base
   validates_presence_of :title, message: '必須填寫影片標題'
   validates_presence_of :user_id, message: '必須有回報者'
   validate :has_at_least_one_legislator
-  validate :is_youtube_url, :is_ivod_url
+  validate :is_youtube_url, :is_ivod_url, :news_validate
   delegate :ad, :to => :ad_session, :allow_nil => true
   before_save :update_youtube_values, :update_ivod_values, :update_ad_session_values
   after_save :touch_legislators
@@ -155,6 +155,43 @@ class Video < ActiveRecord::Base
     rescue
       errors.add(:base, 'ivod網址錯誤')
       return false
+    end
+  end
+
+  def news_validate
+    if self.video_type == 'news'
+      error = 0
+      if self.date.to_s == ''
+        error = 1
+        errors.add(:base, '必須填寫新聞日期')
+      end
+      if self.source_url.to_s == ''
+        error = 1
+        errors.add(:base, '必須填寫新聞來源網址')
+      else
+        begin
+          source_uri = URI.parse(self.source_url)
+          unless HTTParty.get(self.source_url).code == 200
+            errors.add(:base, '新聞來源網址無法存取')
+            error = 1
+          end
+        rescue
+          self.source_url = nil
+          errors.add(:base, '新聞來源網址錯誤')
+          error = 1
+        end
+      end
+      if self.source_name.to_s == ''
+        error = 1
+        erros.add(:base, '必須填寫新聞來源名稱')
+      end
+      if error == 1
+        return false
+      else
+        return true
+      end
+    else
+      return true
     end
   end
 
