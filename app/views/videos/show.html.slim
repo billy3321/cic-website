@@ -11,7 +11,7 @@ section class="single-page-inner"
   - @video.legislators.each do |l|
     = render partial: 'shared/legislator_short_info', locals: { l: l }
   ul id="sinner-src-list"
-    - if @video.video_type == 'news'
+    - if ['news', 'others'].include? @video.video_type
       li 
         | 出處：
         - unless @video.source_url.empty?
@@ -19,7 +19,10 @@ section class="single-page-inner"
         - else
           = @video.source_name
       li
-        | 新聞日期：
+        - if @video.video_type == 'news'
+          | 新聞日期：
+        - else
+          | 消息日期：
         = @video.date.try(:strftime, '%Y年%m月%d日')
 
     - elsif @video.video_type == 'ivod'

@@ -11,8 +11,8 @@ ul class="form-list"
     p = f.input :title, label: false, required: true
   li
     p 影片出處分類＊
-    p class="snote" （ivod與新聞回報所顯示的資料結果略有差異，若選擇ivod，將依據ivod確切內容進行修正）
-    p = f.input :video_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['新聞影片', 'news']], input_html: { class: 'video_type' }, include_blank: false
+    p class="snote" 不同分類所需填寫的資料會有所不同，請選擇最適合的分類。自製影片請選擇其他。
+    p = f.input :video_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['新聞影片或電視節目', 'news'], ['其他', 'others']], input_html: { class: 'video_type' }, include_blank: false
   li class="ivod_field"
     p 立法院議事轉播ivod出處＊
     p class="snote" 
@@ -36,11 +36,13 @@ ul class="form-list"
     p 質詢對象
     p class="snote" 請填寫本段質詢的對象姓名或職稱。
     p = f.input :target, label: false
-  li class="news_field"
-    p 電視節目或新聞出處
-    p class="snote" 請填寫電視出處的電視台名稱與節目名稱。
+  li class="news_field others_field"
+    p class="news_field" 電視節目或新聞出處＊
+    p class="others_field" 消息來源名稱＊
+    p class="snote news_field" 請填寫新聞來源名稱，例如新聞請填寫電視台名稱如民視中視、電視節目請填寫節目名稱如新聞龍捲風。
+    p class="snote others_field" 請填寫消息來源名稱，或影片作者名稱
     p = f.input :source_name, label: false
-  li class="news_field"
+  li class="news_field others_field"
     p 電視節目或新聞網址
     p class="snote" 請填寫來源網址。
     p = f.input :source_url, label: false
@@ -52,9 +54,9 @@ ul class="form-list"
       | 網址格式：https://www.youtube.com/watch?v=OF6Hr2oV9m4
     p = f.input :youtube_url, label: false, required: true
   li
-    p 日期
+    p 日期＊
     p class="snote" 
-      | 請填寫ivod出處的會議日期。或新聞出處的報導日期。日期可手動填寫，日期格式為年-月-日：2015-01-30
+      | 請填寫ivod出處的會議日期、新聞出處的報導日期或消息發佈日期。日期可手動填寫，日期格式為年-月-日：2015-01-30
     p = f.input :date, as: :string, input_html: { class: "datepicker" }, label: false
   li
     p 簡介

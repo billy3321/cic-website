@@ -66,7 +66,7 @@ class Video < ActiveRecord::Base
   end
 
   def update_ivod_values
-    if self.ivod_url.to_s == '' and self.video_type == 'news'
+    if self.ivod_url.to_s == '' and ['news', 'others'].include? self.video_type
       return true
     end
     ivod_uri = URI.parse(self.ivod_url)
@@ -141,7 +141,7 @@ class Video < ActiveRecord::Base
 
   def is_ivod_url
     if self.ivod_url.to_s == ''
-      if self.video_type == 'news'
+      if ['news', 'others'].include? self.video_type
         return true
       else
         errors.add(:base, '必須填寫ivod出處網址')
@@ -165,10 +165,7 @@ class Video < ActiveRecord::Base
         error = 1
         errors.add(:base, '必須填寫新聞日期')
       end
-      if self.source_url.to_s == ''
-        error = 1
-        errors.add(:base, '必須填寫新聞來源網址')
-      else
+      unless self.source_url.to_s == ''
         begin
           source_uri = URI.parse(self.source_url)
           unless HTTParty.get(self.source_url).code == 200
@@ -184,6 +181,17 @@ class Video < ActiveRecord::Base
       if self.source_name.to_s == ''
         error = 1
         erros.add(:base, '必須填寫新聞來源名稱')
+      end
+      if error == 1
+        return false
+      else
+        return true
+      end
+    elsif self.video_type == 'others'
+      error = 0
+      if self.date.to_s == ''
+        error = 1
+        errors.add(:base, '必須填寫影片製作日期')
       end
       if error == 1
         return false

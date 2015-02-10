@@ -61,11 +61,17 @@ var ready = function(){
 
   $(".video_type").change(function(){
     if (this.value == 'ivod'){
-      $('.ivod_field').show();
+      $('.others_field').hide();
       $('.news_field').hide();
-    }else if (this.value == 'news'){
+      $('.ivod_field').show();
+    } else if (this.value == 'news'){
+      $('.others_field').hide();
       $('.ivod_field').hide();
       $('.news_field').show();
+    } else if (this.value == 'others'){
+      $('.news_field').hide();
+      $('.ivod_field').hide();
+      $('.others_field').show();
     }
   });
   $(".video_type").change();
