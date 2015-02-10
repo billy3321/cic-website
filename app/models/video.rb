@@ -180,7 +180,7 @@ class Video < ActiveRecord::Base
       end
       if self.source_name.to_s == ''
         error = 1
-        erros.add(:base, '必須填寫新聞來源名稱')
+        errors.add(:base, '必須填寫新聞來源名稱')
       end
       if error == 1
         return false
