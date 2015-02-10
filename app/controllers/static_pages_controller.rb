@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :authenticate_user!, only: [:report]
+
   def home
     videos = Video.published.first(3)
     while videos.length < 3
