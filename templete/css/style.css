@@ -752,6 +752,16 @@ padding-top:34.5%;}
 #error_explanation li::after{
 	content: "、";}
 
+#top h6{
+width:212px;
+height:0px;
+overflow:hidden;
+padding-top:24px;
+background:url(../images/top-h6.png) no-repeat left top;
+position:absolute;
+right:7.2%;
+top:35px;}
+	
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{

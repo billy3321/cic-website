@@ -4,13 +4,20 @@ body{background:#eaeaea;}
 #all-wrap{
 	max-width:1920px; /*桌機板寬度*/ 
 	background:#fff;
+	position:relative;
 	}
 h2{
 	font-size:1.5em;
 	margin-bottom:4px;}
-a{
+a,.ui-widget-content a{
 	color:#5DAA32;
 	text-decoration:none;}
+.ui-widget-content a{
+display:block;}
+#top{
+background:url(../images/top-bg.jpg) -275px top no-repeat #000;}
+#footer{
+background:url(../images/footer.jpg) center center no-repeat #000;}
 #first-nav li {
 border:none;}
 #first-nav li a{
@@ -51,9 +58,9 @@ padding:5px 15px;}
 #secn02 li a{
 height:25px;
 line-height:25px;
-padding:3px 15px 7px 15px;
+padding:3px 12px 7px 12px;
 background:none;
-margin:0 5px 0 0;
+margin:0 4px 0 0;
 border-bottom:5px solid #D4D4D4;
 color:#D4D4D4;}
 #secn02 li a.current{
@@ -178,8 +185,8 @@ margin-bottom:10px;}
 .big-video-show h3{
 	margin-bottom:20px;}
 .pinfo-inner-aside{
-width:25.5%;
-margin-left:1.5%;
+width:20.5%;
+margin-left:6.5%;
 padding-top:20px;
 }
 .pinfo-inner-aside .pinfo-inner{
@@ -278,7 +285,9 @@ width:52%;}
 .big-video-show .inner-content{
 		padding:15px 0 40px 0;}
 .single-page-inner {
-padding-top:20px;}
+padding-top:20px;
+width:63.5%;
+margin-right:6.5%;}
 .single-page-inner h3{
 font-size:34px;
 }
@@ -393,21 +402,42 @@ font-size:20px;
 padding:20px;
 border-radius:15px;
 max-width:380px;}
+.sinner-info li span{
+background:#d3d3d3;}
+.people-info-block h2{
+height:1.5em;
+overflow:hidden;}
 
-@media only screen and (max-width: 1152px){
-.small-video-show .inner-content{
+.news-info-list{
+overflow:hidden;}
+#aside-info{
+margin-bottom:20px;}
+
+.news-info-list li{
+font-size:15px;
+min-height:2.5em;}
+
+.vo-title{
+font-size:16px;
+min-height:2.5em;
 width:auto;
-clear:both;
-padding:20px 0;}
+float: none;
+padding-left:145px;
 }
-
-
+.vo-img{
+margin-left:15px;
+margin-right:15px;}
+.video-other-list li{
+	margin-bottom: 20px;
+}
+.video-other-list{
+padding:15px;}
 @media only screen and (max-width: 1152px){
 
 	#secn01 li a{
 padding:5px 8px;}
 	#secn02 li a{
-padding:3px 8px 7px 8px;
+padding:3px 4px 7px 4px;
 }
 	#people-rank-list li{
 		width:25%;}
@@ -429,8 +459,11 @@ height:210px;}
 #video-show-list.all-list .big-video-show .inner-content{
 float:left;
 clear:none;}
+
+
 	}
 @media only screen and (max-width: 960px){
+
 #secn01 li a{
 padding:5px 15px;}
 	#secn02 li a{
@@ -443,11 +476,11 @@ float:none;}
 		#people-rank-list li em{
 		padding:0 3% 0 14%;}
 	.pinfo .people-img{
-	width:16%;
+	width:18%;
 	
 	}
 .pinfo .info-number{
-	width:80%;
+	width:78%;
 	margin:10px -8% 0 3%;
 	}
 	
@@ -459,7 +492,8 @@ float:none;}
 		min-height:100px;}
 	.people-info-block h2{
 		width:66.5%;
-		font-size:20px;}
+		font-size:26px;
+		padding-top:7px;}
 	.pinfo-mlist .people-info-block h2{
 		margin-top:0px;}
 	.info-number{
@@ -477,7 +511,12 @@ float:none;}
 		float:none;
 		margin:0px;
 		display:block;
-		text-align:center;}
+		text-align:center;
+		font-family:Arial;}
+		.info-number a{
+		font-size:22px;
+		line-height:38px;
+		}
 		.pinfo .info-number em,.pinfo .info-number a{
 	text-align:left;
 	display:inline;}
@@ -485,7 +524,7 @@ float:none;}
 		width:30px;
 		height:24px;}
 	.pinfo-mlist{
-	width:87.5%;
+	width:auto;
 	
 	}
 	
@@ -495,11 +534,12 @@ float:none;}
 	.pinfo-mlist .people-img{
 		border:none;}
 	.pinfo .selector-info{
-		border:#D4D4D4 1px solid;
+		border:none;
+		border-left:4px solid #e2e2e2;
 		margin:0 0 0 -1px;
 		float:left;
 		clear:none;
-		width:95px;
+		width:105px;
 		}
 	.pinfo .selector-info.si-newest{
 	margin-left:3%;
@@ -591,7 +631,44 @@ clear:none;
 padding:0px 0 30px 0;
 float:left;}
 
+.pinfo-btn{
+display:none;}
+#people-single-top{
+	padding:20px 5% 15px 0.5%;}
+#people-single-top .big-video-show{
+width:93%;}
+.pinfo-inner-aside{
+width:87%;}
+.single-page-inner{
+width:87%;}
+.news-info-list li{
+font-size:20px;
 }
+.video-other-list li{
+width:100%;}
+
+.vo-title{
+width:auto;
+font-size:24px;}
+
+#first-nav{
+	float:none;
+	text-align:center;
+	clear:both;}
+#first-nav li{
+	float:none;
+	display:inline;
+	border:none;
+	border-bottom:none;
+	margin:0 0 0 -1px ;
+	}
+	#first-nav li a{
+			display:inline;
+			padding:4px 10px;
+			
+	}
+}
+
 
 
 @media only screen and (max-width: 800px){
@@ -615,7 +692,11 @@ width:88.5%;}
 width:100%;}
 #video-show-list .big-video-show{
 padding-bottom:40px;}
-	
+.video-other-list li{
+float:none;
+width:100%;
+overflow:hidden;}
+
 	}
 
 @media only screen and (max-width: 720px){
@@ -642,6 +723,8 @@ display:block;
 width:70%;
 border:none;
 }
+.pinfo .people-img{
+width:22%;}
 .pinfo .selector-info div{
 float:left;
 margin:0 10px 0 0;
@@ -652,8 +735,24 @@ margin:0 10px 0 0;
 	font-size:26px;}
 	.small-video-show .img_url_l{
 	display:none;}
+	.pinfo .info-number{
+	width:76%;}
+
 }
 @media only screen and (max-width: 640px){
+#logo{
+	margin:0 0 0 16px;
+	float:left;}
+	#first-nav {
+	margin:0 -7%;}
+	#first-nav li{
+	display:block;
+	border-bottom:1px solid #3c3c3c;}
+	#first-nav li a{
+			display:block;
+			padding:7px 10px;
+			
+	}
 	#people-rank h3{
 		font-size:2em;}
 	#people-rank p{
@@ -671,7 +770,7 @@ margin:0 10px 0 0;
 		float:none;
 		width:94%;}
 	.people-img{
-		width:17%;}
+		width:22%;}
 	#people-all-list .people-info-block{
 		width:auto;
 		margin-bottom:4%;}
@@ -705,11 +804,32 @@ margin-bottom:30px;}
 .pinfo .selector-info.si-newest{
 border:none;
 }
-.pinfo .people-img{
-width:19%;
+
+.pinfo .info-number{
+width:72%;}
+.pinfo .selector-info.si-newest{
+display:block;
+width:100%;
+border:none;
+margin:0 0 0 0px;
+border-top:1px solid #D4D4D4;}
+.info-number li{
+text-align:center;}
+.pinfo .info-number li{
+padding-bottom:0px;}
+.pinfo .info-number a{
+display:block;
+text-align:center;}	
+
+
 }
-	}
+
+
+
 @media only screen and (max-width: 480px){
+#first-nav{
+width:auto;
+}
 #first-nav li{
 border-bottom:1px solid #3C3C3C;}
 #secn01 li{
@@ -740,18 +860,10 @@ margin-bottom:10px;
 	height:auto;
 	padding-bottom:25px;}
 
-	.people-img{
-	width:23%;}
 	.info-number{
 	width:74%;}
-.pinfo .selector-info.si-newest{
-display:block;
-width:100%;
-border:none;
-margin:0 0 0 10px;
-border-top:1px solid #D4D4D4;}
-.pinfo .selector-info.si-newest div:nth-child(1){
-padding:0px;}
+
+
 	}
 @media only screen and (max-width: 360px){
 #secn01 li a{
