@@ -10,9 +10,9 @@ html
       script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     - if ['admins', 'users', 'parties'].include?(params[:controller])
-      = stylesheet_link_tag 'admin-style'
+      = stylesheet_link_tag 'admin-style', 'data-turbolinks-track' => false
     - else
-      = javascript_include_tag 'analytics'
+      = javascript_include_tag 'analytics', 'data-turbolinks-track' => false
   body
     #outer
       article id="all-wrap"
