@@ -63,4 +63,11 @@ class StaticPagesController < ApplicationController
 
   def tutorial
   end
+
+  def sitemap
+    @legislators = Legislator.all
+    @entries = Entry.all
+    @questions = Question.all
+    @videos = Video.all
+  end
 end

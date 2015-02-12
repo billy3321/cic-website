@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   match '/service',   to: 'static_pages#service',   via: 'get'
   match '/privacy',   to: 'static_pages#privacy',   via: 'get'
   match '/tutorial',  to: 'static_pages#tutorial',  via: 'get'
+  match "/sitemap.xml", to: 'static_pages#sitemap', format: 'xml', via: 'get'
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",
