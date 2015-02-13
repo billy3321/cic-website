@@ -152,8 +152,8 @@ float:none;
 #search-bar{
 	border-radius:0px;
 	padding:15px 7%;}
-#news-list,#say-list{
-width:25%;
+.side-sblock#news-list,.side-sblock#say-list{
+width:27%;
 margin-left:1.5%;}
 .side-sblock h3{
 	border-bottom:1px solid #000;margin-right:-1000px;
@@ -170,14 +170,14 @@ border-radius:8px;}
 	border-bottom:1px solid #000;}
 #v-title h3{
 	padding:5px 10px;}
-#say-list ul li{
+.side-sblock#say-list ul li{
 	border:none;
 	border-bottom:dotted 1px #D4D4D4;
 	margin:0px;
 	padding:20px 10px;}
-#news-list ul {
+.side-sblock#news-list ul {
 margin:45px 0 15px 0;}
-#news-list ul li{
+.side-sblock#news-list ul li{
 margin-bottom:10px;}
 #people-single-top{
 	background:#f3f3f3;
@@ -279,9 +279,9 @@ width:52%;}
 	border-radius:5px;}
 .big-video-show{
 	width:68.5%;}
-#video-list{
+#video-list,#info-show-list #video-list{
 	width:65%;
-	margin-right:6%;}
+	margin-right:3%;}
 .big-video-show .inner-content{
 		padding:15px 0 40px 0;}
 .single-page-inner {
@@ -391,7 +391,7 @@ margin-bottom:25px;}
 #page{
 	padding:30px 6%;}
 
-#news-list ul a,#say-list ul a,h3 a{
+.side-sblock#news-list ul a,.side-sblock#say-list ul a,h3 a{
 display:block;}
 
 
@@ -432,6 +432,11 @@ margin-right:15px;}
 }
 .video-other-list{
 padding:15px;}
+
+#txt-info{
+	padding:0 9%;}
+#txt-info h3{
+	color:#5DAA32;}
 @media only screen and (max-width: 1152px){
 
 	#secn01 li a{
@@ -554,8 +559,8 @@ float:none;}
 		padding:3% 0 0 0;}	
 	#video-list{
 	width:88.5%;
-	margin-right:6%;}
-	#news-list,#say-list{
+	margin-right:3%;}
+	.side-sblock#news-list,.side-sblock#say-list{
 	width:44%;
 	margin:3%;}
 	.pinfo-inner-aside{
@@ -617,12 +622,12 @@ float:none;
 width:auto;
 height:auto;
 padding:5% 0;}
-#news-list ul{
+.side-sblock#news-list ul{
 font-size:20px;
 line-height:1.3em;}
-#news-list ul li{
+.side-sblock#news-list ul li{
 margin-bottom:20px;}
-#say-list ul li{
+.side-sblock#say-list ul li{
 font-size:15px;
 line-height:1.7em;}
 
@@ -781,11 +786,11 @@ margin:0 10px 0 0;
 			float:left;
 			border:#D4D4D4 1px solid;
 			clear:none;}
-		#news-list,#say-list{
+		.side-sblock#news-list,.side-sblock#say-list{
 		width:94%;}
-		#news-list ul li{
+		.side-sblock#news-list ul li{
 		width:auto;}
-		#say-list ul{
+		.side-sblock#say-list ul{
 		width:95%;}
 		#news-show-list.all-list .small-news-show{
 		float:none;
