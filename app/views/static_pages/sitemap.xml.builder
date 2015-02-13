@@ -96,28 +96,28 @@ xml.tag! 'urlset', "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
   @legislators.each do |legislator|
     xml.url do
       xml.loc legislator_url(legislator)
-      xml.lastmod question.updated_at.to_date
+      xml.lastmod legislator.updated_at.to_date
       xml.changefreq "monthly"
       xml.priority 0.9
     end
 
     xml.url do
       xml.loc entries_legislator_url(legislator)
-      xml.lastmod question.updated_at.to_date
+      xml.lastmod legislator.updated_at.to_date
       xml.changefreq "daily"
       xml.priority 0.9
     end
 
     xml.url do
       xml.loc questions_legislator_url(legislator)
-      xml.lastmod question.updated_at.to_date
+      xml.lastmod legislator.updated_at.to_date
       xml.changefreq "daily"
       xml.priority 0.9
     end
 
     xml.url do
       xml.loc videos_legislator_url(legislator)
-      xml.lastmod question.updated_at.to_date
+      xml.lastmod legislator.updated_at.to_date
       xml.changefreq "daily"
       xml.priority 0.9
     end
