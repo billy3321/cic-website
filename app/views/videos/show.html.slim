@@ -6,7 +6,7 @@ aside class="pinfo-inner-aside"
 section class="single-page-inner"
   header
     h3 = @video.title
-  .vidoe-inner-show
+  .video-inner-show
     iframe src="https://www.youtube.com/embed/#{@video.youtube_id}" frameborder="0" class="video-play" allowfullscreen="1"
   - @video.legislators.each do |l|
     = render partial: 'shared/legislator_short_info', locals: { l: l }
