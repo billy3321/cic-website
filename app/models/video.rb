@@ -71,7 +71,7 @@ class Video < ActiveRecord::Base
     end
     ivod_uri = URI.parse(self.ivod_url)
     html = Nokogiri::HTML(open(self.ivod_url))
-    info_section = html.css('div.movie_box div.text')[0]
+    info_section = html.css('div.legislator-video div.video-text')[0]
     unless info_section
       # the ivod url is error
       self.ivod_url = nil
@@ -79,16 +79,16 @@ class Video < ActiveRecord::Base
       return false
     end
     self.ivod_url.sub!(/300K$/, '1M')
-    committee_name = info_section.css('h4').text.sub('會議別 ：', '').strip
-    meeting_description = info_section.css('p.brief_text').text.sub('會  議  簡  介：', '').strip
+    committee_name = info_section.css('h4').text.sub('主辦單位 ：', '').strip
+    meeting_description = info_section.css('p.brief_text').text.sub('會議簡介：', '').strip
     self.committee_id = Committee.where(name: committee_name).first.try(:id)
     self.meeting_description = meeting_description
-    if ivod_uri.path.split('/')[2] == 'Full'
-      date = info_section.css('p')[1].text.sub('會  議  時  間：', '').split(' ')[0].strip
+    if ivod_uri.path.split('/')[2].downcase == 'full'
+      date = info_section.css('p')[2].text.sub('會議時間：', '').split(' ')[0].strip
       self.date = date
-    elsif ivod_uri.path.split('/')[2] == 'VOD'
-      legislator_name = info_section.css('p')[1].text.sub('委  員  名  稱：', '').strip
-      date = info_section.css('p')[4].text.sub('會  議  時  間：', '').split(' ')[0].strip
+    elsif ivod_uri.path.split('/')[2].downcase == 'vod'
+      legislator_name = info_section.css('p')[2].text.sub('委員名稱：', '').strip
+      date = info_section.css('p')[5].text.sub('會議時間：', '').split(' ')[0].strip
       legislator = Legislator.where(name: legislator_name).first
       self.date = date
       if legislator
