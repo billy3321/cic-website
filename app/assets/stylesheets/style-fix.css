@@ -557,7 +557,7 @@ float:none;}
 	.big-video-show{
 		width:97.5%;
 		padding:3% 0 0 0;}	
-	#video-list{
+	#video-list,#info-show-list #video-list{
 	width:88.5%;
 	margin-right:3%;}
 	.side-sblock#news-list,.side-sblock#say-list{
