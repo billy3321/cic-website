@@ -26,7 +26,7 @@ module ApplicationHelper
         description: ' ',
         type: 'website',
         image: '/images/FB-img-default.gif',
-        url: 'http://cic.tw',
+        url: 'https://cic.tw',
         site_name: '國會調查兵團' }
     }
   end
