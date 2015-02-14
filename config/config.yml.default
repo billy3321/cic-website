@@ -14,6 +14,22 @@ defaults: &defaults
     public_key: ""
     private_key: ""
 
+  url:
+    host: ""
+    protocol: ""
+
+  email:
+    sender: ""
+    contact: ""
+
+  smtp_settings:
+    port: ""
+    address: ""
+    domain: ""
+    user_name: ""
+    password: ""
+    authentication: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"
