@@ -11,7 +11,7 @@ section class="single-page-inner"
   ul id="sinner-src-list"
     li 
       | 新聞連結：
-      = link_to @entry.source_name, @entry.source_url
+      = link_to @entry.source_name, @entry.source_url, target: "_blank"
     li 
       | 新聞日期：
       = @entry.date.strftime('%Y年%m月%d日')

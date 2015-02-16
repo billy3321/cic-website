@@ -29,6 +29,10 @@ ul class="form-list"
       p class="input-data" 已認證
     - else
       p class="input-data" 未認證
+  - unless u.confirmed?
+    li
+      p 手動認證
+      p class="input-data" = link_to '手動認證', confirm_user_path(u), data: { confirm: '確定要認證這位使用者嗎？' }
   li
     p 帳號狀態
     - if u.access_locked?

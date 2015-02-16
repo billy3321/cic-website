@@ -437,6 +437,9 @@ padding:15px;}
 	padding:0 9%;}
 #txt-info h3{
 	color:#5DAA32;}
+#video-show-list.all-list .small-video-show .inner-content{
+	width:50%;
+}
 @media only screen and (max-width: 1152px){
 
 	#secn01 li a{
@@ -465,7 +468,9 @@ height:210px;}
 float:left;
 clear:none;}
 
-
+#video-show-list.all-list .small-video-show .inner-content{
+	display:none;
+}
 	}
 @media only screen and (max-width: 960px){
 
@@ -528,15 +533,14 @@ float:none;}
 	.party-tag{
 		width:30px;
 		height:24px;}
-	.pinfo-mlist{
-	width:auto;
-	width:93%;
-	
+	#people-single-top .pinfo-mlist{
+	width:93.1%;
+		margin-left:6%;
 	}
-	
-	.pinfo-mlist .people-info-block{
-		
-		}
+	.pinfo-mlist{
+	width:88%;
+		margin-left:6.15%;
+	}
 	.pinfo-mlist .people-img{
 		border:none;}
 	.pinfo .selector-info{
@@ -557,9 +561,12 @@ float:none;}
 	.big-video-show{
 		width:97.5%;
 		padding:3% 0 0 0;}	
-	#video-list,#info-show-list #video-list{
-	width:88.5%;
+	#info-show-list #video-list{
+	width:94%;
 	margin-right:3%;}
+	#video-list{
+		width:86.5%;
+	margin-right:7%;}
 	.side-sblock#news-list,.side-sblock#say-list{
 	width:44%;
 	margin:3%;}
@@ -673,6 +680,9 @@ font-size:24px;}
 			padding:4px 10px;
 			
 	}
+	#video-show-list.all-list .small-video-show .inner-content{
+	display:block;
+}
 }
 
 
@@ -713,8 +723,6 @@ padding-top:55%;}
 width:100%;
 padding-top:15px;}
 
-
-
 #video-show-list.all-list .small-video-show .img_url_l{
 padding-top:25.5%;
 }
@@ -743,7 +751,8 @@ margin:0 10px 0 0;
 	display:none;}
 	.pinfo .info-number{
 	width:76%;}
-
+#video-show-list.all-list .small-video-show .inner-content{
+	display:none;}
 }
 @media only screen and (max-width: 640px){
 #logo{

@@ -11,7 +11,7 @@ section class="single-page-inner"
   ul id="sinner-src-list"
     li 
       | ivod出處：
-      = link_to @question.ivod_url, @question.ivod_url
+      = link_to @question.ivod_url, @question.ivod_url, target: "_blank"
     li 
       | 會議時間：
       = @question.date.strftime('%Y年%m月%d日')

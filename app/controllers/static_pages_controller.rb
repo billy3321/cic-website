@@ -64,6 +64,9 @@ class StaticPagesController < ApplicationController
   def tutorial
   end
 
+  def opensource
+  end
+
   def sitemap
     @legislators = Legislator.all
     @entries = Entry.all

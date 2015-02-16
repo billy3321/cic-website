@@ -16,6 +16,14 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # GET /admin/users/1/confirm
+  def confirm
+    unless @user.confirmed?
+      @user.confirm!
+      redirect_to users_url, notice: '會員成功認證'
+    end
+  end
+
   # PATCH/PUT /admin/users/1
   def update
     if @user.update(user_params)

@@ -2,13 +2,14 @@ Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
   root 'static_pages#home'
-  match '/recent',    to: 'static_pages#recent',    via: 'get'
-  match '/report',    to: 'static_pages#report',    via: 'get'
-  match '/about',     to: 'static_pages#about',     via: 'get'
-  match '/faq',       to: 'static_pages#faq',       via: 'get'
-  match '/service',   to: 'static_pages#service',   via: 'get'
-  match '/privacy',   to: 'static_pages#privacy',   via: 'get'
-  match '/tutorial',  to: 'static_pages#tutorial',  via: 'get'
+  match '/recent',      to: 'static_pages#recent',     via: 'get'
+  match '/report',      to: 'static_pages#report',     via: 'get'
+  match '/about',       to: 'static_pages#about',      via: 'get'
+  match '/faq',         to: 'static_pages#faq',        via: 'get'
+  match '/service',     to: 'static_pages#service',    via: 'get'
+  match '/privacy',     to: 'static_pages#privacy',    via: 'get'
+  match '/tutorial',    to: 'static_pages#tutorial',   via: 'get'
+  match '/opensource',  to: 'static_pages#opensource', via: 'get'
   match "/sitemap.xml", to: 'static_pages#sitemap', format: 'xml', via: 'get'
 
   devise_for :users, controllers: {
@@ -33,7 +34,11 @@ Rails.application.routes.draw do
   resources :questions
   resources :videos
   scope '/admin' do
-    resources :users, except: [:show, :new, :create]
+    resources :users, except: [:show, :new, :create] do
+      member do
+        get 'confirm'
+      end
+    end
     resources :parties
     root 'admins#index',             via: 'get', as: 'admin'
     match 'entries',          to: 'admins#entries',          via: 'get', as: 'admin_entries'
