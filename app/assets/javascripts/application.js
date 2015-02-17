@@ -211,6 +211,7 @@ var ready = function(){
   if(show_more_snippet_height < 34){
     $('.show-more').hide();
   } else {
+    $('.show-more-snippet').css({height:'34px'});
     $('.show-more').click(function() {
       if($('.show-more-snippet').css('height') != '34px'){
         $('.show-more-snippet').stop().animate({height: '34px'}, 200);
