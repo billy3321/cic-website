@@ -140,7 +140,7 @@ class LegislatorsController < ApplicationController
         type: 'profile',
         description: "你知道#{@legislator.name}在國會的表現嗎？這裡是#{@legislator.name}的調查報告。",
         title: "#{@legislator.name}調查報告",
-        image: "/images/legislators/160x214/#{@legislator.image}"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}"
       }
     })
 
@@ -191,7 +191,7 @@ class LegislatorsController < ApplicationController
         type: 'article',
         description: @main_entry.try(:title),
         title: "#{@legislator.name}新聞調查報告",
-        image: "/images/legislators/160x214/#{@legislator.image}"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}"
       }
     })
     respond_to do |format|
@@ -233,7 +233,7 @@ class LegislatorsController < ApplicationController
         type: 'article',
         description: @main_question.try(:title),
         title: "#{@legislator.name}質詢調查報告",
-        image: "/images/legislators/160x214/#{@legislator.image}"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}"
       }
     })
     respond_to do |format|
@@ -282,7 +282,7 @@ class LegislatorsController < ApplicationController
         type: 'video.tv_show',
         description: @main_video.try(:title),
         title: "#{@legislator.name}影片調查報告",
-        image: "/images/legislators/160x214/#{@legislator.image}"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}"
       }
     })
     respond_to do |format|
