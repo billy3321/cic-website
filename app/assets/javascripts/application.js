@@ -217,6 +217,10 @@ var ready = function(){
         $('.show-more-snippet').stop().animate({height: '34px'}, 200);
         $(this).text('更多...');
       }else{
+        // re-calculate it
+        $('.show-more-snippet').css({height:'100%'});
+        var show_more_snippet_height = $('.show-more-snippet').height();
+        $('.show-more-snippet').css({height:'34px'});
         $('.show-more-snippet').stop().animate({height: show_more_snippet_height}, 400);
         $(this).text('收合...');
       }
