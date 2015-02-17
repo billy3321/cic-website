@@ -440,6 +440,10 @@ padding:15px;}
 #video-show-list.all-list .small-video-show .inner-content{
 	width:50%;
 }
+.show-more-snippet {
+    height:34px;  /*this is set to the height of the how much text you want to show based on the font size, line height, etc*/
+    overflow:hidden;
+}
 @media only screen and (max-width: 1152px){
 
 	#secn01 li a{

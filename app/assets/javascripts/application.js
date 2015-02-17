@@ -206,6 +206,22 @@ var ready = function(){
     $(this).next(".text").slideToggle("slow");
   });
 
+  $('.show-more-snippet').css({height:'100%'});
+  var show_more_snippet_height = $('.show-more-snippet').height();
+  if(show_more_snippet_height < 34){
+    $('.show-more').hide();
+  } else {
+    $('.show-more').click(function() {
+      if($('.show-more-snippet').css('height') != '34px'){
+        $('.show-more-snippet').stop().animate({height: '34px'}, 200);
+        $(this).text('更多...');
+      }else{
+        $('.show-more-snippet').stop().animate({height: show_more_snippet_height}, 400);
+        $(this).text('收合...');
+      }
+    });
+  }
+
   CKEDITOR.on( 'dialogDefinition', function( ev ){
     // Take the dialog name and its definition from the event
     // data.

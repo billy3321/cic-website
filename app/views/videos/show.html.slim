@@ -46,7 +46,8 @@ section class="single-page-inner"
       li 
         | 會議簡介：
         br
-        = @video.meeting_description
+        div class="show-more-snippet" = @video.meeting_description
+        a class="show-more" 更多...
       li 
         | 質詢對象：
         = @video.target
