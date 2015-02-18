@@ -31,9 +31,10 @@ section class="single-page-inner"
       br
       div class="show-more-snippet" = @question.meeting_description
       a class="show-more" 更多...
-    li 
-      | 質詢對象：
-      = @question.target
+    - unless @question.target.blank?
+      li 
+        | 質詢對象：
+        = @question.target
   .inner-content-txt
     = @question.content.try(:html_safe)
 

@@ -30,6 +30,9 @@ defaults: &defaults
     password: ""
     authentication: ""
 
+  google_analytics:
+    id: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"
