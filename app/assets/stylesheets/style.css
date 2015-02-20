@@ -761,7 +761,42 @@ background:url(../images/top-h6.png) no-repeat left top;
 position:absolute;
 right:7.2%;
 top:35px;}
-	
+
+
+.index-b-title{
+	font-size:2.3em;
+	padding-left:2.5%;}
+#index-banner{
+	height:590px;
+	background:url(../images/banners/index-banner-01.jpg) center top no-repeat;
+	position:relative;}
+#active-btn{
+	position:absolute;
+	right:50%;
+	top:295px;
+	width:200px;
+	margin-right:-240px;}
+#active-btn a{
+	display:block;
+	background:#e5004f;
+	color:#fff;
+	font-weight:bold;
+	font-size:26px;
+	border-radius:5px;
+	margin:0 0 15px 0;
+	text-align:center;
+	padding:10px 0;}
+@media only screen and (max-width: 960px){
+	#index-banner{
+	height:500px;
+	background:url(../images/banners/index-banner-02.jpg) center top no-repeat;
+	}
+#active-btn{
+	top:250px;
+	width:180px;
+	margin-right:-210px;}
+#active-btn a{
+	font-size:22px;}}
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
@@ -884,7 +919,17 @@ padding:0 0 0 14%;}
 	
 /*無資料列表*/
 .big-news-show .blank,.big-video-show .blank{
-	min-height:50px;}	
+	min-height:50px;}
+#index-banner{
+	height:400px;
+	background:url(../images/banners/index-banner-03.jpg) center top no-repeat;
+	}
+#active-btn{
+	top:195px;
+	width:143px;
+	margin-right:-165px;}
+#active-btn a{
+	font-size:18px;}	
 }
 
 
@@ -1014,6 +1059,16 @@ width:25%;
 padding-top:19.5%;}
 .all-list#video-show-list .small-video-show h3,.all-list#video-show-list .small-video-show .inner-content{
 	width:72.5%;}
+.big-news-show .blank,.big-video-show .blank{
+	min-height:50px;}
+#index-banner{
+	height:450px;
+	background:url(../images/banners/index-banner-04.jpg) center top no-repeat;
+	}
+#active-btn{
+	top:205px;
+	width:143px;
+	margin-right:-120px;}	
 }	
 
 

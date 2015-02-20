@@ -1,4 +1,10 @@
+#index-banner
+  #active-btn
+    = link_to "回報立委紀錄", report_path
+    = link_to "馬上找立委", legislators_path
+
 #index-video-block
+  h3 class="index-b-title" 最新影片回報
   section id="index-main-video" class=" video-a"
     - if @main_video
       = link_to image_tag(@main_video.image, {alt: @main_video.title}), video_path(@main_video), class: "img_url_l"
