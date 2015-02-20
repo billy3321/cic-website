@@ -768,7 +768,7 @@ top:35px;}
 	padding-left:2.5%;}
 #index-banner{
 	height:590px;
-	background:url(../images/index-banner-01.jpg) center top no-repeat;
+	background:url(../images/banners/index-banner-01.jpg) center top no-repeat;
 	position:relative;}
 #active-btn{
 	position:absolute;
@@ -789,7 +789,7 @@ top:35px;}
 @media only screen and (max-width: 960px){
 	#index-banner{
 	height:500px;
-	background:url(../images/index-banner-02.jpg) center top no-repeat;
+	background:url(../images/banners/index-banner-02.jpg) center top no-repeat;
 	}
 #active-btn{
 	top:250px;
@@ -922,7 +922,7 @@ padding:0 0 0 14%;}
 	min-height:50px;}
 #index-banner{
 	height:400px;
-	background:url(../images/index-banner-03.jpg) center top no-repeat;
+	background:url(../images/banners/index-banner-03.jpg) center top no-repeat;
 	}
 #active-btn{
 	top:195px;
@@ -1063,7 +1063,7 @@ padding-top:19.5%;}
 	min-height:50px;}
 #index-banner{
 	height:450px;
-	background:url(../images/index-banner-04.jpg) center top no-repeat;
+	background:url(../images/banners/index-banner-04.jpg) center top no-repeat;
 	}
 #active-btn{
 	top:205px;
