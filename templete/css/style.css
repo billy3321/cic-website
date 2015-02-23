@@ -31,7 +31,8 @@ h1,h2,h3,h4,h5,h6,p,ul,ol{
 	background:#000;
 }
 #main-wrap{
-	overflow:hidden;}
+	overflow:hidden;
+	}
 #logo{
 	width:212px;
 	height:76px;
@@ -728,7 +729,9 @@ padding-top:34.5%;}
 	cursor:pointer;}
 .keyin{
 	width:60%;}
-
+.keyin2{
+	width:170px;
+	font-size:18px;}
 /*提示訊息樣式*/
 .alert{
 	font-size:13px;
@@ -786,6 +789,66 @@ top:35px;}
 	margin:0 0 15px 0;
 	text-align:center;
 	padding:10px 0;}
+.srblock#search01{
+	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 21% center no-repeat;
+	height:360px;
+	padding:10px 6% 10px 47%;
+	}
+.srblock{padding:40px 7%;
+overflow:hidden;}
+.srblock#search01 h2{
+	font-size:46px;
+	margin-top:100px;}
+.srblock h2{
+	color:#544908;
+	font-size:36px;
+	}
+.srblock label{
+	display:block;
+	margin-bottom:-15px;}
+.srblock select,.srblock input{
+	font-size:20px;}
+.srblock .srbtn{
+	cursor:pointer;
+	padding:10px 25px;
+	background:#e5004f;
+	font-weight:bold;
+	color:#fff;
+	border:none;
+	border-radius:7px;
+	vertical-align:bottom;
+	font-size:24px;}
+#search02{
+	float:left;
+	margin-left:11%;}
+#search03{
+	float:right;
+	margin-right:11%;}
+#search03 a{
+	display:block;
+	background:#a0a0a0;
+	font-size:24px;
+	color:#fff;
+	padding:10px 25px;
+	float:left;
+	border-radius:7px;
+	margin:0 15px 0 0;}
+.skeyin{
+	width:160px;}
+@media only screen and (max-width: 1152px){
+	.srblock#search01{
+	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
+	height:360px;
+	padding:10px 6% 10px 49%;
+	}
+.srblock#search01 h2{
+	margin-top:50px;}
+#search02{
+	margin-left:6%;}
+#search03{
+	margin-right:6%;}
+	
+	}
 @media only screen and (max-width: 960px){
 	#index-banner{
 	height:500px;
@@ -796,7 +859,39 @@ top:35px;}
 	width:180px;
 	margin-right:-210px;}
 #active-btn a{
-	font-size:22px;}}
+	font-size:22px;}
+.srblock#search01{
+	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 4% center no-repeat;
+	-moz-background-size:40%;
+-webkit-background-size:40%;
+-o-background-size:40%;
+background-size:40%;
+	height:360px;
+	padding:0 2% 0 47%;
+	}
+.srblock label{
+	display:none;}
+#search01 .srbtn{
+	margin-top:10px;
+	}
+#search02{
+	margin-left:0%;
+	float:none;
+	height:auto;
+	margin-bottom:50px;}
+#search02 h2{
+	float:left;
+	margin:0 15px 0 0;}
+#search02 input{
+	vertical-align:middle;}
+#search03{
+	margin-right:0%;
+	float:none;
+	clear:both;}
+#search03 h2{
+	float:left;
+	margin:0 15px 0 0;}
+	}
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
@@ -930,6 +1025,12 @@ padding:0 0 0 14%;}
 	margin-right:-165px;}
 #active-btn a{
 	font-size:18px;}	
+
+#search02 h2,#search03 h2{
+	float:none;
+	}
+#legislators-list-link a{
+	margin-bottom:10px;}
 }
 
 
@@ -1069,6 +1170,13 @@ padding-top:19.5%;}
 	top:205px;
 	width:143px;
 	margin-right:-120px;}	
+.srblock#search01{
+	height:auto;
+	background:#e9e0ad;
+	padding:10px 5% 40px 5%;}
+.srblock#search01 h2{
+	margin-top:10px;}
+
 }	
 
 
