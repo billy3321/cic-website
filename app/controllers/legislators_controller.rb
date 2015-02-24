@@ -223,7 +223,7 @@ class LegislatorsController < ApplicationController
     end
     questions = @questions.clone.to_a
     @main_question = questions.shift
-    @sub_questions = @questions
+    @sub_questions = questions
 
     set_meta_tags({
       title: "#{@legislator.name}質詢列表",

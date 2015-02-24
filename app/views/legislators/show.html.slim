@@ -13,7 +13,7 @@
         = display_shorter(@main_video.content, 75)
       = link_to "更多影片", videos_legislator_path(@legislator), class: "more mr"
     - else
-      .blank 目前尚無資料
+      = link_to report_path, "立刻回報！"
 
 #info-show-list
   #video-list
@@ -29,7 +29,7 @@
             = display_shorter(v.content, 65)
     - else
       section class="small-video-show"
-        .blank 目前尚無資料
+        = link_to report_path, "立刻回報！"
 
   #news-list.side-sblock
     h3 【新聞紀錄】
@@ -39,7 +39,7 @@
         - @legislator.entries.each do |e|
           li = link_to e.title, entry_path(e)
     - else
-      .blank 目前尚無資料
+      = link_to report_path, "立刻回報！"
 
   #say-list.side-sblock
     h3 【質詢紀錄】
@@ -49,5 +49,5 @@
         - @legislator.questions.each do |q|
           li = link_to q.title, question_path(q)
     - else
-      .blank 目前尚無資料
+      = link_to report_path, "立刻回報！"
     
