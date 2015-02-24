@@ -18,6 +18,7 @@
 
 dump.rdb
 .DS_Store
+Gemfile.lock
 config/database.yml
 config/config.yml
 public/uploads/
