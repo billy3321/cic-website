@@ -50,6 +50,7 @@ gem 'unicode-display_width'
 gem 'jquery-timepicker-rails'
 gem 'magnific-popup-rails'
 gem 'rails-i18n', '~> 4.0.0'
+gem 'social-share-button'
 
 
 group :development, :test do

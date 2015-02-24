@@ -19,6 +19,7 @@
 //= require magnific-popup
 //= require jquery.timepicker.js
 //= require ckeditor/init
+//= require social-share-button
 
 
 var ready = function(){

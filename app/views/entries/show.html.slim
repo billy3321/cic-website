@@ -6,6 +6,7 @@ aside class="pinfo-inner-aside"
 section class="single-page-inner"
   header
     h3 = @entry.title
+  = social_share_button_tag(@entry.title)
   - @entry.legislators.each do |l|
     = render partial: 'shared/legislator_short_info', locals: { l: l }
   ul id="sinner-src-list"
