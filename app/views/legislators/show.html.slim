@@ -14,7 +14,7 @@
       = link_to "更多影片", videos_legislator_path(@legislator), class: "more mr"
     - else
       .blank 
-        | 目前尚無資料
+        | 目前尚無資料，
         = link_to "立刻回報！", report_path
 
 #info-show-list
@@ -32,7 +32,7 @@
     - else
       section class="small-video-show"
         .blank 
-          | 目前尚無資料
+          | 目前尚無資料，
           = link_to "立刻回報！", report_path
 
   #news-list.side-sblock
@@ -44,7 +44,7 @@
           li = link_to e.title, entry_path(e)
     - else
       .blank 
-        | 目前尚無資料
+        | 目前尚無資料，
         = link_to "立刻回報！", report_path
 
   #say-list.side-sblock
@@ -56,6 +56,6 @@
           li = link_to q.title, question_path(q)
     - else
       .blank 
-        | 目前尚無資料
+        | 目前尚無資料，
         = link_to "立刻回報！", report_path
     

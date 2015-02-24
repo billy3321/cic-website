@@ -12,7 +12,7 @@
         = display_shorter(@main_question.content, 75)
     - else
       .blank 
-        | 目前尚無資料
+        | 目前尚無資料，
         = link_to "立刻回報！", report_path
   - if @sub_questions
     - @sub_questions.each do |e|
