@@ -11,7 +11,9 @@
       .inner-content
         = display_shorter(@main_entry.content, 75)
     - else
-      .blank 目前尚無資料
+      .blank 
+        | 目前尚無資料
+        = link_to "立刻回報！", report_path
 
   - if @sub_entries
     - @sub_entries.each do |e|

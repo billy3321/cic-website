@@ -66,6 +66,7 @@ section class="single-page-inner"
       ul class="edit-btn"
         li = link_to '修改編輯', edit_video_path(@video)
         li = link_to '刪除', video_path(@video), method: :delete, data: { confirm: '確認要刪除嗎？' }
+  #disqus_thread
   aside id="aside-info"
     #accordion
       - @video.legislators.each do |l|
