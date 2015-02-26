@@ -17,8 +17,11 @@ section class="single-page-inner"
       | 新聞日期：
       = @entry.date.strftime('%Y年%m月%d日')
   .inner-content-txt
-    .video-inner-txt
-      = @entry.content.html_safe
+    .read-txt
+      |  如欲閱讀新聞內容，請見
+      = link_to "新聞原文>>", @entry.source_url, target: "_blank"
+    / .video-inner-txt
+    /   = @entry.content.html_safe
 
   .writer
     span 資料回報者
