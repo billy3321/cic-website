@@ -29,30 +29,24 @@
         </div>
         <div id="main-wrap">
         <div id="search-bar">
-          <input type="radio" name="radio" id="radio" value="radio">
-          <label for="radio">依區域(含不分區)</label>
-          <select name="select" id="select">
-          <option>請選擇</option>
-          <option>全國不分區</option>
-          <option>平地原住民</option>
-          <option>山地原住民</option> 
-            <option>台北市</option>
-            <option>新北市</option>
-            <option>高雄市</option>
-          </select>
-          <select name="select" id="select">
-          <option>請選擇</option>
-          <option>新莊區</option>
-          <option>淡水區</option>
-          <option>泰山區</option> 
-            <option>三重區</option>
-            <option>石門區</option>
-            <option>三芝區</option>
-          </select>
-          <input type="radio" name="radio" id="radioˇ" value="radio">
-          <label for="radio3">依姓名搜</label>
-          <input name="textfield" type="text" class="keyin2" id="textfield" value="請輸入立委姓名">
+        <div id="county-fliter">
+                  <select name="select" id="select">
+                  <option>第9屆</option>
+                  <option>第8屆</option>
+                  </select>
+                  <select name="select" id="select2">
+                  <option>選擇縣市或其他</option>
+                  <option>不分區</option>
+                  <option>平地原住民</option>
+                  <option>山地原住民</option>
+                  <option>台北市</option>
+                  <option>新北市</option>
+                  </select>
+                </div>
+                <div id="name-search">
+          <input name="textfield" type="text" class="keyin" id="textfield" value="請輸入立委姓名">
         <input type="submit" name="submit" id="submit" value="搜尋" class="submit-btn">
+        </div>
         </div>
         	<nav id="sec-nav">
             	<ul id="secn01">
@@ -69,6 +63,7 @@
                 <li><a href="#">無黨團結聯盟</a></li>
                 <li><a href="#">無黨籍</a></li>
                 </ul>
+                
             </nav>
             <div id="people-all-list">
             	<section class="people-info-block"> <a href="people-single.html" class="people-img"><img src="images/people.jpg" alt="立委姓名" title="鄭天財Sra.Kacaw(立委姓名)"><em class="party-kmt party-tag">中國國民黨</em></a>

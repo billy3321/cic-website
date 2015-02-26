@@ -14,3 +14,15 @@
 	background:url(../party/pfp.gif);}
 .party-null{
 	background:url(../party/null.gif);}
+	
+.slegislator .party-kmt{
+	background:url(../party/kmt2.png);}
+.slegislator .party-null{
+	background:url(../party/null2.png);}
+.slegislator .party-pfp{
+	background:url(../party/pfp2.png);}
+.slegislator .party-nsu{
+	background:url(../party/nsu2.png);}
+.slegislator  .party-dpp{
+	background:url(../party/dpp2.png);
+	}

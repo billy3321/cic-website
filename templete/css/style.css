@@ -4,50 +4,53 @@
 body,h1,h2,h3,h4,h5,h6,p,ul,ol{
 	margin:0px;
 	padding:0px;}
+
 ul,ol{
 	list-style:none;}
 body{
 	font-size:16px;
-	font-family:Verdana, Geneva, sans-serif;}
+	font-family:Verdana, Geneva, sans-serif;
+	background:#eaeaea;}
 img{
 	border:none;}
 a{
-	color:#058e97;}
+	color:#5DAA32;}
 h1,h2,h3,h4,h5,h6,p,ul,ol{
 	font-size:1em;
 	}
+h2{
+	font-size:1.5em;
+	margin-bottom:4px;}
 #outer{
 	overflow:hidden;}
 #all-wrap{
-	max-width:960px; /*桌機板寬度*/ 
-	//max-width:640px;
 	width:100%;
 	margin:auto;
+	max-width:1920px; /*桌機板寬度*/ 
+	background:#fff;
+	position:relative;
 	}
 #top{
 	border-bottom:1px solid #d4d4d4;	overflow:hidden;
-	padding:0 1000px;
-	margin:0 -1000px 15px -1000px;
-	background:#000;
+	padding:0 6%;
+	margin:0px;
+	background:url(../images/top-bg.jpg) -275px top no-repeat #000;
 }
 #main-wrap{
 	overflow:hidden;
 	}
 #logo{
 	width:212px;
-	height:76px;
 	overflow:hidden;
-	background:url(../images/logo-fix.png) no-repeat;
 	margin:0px 0 0px 16px;
-	float:left;}
+	float:left;
+	background:url(../images/logo-fix.png) no-repeat left center;
+height:60px;}
 #logo a{
 	display:block;
 	padding:100px 0 0 0;}
 #first-nav li{
 	float:left;
-	border-right:1px solid #3c3c3c;
-	border-left:1px solid #3c3c3c;
-	border-bottom:1px solid #3c3c3c;
 	margin:0 0 0 -1px ;}
 #first-nav li:hover{
 	background:#3c3c3c;}
@@ -59,42 +62,52 @@ h1,h2,h3,h4,h5,h6,p,ul,ol{
 	font-weight:bold;
 	display:block;
 			padding:4px 17px;
-			color:#e60012;
+			color:#fff;
 			
 	}
+#first-nav li a:hover{
+color:#E60012;
+}
 #index-video-block{
 	overflow:hidden;
-	width:80%;
-	float:left;}
+	background:#f3f3f3;
+	margin-bottom:15px;
+	padding:15px 5% 20px 5%;
+	
+	}
 #people-rank{
-	width:20%;
-	float:left;
+	width:87%;
+	padding:0 7%;
 	}
 .video-a{
 	border:1px solid #d4d4d4;
 	padding:1.2%;
 	float:left;
-	margin:0 0 1.5% 1.5%;}	
+	margin:0 0 -15px 1.5%;
+	}	
 .video-a p{
 	font-size:13px;}
 #index-main-video{
-	max-width:485px;
-	width:65%;}
+	width:65%;
+	border:none;
+	}
 #index-main-video img{
 	width:100%;}
 .index-sub-video{
-	max-width:202px;
-	width:26%;}
+	width:26%;
+	border:none;
+	}
 .index-sub-video img{
 	width:100%;}
 .img_url_l{
 	position:relative;
 	height:0px;
-	padding-top:80%;
+	padding-top:55%;
 	overflow:hidden;
 	display:block;
 	background:#000;
-	
+	margin-bottom:10px;
+	box-shadow:#9E9E9E 2px 2px 6px;
 }
 .img_url_l img{
 	position:absolute;
@@ -107,15 +120,28 @@ a.img_url_l div.blank{
 	top:0px;
 	color:#fff;}
 #people-rank h3{
-	font-size:18px;}
+	font-size:2.3em;
+	letter-spacing:2px;
+	float:left;
+	margin:0px;}
 #people-rank p{
-	font-size:12px;
 	color:#787878;
-	margin:0 0 10px 0;}
+	font-size:1.2em;
+	float:left;
+	padding:20px 0 0 10px;
+	margin:0px;}
+#people-rank-list{
+	clear:both;
+	padding:20px 0;
+	overflow:hidden;}
 #people-rank-list li{
 	overflow:hidden;
-	margin:0 0 5px 0;
-		min-height:30px;
+		min-height:30px;	
+		width:16.6%;
+	float:left;
+	margin:0 0 3px 0;
+			border-bottom:1px solid #d4d4d4;
+			padding:8px 0;
 	}
 #people-rank-list div{
 	width:24px;
@@ -129,25 +155,30 @@ a.img_url_l div.blank{
 	}
 #people-rank-list li span{
 	display:block;
-	float:right;
 	font-size:12px;
-		width:46%;
-	margin:5px 0 0 1.5%;
+		overflow:hidden;
+		padding:0 0 0 20%;
+		overflow:hidden;
+		color:#b0b0b0;
 	}
+#people-rank-list li span a{
+	color:#b0b0b0;}
 #people-rank-list li em{
 	display:block;
-	float:left;
-		width:33%;
 	margin:0 1.5% 0 0;
 	font-style:normal;
-		padding:0 0 0 18%;}
+		overflow:hidden;
+		padding:0 0 0 20%;
+		}
 #people-rank-list li span a{
 	text-decoration:none;}
 #people-rank-list li em a{
 	font-weight:bold;}
 #sec-nav{
 	overflow:hidden;
-	font-size:13px;}
+	position:relative;
+	font-size:15px;
+padding:30px 7% 15px 7%;}
 #sec-nav li{
 	float:left;}
 #sec-nav li a{
@@ -155,35 +186,45 @@ a.img_url_l div.blank{
 	display:block;}
 #secn01{
 	overflow:hidden;
-	width:206px;
 	margin:0 auto 12px auto;
-	border-left:1px solid #d4d4d4;
+float:left;
 	}
 #secn01 li{
 	border:1px solid #d4d4d4;
 	margin:0 0 0 -1px;}
+#secn01 li:nth-child(1){
+border-top-left-radius:5px;
+border-bottom-left-radius:5px;
+margin-left:0px;}
 #secn01 .current{
 	background:#d4d4d4;
 	font-weight:bold;}
 #secn01 a{
-	padding:4px 7px;
+	height:30px;
+line-height:30px;
+padding:5px 15px;
 	}
+#secn01 li:nth-last-child(1){
+border-top-right-radius:5px;
+border-bottom-right-radius:5px;
+}
 #secn02{
 	overflow:hidden;
-	clear:both;
-	max-width:564px;
-	width:100%;
 	margin:0 auto 10px auto;
 	padding:0;
+float:right;
 	}
 #secn02 a{
-	padding:3px 10px;
-	margin:0 1px 3px 0;
-	border-bottom:5px solid #D4D4ff;
-	background:#efefff;
+	height:25px;
+line-height:25px;
+padding:3px 12px 7px 12px;
+margin:0 4px 0 0;
+border-bottom:5px solid #D4D4D4;
+color:#D4D4D4;
 	}
 #secn02 .current{
-	border-bottom:5px solid #058E97;
+	border-bottom:5px solid #5DAA32;
+color:#5DAA32;
 	}
 #people-all-list{
 	max-width:805px;
@@ -275,9 +316,9 @@ margin:0 2% 0 0;}
 	position:relative;
 	}
 .big-video-show .img_url_l{
-	width:56%;
+	width:55%;
 	float:left;
-	margin:0 2% 0 0;
+	margin:0 3% 0 0;
 	padding-top:43%;}
 .big-video-show h3,.big-video-show .time,.big-video-show .inner-content{
 	width:42%;
@@ -371,7 +412,8 @@ margin:0 2% 0 0;}
 	width:32%;
 	float:left;
 	padding-top:24.5%;
-	margin:0 1.5% 0 0;}
+	margin:0 3% 0 0;
+	}
 .small-video-show h3{
 	width:66%;
 	float:left;}
@@ -385,8 +427,12 @@ margin:0 2% 0 0;}
 	right:1%;
 	bottom:1%;}
 #video-show-list .big-video-show{
-	float:right;
-	margin:0 1% 1% 0;}
+	float:right;	
+	padding:40px 12% 0 4%;
+background:#F3F3F3;
+margin:20px -6% 20px 0;
+width:60%;
+	}
 #page{
 	clear:both;
 	float:right;
@@ -497,10 +543,21 @@ margin:0 2% 0 0;}
 		width:48%;
 	float:left;}
 #writer-say{
-	font-size:13px;
+	font-size:15px;
 	border:1px solid #d8d8d8;
 	padding:1.5%;
-	margin:1% 0 0 0;}
+	margin:1% 0 0 0;
+	line-height:1.8em;}
+#writer-say ul{
+	padding:0 30px;}
+#writer-say ul li{
+	list-style-type:disc;}
+#writer-say ol{
+	padding:0 30px;}
+#writer-say ol li{
+	list-style-type:decimal;}
+#writer-say ul,#writer-say ol,#writer-say p{
+	margin-bottom:1em;}
 .video-play{
 	width:100%;
 	position:absolute;
@@ -659,10 +716,10 @@ margin:0 2% 0 0;}
 	border-top:1px solid #d4d4d4;
 	font-size:12px;
 	text-align:center;
-	padding:22px 1000px;
-margin:10px -1000px 0px -1000px;
-background:#000;
+background:url(../images/footer.jpg) center center no-repeat #000;
 color:#fff;
+margin:0px;
+padding:1em 3em;
 }
 
 /*資料列表*/
@@ -692,7 +749,9 @@ padding-top:34.5%;}
 	margin:0 auto 20px auto;}
 /*修jQuary的css*/
 .ui-widget-content a{
-	color:#058e97;}
+	color:#5DAA32;
+	text-decoration:none;
+	display:block;}
 .ui-accordion .ui-accordion-header {
 	font-size:15px;}
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
@@ -722,7 +781,8 @@ padding-top:34.5%;}
 	background:#d4d4d4;
 	border-radius:5px;
 	padding:10px;
-	margin:0 0 5px 0;}
+	margin:0 0 5px 0;
+	overflow:hidden;}
 #search-bar select,.keyin,.submit-btn{
 	font-size:18px;}
 .submit-btn{
@@ -803,9 +863,6 @@ overflow:hidden;}
 	color:#544908;
 	font-size:36px;
 	}
-.srblock label{
-	display:block;
-	margin-bottom:-15px;}
 .srblock select,.srblock input{
 	font-size:20px;}
 .srblock .srbtn{
@@ -835,6 +892,91 @@ overflow:hidden;}
 	margin:0 15px 0 0;}
 .skeyin{
 	width:160px;}
+#name-search{
+	float:right;}
+#name-search .keyin{
+	width:300px;}
+#county-fliter{
+	float:left;}
+#county-fliter select{
+	font-size:18px;}
+.county-name{
+	text-align:center;
+	font-size:28px;}
+#search-legislator-list{
+	width:86%;
+	margin:30px auto;}
+.slegislator{
+	width:47%;
+	float:left;
+	position:relative;
+	margin:0 1.5% 3% 1.5%;
+	box-shadow:2px 2px 8px #aaa;
+	border-radius:5px;
+	overflow:hidden;
+	}
+.slegislator a{
+	display:block;
+	padding:20px 2% 40px 2%;
+	overflow:hidden;
+	text-decoration:none;
+	}
+.limg{
+	float:left;
+	margin:0 10px 0 0;
+	border:8px solid #ccc;
+	border-radius:80px;
+	overflow:hidden;
+	width:20%;
+	height:0px;
+	position:relative;
+	padding-top:20%;
+	}
+.limg img{
+	position:absolute;
+	width:75%;
+	height:auto;
+	display:block;
+	top:0px;
+	left:12.5%;
+	}
+.slegislator h3{
+	font-size:36px;
+	overflow:hidden;
+	float:left;
+	width:50%;
+	overflow:hidden;
+	position:relative;
+	}
+.ad,.constituency{
+	font-size:13px;
+	color:#aaa;
+	float:right;
+	width:21%;
+	text-align:right;
+	padding:3px 3% 0 0;
+		position:relative;
+	}
+
+.district{
+	font-size:15px;
+	color:#6f6f6f;
+	float:left;
+	width:73%;
+	padding:5px 0 0 1%;
+	height:6em;
+	position:relative;
+	}
+.slegislator .party{
+	position:absolute;
+	right:0px;
+	width:250px;
+	height:188px;
+	text-indent:-1000px;
+	overflow:hidden;
+	bottom:0px;
+	border-radius:5px;
+	}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -847,7 +989,20 @@ overflow:hidden;}
 	margin-left:6%;}
 #search03{
 	margin-right:6%;}
-	
+.slegislator{
+	width:auto;
+	float:none;
+	margin-bottom:35px;
+	}
+.limg{
+	width:10%;
+	padding-top:10%;
+	}
+.district{
+	width:83%;
+	height:3em;
+	}
+
 	}
 @media only screen and (max-width: 960px){
 	#index-banner{
@@ -869,8 +1024,6 @@ background-size:40%;
 	height:360px;
 	padding:0 2% 0 47%;
 	}
-.srblock label{
-	display:none;}
 #search01 .srbtn{
 	margin-top:10px;
 	}
@@ -891,6 +1044,7 @@ background-size:40%;
 #search03 h2{
 	float:left;
 	margin:0 15px 0 0;}
+
 	}
 @media only screen and (max-width: 800px){
 /*表頭*/
@@ -899,29 +1053,9 @@ padding:4px 6px;
 }
 /*首頁*/
 #index-video-block{
-	width:100%;
 	float:none;}
-#people-rank{
-	width:100%;
-	float:none;
-	}
-#people-rank h3{
-	float:left;
-	margin:0 1.5% 10px 1.5%;}
-#people-rank p{
-	margin:5px 0 0 0;
-	float:left;}
-#people-rank-list{
-clear:both;}
-#people-rank-list li{
-margin:0 0 8px 1.5%;
-	width:31%;
-	float:left;
-	border-bottom:1px solid #d4d4d4;
-}
-#people-rank-list li span{width:43%;}
-#people-rank-list li em{width:36%;
-padding:0 0 0 14%;}
+
+
 
 /*立委列表*/
 .selector-info div{
@@ -1031,7 +1165,20 @@ padding:0 0 0 14%;}
 	}
 #legislators-list-link a{
 	margin-bottom:10px;}
+.limg{
+	width:20%;
+	padding-top:20%;}
+.district{
+	width:73%;
+	height:auto;}
+#name-search{
+	float:none;
+	clear:both;
+	padding-top:15px;}
+#name-search .keyin{
+	width:80%;}
 }
+
 
 
 @media only screen and (max-width: 640px){
@@ -1062,10 +1209,9 @@ padding:0 0 0 14%;}
 	float:none;
 	}
 	.index-sub-video{
-	max-width:270px;
 	width:45%;}
 #people-rank-list li{
-margin:0 0 8px 1.5%;
+margin:0 0 8px 0;
 	width:48%;
 	float:left;
 }
@@ -1176,7 +1322,18 @@ padding-top:19.5%;}
 	padding:10px 5% 40px 5%;}
 .srblock#search01 h2{
 	margin-top:10px;}
-
+.slegislator{
+	min-height:180px;
+	}
+.limg{
+	display:none;}
+.slegislator h3{
+	width:70%;}
+.ad,.constituency,.district{
+	width:auto;}
+.slegislator a{
+	padding:20px;}
+	
 }	
 
 
@@ -1273,6 +1430,13 @@ float: none;
 .pinfo-inner-aside{
 	display:none;
 	margin:0px;}
+.slegislator h3{
+	float:none;
+	width:auto;}
+.ad,.constituency{
+	float:left;}
+#name-search .keyin{
+	width:70%;}
 }	
 
 @media only screen and (max-width: 360px){
