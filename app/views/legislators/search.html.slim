@@ -1,0 +1,29 @@
+#search-bar
+  = search_form_for @q, url: legislators_search_path do |f|
+    #county-fliter
+      = f.collection_select :ad_id_eq, Ad.all, :id, :name, include_blank: true, id: "select", selected: @ad_id_eq
+      | &nbsp;
+      = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: true, id: "select2", selected: @county_id_eq
+      | &nbsp;
+      = f.submit '搜尋', class: "submit-btn"
+    #name-search
+      = f.search_field :legislator_name_cont, class: "keyin"
+      | &nbsp;
+      = f.submit '搜尋', class: "submit-btn"
+
+h2.county-name = @title
+
+#search-legislator-list
+  - @elections.each do |e|
+    section.slegislator
+      = link_to legislator_path(e.legislator) do
+        .limg = image_tag("legislators/160x214/#{e.legislator.image}", alt: e.legislator.name, title: e.legislator.name)
+        h3 = e.legislator.name
+        p class="party party-#{e.party.abbr_name}" = e.party.name
+        - if e.legislator.in_office
+          p.ad "#{e.ad.name}在職"
+        - else e.legislator.in_office
+          p.ad "#{e.ad.name}不在職"
+        p.constituency = e.constituency
+        p.district
+        = e.district_names.join("、")

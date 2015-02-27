@@ -29,8 +29,11 @@
 .slegislator .party-pfp{
 	background:url(/images/parties/pfp2.png);
     }
+.slegislator .party-tsu{
+	background:url(/images/parties/tsu2.png);
+    }
 .slegislator .party-nsu{
-	background:url(/images/parties/nsu2.png);
+    background:url(/images/parties/nsu2.png);
     }
 .slegislator  .party-dpp{
 	background:url(/images/parties/dpp2.png);

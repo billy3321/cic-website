@@ -1,5 +1,5 @@
 class LegislatorsController < ApplicationController
-  before_action :set_legislator, except: [:index, :new, :no_record, :has_records]
+  before_action :set_legislator, except: [:index, :new, :no_record, :has_records, :search]
 
   # GET /legislators
   def index
@@ -300,6 +300,32 @@ class LegislatorsController < ApplicationController
         },
         callback: params[:callback]
       }
+    end
+  end
+
+  def search
+    puts params[:q]
+    @q = Election.search(params[:q])
+    @ad_id_eq = params[:q] ? params[:q][:ad_id_eq] : nil
+    @county_id_eq = params[:q] ? params[:q][:county_id_eq] : nil
+    unless params[:commit]
+      @title = ""
+      @elections = []
+    else
+      @title = "立委"
+      unless params[:q][:county_id_eq].blank?
+        county = County.find(params[:q][:county_id_eq])
+        if county
+          @title = county.name + @title
+        end
+      end
+      unless params[:q][:ad_id_eq].blank?
+        ad = Ad.find(params[:q][:ad_id_eq])
+        if ad
+          @title = ad.name + @title
+        end
+      end
+      @elections = @q.result(:distinct => true).all
     end
   end
 

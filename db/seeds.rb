@@ -8,6 +8,7 @@
 
 
 Party.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Party.table_name)
 
 filepath = Rails.root.join('db', 'g0v-lyparser', 'party.json')
 parties = JSON.parse(File.read(filepath))
@@ -18,6 +19,7 @@ parties.each do |p|
 end
 
 Ad.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Ad.table_name)
 
 ads = [{
   :id => 8,
@@ -33,6 +35,7 @@ ads.each do |a|
 end
 
 AdSession.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(AdSession.table_name)
 
 ad_sessions = [
   {:id => 1, :ad_id => ads.first[:id], :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15'},
@@ -88,7 +91,11 @@ def constituency_parser(constituency)
   when 'proportional'
     return '全國不分區'
   when 'aborigine'
-    return '山地原住民'
+    if constituency[1] == 'lowland'
+      return '平地原住民'
+    elsif constituency[1] == 'highland'
+      return '山地原住民'
+    end
   when 'foreign'
     return '僑居國外國民'
   else
@@ -105,7 +112,15 @@ end
 
 
 Legislator.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Legislator.table_name)
 Election.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Election.table_name)
+County.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(County.table_name)
+District.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(District.table_name)
+# Ugly hack
+ActiveRecord::Base.connection.execute("Delete from districts_elections;");
 
 #import mly-8.json
 filepath = Rails.root.join('db', 'g0v-lyparser', 'mly-8.json')
@@ -120,8 +135,34 @@ legislators.each do |l|
   election.legislator_id = l['id']
   election.ad_id = ads.first[:id]
   election.party_id = Party.where(abbreviation: l['party']).first.id
-  election.constituency = constituency_parser(l['constituency'])
+  constituency = constituency_parser(l['constituency'])
+  election.constituency = constituency
   legislator.save
+  election.save
+  if l['county']
+    county = County.where(name: l['county'][0]).first
+    unless county
+      county = County.new(name: l['county'][0])
+      county.save
+    end
+    election.county = county
+    l['district'].each do |d|
+      district = District.where("name = ? AND county_id = ?", d, county.id).first
+      unless district
+        district = District.new(name: d)
+        district.county = county
+        district.save
+      end
+      election.districts << district
+    end
+  else
+    county = County.where(name: constituency).first
+    unless county
+      county = County.new(name: constituency)
+      county.save
+    end
+    election.county = county
+  end
   election.save
 end
 
@@ -143,6 +184,8 @@ committees = [
 ]
 
 Committee.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Committee.table_name)
+
 committees.each do |c|
   committee = Committee.new()
   committee.id = c[:id]

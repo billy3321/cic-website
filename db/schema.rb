@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128140300) do
+ActiveRecord::Schema.define(version: 20150226155154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,22 @@ ActiveRecord::Schema.define(version: 20150128140300) do
     t.datetime "updated_at"
   end
 
+  create_table "counties", force: true do |t|
+    t.string   "name"
+  end
+
+  create_table "districts", force: true do |t|
+    t.integer  "county_id"
+    t.string   "name"
+  end
+
+  create_table "districts_elections", id: false, force: true do |t|
+    t.integer "district_id"
+    t.integer "election_id"
+  end
+
+  add_index "districts_elections", ["district_id", "election_id"], name: "index_districts_elections_on_district_id_and_election_id", unique: true, using: :btree
+
   create_table "elections", force: true do |t|
     t.integer  "ad_id"
     t.integer  "legislator_id"
@@ -63,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150128140300) do
     t.string   "constituency"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "county_id"
   end
 
   create_table "entries", force: true do |t|
