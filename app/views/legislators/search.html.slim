@@ -21,9 +21,9 @@ h2.county-name = @title
         h3 = e.legislator.name
         p class="party party-#{e.party.abbr_name}" = e.party.name
         - if e.legislator.in_office
-          p.ad "#{e.ad.name}在職"
+          p.ad #{e.ad.name}在職
         - else e.legislator.in_office
-          p.ad "#{e.ad.name}不在職"
+          p.ad #{e.ad.name}不在職
         p.constituency = e.constituency
         p.district
         = e.district_names.join("、")
