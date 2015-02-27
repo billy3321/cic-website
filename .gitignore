@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 
+*~
+*.swp
+
 
 dump.rdb
 .DS_Store

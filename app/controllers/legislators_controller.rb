@@ -304,11 +304,16 @@ class LegislatorsController < ApplicationController
   end
 
   def search
-    puts params[:q]
     @q = Election.search(params[:q])
     @ad_id_eq = params[:q] ? params[:q][:ad_id_eq] : nil
     @county_id_eq = params[:q] ? params[:q][:county_id_eq] : nil
-    unless params[:commit]
+    if params[:q] and \
+        params[:q][:ad_id_eq].blank? and \
+        params[:q][:county_id_eq].blank? and \
+        params[:q][:legislator_name_cont].blank?
+      params[:commit] = nil
+    end
+    if params[:commit].blank?
       @title = ""
       @elections = []
     else
