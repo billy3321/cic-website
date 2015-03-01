@@ -1,5 +1,5 @@
 class LegislatorsController < ApplicationController
-  before_action :set_legislator, except: [:index, :new, :no_record, :has_records, :search]
+  before_action :set_legislator, except: [:index, :new, :no_record, :has_records, :search, :result]
 
   # GET /legislators
   def index
@@ -304,6 +304,10 @@ class LegislatorsController < ApplicationController
   end
 
   def search
+    @q = Election.search(params[:q])
+  end
+
+  def result
     @q = Election.search(params[:q])
     @ad_id_eq = params[:q] ? params[:q][:ad_id_eq] : nil
     @county_id_eq = params[:q] ? params[:q][:county_id_eq] : nil
