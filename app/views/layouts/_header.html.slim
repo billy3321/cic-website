@@ -5,7 +5,7 @@
   nav id="first-nav"
     ul
       li = link_to "最新調查", recent_path
-      li = link_to "找立委", legislators_path
+      li = link_to "找立委", search_legislators_path
       li = link_to "回報立委資訊", report_path
       - if user_signed_in?
         li = link_to "修改密碼", edit_user_registration_path
