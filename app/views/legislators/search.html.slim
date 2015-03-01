@@ -2,7 +2,7 @@
   = search_form_for @q, url: legislators_result_path do |f|
     h2 你知道現任立委是誰嗎？
     = f.hidden_field :ad_id_eq, value: Ad.last.id
-    = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: true, id: "select"
+    = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: "選擇選區或種類", id: "select"
     | &nbsp;
     = f.submit '找現任立委', class: "srbtn", id: "button"
 
@@ -10,11 +10,10 @@
   #search02
     = search_form_for @q, url: legislators_result_path do |f|
       h2 用立委名字搜尋
-      = f.hidden_field :ad_id_eq, value: Ad.last.id
       = f.search_field :legislator_name_cont, class: "keyin", id: "textfield"
       br
       br
-      = f.submit '找現任立委', class: "srbtn", id: "button2"
+      = f.submit '找立委', class: "srbtn", id: "button2"
   #search03
     h2 逛逛立委資料
     = link_to "看全部立委", legislators_path

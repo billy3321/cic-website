@@ -1,9 +1,9 @@
 #search-bar
   = search_form_for @q, url: legislators_result_path do |f|
     #county-fliter
-      = f.collection_select :ad_id_eq, Ad.all, :id, :name, include_blank: true, id: "select", selected: @ad_id_eq
+      = f.collection_select :ad_id_eq, Ad.all, :id, :name, include_blank: "選擇屆次", id: "select", selected: @ad_id_eq
       | &nbsp;
-      = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: true, id: "select2", selected: @county_id_eq
+      = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: "選擇選區或種類", id: "select2", selected: @county_id_eq
       | &nbsp;
       = f.submit '搜尋', class: "submit-btn"
     #name-search
