@@ -110,13 +110,49 @@ def constituency_parser(constituency)
   end
 end
 
+County.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(County.table_name)
+
+counties = [{id: 1, name: "全國不分區"},
+{id: 2, name: "基隆市"},
+{id: 3, name: "臺北市"},
+{id: 4, name: "新北市"},
+{id: 5, name: "桃園市"},
+{id: 6, name: "新竹市"},
+{id: 7, name: "新竹縣"},
+{id: 8, name: "苗栗縣"},
+{id: 9, name: "臺中市"},
+{id: 10, name: "彰化縣"},
+{id: 11, name: "南投縣"},
+{id: 12, name: "雲林縣"},
+{id: 13, name: "嘉義市"},
+{id: 14, name: "嘉義縣"},
+{id: 15, name: "臺南市"},
+{id: 16, name: "高雄市"},
+{id: 17, name: "屏東縣"},
+{id: 18, name: "臺東縣"},
+{id: 19, name: "花蓮縣"},
+{id: 20, name: "宜蘭縣"},
+{id: 21, name: "澎湖縣"},
+{id: 22, name: "金門縣"},
+{id: 23, name: "連江縣"},
+{id: 24, name: "平地原住民"},
+{id: 25, name: "山地原住民"},
+{id: 26, name: "僑居國外國民"}]
+
+counties.each do |c|
+  county = County.new()
+  county.id = c[:id]
+  county.name = c[:name]
+  county.save
+end
+ActiveRecord::Base.connection.reset_pk_sequence!(County.table_name)
 
 Legislator.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(Legislator.table_name)
 Election.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(Election.table_name)
-County.delete_all
-ActiveRecord::Base.connection.reset_pk_sequence!(County.table_name)
+
 District.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(District.table_name)
 # Ugly hack
