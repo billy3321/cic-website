@@ -832,6 +832,11 @@ padding-top:34.5%;}
 	font-size:18px;}
 #search-bar select,#search-bar input{
 	margin-right:7px;}
+.search-select{
+	float:left;
+	width:180px;}
+.search-select select{
+	margin:0 0 7px 0;}
 /*提示訊息樣式*/
 .alert{
 	font-size:13px;
@@ -936,10 +941,7 @@ overflow:hidden;}
 	width:160px;}
 #name-search{
 	float:right;}
-#name-search .keyin{
-	width:300px;}
-#county-fliter{
-	float:left;}
+
 #county-fliter select{
 	font-size:18px;}
 .county-name{
@@ -1355,8 +1357,23 @@ padding:4px 6px;
 	float:none;
 	clear:both;
 	padding-top:15px;}
-#name-search .keyin{
-	width:80%;}
+.search-select{
+	width:auto;
+	float:none;}
+
+.cf01 .keyin2{
+	width:140px;}
+.cf01 select{
+	margin-bottom:7px;}
+.cf01{
+	display:block;
+	float:left;
+	width:82%;
+	}
+.cf02{display:block;
+float:right;
+
+}
 }
 
 
@@ -1519,7 +1536,8 @@ padding-top:19.5%;}
 	max-width:428px;
 	display:block;
 	margin:auto;}
-	
+.cf02 input{
+	height:60px;}
 }	
 
 
@@ -1621,8 +1639,7 @@ float: none;
 	width:auto;}
 .ad,.constituency{
 	float:left;}
-#name-search .keyin{
-	width:70%;}
+
 }	
 
 @media only screen and (max-width: 360px){
