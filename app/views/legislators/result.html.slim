@@ -1,12 +1,13 @@
 #search-bar
   = search_form_for @q, url: legislators_result_path do |f|
     #county-fliter
-      = f.collection_select :ad_id_eq, Ad.all, :id, :name, include_blank: "選擇屆次", id: "select", selected: @ad_id_eq
-      = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: "選擇選區或種類", id: "select2", selected: @county_id_eq
-      = f.submit '搜尋', class: "submit-btn"
-    #name-search
-      = f.search_field :legislator_name_cont, class: "keyin"
-      = f.submit '搜尋', class: "submit-btn"
+      span.cf01
+        = f.collection_select :ad_id_eq, Ad.all, :id, :name, include_blank: "選擇屆次", id: "select", selected: @ad_id_eq
+        = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: "選擇選區或種類", id: "select2", selected: @county_id_eq
+        = f.collection_select :party_id_eq, Party.all, :id, :name, include_blank: "不分黨籍", id: "select3", selected: @party_id_eq
+        = f.search_field :legislator_name_cont, class: "keyin"
+      span.cf02
+        = f.submit '搜尋', class: "submit-btn"
 
 h2.county-name = @title
 
