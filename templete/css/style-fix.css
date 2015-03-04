@@ -79,12 +79,10 @@ width:28%;
 margin:1%;
 height:180px;
 float:left;} 
-#login-out-block{
-max-width:460px;
-margin-top:25px;
-border:none;
-background:#F3F3F3;
-border-radius:10px;}
+
+
+
+
 #post-block{margin-top:25px;
 border:none;
 background:#F3F3F3;
@@ -98,9 +96,7 @@ padding:15px;}
 #login-out-block.wid-block{margin-top:25px;
 overflow:hidden;
 padding-bottom:20px;}
-#out-login{
-margin-top:25px;
-}
+
 #choose-block{
 margin-top:25px;
 border:none;
