@@ -4,8 +4,6 @@ p 您也可以使用以下帳號登入
 #login-out-block
   h2 準備回報立委表現了嗎？登入吧！
 
-
-
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     = render 'shared/error_messages', object: f.object
     ul class="form-list"

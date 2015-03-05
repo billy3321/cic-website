@@ -3,7 +3,7 @@
 #info-show-list
   #video-list
     #v-title
-      h3 【最新影片】
+      h3 【影片最新回報】
       - if @videos.any?
         = link_to '更多', videos_path, class: 'more'
       - else
@@ -21,7 +21,7 @@
             = display_shorter(v.content, 75)
 
   #news-list.side-sblock
-    h3 【最新新聞】
+    h3 【新聞最新回報】
     - if @entries.any?
       = link_to '更多', entries_path, class: 'more'
       ul
@@ -30,7 +30,7 @@
     - else
       .blank 目前尚無資料
   #say-list.side-sblock
-    h3 【最新質詢】
+    h3 【質詢最新回報】
     - if @questions.any?
       = link_to '更多', questions_path, class: 'more'
       ul

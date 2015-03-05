@@ -129,7 +129,7 @@ class LegislatorsController < ApplicationController
     @videos = @legislator.videos.published.first(5)
     @main_video = @videos.shift
     @sub_videos = @videos
-    @entries = @legislator.entries.published.first(10)
+    @entries = @legislator.entries.published.first(5)
     @questions = @legislator.questions.published.first(5)
 
     set_meta_tags({
