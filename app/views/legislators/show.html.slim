@@ -40,7 +40,7 @@
     - if @entries.any?
       = link_to "更多", entries_legislator_path(@legislator), class: "more"
       ul
-        - @legislator.entries.each do |e|
+        - @entries.each do |e|
           li = link_to e.title, entry_path(e)
     - else
       .blank 
@@ -52,7 +52,7 @@
     - if @questions.any?
       = link_to "更多", questions_legislator_path(@legislator), class: "more"
       ul
-        - @legislator.questions.each do |q|
+        - @questions.each do |q|
           li = link_to q.title, question_path(q)
     - else
       .blank 
