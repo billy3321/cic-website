@@ -2,39 +2,39 @@
 /* CSS Document */
 
 .party-dpp{
-	background:url(/images/parties/dpp.gif);
+	background:url(//images/parties/dpp.gif);
 	}
 .party-kmt{
-	background:url(/images/parties/kmt.gif);
+	background:url(//images/parties/kmt.gif);
     }
 .party-nsu{
-	background:url(/images/parties/nsu.gif);
+	background:url(//images/parties/nsu.gif);
     }
 .party-tsu{
-	background:url(/images/parties/tsu.gif);
+	background:url(//images/parties/tsu.gif);
     }
 .party-pfp{
-	background:url(/images/parties/pfp.gif);
+	background:url(//images/parties/pfp.gif);
     }
 .party-null{
-	background:url(/images/parties/null.gif);
+	background:url(//images/parties/null.gif);
     }
 	
 .slegislator .party-kmt{
-	background:url(/images/parties/kmt2.png);
+	background:url(//images/parties/kmt2.png);
     }
 .slegislator .party-null{
-	background:url(/images/parties/null2.png);
+	background:url(//images/parties/null2.png);
     }
 .slegislator .party-pfp{
-	background:url(/images/parties/pfp2.png);
+	background:url(//images/parties/pfp2.png);
     }
 .slegislator .party-tsu{
-	background:url(/images/parties/tsu2.png);
+	background:url(//images/parties/tsu2.png);
     }
 .slegislator .party-nsu{
-    background:url(/images/parties/nsu2.png);
+    background:url(//images/parties/nsu2.png);
     }
 .slegislator  .party-dpp{
-	background:url(/images/parties/dpp2.png);
+	background:url(//images/parties/dpp2.png);
 	}

@@ -35,7 +35,7 @@ h2{
 	border-bottom:1px solid #d4d4d4;	overflow:hidden;
 	padding:0 6%;
 	margin:0px;
-	background:url(../images/top-bg.jpg) -275px top no-repeat #000;
+	background:url(//images/top-bg.jpg) -275px top no-repeat #000;
 }
 #main-wrap{
 	overflow:hidden;
@@ -45,7 +45,7 @@ h2{
 	overflow:hidden;
 	margin:0px 0 0px 16px;
 	float:left;
-	background:url(../images/logo-fix.png) no-repeat left center;
+	background:url(//images/logo-fix.png) no-repeat left center;
 height:60px;}
 #logo a{
 	display:block;
