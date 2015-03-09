@@ -1262,27 +1262,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 .legislators-more-info{
 	font-size:13px;}
 .legislators-more-info li{
+	margin:0 0 7px 0;}
+.legislators-more-info li a{
 	padding:3px 0 3px 20px;}
-#lmi-01{
+#lmi-01 a{
 	background:url(../images/lmi-01.png) no-repeat left center;}
-#lmi-02{
+#lmi-02 a{
 	background:url(../images/lmi-02.png) no-repeat left center;}
-#lmi-03{
+#lmi-03 a{
 	background:url(../images/lmi-03.png) no-repeat left center;}
-#lmi-04{
+#lmi-04 a{
 	background:url(../images/lmi-04.png) no-repeat left center;}
-#lmi-05{
+#lmi-05 a{
 	background:url(../images/lmi-05.png) no-repeat left center;}
-#lmi-06{
+#lmi-06 a{
 	background:url(../images/lmi-06.png) no-repeat left center;}
-#lmi-07{
+#lmi-07 a{
 	background:url(../images/lmi-07.png) no-repeat left center;}
-#lmi-08{
+#lmi-08 a{
 	background:url(../images/lmi-07.png) no-repeat left center;}
 .legislators-more-info{
 	margin:10px 0 40px 0;}
-.legislators-more-info li{
-	margin:0 0 7px 0;}
+.legislators-more-info a{
+	display:block;}
 .lmib-01{
 	float:left;
 	margin:0 0 0 10%;}
@@ -1372,8 +1374,30 @@ background-size:40%;
 	}
 .legislators-block{
 	width:95%;
-	margin:auto;}
+	margin:auto;
+	position:relative;}
+.legimg{
+	width:12%;
+	min-width:85px;}
+.edition span{
+	float:left;
+	margin:0 10px 0 0;}
+.legislators-more-info{
+	position:absolute;
+	right:0px;
+	top:-4px;
+	font-size:15px;}
+.lmib-01,.lmib-02{
+	float:left;
+	margin:0 20px 0 0;	
 	}
+.legislators-more-info li{
+	margin-bottom:2px;}
+.legislators-more-info li a{
+	padding:5px 0 5px 20px;}
+.local-data li a{
+	padding:12px 0;}}
+
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
@@ -1521,6 +1545,10 @@ padding:4px 6px;
 float:right;
 
 }
+.legislators-more-info li{
+	margin-bottom:1px;}
+.legislators-more-info li a{
+	padding:3px 0 3px 20px;}
 }
 
 
@@ -1695,6 +1723,13 @@ padding-top:19.5%;}
 	margin:0 auto 40px auto;
 
 	}
+.legislators-basic .name{
+	width:3.8em;}
+.edition span{
+	float:none;
+}	
+.edition li:nth-child(2){
+	display:none;}
 }	
 
 
@@ -1797,6 +1832,17 @@ float: none;
 .ad,.constituency{
 	float:left;}
 
+.legislators-basic .name{
+	width:auto;}
+.lmib-01,.lmib-02{
+	float:none;}
+.legislators-more-info{
+	position:relative;
+	padding-left:5%;}
+.legislators-more-info li{
+	float:left;
+	width:33%;
+	}
 }	
 
 @media only screen and (max-width: 360px){
