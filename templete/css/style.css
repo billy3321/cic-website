@@ -1186,8 +1186,109 @@ border-top:none;
 margin:0 0 3px 0;
 padding:8px;
 }
+.legislators-block{
+	  min-width: 300px;
+  width:27%;}
+.legislators-basic{
+	border:1px solid #d4d4d4;
+  border-radius: 8px;
+  overflow:hidden;
 
+}
 
+.legislators-basic .name{
+	font-size:28px;
+	height:1.2em;
+	overflow:hidden;
+	padding:5px 0;}
+.legimg{
+	width:33%;
+	float:left;
+	margin:0 10px 0 0;
+	overflow:hidden;}
+.legimg img{
+	width:100%;
+	display:block;
+	}
+.edition{
+	font-size:13px;}
+.edition span{
+	display:block;}
+.edition li{
+	margin:0 0 7px 0;}
+.local-data{
+	clear:both;
+	overflow:hidden;
+	background: rgb(120,120,120); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(120,120,120,1) 0%, rgba(161,161,161,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,120,120,1)), color-stop(100%,rgba(161,161,161,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#787878', endColorstr='#a1a1a1',GradientType=0 ); /* IE6-9 */
+}
+.local-data li{
+	float:left;
+	width:33%;
+	border-right:1px solid #d4d4d4;}
+.local-data li:last-child{
+	border:none;}
+.local-data li a{
+	display:block;
+	text-align:center;
+	font-size:13px;
+	padding:7px 0;
+	background: rgb(120,120,120); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(120,120,120,1) 0%, rgba(161,161,161,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,120,120,1)), color-stop(100%,rgba(161,161,161,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#787878', endColorstr='#a1a1a1',GradientType=0 ); /* IE6-9 */
+color:#fff;
+}
+.local-data li a:hover,.local-data li a:active{
+	background: rgb(161,161,161); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(161,161,161,1) 1%, rgba(120,120,120,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(161,161,161,1)), color-stop(100%,rgba(120,120,120,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', endColorstr='#787878',GradientType=0 ); /* IE6-9 */
+}
+.legislators-more-info{
+	font-size:13px;}
+.legislators-more-info li{
+	padding:3px 0 3px 20px;}
+#lmi-01{
+	background:url(../images/lmi-01.png) no-repeat left center;}
+#lmi-02{
+	background:url(../images/lmi-02.png) no-repeat left center;}
+#lmi-03{
+	background:url(../images/lmi-03.png) no-repeat left center;}
+#lmi-04{
+	background:url(../images/lmi-04.png) no-repeat left center;}
+#lmi-05{
+	background:url(../images/lmi-05.png) no-repeat left center;}
+#lmi-06{
+	background:url(../images/lmi-06.png) no-repeat left center;}
+#lmi-07{
+	background:url(../images/lmi-07.png) no-repeat left center;}
+#lmi-08{
+	background:url(../images/lmi-07.png) no-repeat left center;}
+.legislators-more-info{
+	margin:10px 0 40px 0;}
+.legislators-more-info li{
+	margin:0 0 7px 0;}
+.lmib-01{
+	float:left;
+	margin:0 0 0 10%;}
+.lmib-02{
+	float:right;
+	margin:0 10% 0 0;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -1269,6 +1370,9 @@ background-size:40%;
 #regist-txt{
 	display:none;
 	}
+.legislators-block{
+	width:95%;
+	margin:auto;}
 	}
 @media only screen and (max-width: 800px){
 /*表頭*/
@@ -1287,6 +1391,7 @@ padding:4px 6px;
 	}
 #people-all-list .people-info-block{
 	float:left;
+
 	max-width:47%;
 	width:49%;
 	}
@@ -1712,4 +1817,3 @@ float: none;
 	width:135px;
 	height:auto;}
 }
-
