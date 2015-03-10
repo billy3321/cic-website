@@ -503,9 +503,10 @@ width:60%;
 	font-size:13px;}
 #news-show-list{
 	float:right;
-	width:63%;
+	width:61%;
 	margin:0 7% 1% 0;
-	padding-top:20px;}
+	padding-top:20px;
+	}
 .big-news-show h3{
 	font-size:24px;}
 .big-news-show .inner-content{
@@ -1201,6 +1202,7 @@ padding:8px;
 	border:1px solid #d4d4d4;
   border-radius: 8px;
   overflow:hidden;
+  background:#f3f3f3;
 
 }
 
@@ -1214,7 +1216,7 @@ padding:8px;
 	float:left;
 	margin:0 10px 0 0;
 	overflow:hidden;
-	min-width:100px;}
+	min-width:85px;}
 .legimg img{
 	width:100%;
 	display:block;
@@ -1224,7 +1226,7 @@ padding:8px;
 .edition span{
 	display:block;}
 .edition li{
-	margin:0 0 7px 0;}
+	margin:0 5px 7px 0;}
 .local-data{
 	clear:both;
 	overflow:hidden;
@@ -1331,6 +1333,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	left:6%;
 	top:300px;
 	}
+.lmib-01{
+	margin:0 0 0 5%;}
+.lmib-02{
+	margin:0 5% 0 0;}
+.local-data li span{
+	display:block;}
 	}
 @media only screen and (max-width: 960px){
 	#index-banner{
@@ -1387,7 +1395,7 @@ background-size:40%;
 	position:relative;}
 .legimg{
 	width:12%;
-	min-width:85px;}
+	min-width:105px;}
 .edition span{
 	float:left;
 	margin:0 10px 0 0;}
@@ -1405,7 +1413,16 @@ background-size:40%;
 .legislators-more-info li a{
 	padding:5px 0 5px 20px;}
 .local-data li a{
-	padding:12px 0;}}
+	padding:12px 0;}
+.local-data li span{
+	display:inline;}
+#news-show-list{
+width:87%;
+float:none;
+clear:both;
+padding:15px 0 0 0;
+margin:auto;}	
+	}
 
 @media only screen and (max-width: 800px){
 /*表頭*/
@@ -1499,9 +1516,7 @@ padding:4px 6px;
 	}
  
 /*影片列表*/
-#video-show-list #video-list,#news-show-list{
-	width:98%;
-	}
+
 #video-list{
 	min-height:50px;}
 /*影片內頁*/
@@ -1554,10 +1569,7 @@ padding:4px 6px;
 float:right;
 
 }
-.legislators-more-info li{
-	margin-bottom:1px;}
-.legislators-more-info li a{
-	padding:3px 0 3px 20px;}
+
 }
 
 
@@ -1737,8 +1749,7 @@ padding-top:19.5%;}
 .edition span{
 	float:none;
 }	
-.edition li:nth-child(2){
-	display:none;}
+
 }	
 
 
@@ -1840,18 +1851,29 @@ float: none;
 	width:auto;}
 .ad,.constituency{
 	float:left;}
-
+.legislators-group{
+	min-width:380px;}
+.single-page-inner{
+	margin:auto;
+	float:none;}
 .legislators-basic .name{
 	width:auto;}
 .lmib-01,.lmib-02{
 	float:none;}
 .legislators-more-info{
-	position:relative;
-	padding-left:5%;}
+	padding-left:95px;
+	top:45px;}
 .legislators-more-info li{
 	float:left;
 	width:33%;
 	}
+.legimg{
+	min-width:100px;}
+.edition,.lmib-02{
+	display:none;}
+.lmib-01 li{
+	width:auto;
+	margin-left:18px;}
 }	
 
 @media only screen and (max-width: 360px){

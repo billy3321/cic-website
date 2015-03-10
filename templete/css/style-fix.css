@@ -350,12 +350,7 @@ width:42.5%;
 margin:2%;
 height:180px;
 } 
-#news-show-list{
-width:87%;
-float:none;
-clear:both;
-padding:15px 0 0 0;
-margin:auto;}
+
 #news-show-list.all-list{
 margin-right:6%;
 }
