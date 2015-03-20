@@ -35,7 +35,7 @@ h2{
 	border-bottom:1px solid #d4d4d4;	overflow:hidden;
 	padding:0 6%;
 	margin:0px;
-	background:url(../images/top-bg.jpg) -275px top no-repeat #000;
+	background:url(/images/top-bg.jpg) -275px top no-repeat #000;
 }
 #main-wrap{
 	overflow:hidden;
@@ -45,7 +45,7 @@ h2{
 	overflow:hidden;
 	margin:0px 0 0px 16px;
 	float:left;
-	background:url(../images/logo-fix.png) no-repeat left center;
+	background:url(/images/logo-fix.png) no-repeat left center;
 height:60px;}
 #logo a{
 	display:block;
@@ -74,7 +74,7 @@ color:#E60012;
 	background:#f3f3f3;
 	margin-bottom:15px;
 	padding:15px 5% 20px 5%;
-	display:none;
+	
 	}
 #people-rank{
 	width:87%;
@@ -241,18 +241,14 @@ color:#5DAA32;
 	}
 #people-all-list .people-info-block{
 	float:left;
-	margin:1%;
-	width:31%;
-	}
-.pinfo .people-img{
-	width:35%;}
+	width:30%;
+	margin:1%;}
 .people-img{
 	float:left;
-	position:relative;
-	width:32%;
-	border-right:0.1% solid #d4d4d4;
-	background:#fff;
-	min-height:148px;}
+	max-width:85px;
+	width:39%;
+	border-right:1px solid #d4d4d4;
+	position:relative;}
 .people-img img{
 	display:block;
 	width:100%;}
@@ -274,27 +270,24 @@ color:#5DAA32;
 -webkit-background-size:cover;
 -o-background-size:cover;}
 .people-info-block h2{
-	font-size:20px;
+	font-size:15px;
+	margin:3px 0 9px 2%;
+	max-width:145px;
 	width:58%;
-	float:left;
-	margin:2% 2% 0 3.5%;}
+	float:left;}
 .info-number{
 	font-size:13px;
 	float:left;
-	margin:2% 3.5% 0 3.5%;
-	width:60.5%;}
+	width:58%;
+	margin:0 0 0  2%;}
 .info-number em{
 	font-style:normal;
+	background:#c5c5c5;
 	padding:2px 8px;
 	border-radius:10px;
 	margin:0 5px 0 0;}
-.info-number a{
-	float:right;
-	padding:0 2% 0 0;}
 .info-number li{
-	margin:0 0 8px 0;
-	background:#fff;
-	padding:2%;}
+	margin:0 0 8px 0;}
 .selector-info{
 	clear:both;
 	border-top:1px solid #d4d4d4;
@@ -315,21 +308,29 @@ margin:0 2% 0 0;}
 	overflow:hidden;
 	background:#f3f3f3;
 	padding:20px 5.3% 15px 0.5%;}
-.pinfo{
-	overflow:hidden;}
+.pinfo-mlist{
+	float:left;
+	margin:0  1.5% 0 6%;
+	width:21.5%;}
+.pinfo.pinfo-mlist{
+margin-top:20px;}
+#people-single-top .pinfo.pinfo-mlist{margin-top:0px;}
+.pinfo-inner-aside{
+	float:left;
+	margin:0 0 0 6.5%;
+	width:20.5%;
+	padding-top:20px;}
 
-
-
-
-
-
+.pinfo-inner{
+margin-bottom:20px;
+}
 
 #people-single-top .big-video-show{
 	float:right;
 	margin:0 1% 0 0;
 	}
 .big-video-show{
-	width:68.5%;
+	width:70%;
 	overflow:hidden;
 	position:relative;
 	}
@@ -341,8 +342,6 @@ margin:0 2% 0 0;}
 .big-video-show h3,.big-video-show .time,.big-video-show .inner-content{
 	width:42%;
 	float:left;}
-.big-video-show .inner-content{
-	padding:15px 0 40px 0;}
 .big-video-show h3{
 	font-size:2em;
 	margin-bottom:20px;}
@@ -364,18 +363,30 @@ margin:0 2% 0 0;}
 	right:0px;
 	bottom:0px;
 	border-radius:8px;}
-
-
-
+.pinfo-btn {
+	margin:5px 0;
+	overflow:hidden;
+	clear:both;
+	}
+.pinfo-btn li{
+	float:left;
+	width:31%;
+	margin:0 2% 0 0;}
+.pinfo-btn li a{
+	display:block;
+	background:#000000;
+	color:#fff;
+	text-decoration:none;
+	font-size:13px;
+	padding:0px 7px 2px 7px;}
 #info-show-list{
 	overflow:hidden;
 	margin:10px 0 0 0;}
 #video-list{
 	float:right;
-	width:65%;
-	margin:0 3% 0 0;
-	min-height:500px;
-	width:65%;}
+	width:70%;
+	margin:0 1% 0 0;
+	min-height:500px;}
 #news-list{
 	float:left;
 	width:27%;
@@ -492,14 +503,11 @@ width:60%;
 	font-size:13px;}
 #news-show-list{
 	float:right;
-	width:61%;
+	width:63%;
 	margin:0 7% 1% 0;
-	padding-top:20px;
-	}
-.big-news-show{
-margin-bottom:30px;}
+	padding-top:20px;}
 .big-news-show h3{
-	font-size:32px;}
+	font-size:24px;}
 .big-news-show .inner-content{
 	margin:1% 0 1.5% 0;}
 .small-news-show{
@@ -507,9 +515,6 @@ margin-bottom:30px;}
 	padding:1.5%;
 	margin:0 0 1.2% 0;
 	position:relative;}
-.small-news-show h3{
-font-size:24px;
-margin-bottom:15px;}
 .small-news-show .inner-content{
 	font-size:13px;
 	padding:0 0 2.5% 0;}
@@ -519,12 +524,10 @@ margin-bottom:15px;}
 	bottom:1.5%;}
 .single-page-inner{
 	float:right;
-	margin:0 6.5% 0 -20%;
-	padding-top:20px;
-	width:61.5%;
-}
+	width:70%;
+	margin:0 1% 0 0;}
 .single-page-inner h3{
-	font-size:34px;
+	font-size:24px;
 	margin:0 0 1% 0;}
 .sinner-info{
 	overflow:hidden;
@@ -552,13 +555,10 @@ margin-bottom:15px;}
 	margin:0 0 2px 0;}
 .inner-content-txt{
 	color:#737373;
-	padding:1em 0;
-	font-size:21px;
-line-height:1.7em;
-letter-spacing:1px;}
+	padding:1em 0;}
 .inner-content-txt p{
 	margin:0 0 1em 0;
-	line-height:1.7em;}
+	line-height:1.5em;}
 .writer{
 	font-size:13px;
 	padding:0 0 5px 0;}
@@ -794,15 +794,8 @@ padding:1em 3em;
 /*資料列表*/
 
 .all-list .big-video-show,.all-list #video-list,.all-list#news-show-list,.all-list{
-width:auto;
-padding:15px 0 0 6.5%;
-float:none;}
+width:99%;}
 
-.all-list .small-news-show{
-width:28%;
-margin:1%;
-height:180px;
-float:left;} 
 
 /*不分立委影片資料列表*/
 .all-list#video-show-list .big-video-show .img_url_l{
@@ -1193,194 +1186,8 @@ border-top:none;
 margin:0 0 3px 0;
 padding:8px;
 }
-.legislators-group{
-	padding:20px 0 0 7%;
-	width: 22.5%;
-	float:left;}
-.legislators-block{
-	clear:both;
-	margin:0 0 20px 0;
-	overflow:hidden;
-	position:relative;}
-.legislators-basic{
-	border:1px solid #d4d4d4;
-  border-radius: 8px;
-  overflow:hidden;
-  background:#f3f3f3;
 
-}
 
-.legislators-basic .name{
-	font-size:28px;
-	height:1.2em;
-	overflow:hidden;
-	padding:5px 0;}
-.legimg{
-	width:33%;
-	float:left;
-	margin:0 10px 0 0;
-	overflow:hidden;
-	min-width:85px;}
-.legimg img{
-	width:100%;
-	display:block;
-	}
-.edition{
-	font-size:13px;}
-.edition span{
-	display:block;}
-.edition li{
-	margin:0 5px 7px 0;}
-.local-data{
-	clear:both;
-	overflow:hidden;
-	background: rgb(120,120,120); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(120,120,120,1) 0%, rgba(161,161,161,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,120,120,1)), color-stop(100%,rgba(161,161,161,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#787878', endColorstr='#a1a1a1',GradientType=0 ); /* IE6-9 */
-}
-.local-data li{
-	float:left;
-	width:33%;
-	border-right:1px solid #d4d4d4;}
-.local-data li:last-child{
-	border:none;}
-.local-data li a{
-	display:block;
-	text-align:center;
-	font-size:13px;
-	padding:7px 0;
-	background: rgb(120,120,120); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(120,120,120,1) 0%, rgba(161,161,161,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,120,120,1)), color-stop(100%,rgba(161,161,161,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#787878', endColorstr='#a1a1a1',GradientType=0 ); /* IE6-9 */
-color:#fff;
-}
-.local-data li a:hover,.local-data li a:active{
-	background: rgb(161,161,161); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(161,161,161,1) 1%, rgba(120,120,120,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(161,161,161,1)), color-stop(100%,rgba(120,120,120,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', endColorstr='#787878',GradientType=0 ); /* IE6-9 */
-}
-.legislators-more-info{
-	font-size:13px;}
-.legislators-more-info li{
-	margin:0 0 7px 0;}
-.legislators-more-info li a{
-	padding:3px 0 3px 20px;}
-#lmi-01 a{
-	background:url(../images/lmi-01.png) no-repeat left center;}
-#lmi-02 a{
-	background:url(../images/lmi-02.png) no-repeat left center;}
-#lmi-03 a{
-	background:url(../images/lmi-03.png) no-repeat left center;}
-#lmi-04 a{
-	background:url(../images/lmi-04.png) no-repeat left center;}
-#lmi-05 a{
-	background:url(../images/lmi-05.png) no-repeat left center;}
-#lmi-06 a{
-	background:url(../images/lmi-06.png) no-repeat left center;}
-#lmi-07 a{
-	background:url(../images/lmi-07.png) no-repeat left center;}
-#lmi-08 a{
-	background:url(../images/lmi-07.png) no-repeat left center;}
-.legislators-more-info{
-	margin:10px 0 40px 0;}
-.legislators-more-info a{
-	display:block;}
-.lmib-01{
-	float:left;
-	margin:0 0 0 10%;}
-.lmib-02{
-	float:right;
-	margin:0 10% 0 0;}
-#title-contributions{
-	overflow:hidden;
-	font-size:15px;}
-#title-contributions h3{
-	background:url(../images/title-contributions.png) no-repeat left center;
-	padding:0 10px 0 35px;
-	float:left;}
-.vote-ly-g0v .legislators-group{
-	width:85.5%;
-	float:none;
-	margin:0px;}
-.vote-ly-g0v .single-page-inner{
-	width:85.5%;
-	float:none;
-	margin:auto;}
-.vote-ly-g0v .legimg{
-	max-width:100px;}
-#title-contributions select{
-	font-size:18px;
-	margin:10px 7px 0 0;
-	}
-.graphic-start{
-	overflow:hidden;
-	}
-.graphic-start h4{
-	font-size:16px;
-	background:#f3f3f3;
-	padding:3px 12px;
-	border-top-right-radius:8px;
-	border-bottom-right-radius:8px;
-	float:left;
-	width:20.5%;
-	text-align:right;}
-#gpb-number{
-	float:right;
-	height:59px;
-	background:url(../images/gpb-number.png) no-repeat left bottom;
-	width:75%;}
-.graphic-end{
-	float:right;
-	height:19px;
-	width:75%;
-	background:url(../images/graphic-end.png) no-repeat;}
-.graphic-start h4 span{
-	color:#d10000;
-	font-family:Arial;
-	margin:0 5px;}
-.gp-bar{
-	overflow:hidden;
-	}
-.gp-bar p{
-	float:left;
-	width:22%;
-	font-size:13px;
-	text-align:right;
-	padding:0;
-	height:30px;
-	line-height:30px;
-	margin:0px;}
-.gp-bar p span{
-	font-size:18px;
-	color:#002499;
-	font-family:Arial;}
-.graphic-body{
-	float:right;
-	width:75%;
-	padding:0;
-	background:url(../images/graphic-body.png) repeat-y;
-		padding:6px 0;}
-.graphic-body div{
-	height:30px;}
-#gpb-01{
-	background:#ffd4d4;}
-#gpb-02{
-	background:#fff1a3;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -1412,12 +1219,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	left:6%;
 	top:300px;
 	}
-.lmib-01{
-	margin:0 0 0 5%;}
-.lmib-02{
-	margin:0 5% 0 0;}
-.local-data li span{
-	display:block;}
 	}
 @media only screen and (max-width: 960px){
 	#index-banner{
@@ -1468,41 +1269,7 @@ background-size:40%;
 #regist-txt{
 	display:none;
 	}
-.legislators-group{
-	width:86.5%;
-	margin:auto;
-	position:relative;}
-.legimg{
-	width:12%;
-	min-width:105px;}
-.edition span{
-	float:left;
-	margin:0 10px 0 0;}
-.legislators-more-info{
-	position:absolute;
-	right:0px;
-	top:-4px;
-	font-size:15px;}
-.lmib-01,.lmib-02{
-	float:left;
-	margin:0 20px 0 0;	
 	}
-.legislators-more-info li{
-	margin-bottom:2px;}
-.legislators-more-info li a{
-	padding:5px 0 5px 20px;}
-.local-data li a{
-	padding:12px 0;}
-.local-data li span{
-	display:inline;}
-#news-show-list{
-width:87%;
-float:none;
-clear:both;
-padding:15px 0 0 0;
-margin:auto;}	
-	}
-
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
@@ -1520,7 +1287,6 @@ padding:4px 6px;
 	}
 #people-all-list .people-info-block{
 	float:left;
-
 	max-width:47%;
 	width:49%;
 	}
@@ -1543,10 +1309,13 @@ padding:4px 6px;
 .info-number li{
 	float:left;
 	margin:0 5% 7px 0;}
+.pinfo-mlist{
+	width:99%;}
 
 
 /*立委內頁*/
-
+.pinfo-inner-aside{width:99%;
+	margin-bottom:10px;}
 .pinfo{margin-bottom:10px;}
 .pinfo .people-info-block{
 	max-width:99%;}
@@ -1563,7 +1332,8 @@ padding:4px 6px;
 	padding:0px 5px;
 	margin:0px;
 	width:auto;}
-
+.pinfo.pinfo-inner .people-img {
+	width:8%;}
 .pinfo{
 	overflow:hidden;}
 .pinfo h2{
@@ -1574,15 +1344,26 @@ padding:4px 6px;
 	margin:6px 0 7px 8px;}
 .pinfo .info-number li{
 	margin-right:1%;}
-
-
-
+.pinfo-btn {
+	width:101%;}
+.pinfo-btn li{
+	width:32.5%;
+	margin:0 0.5% 0 0;
+	text-align:center;}
+.pinfo-btn li a{
+	padding:6px 0;}
+.pinfo.pinfo-inner .pinfo-btn{
+	margin:-37px 0 0px 15%;
+	width:40%;
+	float:right;}
 .big-video-show{
 	width:98%;
 	}
  
 /*影片列表*/
-
+#video-show-list #video-list,#news-show-list{
+	width:98%;
+	}
 #video-list{
 	min-height:50px;}
 /*影片內頁*/
@@ -1635,7 +1416,6 @@ padding:4px 6px;
 float:right;
 
 }
-
 }
 
 
@@ -1694,8 +1474,11 @@ padding:0 0 0 11%;}
 .info-number{
 	width:79%;
 	}
-
-
+.pinfo.pinfo-inner .people-info-block .people-img{
+	max-width:70px;
+	width:15%;}
+.pinfo.pinfo-inner .pinfo-btn {
+	display:none;}
 
 /*立委內頁*/
 .pinfo .people-info-block h2{
@@ -1807,12 +1590,6 @@ padding-top:19.5%;}
 	margin:0 auto 40px auto;
 
 	}
-.legislators-basic .name{
-	width:3.8em;}
-.edition span{
-	float:none;
-}	
-
 }	
 
 
@@ -1906,34 +1683,15 @@ float: none;
 	}
 .all-list#video-show-list .small-video-show h3 {
 	width:62%}
+.pinfo-inner-aside{
+	display:none;
+	margin:0px;}
 .slegislator h3{
 	float:none;
 	width:auto;}
 .ad,.constituency{
 	float:left;}
-.legislators-group{
-	min-width:380px;}
-.single-page-inner{
-	margin:auto;
-	float:none;}
-.legislators-basic .name{
-	width:auto;}
-.lmib-01,.lmib-02{
-	float:none;}
-.legislators-more-info{
-	padding-left:95px;
-	top:45px;}
-.legislators-more-info li{
-	float:left;
-	width:33%;
-	}
-.legimg{
-	min-width:100px;}
-.edition,.lmib-02{
-	display:none;}
-.lmib-01 li{
-	width:auto;
-	margin-left:18px;}
+
 }	
 
 @media only screen and (max-width: 360px){
@@ -1954,3 +1712,4 @@ float: none;
 	width:135px;
 	height:auto;}
 }
+
