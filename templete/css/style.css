@@ -1314,7 +1314,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	padding:0 10px 0 35px;
 	float:left;}
 .vote-ly-g0v .legislators-group{
-	width:85.5%;
+	width:86.5%;
 	float:none;
 	margin:0px;}
 .vote-ly-g0v .single-page-inner{
@@ -1323,42 +1323,92 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	margin:auto;}
 .vote-ly-g0v .legimg{
 	max-width:100px;}
+.vote-ly-g0v .legislators-more-info{
+	position:absolute;
+	right:0px;
+	top:-4px;
+	font-size:15px;}
+.vote-ly-g0v .lmib-01,.vote-ly-g0v .lmib-02{
+	float:left;
+	margin:0 20px 0 0;	
+	}
 #title-contributions select{
 	font-size:18px;
 	margin:10px 7px 0 0;
 	}
+.graphic-group{
+	min-width:800px;
+	margin:0 0 30px 0;
+	padding:0 0 20px 0;
+	overflow:hidden;}
 .graphic-start{
-	overflow:hidden;
+	height:60px;
+	padding:15px 0 0 0;
 	}
 .graphic-start h4{
-	font-size:16px;
+	font-size:18px;
 	background:#f3f3f3;
-	padding:3px 12px;
-	border-top-right-radius:8px;
-	border-bottom-right-radius:8px;
+	padding:3px 2%;
+	border-bottom-left-radius:8px;
 	float:left;
-	width:20.5%;
-	text-align:right;}
-#gpb-number{
-	float:right;
-	height:59px;
-	background:url(../images/gpb-number.png) no-repeat left bottom;
-	width:75%;}
-.graphic-end{
-	float:right;
-	height:19px;
-	width:75%;
-	background:url(../images/graphic-end.png) no-repeat;}
+	width:21%;
+	text-align:right;
+	margin:0 0 10px 0;}
 .graphic-start h4 span{
 	color:#d10000;
 	font-family:Arial;
 	margin:0 5px;}
+.gp-top{
+	position:relative;
+	float:right;
+	width:75%;}
+.linegp,.linegps{
+	background:#f3f3f3;}
+.line-all{
+	height:4px;}
+.line-all-2{
+	background:#000;
+	}
+.linegps{
+	width:4px;
+	height:500px;
+	position:absolute;
+	}
+.linegps span{
+	position:absolute;
+	right:7px;
+	top:12px;
+	font-size:12px;
+	line-height:1em;
+	letter-spacing:0px;}
+.line-10{
+	right:0px;}
+.line-09{
+	right:10%;}
+.line-08{
+	right:20%;}
+.line-07{
+	right:30%;}
+.line-06{
+	right:40%;}
+.line-05{
+	right:50%;}
+.line-04{
+	right:60%;}
+.line-03{
+	right:70%;}
+.line-02{
+	right:80%;}
+.line-01{
+	right:90%;}
+.line-00{
+	right:100%;}
 .gp-bar{
 	overflow:hidden;
 	}
 .gp-bar p{
 	float:left;
-	width:22%;
+	width:23%;
 	font-size:13px;
 	text-align:right;
 	padding:0;
@@ -1373,14 +1423,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	float:right;
 	width:75%;
 	padding:0;
-	background:url(../images/graphic-body.png) repeat-y;
 		padding:6px 0;}
 .graphic-body div{
-	height:30px;}
-#gpb-01{
+	height:30px;
+	border-radius:5px;
+	position:relative;}
+.gpb-01{
 	background:#ffd4d4;}
-#gpb-02{
+.gpb-02{
 	background:#fff1a3;}
+.gpb-03{
+	background:#daffc4;}
+.gpb-04{
+	background:#a5ffef;}
+.gpb-05{
+	background:#ecb8ff;}
+.gpb-06{
+	background:#a6aad0;}
+.gpb-07{
+	background:#e3bf91;}
+.gpb-08{
+	background:#9cba9d;}
+.graphic-body span{
+	line-height:1em;
+	font-size:12px;
+	position:absolute;
+	right:-35px;
+	top:9px;
+	color:#d10000;
+	letter-spacing:0px;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -1920,7 +1991,7 @@ float: none;
 	width:auto;}
 .lmib-01,.lmib-02{
 	float:none;}
-.legislators-more-info{
+.legislators-more-info,.vote-ly-g0v .legislators-more-info{
 	padding-left:95px;
 	top:45px;}
 .legislators-more-info li{
