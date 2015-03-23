@@ -277,7 +277,9 @@ color:#5DAA32;
 	font-size:20px;
 	width:58%;
 	float:left;
-	margin:2% 2% 0 3.5%;}
+	margin:2% 2% 0 3.5%;
+	height:1.5em;
+overflow:hidden;}
 .info-number{
 	font-size:13px;
 	float:left;
@@ -369,7 +371,8 @@ margin:0 2% 0 0;}
 
 #info-show-list{
 	overflow:hidden;
-	margin:10px 0 0 0;}
+	margin:40px 0;
+	padding:0 5%;}
 #video-list{
 	float:right;
 	width:65%;
@@ -386,6 +389,8 @@ margin:0 2% 0 0;}
 	margin-left:1.5%;}
 .side-sblock{
 	overflow:hidden;}
+.side-sblock#news-list ul a,.side-sblock#say-list ul a,h3 a{
+display:block;}
 .side-sblock h3{
 	float:left;
 	border-bottom:1px solid #000;margin-right:-1000px;
@@ -464,7 +469,9 @@ width:60%;
 #page{
 	clear:both;
 	float:right;
-	padding:0 1% 1% 0;}
+	padding:30px 6%;}
+.vote-ly-g0v #page{
+	padding:10px 0 30px 0;}
 #page ul{
 	float:left;}
 #page li{
@@ -535,7 +542,7 @@ margin-bottom:15px;}
 	padding:0 2% 0 0;
 	}
 .sinner-info li span{
-	background:#abdbe1;
+	background:#d3d3d3;
 	padding:1px 8px;
 	border-radius:12px;
 	margin:0 5px 0 0;
@@ -571,14 +578,17 @@ letter-spacing:1px;}
 	background:#efefef;
 	border-top:8px solid #d8d8d8;
 	padding:1.5%;
-	margin:1.5% 0 0 0;
+	margin:1.5% 0 20px 0;
 	overflow:hidden;}
+.news-info-list{
+overflow:hidden;}
 .news-info-list li{
-	font-size:13px;
 	font-weight:bold;
 	margin:0 0 1% 0;
 	padding:0 0 0 2%;
-	background:url(../images/li-02.gif) no-repeat left 8px;}
+	background:url(../images/li-02.gif) no-repeat left 8px;
+	font-size:15px;
+min-height:2.5em;}
 .two-col-list li{
 		width:48%;
 	float:left;}
@@ -614,20 +624,24 @@ letter-spacing:1px;}
 	background:#000;
 	margin-bottom:20px;}
 
-	
+	.video-other-list{
+padding:15px;}
 .video-other-list li{
 	width:50%;
-	float:left;}
+	float:left;
+	margin:0 0 20px 0;}
 .video-other-list li a{
 	display:block;}
 .vo-img{
 	float:left;
-	margin:0 1.5% 0 0;}
+	margin:0 15px;}
 .vo-title{
-	width:45%;
 	float:left;
-	font-size:13px;
-	font-weight:bold;}
+	font-weight:bold;	
+	font-size:16px;
+min-height:2.5em;
+float: none;
+padding-left:145px;}
 #login-wrap{
 	background:url(../images/login-bg.jpg) no-repeat center top fixed;
 	overflow:hidden;
@@ -645,26 +659,32 @@ letter-spacing:1px;}
 background:#F3F3F3;
 border-radius:10px;}
 #choose-block{
-	max-width:500px;
-	width:95%;
-	border:5px solid #aaaaaa;
-	margin:0 auto 20px auto;}
+	margin:25px auto 20px auto;
+background:#F3F3F3;
+border-radius:10px;
+overflow:hidden;
+width:84%;
+	}
 #post-block{
 	max-width:800px;
 	width:95%;
-	border:5px solid #aaaaaa;
-	margin:0 auto 20px auto;}
+	margin:25px auto 20px auto;
+background:#F3F3F3;
+border-radius:10px;}
 #login-out-block h2,#post-block h2,#choose-block h2{
-	color:#fff;
 	text-align:center;
-	padding:8px 0;
-	background:#aaaaaa;
+	padding:15px;	
+	border-top-left-radius:10px;
+border-top-right-radius:10px;
+color:#000;
+background:#d7d7d7;
+
 	}
 .form-list{
 	padding:10px 30px;
 	}
 .form-list li{
-	margin:0 0 15px 0;}
+	margin:0 0 25px 0;}
 .form-list p{
 	font-weight:bold;}
 .snote,.form-list p.snote{
@@ -756,13 +776,28 @@ background-size:100%;}
 	margin:0 0 10px 0;}
 #choose-block img{
 	float:left;
-	margin:0 10px 0 0;}
+	margin:0 10px 10px 0;}
+#choose-block a{
+font-size:36px;}
+#choose-block .snote,#choose-block .snote a{
+font-size:16px;}
+#choose-block .snote{
+clear:both;
+line-height:1.7em;
+padding:10px 0 5px 0;}
+
 #choose-block ul{
 	padding-top:25px;}
 #choose-block li{
 	overflow:hidden;
-	padding:0 0 15px 0;
-	border-bottom:1px solid #aaaaaa;}
+	padding:0 2%;
+	border-right:1px dotted #AAA;
+width:29.2%;
+float:left;
+min-height:180px;
+	}
+#choose-block li:nth-last-child(1){
+border:none;}
 .edit-block{
 		overflow:hidden;
 	margin:10px 0;
@@ -793,36 +828,65 @@ padding:1em 3em;
 
 /*資料列表*/
 
-.all-list .big-video-show,.all-list #video-list,.all-list#news-show-list,.all-list{
+.all-list .big-video-show,.all-list#news-show-list,.all-list{
 width:auto;
 padding:15px 0 0 6.5%;
 float:none;}
+
+.all-list #video-list{
+width:auto;
+float:none;
+margin:0px;
+padding-left:0px;}
 
 .all-list .small-news-show{
 width:28%;
 margin:1%;
 height:180px;
 float:left;} 
+#video-show-list.all-list{
+width:auto;
+float:none;
+margin:-20px 6% 0 6%;
+}
+
 
 /*不分立委影片資料列表*/
+.all-list#video-show-list .big-video-show{
+background:#F3F3F3;
+padding:25px 7%;
+width:auto;
+float:none;
+margin:20px -7%;
+}
+
 .all-list#video-show-list .big-video-show .img_url_l{
 	width:47%;
 	margin-left:1.5%;
-	padding-top:35.5%;}
+	padding-top:26%;}
 .all-list#video-show-list .big-video-show h3,.all-list#video-show-list .big-video-show .inner-content,.all-list#video-show-list .big-video-show .time{
 	width:46.5%;}
 .all-list#video-show-list .small-video-show {
 	width:44%;
-	margin-left:1.5%;
-	float:left;}
+	float:left;
+padding:2.5%;
+padding-top:3%;
+height:160px;
+	}
 .all-list#video-show-list .small-video-show .img_url_l{
 width:45%;
-padding-top:34.5%;}
+padding-top:25%;}
 .all-list#video-show-list .small-video-show .inner-content{
-	width:53.5%;}
+	width:50%;}
 #login-out-block.wid-block{
 	max-width:400px;
-	margin:0 auto 20px auto;}
+	margin:25px auto 20px auto;
+overflow:hidden;
+padding-bottom:20px;}
+
+#news-inner-list .small-news-show{
+margin-bottom:25px;}
+
 /*修jQuary的css*/
 .ui-widget-content a{
 	color:#5DAA32;
@@ -875,12 +939,12 @@ padding-top:34.5%;}
 	margin:0 0 7px 0;}
 /*提示訊息樣式*/
 .alert{
-	font-size:13px;
-	max-width:280px;
+	font-size:20px;
+	max-width:380px;
 	margin:0 auto 5px auto;
 	background:#ECECEC;
-	border-radius:5px;
-	padding:5px 15px;
+	border-radius:15px;
+	padding:20px;
 	text-align:center;
 	}
 .alert-error{
@@ -888,7 +952,7 @@ padding-top:34.5%;}
 .alert-success{
 	background:#caebb9;}
 #error_explanation{
-	font-size:13px;
+	font-size:20px;
 	text-align:center;
 	margin:0 0 5px 0;}
 #error_explanation li{
@@ -1102,12 +1166,12 @@ width:auto;}
 	margin:0 1.5em 12px 1.5em;
 	line-height:24px;}
 #txt-info{
-	padding:0 1em;}
+	padding:0 9%;}
 #txt-info h2{
 	font-size:24px;
 	margin:0 0 0.5em 0;}
 #txt-info h3{
-	color:#267c71;
+	color:#5DAA32;
 	font-size:18px;}
 #txt-info p{
 	margin:0 0 1.7em 0;
@@ -1306,13 +1370,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 .lmib-02{
 	float:right;
 	margin:0 10% 0 0;}
-#title-contributions{
+.vtitle-set{
 	overflow:hidden;
 	font-size:15px;}
-#title-contributions h3{
-	background:url(../images/title-contributions.png) no-repeat left center;
+.vtitle-set h3{
 	padding:0 10px 0 35px;
 	float:left;}
+#title-contributions h3{
+	background:url(../images/title-contributions.png) no-repeat left center;
+	}
+#title-vote h3{
+	background:url(../images/title-vote.png) no-repeat left center;
+	}
 .vote-ly-g0v .legislators-group{
 	width:86.5%;
 	float:none;
@@ -1332,7 +1401,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	float:left;
 	margin:0 20px 0 0;	
 	}
-#title-contributions select{
+.vtitle-set select{
 	font-size:18px;
 	margin:10px 7px 0 0;
 	}
@@ -1362,17 +1431,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	position:relative;
 	float:right;
 	width:75%;}
+
 .linegp,.linegps{
 	background:#f3f3f3;}
 .line-all{
 	height:4px;}
-.line-all-2{
-	background:#000;
+.gpg-01 .line-all-2{
+	position:relative;
+	top:282px;
+	}
+.gpg-02 .line-all-2{
+	position:relative;
+	top:408px;
 	}
 .linegps{
 	width:4px;
 	height:500px;
 	position:absolute;
+	top:0px;
 	}
 .linegps span{
 	position:absolute;
@@ -1452,6 +1528,56 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	top:9px;
 	color:#d10000;
 	letter-spacing:0px;}
+.show-more-snippet {
+    height:34px;  /*this is set to the height of the how much text you want to show based on the font size, line height, etc*/
+    overflow:hidden;
+}
+.vote-ly-g0v #sec-nav{
+	padding:5px 0px;}
+.hot-issue{
+	float:right;
+	line-height:36px;}
+.hot-issue span,.hot-issue a{
+	padding:0 10px 0 0;}
+.hot-issue a{
+	text-decoration:underline;
+	color:#e62e8b;}
+.vote-group{
+	overflow:hidden;
+	padding:0 0 30px 0;
+	margin:0 0 30px 0;
+	border-bottom:1px dotted #ccc;}
+.vote-txt-group{
+	width:67%;
+	float:left;}
+.vote-result-block{
+	width:30%;
+	float:right;}
+.vote-block{
+	float:left;
+	border:3px solid #d4d4d4;
+	border-radius:8px;
+	position:relative;
+	}
+.self-vote{width:40%;}
+.all-vote{width:50%;
+margin-left:5%;}
+.vote-block h4{
+	font-size:13px;
+	background:#e6e6e6;
+	font-weight:normal;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	text-align:center;}
+.all-vote h4{
+	text-align:left;
+	padding:0 0 0 5%;}
+.all-vote .view-vote{
+	font-size:12px;
+	position:absolute;
+	right:2%;
+	top:13px;
+	line-height:1em;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -1489,7 +1615,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	margin:0 5% 0 0;}
 .local-data li span{
 	display:block;}
-	}
+.vote-ly-g0v .local-data li span{
+	display:inline;}
+	.graphic-start h4{
+	font-size:15px;}}
 @media only screen and (max-width: 960px){
 	#index-banner{
 	height:500px;
@@ -1571,7 +1700,17 @@ width:87%;
 float:none;
 clear:both;
 padding:15px 0 0 0;
-margin:auto;}	
+margin:auto;}
+.vote-txt-group{
+	width:77%;}
+.vote-result-block{
+	width:20%;}	
+.vote-block{
+	float:none;
+	margin:0 0 10px 0;
+	}
+.self-vote{width:auto;}
+.all-vote{width:auto;
 	}
 
 @media only screen and (max-width: 800px){
@@ -1883,7 +2022,22 @@ padding-top:19.5%;}
 .edition span{
 	float:none;
 }	
-
+.vote-txt-group{
+	width:auto;
+	float:none;}
+.vote-result-block{
+	width:auto;
+	float:none;
+	padding:15px 0 0 0;}
+.vote-block{
+	width:47%;
+	float:left;}
+.all-vote{
+	float:right;}	
+.view-proposal{
+	display:block;
+	float:right;
+	}
 }	
 
 
@@ -2005,6 +2159,9 @@ float: none;
 .lmib-01 li{
 	width:auto;
 	margin-left:18px;}
+.view-proposal{
+	float:none;
+	}
 }	
 
 @media only screen and (max-width: 360px){
