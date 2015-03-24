@@ -4,13 +4,15 @@
 body,h1,h2,h3,h4,h5,h6,p,ul,ol{
 	margin:0px;
 	padding:0px;}
-
-ul,ol{
-	list-style:none;}
 body{
 	font-size:16px;
 	font-family:Verdana, Geneva, sans-serif;
 	background:#eaeaea;}
+h1,h2,h3,h4,h5,h6{
+	font-family:微軟正黑體;}
+ul,ol{
+	list-style:none;}
+
 img{
 	border:none;}
 a{
@@ -1382,6 +1384,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 #title-vote h3{
 	background:url(../images/title-vote.png) no-repeat left center;
 	}
+#title-law h3{
+	background:url(../images/title-law.png) no-repeat left center;
+	}
 .vote-ly-g0v .legislators-group{
 	width:86.5%;
 	float:none;
@@ -1542,11 +1547,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 .hot-issue a{
 	text-decoration:underline;
 	color:#e62e8b;}
-.vote-group{
+.vote-group,.law-group{
 	overflow:hidden;
-	padding:0 0 30px 0;
+	padding:30px;
 	margin:0 0 30px 0;
-	border-bottom:1px dotted #ccc;}
+	border:1px dotted #eee;
+	background:#fafafa;}
 .vote-txt-group{
 	width:67%;
 	float:left;}
@@ -1561,7 +1567,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	}
 .self-vote{width:40%;}
 .all-vote{width:50%;
-margin-left:5%;}
+margin-left:4%;}
 .vote-block h4{
 	font-size:13px;
 	background:#e6e6e6;
@@ -1578,6 +1584,65 @@ margin-left:5%;}
 	right:2%;
 	top:13px;
 	line-height:1em;}
+.vote-result span{
+	display:block;
+	width:auto;
+	height:1px;
+	background-repeat:no-repeat;
+	background-position:center;
+	overflow:hidden;
+	padding-top:29px;
+	background-size: auto 100%;
+	margin:9px 0;
+	}
+.no-all{
+	background-image:url(../images/icon-noall.png);}
+.yes-all{
+	background-image:url(../images/icon-yesall.png);}
+.yes{
+	background-image:url(../images/icon-yes.png);}
+.no{
+	background-image:url(../images/icon-no.png);}
+.give-up{
+	background-image:url(../images/icon-giveup.png);}
+.do-not-vote{
+	background-image:url(../images/icon-donotvote.png);}
+.count-law{
+	float:left;}
+.count-law span{
+	font-size:24px;
+	color:#e85098;}
+.vote-time{
+	color:#c8c8c8;
+	display:block;
+	float:left;
+	margin:0 15px 0 0;}
+.view-proposal{
+	display:block;
+	float:left;
+	font-size:16px;
+	background-image:url(../images/icon-law.png);
+	background-repeat:no-repeat;
+	background-position:10px center;
+	padding:0 20px 0 50px;
+	background-color:#a8a8a8;
+	border-radius:5px;
+	box-shadow:1px 1px 3px #ccc;
+	color:#fff;
+}
+.ss-txt{
+	font-size:16px;
+	color:#616161;
+	line-height:1.7em;
+	clear:both;
+	padding:13px 0 0 0;}
+.order-time{
+	float:right;
+	font-size:13px;}
+.law-txt-group h4{
+	font-size:24px;
+	margin:0 0 10px 0;
+	line-height:1.2em;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -1618,7 +1683,37 @@ margin-left:5%;}
 .vote-ly-g0v .local-data li span{
 	display:inline;}
 	.graphic-start h4{
-	font-size:15px;}}
+	font-size:15px;}
+	#secn01 li a{
+padding:5px 8px;}
+	#secn02 li a{
+padding:3px 4px 7px 4px;
+}
+	#people-rank-list li{
+		width:25%;}
+	#people-rank-list li span{
+		float:left;
+		width:auto;
+		padding:4px 0 0 0;
+		}
+	#people-rank-list li em{
+		float:left;
+		padding:0 3% 0 14%;}
+		.big-video-show .inner-content{
+		float:none;
+		width:100%;
+		clear:both;
+		}
+		.all-list .small-news-show{
+height:210px;}
+#video-show-list.all-list .big-video-show .inner-content{
+float:left;
+clear:none;}
+
+#video-show-list.all-list .small-video-show .inner-content{
+	display:none;
+}
+	}
 @media only screen and (max-width: 960px){
 	#index-banner{
 	height:500px;
@@ -1712,6 +1807,204 @@ margin:auto;}
 .self-vote{width:auto;}
 .all-vote{width:auto;
 	}
+.hot-issue{
+	display:none;}
+.vote-ly-g0v #secn01 li{
+	width:19.5%;
+	text-align:center;}
+#secn01 li a{
+padding:5px 15px;}
+	#secn02 li a{
+padding:3px 15px 7px 15px;
+}
+#secn01,#secn02{
+float:none;}
+	#people-rank-list li{
+		width:33%;}
+		#people-rank-list li em{
+		padding:0 3% 0 14%;}
+	#people-all-list .people-info-block{
+	width:45.5%;
+	margin:1.7%;}
+	.people-img{
+		width:26%;
+		min-height:100px;}
+	.people-info-block h2{
+		width:66.5%;
+		font-size:26px;
+		padding-top:7px;}
+
+	.info-number{
+		width:70%;
+		margin-right:-20%;}
+	.info-number li{
+		width:29%;
+		margin:0px;
+		margin-right:2%;
+		padding:0px;
+		float:left;}
+	.pinfo .info-number li{
+		padding:1%;}
+	.info-number a,.info-number em{
+		float:none;
+		margin:0px;
+		display:block;
+		text-align:center;
+		font-family:Arial;}
+		.info-number a{
+		font-size:22px;
+		line-height:38px;
+		}
+		.pinfo .info-number em,.pinfo .info-number a{
+	text-align:left;
+	display:inline;}
+	.party-tag{
+		width:30px;
+		height:24px;}
+		.pinfo .selector-info{
+		border:none;
+		border-left:4px solid #e2e2e2;
+		margin:0 0 0 -1px;
+		float:left;
+		clear:none;
+		width:105px;
+		}
+	.pinfo .selector-info.si-newest{
+	margin-left:3%;
+	}
+	.pinfo .selector-info div{
+	float:none;
+	width:auto;
+	padding-left:7px;}
+	.big-video-show{
+		width:97.5%;
+		padding:3% 0 0 0;}	
+	#info-show-list #video-list{
+	width:94%;
+	margin-right:3%;}
+	#video-list{
+		width:86.5%;
+	margin-right:7%;}
+	.side-sblock#news-list,.side-sblock#say-list{
+	width:44%;
+	margin:3%;}
+
+	.single-page-inner{
+	width:97.5%;}
+	#news-show-list.all-list .small-news-show{
+width:42.5%;
+margin:2%;
+height:180px;
+} 
+
+#news-show-list.all-list{
+margin-right:6%;
+}
+#news-inner-list{
+margin:0 -3%;}
+#news-show-list .small-news-show{
+width:42%;
+margin:2%;
+height:180px;
+float:left;} 
+#video-show-list.all-list .big-video-show .inner-content{
+display:none;}
+
+#video-show-list.all-list .small-video-show{
+height:120px;}
+.small-video-show .img_url_l{
+margin-right:5%;}
+#video-show-list.all-list .small-video-show h3{
+width:50%;}
+#video-list .small-video-show .img_url_l{
+margin-right:3%;}
+
+#video-show-list .big-video-show {
+	width:90%;
+margin:20px -11% 20px 0;
+padding: 40px 15% 0 15%;
+}
+.pinfo .info-number{
+margin-bottom:7px;}
+.single-page-inner{
+padding-top:0px;}
+#video-show-list.all-list .big-video-show .img_url_l{
+float:none;
+width:100%;
+padding-top:56%;}
+#video-show-list.all-list .big-video-show h3{
+float:none;
+width:100%;}
+#video-show-list.all-list .small-video-show{
+float:none;
+width:auto;
+height:auto;
+padding:5% 0;}
+.side-sblock#news-list ul{
+font-size:20px;
+line-height:1.3em;}
+.side-sblock#news-list ul li{
+margin-bottom:20px;}
+.side-sblock#say-list ul li{
+font-size:15px;
+line-height:1.7em;}
+
+.small-video-show .inner-content{
+width:65%;
+clear:none;
+padding:0px 0 30px 0;
+float:left;}
+
+
+#people-single-top{
+	padding:20px 5% 15px 0.5%;}
+#people-single-top .big-video-show{
+width:93%;}
+
+.single-page-inner{
+width:87%;}
+.news-info-list li{
+font-size:20px;
+}
+.video-other-list li{
+width:100%;}
+
+.vo-title{
+width:auto;
+font-size:24px;}
+
+#first-nav{
+	float:none;
+	text-align:center;
+	clear:both;}
+#first-nav li{
+	float:none;
+	display:inline;
+	border:none;
+	border-bottom:none;
+	margin:0 0 0 -1px ;
+	}
+	#first-nav li a{
+			display:inline;
+			padding:4px 10px;
+			
+	}
+	#video-show-list.all-list .small-video-show .inner-content{
+	display:block;
+}
+
+
+#choose-block li{
+border-right:none;
+border-bottom:1px dotted #AAA;
+width:auto;
+float:none;
+min-height:1px;
+padding-bottom:15px;}
+
+
+}
+
 
 @media only screen and (max-width: 800px){
 /*表頭*/
@@ -1767,6 +2060,7 @@ padding:4px 6px;
 	border-right:1px solid #d4d4d4;
 	border-bottom:1px solid #d4d4d4;
 	display:none;
+	display:block;
 	}
 .pinfo .selector-info div{
 	float:none;
@@ -1843,11 +2137,150 @@ padding:4px 6px;
 	}
 .cf02{display:block;
 float:right;
-
 }
 
+.time{
+display:none;}
+#news-show-list.all-list .small-news-show{
+height:220px;
+}
+.big-video-show .inner-content,.small-video-show .inner-content{
+display:none;}
+#video-show-list #video-list{
+width:88.5%;}
+#video-show-list.all-list #video-list{
+width:100%;}
+#video-show-list .big-video-show{
+padding-bottom:40px;}
+.video-other-list li{
+float:none;
+width:100%;
+overflow:hidden;}
 }
 
+@media only screen and (max-width: 720px){
+.big-video-show .img_url_l{
+width:98%;
+padding-top:55%;}
+.big-video-show h3{
+width:100%;
+padding-top:15px;}
+
+#video-show-list.all-list .small-video-show .img_url_l{
+padding-top:25.5%;
+}
+#video-show-list.all-list .small-video-show h3{
+font-size:24px;}
+#video-show-list .big-video-show{
+padding-bottom:25px;}
+.pinfo .selector-info{
+display:none;}
+.pinfo .selector-info.si-newest{
+display:block;
+width:70%;
+border:none;
+}
+.pinfo .people-img{
+width:22%;}
+.pinfo .selector-info div{
+float:left;
+margin:0 10px 0 0;
+}
+	.small-video-show h3,#video-show-list.all-list .small-video-show h3{
+	width:97.5%;
+	margin-bottom:0px;
+	font-size:26px;}
+	.small-video-show .img_url_l{
+	display:none;}
+	.pinfo .info-number{
+	width:76%;}
+#video-show-list.all-list .small-video-show .inner-content{
+	display:none;}
+}
+@media only screen and (max-width: 640px){
+#logo{
+	margin:0 0 0 16px;
+	float:left;}
+	#first-nav {
+	margin:0 -7%;}
+	#first-nav li{
+	display:block;
+	border-bottom:1px solid #3c3c3c;}
+	#first-nav li a{
+			display:block;
+			padding:7px 10px;
+			
+	}
+	#people-rank h3{
+		font-size:2em;}
+	#people-rank p{
+		padding:17px 0 0 6px;
+		font-size:1em;}
+	#people-rank-list li em{
+		padding:0 3% 0 18%;}
+	#people-rank-list li span{
+		float:none;
+		clear:both;
+		padding:0 3% 0 18%;}
+		.video-a{
+	margin-bottom:10px;}
+	.index-sub-video{
+		float:none;
+		width:94%;}
+	.people-img{
+		width:22%;}
+	#people-all-list .people-info-block{
+		width:auto;
+		margin-bottom:4%;}
+	.info-number{
+		width:80%;}
+		.pinfo .selector-info.si-newest{
+			float:left;
+			border:#D4D4D4 1px solid;
+			clear:none;}
+		.side-sblock#news-list,.side-sblock#say-list{
+		width:94%;}
+		.side-sblock#news-list ul li{
+		width:auto;}
+		.side-sblock#say-list ul{
+		width:95%;}
+		#news-show-list.all-list .small-news-show{
+		float:none;
+		width:auto;
+height:auto;
+padding-bottom:30px;
+margin-bottom:30px;
+}
+#news-show-list .small-news-show{
+float:none;
+width:auto;
+height:auto;
+padding-bottom:30px;
+margin-bottom:30px;} 
+	#video-show-list.all-list .small-video-show .img_url_l{
+	width:45%;}
+.pinfo .selector-info.si-newest{
+border:none;
+}
+
+.pinfo .info-number{
+width:72%;}
+.pinfo .selector-info.si-newest{
+display:block;
+width:100%;
+border:none;
+margin:0 0 0 0px;
+border-top:1px solid #D4D4D4;}
+.info-number li{
+text-align:center;}
+.pinfo .info-number li{
+padding-bottom:0px;}
+.pinfo .info-number a{
+display:block;
+text-align:center;}	
+
+
+}
 
 
 @media only screen and (max-width: 640px){
@@ -2034,9 +2467,14 @@ padding-top:19.5%;}
 	float:left;}
 .all-vote{
 	float:right;}	
-.view-proposal{
-	display:block;
-	float:right;
+
+	.vtitle-set h3{
+	float:none;
+	clear:both;}
+	.vtitle-set{
+		margin-bottom:15px;}
+.law-group-list .order-time,.law-group-list .view-proposal{
+	float:none;
 	}
 }	
 
@@ -2044,26 +2482,46 @@ padding-top:19.5%;}
 @media only screen and (max-width: 480px){
 /*表頭*/
 #first-nav{
-	width:100%;}
+	width:auto;}
 #first-nav li{
 	float:none;
 	display:block;
 	border:1px solid #3c3c3c;
-	border-bottom:none;
 	margin:0px ;
 	text-align:center;
 	}
 #first-nav li a{
 	display:block;}
+#secn01 li{
+width:32.5%;
+text-align:center;}
+	#secn02 li a{
+padding:3px 8px 7px 8px;
+margin-bottom:10px;
+}
 /*首頁*/
 #people-rank-list li{
-margin:0 0 8px 1.5%;
-	width:100%;
 	float:none;
+	width:42%;
+		border:none;
+		margin:0px;
 }
 #people-rank-list li span{width:30%;}
 #people-rank-list li em{width:44%;
-padding:0 0 0 9%;}
+padding:0 3% 0 17%;}
+
+	#people-rank-list li:nth-child(1),#people-rank-list li:nth-child(2),#people-rank-list li:nth-child(3),#people-rank-list li:nth-child(4),#people-rank-list li:nth-child(5),#people-rank-list li:nth-child(6){
+	float:left;
+	clear:left;
+	border-right:1px solid #D4D4D4;
+	margin:0 15% 0 0;
+	}
+#people-rank-list li:nth-child(7),#people-rank-list li:nth-child(8),#people-rank-list li:nth-child(9),#people-rank-list li:nth-child(10),#people-rank-list li:nth-child(11),#people-rank-list li:nth-child(12){
+	float:none;
+	}
+#video-show-list.all-list .small-video-show{
+	height:auto;
+	padding-bottom:25px;}
 /*立委列表*/
 .people-img{
 	max-width:85px;
@@ -2073,7 +2531,7 @@ padding:0 0 0 9%;}
 	width:63%;
 	}
 .info-number{
-	width:63%;
+	width:74%;
 	}
 /*立委內頁*/
 .pinfo .info-number{
@@ -2159,7 +2617,7 @@ float: none;
 .lmib-01 li{
 	width:auto;
 	margin-left:18px;}
-.view-proposal{
+.view-proposal,.order-time{
 	float:none;
 	}
 }	
@@ -2181,4 +2639,21 @@ float: none;
 {
 	width:135px;
 	height:auto;}
+#secn01 li a{
+height:auto;
+padding:5px;}
+#people-rank-list li em{
+		padding:0 3% 0 22%;}
+		#people-rank-list li span{
+		padding:0 3% 0 22%;}
+		#people-rank-list li:nth-child(1),#people-rank-list li:nth-child(2),#people-rank-list li:nth-child(3),#people-rank-list li:nth-child(4),#people-rank-list li:nth-child(5),#people-rank-list li:nth-child(6){
+
+	margin:0 8% 0 0;
+	}
+	.people-img{
+	width:30%;}
+	.people-info-block h2{
+	width:63%;}
+	.info-number{
+	width:66%;}
 }
