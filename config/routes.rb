@@ -29,6 +29,9 @@ Rails.application.routes.draw do
       get 'entries'
       get 'questions'
       get 'videos'
+      get 'votes'
+      get 'bills'
+      get 'candidate'
     end
   end
 

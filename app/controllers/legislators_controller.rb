@@ -303,6 +303,15 @@ class LegislatorsController < ApplicationController
     end
   end
 
+  def votes
+  end
+
+  def bills
+  end
+
+  def candidate
+  end
+
   def search
     @q = Election.search(params[:q])
   end
@@ -347,13 +356,125 @@ class LegislatorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_legislator
-      @legislator = params[:id] ? Legislator.find(params[:id]) : Legislator.new(legislator_params)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_legislator
+    @legislator = params[:id] ? Legislator.find(params[:id]) : Legislator.new(legislator_params)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def legislator_params
-      params.require(:legislator).permit()
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def legislator_params
+    params.require(:legislator).permit()
+  end
+
+  def parse_vote_guide_voter(legislator_id, ad, page = nil)
+    if page
+      url = "http://vote.ly.g0v.tw/legislator/voter/#{legislator_id}/#{ad}/?page=#{page}"
+    else
+      url = "http://vote.ly.g0v.tw/legislator/voter/#{legislator_id}/#{ad}/"
     end
+    begin
+      pages = []
+      votes = []
+      vote_uri = URI.parse(url)
+      html = Nokogiri::HTML(open(vote_uri))
+      info_section = html.css('div.span9')[0]
+      pagination_section = info_section.css('div.pagination')[0]
+      pagination_section.css('li').each do | li |
+        pages << li.text
+      end
+      pages = pages[1..-2]
+      vote_section = info_section.css('tbody')[0]
+      vote_section.css('tr').each do | tr |
+        vote = {}
+        tds = tr.css('td')
+        vote[:ad] = tds[0].text.strip
+        action = tds[1].text.strip
+        if action == '贊成'
+          vote[:action] = 'agree'
+        elsif action == '棄權'
+          vote[:action] = 'abstain'
+        elsif action == '反對'
+          vote[:action] = 'disagree'
+        elsif action == '沒有投票'
+          vote[:action] = 'notvote'
+        else
+          vote[:action] = 'unknown'
+        end
+        result = tds[2].text.strip
+        if result == '通過'
+          vote[:result] = 'passed'
+        elsif result == '不通過'
+          vote[:result] = 'notpass'
+        else
+          vote[:result] = 'unknown'
+        end
+        vote[:date] = tds[3].text.strip
+        vote[:link] = "http://vote.ly.g0v.tw" + tds[4].css('a').attr('href').value
+        vote[:content] = tds[4].text.strip.split("\n")[-1].strip
+        votes << vote
+      end
+      return votes, pages, true
+    rescue
+      return [], [], false
+    end
+  end
+
+  def parse_vote_guide_biller(legislator_id, ad, page = nil)
+    if page
+      url = "http://vote.ly.g0v.tw/legislator/biller/#{legislator_id}/#{ad}/?page=#{page}"
+    else
+      url = "http://vote.ly.g0v.tw/legislator/biller/#{legislator_id}/#{ad}/"
+    end
+    begin
+      pages = []
+      bills = []
+      bill_uri = URI.parse(url)
+      html = Nokogiri::HTML(open(bill_uri))
+      info_section = html.css('div.span9')[0]
+      pagination_section = info_section.css('div.pagination')[0]
+      pagination_section.css('li').each do | li |
+        pages << li.text.strip
+      end
+      pages = pages[1..-2]
+      bill_section = info_section.css('ul.media-list')[0]
+      bill_section.css('li.media').each do | li |
+        bill = {}
+        bill[:reason] = li.css('div.media-heading').text.strip
+        progress = []
+        li.css('blockquote').text.split("\n").each do |text|
+          text = text.strip
+          progress << text unless text.blank?
+        end
+        if li.css('font.lead').any?
+          bill[:warning] = li.css('font.lead').text
+          progress = progress[1..-1]
+        else
+          bill[:warning] = nil
+        end
+        bill[:progress] = progress
+        bill[:link] = li.css('a').attr('href').value
+        bill[:id] = bill[:link].split('/')[-1]
+        ly_g0v_uri = URI.parse("http://api.ly.g0v.tw/v0/collections/bills/#{bill[:id]}")
+        ly_g0v_json = JSON.parse(open(ly_g0v_uri).read)
+        bill[:title] = ly_g0v_json['summary']
+        # bill[:reason] = ly_g0v_json['abstract']
+        bills << bill
+      end
+      return bills, pages, true
+    rescue
+      return [], [], false
+    end
+  end
+
+  def parse_vote_guide_candidate(legislator_id, ad, page = nil)
+    legislator_term_url = "http://vote.ly.g0v.tw/api/legislator_terms/?format=json&ad=#{ad}&legislator=#{legislator_id}"
+    legislator_term_json = JSON.parse(open(URI.parse(legislator_term_url)).read)
+    if legislator_term_json["results"].any?
+      candidate_url = legislator_term_json["results"][0]["elected_candidate"][0]
+      candidate_json = JSON.parse(open(URI.parse(candidate_url)).read)
+      return candidate_json["politicalcontributions"], true
+    else
+      return {}, false
+    end
+  end
 end

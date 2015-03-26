@@ -34,4 +34,15 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def cache_page(url)
+    #redis
+    page_content = redis.get(url)
+    unless page_content
+      page_content = open(URI.parse(url)).read
+      redis.set(url, page_content)
+      redis.expire(url, 1.day.to_i)
+    end
+    return page_content
+  end
 end
