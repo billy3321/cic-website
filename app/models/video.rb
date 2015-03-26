@@ -167,8 +167,8 @@ class Video < ActiveRecord::Base
       end
       unless self.source_url.to_s == ''
         begin
-          source_uri = URI.parse(self.source_url)
-          unless HTTParty.get(self.source_url).code == 200
+          source_uri = URI.parse(URI.escape(self.source_url))
+          unless HTTParty.get(URI.escape(self.source_url)).code == 200
             errors.add(:base, '新聞來源網址無法存取')
             error = 1
           end

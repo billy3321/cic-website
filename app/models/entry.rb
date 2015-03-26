@@ -32,11 +32,14 @@ class Entry < ActiveRecord::Base
   end
 
   def is_source_url
-    begin
-      source_uri = URI.parse(self.source_url)
-      errors.add(:base, '新聞來源網址無法存取') unless HTTParty.get(self.source_url).code == 200
-    rescue
-      errors.add(:base, '新聞來源網址錯誤')
-    end
+    #begin
+      escape_uri = URI.escape(self.source_url)
+      puts escape_uri
+      source_uri = URI.parse(URI.escape(self.source_url))
+      puts source_uri
+      errors.add(:base, '新聞來源網址無法存取') unless HTTParty.get(URI.escape(self.source_url)).code == 200
+    #rescue
+    #  errors.add(:base, '新聞來源網址錯誤')
+    #end
   end
 end
