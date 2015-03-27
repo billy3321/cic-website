@@ -1,7 +1,6 @@
-aside class="pinfo-inner-aside"
+.legislators-group
   - @entry.legislators.each do |l|
-    .pinfo.pinfo-inner
-      = render partial: 'shared/legislator_info', locals: { l: l }
+    = render partial: 'shared/legislator_info', locals: { l: l }
 
 section class="single-page-inner"
   header

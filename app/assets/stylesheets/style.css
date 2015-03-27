@@ -1597,17 +1597,17 @@ margin-left:4%;}
 	background-size: auto 100%;
 	margin:9px 0;
 	}
-.no-all{
+.notpass{
 	background-image:url(../images/icon-noall.png);}
-.yes-all{
+.passed{
 	background-image:url(../images/icon-yesall.png);}
-.yes{
+.agree{
 	background-image:url(../images/icon-yes.png);}
-.no{
+.disagree{
 	background-image:url(../images/icon-no.png);}
-.give-up{
+.abstain{
 	background-image:url(../images/icon-giveup.png);}
-.do-not-vote{
+.notvote{
 	background-image:url(../images/icon-donotvote.png);}
 .count-law{
 	float:left;}
