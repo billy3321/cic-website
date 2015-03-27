@@ -1,0 +1,38 @@
+.vote-ly-g0v
+  .legislators-group
+    = render partial: 'shared/legislator_info', locals: { l: @legislator }
+  section.single-page-inner
+    #title-law.vtitle-set
+      header
+        h3 法律修正案
+        select#select name="select"
+          option 第8屆
+        | 資料來源：
+        = link_to "立委投票指南", "http://vote.ly.g0v.tw/", target: "_blank"
+        | 、
+        = link_to "國會大代誌", "http://ly.g0v.tw/", target: "_blank"
+    = social_share_button_tag("#{@legislator.name}法律修正案")
+    nav.sec-nav
+      .count-law
+        | 第8屆任期共提出
+        span = @count
+        | 個法條修正草案
+      .hot-issue
+    .inner-content-txt
+      .law-group-list
+        - @bills.each do |b|
+          .law-group
+            .law-txt-group
+              h4 = b[:title]
+              span.order-time 提案日期：#{b[:date]}
+              = link_to "查看法條修正進度與詳細對修正照表", b[:link], class: "view-proposal", target: "_blank"
+              .ss-txt = display_shorter(b[:reason], 110)
+      #page
+        nav.pagination
+          - @pages.each do |p|
+            - if p == @current_page
+              span.page.current = p
+            - else
+              span.page = link_to p, url_for(params.merge({page: p}))
+      
+  #disqus_thread

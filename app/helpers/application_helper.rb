@@ -15,6 +15,18 @@ module ApplicationHelper
     end
   end
 
+  def get_percentage(numerator, denominator)
+    unless numerator.blank?
+      return ((numerator.to_f / denominator.to_f).round(4) * 100.0).to_s + "%"
+    else
+      return "0%"
+    end
+  end
+
+  def to_ten_thousands(number)
+    (number.to_f / 10000).round(2).to_s + "萬"
+  end
+
   def default_meta_tags
     {
       separator: "&mdash;".html_safe,

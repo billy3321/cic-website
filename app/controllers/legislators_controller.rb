@@ -305,22 +305,42 @@ class LegislatorsController < ApplicationController
 
   def votes
     page = params[:page]
-    ad = params[:ad]
-    ad = Ad.last.id if not ad or ad > Ad.last.id
-    @votes, @pages, @status = parse_vote_guide_voter(@legislator.id, ad, page)
+    decision = params[:decision]
+    ad = params[:ad].to_i
+    ad = Ad.last.id if 8 > ad or ad > Ad.last.id
+    unless ["agree", "disagree", "abstain", "notvote"].include?(decision)
+      decision = nil
+      params[:decision] = nil
+    end
+    @votes, @pages, @status = parse_vote_guide_voter(@legislator.id, ad, page, decision)
+    if page
+      @current_page = page
+    else
+      @current_page = "1"
+    end
+    @decision = decision
+    flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
   end
 
   def bills
     page = params[:page]
-    ad = params[:ad]
-    ad = Ad.last.id if not ad or ad > Ad.last.id
-    @bills, @pages, @status = parse_vote_guide_biller(@legislator.id, ad, page)
+    ad = params[:ad].to_i
+    ad = Ad.last.id if 8 > ad or ad > Ad.last.id
+    @bills, @pages, @count, @status = parse_vote_guide_biller(@legislator.id, ad, page)
+    if page
+      @current_page = page
+    else
+      @current_page = "1"
+    end
+    flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
   end
 
   def candidate
-    ad = params[:ad]
-    ad = Ad.last.id if not ad or ad > Ad.last.id
-    @candidate, @status = parse_vote_guide_biller(@legislator.id, ad)
+    ad = params[:ad].to_i
+    ad = Ad.last.id if 8 > ad or ad > Ad.last.id
+    @candidate, @status = parse_vote_guide_candidate(@legislator.id, ad)
+    flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
+    puts @candidate
   end
 
   def search
@@ -377,22 +397,33 @@ class LegislatorsController < ApplicationController
     params.require(:legislator).permit()
   end
 
-  def parse_vote_guide_voter(legislator_id, ad, page = nil)
-    if page
-      url = "http://vote.ly.g0v.tw/legislator/voter/#{legislator_id}/#{ad}/?page=#{page}"
+  def parse_vote_guide_voter(legislator_id, ad, page = nil, decision = nil)
+    params = {}
+    unless page.blank?
+      params[:page] = page
+    end
+    unless decision.blank?
+      params[:decision] = decision
+    end
+    if params.any?
+      url = "http://vote.ly.g0v.tw/legislator/voter/#{legislator_id}/#{ad}/?" + params.to_query
     else
       url = "http://vote.ly.g0v.tw/legislator/voter/#{legislator_id}/#{ad}/"
     end
-    begin
+    #begin
       pages = []
       votes = []
       html = Nokogiri::HTML(get_cached_page(url))
       info_section = html.css('div.span9')[0]
       pagination_section = info_section.css('div.pagination')[0]
-      pagination_section.css('li').each do | li |
-        pages << li.text
+      unless pagination_section.blank?
+        pagination_section.css('li').each do | li |
+          pages << li.text
+        end
+        pages = pages[1..-2]
+      else
+        pages = []
       end
-      pages = pages[1..-2]
       vote_section = info_section.css('tbody')[0]
       vote_section.css('tr').each do | tr |
         vote = {}
@@ -400,15 +431,15 @@ class LegislatorsController < ApplicationController
         vote[:ad] = tds[0].text.strip
         action = tds[1].text.strip
         if action == '贊成'
-          vote[:action] = 'agree'
+          vote[:decision] = 'agree'
         elsif action == '棄權'
-          vote[:action] = 'abstain'
+          vote[:decision] = 'abstain'
         elsif action == '反對'
-          vote[:action] = 'disagree'
+          vote[:decision] = 'disagree'
         elsif action == '沒有投票'
-          vote[:action] = 'notvote'
+          vote[:decision] = 'notvote'
         else
-          vote[:action] = 'unknown'
+          vote[:decision] = 'unknown'
         end
         result = tds[2].text.strip
         if result == '通過'
@@ -420,13 +451,13 @@ class LegislatorsController < ApplicationController
         end
         vote[:date] = tds[3].text.strip
         vote[:link] = "http://vote.ly.g0v.tw" + tds[4].css('a').attr('href').value
-        vote[:content] = tds[4].text.strip.split("\n")[-1].strip
+        vote[:reason] = tds[4].text.strip.split("\n")[-1].strip.gsub("　", "")
         votes << vote
       end
       return votes, pages, true
-    rescue
+    #rescue
       return [], [], false
-    end
+    #end
   end
 
   def parse_vote_guide_biller(legislator_id, ad, page = nil)
@@ -438,11 +469,19 @@ class LegislatorsController < ApplicationController
     begin
       pages = []
       bills = []
+      count = ""
       html = Nokogiri::HTML(get_cached_page(url))
       info_section = html.css('div.span9')[0]
+      count_section = info_section.css('.well .lead')
+      count = count_section.text.split('：')[-1].split("個")[0]
       pagination_section = info_section.css('div.pagination')[0]
-      pagination_section.css('li').each do | li |
-        pages << li.text.strip
+      unless pagination_section.blank?
+        pagination_section.css('li').each do | li |
+          pages << li.text
+        end
+        pages = pages[1..-2]
+      else
+        pages = []
       end
       pages = pages[1..-2]
       bill_section = info_section.css('ul.media-list')[0]
@@ -469,9 +508,9 @@ class LegislatorsController < ApplicationController
         # bill[:reason] = ly_g0v_json['abstract']
         bills << bill
       end
-      return bills, pages, true
+      return bills, pages, count, true
     rescue
-      return [], [], false
+      return [], [], count, false
     end
   end
 
@@ -481,7 +520,12 @@ class LegislatorsController < ApplicationController
     if legislator_term_json["results"].any?
       candidate_url = legislator_term_json["results"][0]["elected_candidate"][0]
       candidate_json = JSON.parse(get_cached_page(candidate_url))
-      return candidate_json["politicalcontributions"], true
+      if candidate_json.has_key? "politicalcontributions"
+        puts candidate_json["politicalcontributions"]
+        return candidate_json["politicalcontributions"], true
+      else
+        return {}, false
+      end
     else
       return {}, false
     end
