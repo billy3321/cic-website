@@ -31,6 +31,13 @@ xml.tag! 'urlset', "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
   end
 
   xml.url do
+    xml.loc "#{base_url}/legislators/search"
+    xml.lastmod Time.now.to_date
+    xml.changefreq "monthly"
+    xml.priority 1.0
+  end
+
+  xml.url do
     xml.loc "#{base_url}/legislators/no_record"
     xml.lastmod Time.now.to_date
     xml.changefreq "daily"
@@ -55,6 +62,27 @@ xml.tag! 'urlset', "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     xml.loc "#{base_url}/entries"
     xml.lastmod Time.now.to_date
     xml.changefreq "daily"
+    xml.priority 1.0
+  end
+
+  xml.url do
+    xml.loc "#{base_url}/votes"
+    xml.lastmod Time.now.to_date
+    xml.changefreq "monthly"
+    xml.priority 1.0
+  end
+
+  xml.url do
+    xml.loc "#{base_url}/bills"
+    xml.lastmod Time.now.to_date
+    xml.changefreq "monthly"
+    xml.priority 1.0
+  end
+
+  xml.url do
+    xml.loc "#{base_url}/candidate"
+    xml.lastmod Time.now.to_date
+    xml.changefreq "monthly"
     xml.priority 1.0
   end
 
