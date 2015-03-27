@@ -1,0 +1,1 @@
+Setting.initialize_redis

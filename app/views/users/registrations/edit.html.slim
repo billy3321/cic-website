@@ -1,37 +1,38 @@
-#login-out-block.wid-block
-  h2 修改密碼
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    = render 'shared/error_messages', object: f.object
-    ul class="form-list"
-      li
-        p Email
-        p class="input-data"
-        = f.input :email, disabled: true, label: false
-      li
-        p 暱稱
-        p class="input-data"
-        = f.input :name, disabled: true, label: false
-      li
-        p 原始密碼
-        p = f.input :current_password, required: true, label: false
-      li
-        p 設定新密碼
-        p class="sonte" 請輸入英文或數字，最少8個字。
-        p = f.input :password, autocomplete: "off", required: false, label: false
-      li
-        p 再輸入一次密碼
-        p = f.input :password_confirmation, required: false, label: false
-      li 
-        p 驗證碼
-        p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
-        p = recaptcha_tags ajax: true
-      li
-        = f.button :submit, "確定修改", class: "form-btn"
-  .delete-id
-    h3 刪除帳號
+#bg-wrap
+  #login-out-block
+    h2 修改密碼
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      = render 'shared/error_messages', object: f.object
+      ul class="form-list"
+        li
+          p Email
+          p class="input-data"
+          = f.input :email, disabled: true, label: false
+        li
+          p 暱稱
+          p class="input-data"
+          = f.input :name, disabled: true, label: false
+        li
+          p 原始密碼
+          p = f.input :current_password, required: true, label: false
+        li
+          p 設定新密碼
+          p class="sonte" 請輸入英文或數字，最少8個字。
+          p = f.input :password, autocomplete: "off", required: false, label: false
+        li
+          p 再輸入一次密碼
+          p = f.input :password_confirmation, required: false, label: false
+        li 
+          p 驗證碼
+          p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
+          p = recaptcha_tags ajax: true
+        li
+          = f.button :submit, "確定修改", class: "form-btn"
+    .delete-id
+      h3 刪除帳號
 
-    p 
-      | 不高興嗎？
-      = link_to "刪除帳號", registration_path(resource_name), data: { confirm: "確定嗎？" }, method: :delete
+      p 
+        | 不高興嗎？
+        = link_to "刪除帳號", registration_path(resource_name), data: { confirm: "確定嗎？" }, method: :delete
 
 - set_meta_tags({title: "修改密碼", og: {title: "修改密碼"}})

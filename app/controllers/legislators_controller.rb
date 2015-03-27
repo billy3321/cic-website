@@ -304,12 +304,26 @@ class LegislatorsController < ApplicationController
   end
 
   def votes
+    page = params[:page]
+    ad = params[:ad]
+    ad = Ad.last.id if not ad or ad > Ad.last.id
+    @votes, @pages, @status = parse_vote_guide_voter(@legislator.id, ad, page)
+    errors.add(:base, '網址擷取失敗，請稍後重新嘗試。') unless @status
   end
 
   def bills
+    page = params[:page]
+    ad = params[:ad]
+    ad = Ad.last.id if not ad or ad > Ad.last.id
+    @bills, @pages, @status = parse_vote_guide_biller(@legislator.id, ad, page)
+    errors.add(:base, '網址擷取失敗，請稍後重新嘗試。') unless @status
   end
 
   def candidate
+    ad = params[:ad]
+    ad = Ad.last.id if not ad or ad > Ad.last.id
+    @candidate, @status = parse_vote_guide_biller(@legislator.id, ad)
+    errors.add(:base, '網址擷取失敗，請稍後重新嘗試。') unless @status
   end
 
   def search
@@ -375,8 +389,7 @@ class LegislatorsController < ApplicationController
     begin
       pages = []
       votes = []
-      vote_uri = URI.parse(url)
-      html = Nokogiri::HTML(open(vote_uri))
+      html = Nokogiri::HTML(get_cached_page(url))
       info_section = html.css('div.span9')[0]
       pagination_section = info_section.css('div.pagination')[0]
       pagination_section.css('li').each do | li |
@@ -428,8 +441,7 @@ class LegislatorsController < ApplicationController
     begin
       pages = []
       bills = []
-      bill_uri = URI.parse(url)
-      html = Nokogiri::HTML(open(bill_uri))
+      html = Nokogiri::HTML(get_cached_page(url))
       info_section = html.css('div.span9')[0]
       pagination_section = info_section.css('div.pagination')[0]
       pagination_section.css('li').each do | li |
@@ -454,8 +466,8 @@ class LegislatorsController < ApplicationController
         bill[:progress] = progress
         bill[:link] = li.css('a').attr('href').value
         bill[:id] = bill[:link].split('/')[-1]
-        ly_g0v_uri = URI.parse("http://api.ly.g0v.tw/v0/collections/bills/#{bill[:id]}")
-        ly_g0v_json = JSON.parse(open(ly_g0v_uri).read)
+        ly_g0v_url = "http://api.ly.g0v.tw/v0/collections/bills/#{bill[:id]}"
+        ly_g0v_json = JSON.parse(get_cached_page(ly_g0v_url))
         bill[:title] = ly_g0v_json['summary']
         # bill[:reason] = ly_g0v_json['abstract']
         bills << bill
@@ -466,12 +478,12 @@ class LegislatorsController < ApplicationController
     end
   end
 
-  def parse_vote_guide_candidate(legislator_id, ad, page = nil)
+  def parse_vote_guide_candidate(legislator_id, ad)
     legislator_term_url = "http://vote.ly.g0v.tw/api/legislator_terms/?format=json&ad=#{ad}&legislator=#{legislator_id}"
-    legislator_term_json = JSON.parse(open(URI.parse(legislator_term_url)).read)
+    legislator_term_json = JSON.parse(get_cached_page(legislator_term_url))
     if legislator_term_json["results"].any?
       candidate_url = legislator_term_json["results"][0]["elected_candidate"][0]
-      candidate_json = JSON.parse(open(URI.parse(candidate_url)).read)
+      candidate_json = JSON.parse(get_cached_page(candidate_url))
       return candidate_json["politicalcontributions"], true
     else
       return {}, false

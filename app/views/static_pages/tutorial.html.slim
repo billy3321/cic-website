@@ -1,107 +1,108 @@
-nav#sec-nav
-  ul#secn01.txt-nav
-    li = link_to '兵團計畫說明', about_path
-    li = link_to 'FAQ', faq_path
-    li = link_to '會員條款', service_path
-    li = link_to '隱私權政策', privacy_path
-    li = link_to '兵團操作教學說明', tutorial_path, class: "current"
-    li = link_to '開放源碼', opensource_path
+#bg-wrap-2
+  nav#sec-nav
+    ul#secn01.txt-nav
+      li = link_to '兵團計畫說明', about_path
+      li = link_to 'FAQ', faq_path
+      li = link_to '會員條款', service_path
+      li = link_to '隱私權政策', privacy_path
+      li = link_to '兵團操作教學說明', tutorial_path, class: "current"
+      li = link_to '開放源碼', opensource_path
 
-#txt-info
-  h2 【兵團操作教學說明】
-  .box.teach-info-txt
-    h3 如何註冊成為國會調查兵團
-    .text
-      ol
-        li 先點選上方「加入兵團」。
-        li 填寫註冊資料，設定email、密碼、暱稱。
-        li 回個人信箱收取email認證信。點擊認證連結。（認證信件可能會被判讀為垃圾信或廣告信，若沒有收到請到廣告信件夾或垃圾信或垃圾桶搜尋）
-        li 完成帳號註冊。
-  .box.teach-info-txt
-    h3 回報影片說明
-    .text
-      ol
-        li 先點選上方「登入」，輸入帳號密碼完成登入。
-        li 登入後，上方會出現「回報立委資訊」的按鈕，點選後會顯示「回報立委資訊─請選擇要回報的類型」。
-        li 點選「回報影片片段」，即可輸入資料。有＊為必填項目。
-        li 確認必填項目都有填寫，按「確定送出」即完成回報。
-  .box.teach-info-txt
-    h3 回報新聞說明
-    .text
-      ol
-        li 先點選上方「登入」，輸入帳號密碼完成登入。
-        li 登入後，上方會出現「回報立委資訊」的按鈕，點選後會顯示「回報立委資訊─請選擇要回報的類型」。
-        li 點選「回報新聞資訊」，即可輸入資料。有＊為必填項目。
-        li 確認必填項目都有填寫，按「確定送出」即完成回報。
-  .box.teach-info-txt
-    h3 回報質詢紀錄說明
-    .text
-      ol
-        li 先點選上方「登入」，輸入帳號密碼完成登入。
-        li 登入後，上方會出現「回報立委資訊」的按鈕，點選後會顯示「回報立委資訊─請選擇要回報的類型」。
-        li 點選「回報質詢文字紀錄」，即可輸入資料。有＊為必填項目。
-        li 確認必填項目都有填寫，按「確定送出」即完成回報。
-  .box.teach-info-txt
-    h3 我想剪影片，要如何下載ivod的影片？
-    .text
-      ol
-        li 
-          | 連結到兵團提供的ivod下載工具網址：
-          = link_to "http://1985.paulyu.org/ivod_dl/hello.php", "http://1985.paulyu.org/ivod_dl/hello.php", target: "_blank"
-          br
-          | （註：本工具是參考
-          = link_to "八克里文章", "http://blog.jangmt.com/2014/10/ivod-gui-win-protable.html", target: "_blank"
-          | ，由國會調查兵團志工架設）
-        li 
-          | 貼入ivod的網址，接著按「提交」
-          br
-          | 註：注意！ivod的網址結構為 
-          = link_to "http://ivod.ly.gov.tw/Play/VOD/78111/300K", "http://ivod.ly.gov.tw/Play/VOD/78111/300K", target: "_blank"
-          br
-          | 或 
-          = link_to "http://ivod.ly.gov.tw/Play/Full/7959/300K", "http://ivod.ly.gov.tw/Play/Full/7959/300K", target: "_blank"
-          br
-          | 這兩種，這兩種以外的格式，是抓不到影片的喔！
-          br
-          | ivod網址請上
-          = link_to "http://ivod.ly.gov.tw/Legislator", "http://ivod.ly.gov.tw/Legislator", target: "_blank"
-          | 選擇立法委員後，點選播放影片即可取得。
-          br
-          = image_tag "tutorial/tutorial05.jpg"
-        li
-          | 等程式跑完後，畫面上會顯示該影片的資料，按「立即抓取影片」，這時候程式會開始跑，請稍後。
-          br
-          = image_tag "tutorial/tutorial06.jpg"
-        li
-          | 程式跑完後，把捲軸移動到網頁畫面最下方，點選Download File:後面顯示的影片連結，即可下載。
-          br
-          = image_tag "tutorial/tutorial07.jpg"
-  .box.teach-info-txt
-    h3 如何看ivod時間區間？
-    .text
-      ol
-        li
-          | 先進入立法院議事轉播ivod網站：
-          = link_to 'http://ivod.ly.gov.tw/', 'http://ivod.ly.gov.tw/'
-        li
-          | 點選「會議隨選紀錄」：
-          = image_tag 'tutorial/tutorial01.jpg'
-        li
-          | 選擇要看的立委姓名、影片後，點選「播放影片」：
-          br
-          = image_tag 'tutorial/tutorial02.jpg'
-        li
-          | 將滑鼠移到影片上，影片底下會顯示播放進度（滑鼠移走會隱藏），請記錄下你聽到的精采片段的開始與結束的時間，在回報資料時填寫即可。
-          br
-          = image_tag 'tutorial/tutorial03.jpg'
-  .box.teach-info-txt
-    h3 可以回報新聞影片嗎？
-    .text
-      p 可以，凡是跟立委有關的影片資料，包含ivod，新聞影片，電視影片都可以回報。步驟如下：
-      ol
-        li 在回報立委資訊時，選擇「回報影片片段」。
-        li 
-          | 在「影片出處分類＊」選擇「新聞影片」，只要您要回報的資料不屬於ivod，就都選擇新聞影片即可。
-          br
-          = image_tag 'tutorial/tutorial04.jpg'
-        li 填寫好其他必填資料後，按確認送出即可。
+  #txt-info
+    h2 【兵團操作教學說明】
+    .box.teach-info-txt
+      h3 如何註冊成為國會調查兵團
+      .text
+        ol
+          li 先點選上方「加入兵團」。
+          li 填寫註冊資料，設定email、密碼、暱稱。
+          li 回個人信箱收取email認證信。點擊認證連結。（認證信件可能會被判讀為垃圾信或廣告信，若沒有收到請到廣告信件夾或垃圾信或垃圾桶搜尋）
+          li 完成帳號註冊。
+    .box.teach-info-txt
+      h3 回報影片說明
+      .text
+        ol
+          li 先點選上方「登入」，輸入帳號密碼完成登入。
+          li 登入後，上方會出現「回報立委資訊」的按鈕，點選後會顯示「回報立委資訊─請選擇要回報的類型」。
+          li 點選「回報影片片段」，即可輸入資料。有＊為必填項目。
+          li 確認必填項目都有填寫，按「確定送出」即完成回報。
+    .box.teach-info-txt
+      h3 回報新聞說明
+      .text
+        ol
+          li 先點選上方「登入」，輸入帳號密碼完成登入。
+          li 登入後，上方會出現「回報立委資訊」的按鈕，點選後會顯示「回報立委資訊─請選擇要回報的類型」。
+          li 點選「回報新聞資訊」，即可輸入資料。有＊為必填項目。
+          li 確認必填項目都有填寫，按「確定送出」即完成回報。
+    .box.teach-info-txt
+      h3 回報質詢紀錄說明
+      .text
+        ol
+          li 先點選上方「登入」，輸入帳號密碼完成登入。
+          li 登入後，上方會出現「回報立委資訊」的按鈕，點選後會顯示「回報立委資訊─請選擇要回報的類型」。
+          li 點選「回報質詢文字紀錄」，即可輸入資料。有＊為必填項目。
+          li 確認必填項目都有填寫，按「確定送出」即完成回報。
+    .box.teach-info-txt
+      h3 我想剪影片，要如何下載ivod的影片？
+      .text
+        ol
+          li 
+            | 連結到兵團提供的ivod下載工具網址：
+            = link_to "http://1985.paulyu.org/ivod_dl/hello.php", "http://1985.paulyu.org/ivod_dl/hello.php", target: "_blank"
+            br
+            | （註：本工具是參考
+            = link_to "八克里文章", "http://blog.jangmt.com/2014/10/ivod-gui-win-protable.html", target: "_blank"
+            | ，由國會調查兵團志工架設）
+          li 
+            | 貼入ivod的網址，接著按「提交」
+            br
+            | 註：注意！ivod的網址結構為 
+            = link_to "http://ivod.ly.gov.tw/Play/VOD/78111/300K", "http://ivod.ly.gov.tw/Play/VOD/78111/300K", target: "_blank"
+            br
+            | 或 
+            = link_to "http://ivod.ly.gov.tw/Play/Full/7959/300K", "http://ivod.ly.gov.tw/Play/Full/7959/300K", target: "_blank"
+            br
+            | 這兩種，這兩種以外的格式，是抓不到影片的喔！
+            br
+            | ivod網址請上
+            = link_to "http://ivod.ly.gov.tw/Legislator", "http://ivod.ly.gov.tw/Legislator", target: "_blank"
+            | 選擇立法委員後，點選播放影片即可取得。
+            br
+            = image_tag "tutorial/tutorial05.jpg"
+          li
+            | 等程式跑完後，畫面上會顯示該影片的資料，按「立即抓取影片」，這時候程式會開始跑，請稍後。
+            br
+            = image_tag "tutorial/tutorial06.jpg"
+          li
+            | 程式跑完後，把捲軸移動到網頁畫面最下方，點選Download File:後面顯示的影片連結，即可下載。
+            br
+            = image_tag "tutorial/tutorial07.jpg"
+    .box.teach-info-txt
+      h3 如何看ivod時間區間？
+      .text
+        ol
+          li
+            | 先進入立法院議事轉播ivod網站：
+            = link_to 'http://ivod.ly.gov.tw/', 'http://ivod.ly.gov.tw/'
+          li
+            | 點選「會議隨選紀錄」：
+            = image_tag 'tutorial/tutorial01.jpg'
+          li
+            | 選擇要看的立委姓名、影片後，點選「播放影片」：
+            br
+            = image_tag 'tutorial/tutorial02.jpg'
+          li
+            | 將滑鼠移到影片上，影片底下會顯示播放進度（滑鼠移走會隱藏），請記錄下你聽到的精采片段的開始與結束的時間，在回報資料時填寫即可。
+            br
+            = image_tag 'tutorial/tutorial03.jpg'
+    .box.teach-info-txt
+      h3 可以回報新聞影片嗎？
+      .text
+        p 可以，凡是跟立委有關的影片資料，包含ivod，新聞影片，電視影片都可以回報。步驟如下：
+        ol
+          li 在回報立委資訊時，選擇「回報影片片段」。
+          li 
+            | 在「影片出處分類＊」選擇「新聞影片」，只要您要回報的資料不屬於ivod，就都選擇新聞影片即可。
+            br
+            = image_tag 'tutorial/tutorial04.jpg'
+          li 填寫好其他必填資料後，按確認送出即可。

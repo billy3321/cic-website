@@ -1,18 +1,19 @@
-#login-out-block
-  h2 忘記密碼了？
-  .sys-info
-    p 請填寫您加入兵團時使用的Email，確認無誤後兵團將寄出「密碼修改信函」，請依照信件內容指示修改密碼。
-  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-    = render 'shared/error_messages', object: f.object
-    ul class="form-list"
-      li
-        p Email
-        p = f.input :email, required: true, autofocus: true, label: false
-      li 
-        p 驗證碼
-        p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
-        p = recaptcha_tags ajax: true
-      
-      = f.button :submit, "確定修改", class: "form-btn"
+#bg-wrap
+  #login-out-block
+    h2 忘記密碼了？
+    .sys-info
+      p 請填寫您加入兵團時使用的Email，確認無誤後兵團將寄出「密碼修改信函」，請依照信件內容指示修改密碼。
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = render 'shared/error_messages', object: f.object
+      ul class="form-list"
+        li
+          p Email
+          p = f.input :email, required: true, autofocus: true, label: false
+        li 
+          p 驗證碼
+          p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
+          p = recaptcha_tags ajax: true
+        
+        = f.button :submit, "確定修改", class: "form-btn"
 
 - set_meta_tags({title: "忘記密碼", og: {title: "忘記密碼"}})

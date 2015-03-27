@@ -51,6 +51,7 @@ gem 'jquery-timepicker-rails'
 gem 'magnific-popup-rails'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'social-share-button'
+gem 'redis'
 
 
 group :development, :test do

@@ -1,24 +1,25 @@
-nav#sec-nav
-  ul#secn01.txt-nav
-    li = link_to '兵團計畫說明', about_path
-    li = link_to 'FAQ', faq_path
-    li = link_to '會員條款', service_path
-    li = link_to '隱私權政策', privacy_path
-    li = link_to '兵團操作教學說明', tutorial_path
-    li = link_to '開放源碼', opensource_path, class: "current"
+#bg-wrap-2
+  nav#sec-nav
+    ul#secn01.txt-nav
+      li = link_to '兵團計畫說明', about_path
+      li = link_to 'FAQ', faq_path
+      li = link_to '會員條款', service_path
+      li = link_to '隱私權政策', privacy_path
+      li = link_to '兵團操作教學說明', tutorial_path
+      li = link_to '開放源碼', opensource_path, class: "current"
 
-#txt-info
-  h2 開放源碼
-  p
-    | 國會調查兵團網站原始碼以MIT授權釋出：
-    br
-    = link_to "https://github.com/billy3321/cic-website", "https://github.com/billy3321/cic-website", target: "_blank"
-    br
-    | 詳細授權說明請見「
-    = link_to "會員條款", service_path
-    | 」之四、智慧財產權保護
-  p
-    | 網站內容開放API界接，API文件：
-    br
-    = link_to "https://g0v.hackpad.com/API-bSmx3h922jc", "https://g0v.hackpad.com/API-bSmx3h922jc", target: "_blank"
-    br
+  #txt-info
+    h2 開放源碼
+    p
+      | 國會調查兵團網站原始碼以MIT授權釋出：
+      br
+      = link_to "https://github.com/billy3321/cic-website", "https://github.com/billy3321/cic-website", target: "_blank"
+      br
+      | 詳細授權說明請見「
+      = link_to "會員條款", service_path
+      | 」之四、智慧財產權保護
+    p
+      | 網站內容開放API界接，API文件：
+      br
+      = link_to "https://g0v.hackpad.com/API-bSmx3h922jc", "https://g0v.hackpad.com/API-bSmx3h922jc", target: "_blank"
+      br

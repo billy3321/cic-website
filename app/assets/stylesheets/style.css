@@ -4,13 +4,15 @@
 body,h1,h2,h3,h4,h5,h6,p,ul,ol{
 	margin:0px;
 	padding:0px;}
-
-ul,ol{
-	list-style:none;}
 body{
 	font-size:16px;
 	font-family:Verdana, Geneva, sans-serif;
 	background:#eaeaea;}
+h1,h2,h3,h4,h5,h6{
+	font-family:微軟正黑體;}
+ul,ol{
+	list-style:none;}
+
 img{
 	border:none;}
 a{
@@ -35,7 +37,7 @@ h2{
 	border-bottom:1px solid #d4d4d4;	overflow:hidden;
 	padding:0 6%;
 	margin:0px;
-	background:url(/images/top-bg.jpg) -275px top no-repeat #000;
+	background:url(../images/top-bg.jpg) -275px top no-repeat #000;
 }
 #main-wrap{
 	overflow:hidden;
@@ -45,7 +47,7 @@ h2{
 	overflow:hidden;
 	margin:0px 0 0px 16px;
 	float:left;
-	background:url(/images/logo-fix.png) no-repeat left center;
+	background:url(../images/logo-fix.png) no-repeat left center;
 height:60px;}
 #logo a{
 	display:block;
@@ -74,7 +76,6 @@ color:#E60012;
 	background:#f3f3f3;
 	margin-bottom:15px;
 	padding:15px 5% 20px 5%;
-	
 	}
 #people-rank{
 	width:87%;
@@ -241,14 +242,18 @@ color:#5DAA32;
 	}
 #people-all-list .people-info-block{
 	float:left;
-	width:30%;
-	margin:1%;}
+	margin:1%;
+	width:31%;
+	}
+.pinfo .people-img{
+	width:35%;}
 .people-img{
 	float:left;
-	max-width:85px;
-	width:39%;
-	border-right:1px solid #d4d4d4;
-	position:relative;}
+	position:relative;
+	width:32%;
+	border-right:0.1% solid #d4d4d4;
+	background:#fff;
+	min-height:148px;}
 .people-img img{
 	display:block;
 	width:100%;}
@@ -270,24 +275,29 @@ color:#5DAA32;
 -webkit-background-size:cover;
 -o-background-size:cover;}
 .people-info-block h2{
-	font-size:15px;
-	margin:3px 0 9px 2%;
-	max-width:145px;
+	font-size:20px;
 	width:58%;
-	float:left;}
+	float:left;
+	margin:2% 2% 0 3.5%;
+	height:1.5em;
+overflow:hidden;}
 .info-number{
 	font-size:13px;
 	float:left;
-	width:58%;
-	margin:0 0 0  2%;}
+	margin:2% 3.5% 0 3.5%;
+	width:60.5%;}
 .info-number em{
 	font-style:normal;
-	background:#c5c5c5;
 	padding:2px 8px;
 	border-radius:10px;
 	margin:0 5px 0 0;}
+.info-number a{
+	float:right;
+	padding:0 2% 0 0;}
 .info-number li{
-	margin:0 0 8px 0;}
+	margin:0 0 8px 0;
+	background:#fff;
+	padding:2%;}
 .selector-info{
 	clear:both;
 	border-top:1px solid #d4d4d4;
@@ -308,29 +318,21 @@ margin:0 2% 0 0;}
 	overflow:hidden;
 	background:#f3f3f3;
 	padding:20px 5.3% 15px 0.5%;}
-.pinfo-mlist{
-	float:left;
-	margin:0  1.5% 0 6%;
-	width:21.5%;}
-.pinfo.pinfo-mlist{
-margin-top:20px;}
-#people-single-top .pinfo.pinfo-mlist{margin-top:0px;}
-.pinfo-inner-aside{
-	float:left;
-	margin:0 0 0 6.5%;
-	width:20.5%;
-	padding-top:20px;}
+.pinfo{
+	overflow:hidden;}
 
-.pinfo-inner{
-margin-bottom:20px;
-}
+
+
+
+
+
 
 #people-single-top .big-video-show{
 	float:right;
 	margin:0 1% 0 0;
 	}
 .big-video-show{
-	width:70%;
+	width:64%;
 	overflow:hidden;
 	position:relative;
 	}
@@ -342,6 +344,8 @@ margin-bottom:20px;
 .big-video-show h3,.big-video-show .time,.big-video-show .inner-content{
 	width:42%;
 	float:left;}
+.big-video-show .inner-content{
+	padding:15px 0 40px 0;}
 .big-video-show h3{
 	font-size:2em;
 	margin-bottom:20px;}
@@ -363,29 +367,17 @@ margin-bottom:20px;
 	right:0px;
 	bottom:0px;
 	border-radius:8px;}
-.pinfo-btn {
-	margin:5px 0;
-	overflow:hidden;
-	clear:both;
-	}
-.pinfo-btn li{
-	float:left;
-	width:31%;
-	margin:0 2% 0 0;}
-.pinfo-btn li a{
-	display:block;
-	background:#000000;
-	color:#fff;
-	text-decoration:none;
-	font-size:13px;
-	padding:0px 7px 2px 7px;}
+
+
+
 #info-show-list{
 	overflow:hidden;
-	margin:10px 0 0 0;}
+	margin:40px 0;
+	padding:0 5%;}
 #video-list{
 	float:right;
-	width:70%;
-	margin:0 1% 0 0;
+	width:63%;
+	margin:0 6% 0 0;
 	min-height:500px;}
 #news-list{
 	float:left;
@@ -397,6 +389,8 @@ margin-bottom:20px;
 	margin-left:1.5%;}
 .side-sblock{
 	overflow:hidden;}
+.side-sblock#news-list ul a,.side-sblock#say-list ul a,h3 a{
+display:block;}
 .side-sblock h3{
 	float:left;
 	border-bottom:1px solid #000;margin-right:-1000px;
@@ -467,15 +461,16 @@ width:52%;}
 	bottom:30px;}
 #video-show-list .big-video-show{
 	float:right;	
-	padding:40px 12% 0 4%;
-background:#F3F3F3;
+	padding:0px 13.5% 0 1%;
 margin:20px -6% 20px 0;
-width:60%;
+width:61%;
 	}
 #page{
 	clear:both;
 	float:right;
-	padding:0 1% 1% 0;}
+	padding:30px 6%;}
+.vote-ly-g0v #page{
+	padding:10px 0 30px 0;}
 #page ul{
 	float:left;}
 #page li{
@@ -503,11 +498,14 @@ width:60%;
 	font-size:13px;}
 #news-show-list{
 	float:right;
-	width:63%;
+	width:61%;
 	margin:0 7% 1% 0;
-	padding-top:20px;}
+	padding-top:20px;
+	}
+.big-news-show{
+margin-bottom:30px;}
 .big-news-show h3{
-	font-size:24px;}
+	font-size:32px;}
 .big-news-show .inner-content{
 	margin:1% 0 1.5% 0;}
 .small-news-show{
@@ -515,6 +513,9 @@ width:60%;
 	padding:1.5%;
 	margin:0 0 1.2% 0;
 	position:relative;}
+.small-news-show h3{
+font-size:24px;
+margin-bottom:15px;}
 .small-news-show .inner-content{
 	font-size:13px;
 	padding:0 0 2.5% 0;}
@@ -524,10 +525,12 @@ width:60%;
 	bottom:1.5%;}
 .single-page-inner{
 	float:right;
-	width:70%;
-	margin:0 1% 0 0;}
+	margin:0 6.5% 0 -20%;
+	padding-top:20px;
+	width:61.5%;
+}
 .single-page-inner h3{
-	font-size:24px;
+	font-size:34px;
 	margin:0 0 1% 0;}
 .sinner-info{
 	overflow:hidden;
@@ -538,7 +541,7 @@ width:60%;
 	padding:0 2% 0 0;
 	}
 .sinner-info li span{
-	background:#abdbe1;
+	background:#d3d3d3;
 	padding:1px 8px;
 	border-radius:12px;
 	margin:0 5px 0 0;
@@ -555,10 +558,13 @@ width:60%;
 	margin:0 0 2px 0;}
 .inner-content-txt{
 	color:#737373;
-	padding:1em 0;}
+	padding:1em 0;
+	font-size:21px;
+line-height:1.7em;
+letter-spacing:1px;}
 .inner-content-txt p{
 	margin:0 0 1em 0;
-	line-height:1.5em;}
+	line-height:1.7em;}
 .writer{
 	font-size:13px;
 	padding:0 0 5px 0;}
@@ -571,14 +577,17 @@ width:60%;
 	background:#efefef;
 	border-top:8px solid #d8d8d8;
 	padding:1.5%;
-	margin:1.5% 0 0 0;
+	margin:1.5% 0 20px 0;
 	overflow:hidden;}
+.news-info-list{
+overflow:hidden;}
 .news-info-list li{
-	font-size:13px;
 	font-weight:bold;
 	margin:0 0 1% 0;
 	padding:0 0 0 2%;
-	background:url(../images/li-02.gif) no-repeat left 8px;}
+	background:url(../images/li-02.gif) no-repeat left 8px;
+	font-size:15px;
+min-height:2.5em;}
 .two-col-list li{
 		width:48%;
 	float:left;}
@@ -614,20 +623,24 @@ width:60%;
 	background:#000;
 	margin-bottom:20px;}
 
-	
+	.video-other-list{
+padding:15px;}
 .video-other-list li{
 	width:50%;
-	float:left;}
+	float:left;
+	margin:0 0 20px 0;}
 .video-other-list li a{
 	display:block;}
 .vo-img{
 	float:left;
-	margin:0 1.5% 0 0;}
+	margin:0 15px;}
 .vo-title{
-	width:45%;
 	float:left;
-	font-size:13px;
-	font-weight:bold;}
+	font-weight:bold;	
+	font-size:16px;
+min-height:2.5em;
+float: none;
+padding-left:145px;}
 #login-wrap{
 	background:url(../images/login-bg.jpg) no-repeat center top fixed;
 	overflow:hidden;
@@ -645,26 +658,32 @@ width:60%;
 background:#F3F3F3;
 border-radius:10px;}
 #choose-block{
-	max-width:500px;
-	width:95%;
-	border:5px solid #aaaaaa;
-	margin:0 auto 20px auto;}
+	margin:25px auto 20px auto;
+background:#F3F3F3;
+border-radius:10px;
+overflow:hidden;
+width:84%;
+	}
 #post-block{
 	max-width:800px;
 	width:95%;
-	border:5px solid #aaaaaa;
-	margin:0 auto 20px auto;}
+	margin:25px auto 20px auto;
+background:#F3F3F3;
+border-radius:10px;}
 #login-out-block h2,#post-block h2,#choose-block h2{
-	color:#fff;
 	text-align:center;
-	padding:8px 0;
-	background:#aaaaaa;
+	padding:15px;	
+	border-top-left-radius:10px;
+border-top-right-radius:10px;
+color:#000;
+background:#d7d7d7;
+
 	}
 .form-list{
 	padding:10px 30px;
 	}
 .form-list li{
-	margin:0 0 15px 0;}
+	margin:0 0 25px 0;}
 .form-list p{
 	font-weight:bold;}
 .snote,.form-list p.snote{
@@ -756,13 +775,28 @@ background-size:100%;}
 	margin:0 0 10px 0;}
 #choose-block img{
 	float:left;
-	margin:0 10px 0 0;}
+	margin:0 10px 10px 0;}
+#choose-block a{
+font-size:36px;}
+#choose-block .snote,#choose-block .snote a{
+font-size:16px;}
+#choose-block .snote{
+clear:both;
+line-height:1.7em;
+padding:10px 0 5px 0;}
+
 #choose-block ul{
 	padding-top:25px;}
 #choose-block li{
 	overflow:hidden;
-	padding:0 0 15px 0;
-	border-bottom:1px solid #aaaaaa;}
+	padding:0 2%;
+	border-right:1px dotted #AAA;
+width:29.2%;
+float:left;
+min-height:180px;
+	}
+#choose-block li:nth-last-child(1){
+border:none;}
 .edit-block{
 		overflow:hidden;
 	margin:10px 0;
@@ -793,29 +827,65 @@ padding:1em 3em;
 
 /*資料列表*/
 
-.all-list .big-video-show,.all-list #video-list,.all-list#news-show-list,.all-list{
-width:99%;}
+.all-list .big-video-show,.all-list#news-show-list,.all-list{
+width:auto;
+padding:15px 0 0 6.5%;
+float:none;}
+
+.all-list #video-list{
+width:auto;
+float:none;
+margin:0px;
+padding-left:0px;}
+
+.all-list .small-news-show{
+width:28%;
+margin:1%;
+height:180px;
+float:left;} 
+#video-show-list.all-list{
+width:auto;
+float:none;
+margin:-20px 6% 0 6%;
+}
 
 
 /*不分立委影片資料列表*/
+.all-list#video-show-list .big-video-show{
+background:#F3F3F3;
+padding:25px 7%;
+width:auto;
+float:none;
+margin:20px -7%;
+}
+
 .all-list#video-show-list .big-video-show .img_url_l{
 	width:47%;
 	margin-left:1.5%;
-	padding-top:35.5%;}
+	padding-top:26%;}
 .all-list#video-show-list .big-video-show h3,.all-list#video-show-list .big-video-show .inner-content,.all-list#video-show-list .big-video-show .time{
 	width:46.5%;}
 .all-list#video-show-list .small-video-show {
 	width:44%;
-	margin-left:1.5%;
-	float:left;}
+	float:left;
+padding:2.5%;
+padding-top:3%;
+height:160px;
+	}
 .all-list#video-show-list .small-video-show .img_url_l{
 width:45%;
-padding-top:34.5%;}
+padding-top:25%;}
 .all-list#video-show-list .small-video-show .inner-content{
-	width:53.5%;}
+	width:50%;}
 #login-out-block.wid-block{
 	max-width:400px;
-	margin:0 auto 20px auto;}
+	margin:25px auto 20px auto;
+overflow:hidden;
+padding-bottom:20px;}
+
+#news-inner-list .small-news-show{
+margin-bottom:25px;}
+
 /*修jQuary的css*/
 .ui-widget-content a{
 	color:#5DAA32;
@@ -868,12 +938,12 @@ padding-top:34.5%;}
 	margin:0 0 7px 0;}
 /*提示訊息樣式*/
 .alert{
-	font-size:13px;
-	max-width:280px;
+	font-size:20px;
+	max-width:380px;
 	margin:0 auto 5px auto;
 	background:#ECECEC;
-	border-radius:5px;
-	padding:5px 15px;
+	border-radius:15px;
+	padding:20px;
 	text-align:center;
 	}
 .alert-error{
@@ -881,7 +951,7 @@ padding-top:34.5%;}
 .alert-success{
 	background:#caebb9;}
 #error_explanation{
-	font-size:13px;
+	font-size:20px;
 	text-align:center;
 	margin:0 0 5px 0;}
 #error_explanation li{
@@ -1095,13 +1165,14 @@ width:auto;}
 	margin:0 1.5em 12px 1.5em;
 	line-height:24px;}
 #txt-info{
-	padding:0 1em;}
+	padding:0 9%;}
 #txt-info h2{
-	font-size:24px;
-	margin:0 0 0.5em 0;}
+	font-size:32px;
+	margin:0 0 0.5em 0;
+	color:#ccc;}
 #txt-info h3{
-	color:#267c71;
-	font-size:18px;}
+	color:#e6c6dd;
+	font-size:24px;}
 #txt-info p{
 	margin:0 0 1.7em 0;
 	line-height:1.5em;
@@ -1124,11 +1195,14 @@ width:auto;}
 	margin:0 3em 0.2em 3em;
 	list-style:decimal;
 	}
+#txt-info a{
+	color:#fff;
+	text-decoration:underline;}
 	/* 收缩展开效果 */
-.text{line-height:1.6em;letter-spacing:1px;padding:0 6px;color:#666;}
+.text{line-height:1.6em;letter-spacing:1px;padding:0 6px;color:#eee;}
 .box h3{padding:0 0 0.5em 0;line-height:22px;font-weight:bold;
 cursor:pointer;}
-.box{position:relative;border-bottom:1px solid #e7e7e7;padding:10px;}
+.box{position:relative;border-bottom:1px dotted #8b8b8b;padding:10px;}
 .text img{
 	width:100%;}
 .form-list  select{
@@ -1186,8 +1260,405 @@ border-top:none;
 margin:0 0 3px 0;
 padding:8px;
 }
+.legislators-group{
+	padding:20px 0 0 7%;
+	width: 22.5%;
+	float:left;}
+#people-single-top .legislators-group{padding:0 0 0 7%;width: 24%;}
+.legislators-block{
+	clear:both;
+	margin:0 0 20px 0;
+	overflow:hidden;
+	position:relative;}
+.legislators-basic{
+	border:1px solid #d4d4d4;
+  border-radius: 8px;
+  overflow:hidden;
+  background:#f3f3f3;
 
+}
 
+.legislators-basic .name{
+	font-size:28px;
+	height:1.2em;
+	overflow:hidden;
+	padding:5px 0;}
+.legimg{
+	width:33%;
+	float:left;
+	margin:0 10px 0 0;
+	overflow:hidden;
+	min-width:85px;}
+.legimg img{
+	width:100%;
+	display:block;
+	}
+.edition{
+	font-size:13px;}
+.edition span{
+	display:block;}
+.edition li{
+	margin:0 5px 7px 0;}
+.local-data{
+	clear:both;
+	overflow:hidden;
+	background: rgb(120,120,120); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(120,120,120,1) 0%, rgba(161,161,161,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,120,120,1)), color-stop(100%,rgba(161,161,161,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#787878', endColorstr='#a1a1a1',GradientType=0 ); /* IE6-9 */
+}
+.local-data li{
+	float:left;
+	width:33%;
+	border-right:1px solid #d4d4d4;}
+.local-data li:last-child{
+	border:none;}
+.local-data li a{
+	display:block;
+	text-align:center;
+	font-size:13px;
+	padding:7px 0;
+	background: rgb(120,120,120); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(120,120,120,1) 0%, rgba(161,161,161,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(120,120,120,1)), color-stop(100%,rgba(161,161,161,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(120,120,120,1) 0%,rgba(161,161,161,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#787878', endColorstr='#a1a1a1',GradientType=0 ); /* IE6-9 */
+color:#fff;
+}
+.local-data li a:hover,.local-data li a:active{
+	background: rgb(161,161,161); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(161,161,161,1) 1%, rgba(120,120,120,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(161,161,161,1)), color-stop(100%,rgba(120,120,120,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(161,161,161,1) 1%,rgba(120,120,120,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', endColorstr='#787878',GradientType=0 ); /* IE6-9 */
+}
+.legislators-more-info{
+	font-size:13px;}
+.legislators-more-info li{
+	margin:0 0 7px 0;}
+.legislators-more-info li a{
+	padding:3px 0 3px 20px;}
+#lmi-01 a{
+	background:url(../images/lmi-01.png) no-repeat left center;}
+#lmi-02 a{
+	background:url(../images/lmi-02.png) no-repeat left center;}
+#lmi-03 a{
+	background:url(../images/lmi-03.png) no-repeat left center;}
+#lmi-04 a{
+	background:url(../images/lmi-04.png) no-repeat left center;}
+#lmi-05 a{
+	background:url(../images/lmi-05.png) no-repeat left center;}
+#lmi-06 a{
+	background:url(../images/lmi-06.png) no-repeat left center;}
+#lmi-07 a{
+	background:url(../images/lmi-07.png) no-repeat left center;}
+#lmi-08 a{
+	background:url(../images/lmi-07.png) no-repeat left center;}
+.legislators-more-info{
+	margin:10px 0 40px 0;}
+.legislators-more-info a{
+	display:block;}
+.lmib-01{
+	float:left;
+	margin:0 0 0 10%;}
+.lmib-02{
+	float:right;
+	margin:0 10% 0 0;}
+.vtitle-set{
+	overflow:hidden;
+	font-size:15px;}
+.vtitle-set h3{
+	padding:0 10px 0 35px;
+	float:left;}
+#title-contributions h3{
+	background:url(../images/title-contributions.png) no-repeat left center;
+	}
+#title-vote h3{
+	background:url(../images/title-vote.png) no-repeat left center;
+	}
+#title-law h3{
+	background:url(../images/title-law.png) no-repeat left center;
+	}
+.vote-ly-g0v .legislators-group{
+	width:86.5%;
+	float:none;
+	margin:0px;}
+.vote-ly-g0v .single-page-inner{
+	width:85.5%;
+	float:none;
+	margin:auto;}
+.vote-ly-g0v .legimg{
+	max-width:100px;}
+.vote-ly-g0v .legislators-more-info{
+	position:absolute;
+	right:0px;
+	top:-4px;
+	font-size:15px;}
+.vote-ly-g0v .lmib-01,.vote-ly-g0v .lmib-02{
+	float:left;
+	margin:0 20px 0 0;	
+	}
+.vtitle-set select{
+	font-size:18px;
+	margin:10px 7px 0 0;
+	}
+.graphic-group{
+	min-width:800px;
+	margin:0 0 30px 0;
+	padding:0 0 20px 0;
+	overflow:hidden;}
+.graphic-start{
+	height:60px;
+	padding:15px 0 0 0;
+	}
+.graphic-start h4{
+	font-size:18px;
+	background:#f3f3f3;
+	padding:3px 2%;
+	border-bottom-left-radius:8px;
+	float:left;
+	width:21%;
+	text-align:right;
+	margin:0 0 10px 0;}
+.graphic-start h4 span{
+	color:#d10000;
+	font-family:Arial;
+	margin:0 5px;}
+.gp-top{
+	position:relative;
+	float:right;
+	width:75%;}
+
+.linegp,.linegps{
+	background:#f3f3f3;}
+.line-all{
+	height:4px;}
+.gpg-01 .line-all-2{
+	position:relative;
+	top:282px;
+	}
+.gpg-02 .line-all-2{
+	position:relative;
+	top:408px;
+	}
+.linegps{
+	width:4px;
+	height:500px;
+	position:absolute;
+	top:0px;
+	}
+.linegps span{
+	position:absolute;
+	right:7px;
+	top:12px;
+	font-size:12px;
+	line-height:1em;
+	letter-spacing:0px;}
+.line-10{
+	right:0px;}
+.line-09{
+	right:10%;}
+.line-08{
+	right:20%;}
+.line-07{
+	right:30%;}
+.line-06{
+	right:40%;}
+.line-05{
+	right:50%;}
+.line-04{
+	right:60%;}
+.line-03{
+	right:70%;}
+.line-02{
+	right:80%;}
+.line-01{
+	right:90%;}
+.line-00{
+	right:100%;}
+.gp-bar{
+	overflow:hidden;
+	}
+.gp-bar p{
+	float:left;
+	width:23%;
+	font-size:13px;
+	text-align:right;
+	padding:0;
+	height:30px;
+	line-height:30px;
+	margin:0px;}
+.gp-bar p span{
+	font-size:18px;
+	color:#002499;
+	font-family:Arial;}
+.graphic-body{
+	float:right;
+	width:75%;
+	padding:0;
+		padding:6px 0;}
+.graphic-body div{
+	height:30px;
+	border-radius:5px;
+	position:relative;}
+.gpb-01{
+	background:#ffd4d4;}
+.gpb-02{
+	background:#fff1a3;}
+.gpb-03{
+	background:#daffc4;}
+.gpb-04{
+	background:#a5ffef;}
+.gpb-05{
+	background:#ecb8ff;}
+.gpb-06{
+	background:#a6aad0;}
+.gpb-07{
+	background:#e3bf91;}
+.gpb-08{
+	background:#9cba9d;}
+.graphic-body span{
+	line-height:1em;
+	font-size:12px;
+	position:absolute;
+	right:-35px;
+	top:9px;
+	color:#d10000;
+	letter-spacing:0px;}
+.show-more-snippet {
+    height:34px;  /*this is set to the height of the how much text you want to show based on the font size, line height, etc*/
+    overflow:hidden;
+}
+.vote-ly-g0v #sec-nav{
+	padding:5px 0px;}
+.hot-issue{
+	float:right;
+	line-height:36px;}
+.hot-issue span,.hot-issue a{
+	padding:0 10px 0 0;}
+.hot-issue a{
+	text-decoration:underline;
+	color:#e62e8b;}
+.vote-group,.law-group{
+	overflow:hidden;
+	padding:30px;
+	margin:0 0 30px 0;
+	border:1px dotted #eee;
+	background:#fafafa;}
+.vote-txt-group{
+	width:67%;
+	float:left;}
+.vote-result-block{
+	width:30%;
+	float:right;}
+.vote-block{
+	float:left;
+	border:3px solid #d4d4d4;
+	border-radius:8px;
+	position:relative;
+	}
+.self-vote{width:40%;}
+.all-vote{width:50%;
+margin-left:4%;}
+.vote-block h4{
+	font-size:13px;
+	background:#e6e6e6;
+	font-weight:normal;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	text-align:center;}
+.all-vote h4{
+	text-align:left;
+	padding:0 0 0 5%;}
+.all-vote .view-vote{
+	font-size:12px;
+	position:absolute;
+	right:2%;
+	top:13px;
+	line-height:1em;}
+.vote-result span{
+	display:block;
+	width:auto;
+	height:1px;
+	background-repeat:no-repeat;
+	background-position:center;
+	overflow:hidden;
+	padding-top:29px;
+	background-size: auto 100%;
+	margin:9px 0;
+	}
+.no-all{
+	background-image:url(../images/icon-noall.png);}
+.yes-all{
+	background-image:url(../images/icon-yesall.png);}
+.yes{
+	background-image:url(../images/icon-yes.png);}
+.no{
+	background-image:url(../images/icon-no.png);}
+.give-up{
+	background-image:url(../images/icon-giveup.png);}
+.do-not-vote{
+	background-image:url(../images/icon-donotvote.png);}
+.count-law{
+	float:left;}
+.count-law span{
+	font-size:24px;
+	color:#e85098;}
+.vote-time{
+	color:#c8c8c8;
+	display:block;
+	float:left;
+	margin:0 15px 0 0;}
+.view-proposal{
+	display:block;
+	float:left;
+	font-size:16px;
+	background-image:url(../images/icon-law.png);
+	background-repeat:no-repeat;
+	background-position:10px center;
+	padding:0 20px 0 50px;
+	background-color:#a8a8a8;
+	border-radius:5px;
+	box-shadow:1px 1px 3px #ccc;
+	color:#fff;
+}
+.ss-txt{
+	font-size:16px;
+	color:#616161;
+	line-height:1.7em;
+	clear:both;
+	padding:13px 0 0 0;}
+.order-time{
+	float:right;
+	font-size:13px;}
+.law-txt-group h4{
+	font-size:24px;
+	margin:0 0 10px 0;
+	line-height:1.2em;}
+#bg-wrap{
+	background:url(../images/regist-bg.jpg) center top fixed;
+	overflow:hidden;
+	min-height:480px;
+	}
+#bg-wrap-2{
+	background:url(../images/regist-bg-2.jpg) center top fixed;
+	overflow:hidden;
+	min-height:480px;
+	color:#eee;}
+#bg-wrap-2 #secn01 a{
+	color:#fff;}
+#bg-wrap-2 #secn01 a.current{
+	color:#000;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -1219,6 +1690,45 @@ padding:8px;
 	left:6%;
 	top:300px;
 	}
+.lmib-01{
+	margin:0 0 0 5%;}
+.lmib-02{
+	margin:0 5% 0 0;}
+.local-data li span{
+	display:block;}
+.vote-ly-g0v .local-data li span{
+	display:inline;}
+	.graphic-start h4{
+	font-size:15px;}
+	#secn01 li a{
+padding:5px 8px;}
+	#secn02 li a{
+padding:3px 4px 7px 4px;
+}
+	#people-rank-list li{
+		width:25%;}
+	#people-rank-list li span{
+		float:left;
+		width:auto;
+		padding:4px 0 0 0;
+		}
+	#people-rank-list li em{
+		float:left;
+		padding:0 3% 0 14%;}
+		.big-video-show .inner-content{
+		float:none;
+		width:100%;
+		clear:both;
+		}
+		.all-list .small-news-show{
+height:210px;}
+#video-show-list.all-list .big-video-show .inner-content{
+float:left;
+clear:none;}
+
+#video-show-list.all-list .small-video-show .inner-content{
+	display:none;
+}
 	}
 @media only screen and (max-width: 960px){
 	#index-banner{
@@ -1269,7 +1779,253 @@ background-size:40%;
 #regist-txt{
 	display:none;
 	}
+.legislators-group{
+	width:86.5%;
+	margin:auto;
+	position:relative;
 	}
+#people-single-top .legislators-group{
+	width:91.5%;}
+.legimg{
+	width:12%;
+	min-width:105px;}
+.edition span{
+	float:left;
+	margin:0 10px 0 0;}
+.legislators-more-info{
+	position:absolute;
+	right:0px;
+	top:-4px;
+	font-size:15px;}
+.lmib-01,.lmib-02{
+	float:left;
+	margin:0 20px 0 0;	
+	}
+.legislators-more-info li{
+	margin-bottom:2px;}
+.legislators-more-info li a{
+	padding:5px 0 5px 20px;}
+.local-data li a{
+	padding:12px 0;}
+.local-data li span{
+	display:inline;}
+#news-show-list{
+width:87%;
+float:none;
+clear:both;
+padding:15px 0 0 0;
+margin:auto;}
+.vote-txt-group{
+	width:77%;}
+.vote-result-block{
+	width:20%;}	
+.vote-block{
+	float:none;
+	margin:0 0 10px 0;
+	}
+.self-vote{width:auto;}
+.all-vote{width:auto;
+	}
+.hot-issue{
+	display:none;}
+.vote-ly-g0v #secn01 li{
+	width:19.5%;
+	text-align:center;}
+#secn01 li a{
+padding:5px 15px;}
+	#secn02 li a{
+padding:3px 15px 7px 15px;
+}
+#secn01,#secn02{
+float:none;}
+	#people-rank-list li{
+		width:33%;}
+		#people-rank-list li em{
+		padding:0 3% 0 14%;}
+	#people-all-list .people-info-block{
+	width:45.5%;
+	margin:1.7%;}
+	.people-img{
+		width:26%;
+		min-height:100px;}
+	.people-info-block h2{
+		width:66.5%;
+		font-size:26px;
+		padding-top:7px;}
+
+	.info-number{
+		width:70%;
+		margin-right:-20%;}
+	.info-number li{
+		width:29%;
+		margin:0px;
+		margin-right:2%;
+		padding:0px;
+		float:left;}
+	.pinfo .info-number li{
+		padding:1%;}
+	.info-number a,.info-number em{
+		float:none;
+		margin:0px;
+		display:block;
+		text-align:center;
+		font-family:Arial;}
+		.info-number a{
+		font-size:22px;
+		line-height:38px;
+		}
+		.pinfo .info-number em,.pinfo .info-number a{
+	text-align:left;
+	display:inline;}
+	.party-tag{
+		width:30px;
+		height:24px;}
+		.pinfo .selector-info{
+		border:none;
+		border-left:4px solid #e2e2e2;
+		margin:0 0 0 -1px;
+		float:left;
+		clear:none;
+		width:105px;
+		}
+	.pinfo .selector-info.si-newest{
+	margin-left:3%;
+	}
+	.pinfo .selector-info div{
+	float:none;
+	width:auto;
+	padding-left:7px;}
+	.big-video-show{
+		width:97.5%;
+		padding:3% 0 0 0;}	
+	#info-show-list #video-list{
+	width:94%;
+	margin-right:3%;}
+	#video-list{
+		width:86.5%;
+	margin-right:7%;}
+	.side-sblock#news-list,.side-sblock#say-list{
+	width:44%;
+	margin:3%;}
+
+	.single-page-inner{
+	width:97.5%;}
+	#news-show-list.all-list .small-news-show{
+width:42.5%;
+margin:2%;
+height:180px;
+} 
+
+#news-show-list.all-list{
+margin-right:6%;
+}
+#news-inner-list{
+margin:0 -3%;}
+#news-show-list .small-news-show{
+width:42%;
+margin:2%;
+height:180px;
+float:left;} 
+#video-show-list.all-list .big-video-show .inner-content{
+display:none;}
+
+#video-show-list.all-list .small-video-show{
+height:120px;}
+.small-video-show .img_url_l{
+margin-right:5%;}
+#video-show-list.all-list .small-video-show h3{
+width:50%;}
+#video-list .small-video-show .img_url_l{
+margin-right:3%;}
+
+#video-show-list .big-video-show {
+	width:90%;
+margin:20px -11% 20px 0;
+padding: 40px 15% 0 15%;
+background:#eeeeee;
+}
+.pinfo .info-number{
+margin-bottom:7px;}
+.single-page-inner{
+padding-top:0px;}
+#video-show-list.all-list .big-video-show .img_url_l{
+float:none;
+width:100%;
+padding-top:56%;}
+#video-show-list.all-list .big-video-show h3{
+float:none;
+width:100%;}
+#video-show-list.all-list .small-video-show{
+float:none;
+width:auto;
+height:auto;
+padding:5% 0;}
+.side-sblock#news-list ul{
+font-size:20px;
+line-height:1.3em;}
+.side-sblock#news-list ul li{
+margin-bottom:20px;}
+.side-sblock#say-list ul li{
+font-size:15px;
+line-height:1.7em;}
+
+.small-video-show .inner-content{
+width:65%;
+clear:none;
+padding:0px 0 30px 0;
+float:left;}
+
+
+#people-single-top{
+	padding:20px 5% 15px 0.5%;}
+#people-single-top .big-video-show{
+width:93%;}
+
+.single-page-inner{
+width:87%;}
+.news-info-list li{
+font-size:20px;
+}
+.video-other-list li{
+width:100%;}
+
+.vo-title{
+width:auto;
+font-size:24px;}
+
+#first-nav{
+	float:none;
+	text-align:center;
+	clear:both;}
+#first-nav li{
+	float:none;
+	display:inline;
+	border:none;
+	border-bottom:none;
+	margin:0 0 0 -1px ;
+	}
+	#first-nav li a{
+			display:inline;
+			padding:4px 10px;
+			
+	}
+	#video-show-list.all-list .small-video-show .inner-content{
+	display:block;
+}
+
+
+#choose-block li{
+border-right:none;
+border-bottom:1px dotted #AAA;
+width:auto;
+float:none;
+min-height:1px;
+padding-bottom:15px;}
+
+
+}
+
+
 @media only screen and (max-width: 800px){
 /*表頭*/
 #first-nav li a{
@@ -1287,6 +2043,7 @@ padding:4px 6px;
 	}
 #people-all-list .people-info-block{
 	float:left;
+
 	max-width:47%;
 	width:49%;
 	}
@@ -1309,13 +2066,10 @@ padding:4px 6px;
 .info-number li{
 	float:left;
 	margin:0 5% 7px 0;}
-.pinfo-mlist{
-	width:99%;}
 
 
 /*立委內頁*/
-.pinfo-inner-aside{width:99%;
-	margin-bottom:10px;}
+
 .pinfo{margin-bottom:10px;}
 .pinfo .people-info-block{
 	max-width:99%;}
@@ -1326,14 +2080,14 @@ padding:4px 6px;
 	border-right:1px solid #d4d4d4;
 	border-bottom:1px solid #d4d4d4;
 	display:none;
+	display:block;
 	}
 .pinfo .selector-info div{
 	float:none;
 	padding:0px 5px;
 	margin:0px;
 	width:auto;}
-.pinfo.pinfo-inner .people-img {
-	width:8%;}
+
 .pinfo{
 	overflow:hidden;}
 .pinfo h2{
@@ -1344,26 +2098,15 @@ padding:4px 6px;
 	margin:6px 0 7px 8px;}
 .pinfo .info-number li{
 	margin-right:1%;}
-.pinfo-btn {
-	width:101%;}
-.pinfo-btn li{
-	width:32.5%;
-	margin:0 0.5% 0 0;
-	text-align:center;}
-.pinfo-btn li a{
-	padding:6px 0;}
-.pinfo.pinfo-inner .pinfo-btn{
-	margin:-37px 0 0px 15%;
-	width:40%;
-	float:right;}
+
+
+
 .big-video-show{
 	width:98%;
 	}
  
 /*影片列表*/
-#video-show-list #video-list,#news-show-list{
-	width:98%;
-	}
+
 #video-list{
 	min-height:50px;}
 /*影片內頁*/
@@ -1414,10 +2157,150 @@ padding:4px 6px;
 	}
 .cf02{display:block;
 float:right;
-
-}
 }
 
+.time{
+display:none;}
+#news-show-list.all-list .small-news-show{
+height:220px;
+}
+.big-video-show .inner-content,.small-video-show .inner-content{
+display:none;}
+#video-show-list #video-list{
+width:88.5%;}
+#video-show-list.all-list #video-list{
+width:100%;}
+#video-show-list .big-video-show{
+padding-bottom:40px;}
+.video-other-list li{
+float:none;
+width:100%;
+overflow:hidden;}
+}
+
+@media only screen and (max-width: 720px){
+.big-video-show .img_url_l{
+width:98%;
+padding-top:55%;}
+.big-video-show h3{
+width:100%;
+padding-top:15px;}
+
+#video-show-list.all-list .small-video-show .img_url_l{
+padding-top:25.5%;
+}
+#video-show-list.all-list .small-video-show h3{
+font-size:24px;}
+#video-show-list .big-video-show{
+padding-bottom:25px;}
+.pinfo .selector-info{
+display:none;}
+.pinfo .selector-info.si-newest{
+display:block;
+width:70%;
+border:none;
+}
+.pinfo .people-img{
+width:22%;}
+.pinfo .selector-info div{
+float:left;
+margin:0 10px 0 0;
+}
+	.small-video-show h3,#video-show-list.all-list .small-video-show h3{
+	width:97.5%;
+	margin-bottom:0px;
+	font-size:26px;}
+	.small-video-show .img_url_l{
+	display:none;}
+	.pinfo .info-number{
+	width:76%;}
+#video-show-list.all-list .small-video-show .inner-content{
+	display:none;}
+}
+@media only screen and (max-width: 640px){
+#logo{
+	margin:0 0 0 16px;
+	float:left;}
+	#first-nav {
+	margin:0 -7%;}
+	#first-nav li{
+	display:block;
+	border-bottom:1px solid #3c3c3c;}
+	#first-nav li a{
+			display:block;
+			padding:7px 10px;
+			
+	}
+	#people-rank h3{
+		font-size:2em;}
+	#people-rank p{
+		padding:17px 0 0 6px;
+		font-size:1em;}
+	#people-rank-list li em{
+		padding:0 3% 0 18%;}
+	#people-rank-list li span{
+		float:none;
+		clear:both;
+		padding:0 3% 0 18%;}
+		.video-a{
+	margin-bottom:10px;}
+	.index-sub-video{
+		float:none;
+		width:94%;}
+	.people-img{
+		width:22%;}
+	#people-all-list .people-info-block{
+		width:auto;
+		margin-bottom:4%;}
+	.info-number{
+		width:80%;}
+		.pinfo .selector-info.si-newest{
+			float:left;
+			border:#D4D4D4 1px solid;
+			clear:none;}
+		.side-sblock#news-list,.side-sblock#say-list{
+		width:94%;}
+		.side-sblock#news-list ul li{
+		width:auto;}
+		.side-sblock#say-list ul{
+		width:95%;}
+		#news-show-list.all-list .small-news-show{
+		float:none;
+		width:auto;
+height:auto;
+padding-bottom:30px;
+margin-bottom:30px;
+}
+#news-show-list .small-news-show{
+float:none;
+width:auto;
+height:auto;
+padding-bottom:30px;
+margin-bottom:30px;} 
+	#video-show-list.all-list .small-video-show .img_url_l{
+	width:45%;}
+.pinfo .selector-info.si-newest{
+border:none;
+}
+
+.pinfo .info-number{
+width:72%;}
+.pinfo .selector-info.si-newest{
+display:block;
+width:100%;
+border:none;
+margin:0 0 0 0px;
+border-top:1px solid #D4D4D4;}
+.info-number li{
+text-align:center;}
+.pinfo .info-number li{
+padding-bottom:0px;}
+.pinfo .info-number a{
+display:block;
+text-align:center;}	
+
+
+}
 
 
 @media only screen and (max-width: 640px){
@@ -1474,11 +2357,8 @@ padding:0 0 0 11%;}
 .info-number{
 	width:79%;
 	}
-.pinfo.pinfo-inner .people-info-block .people-img{
-	max-width:70px;
-	width:15%;}
-.pinfo.pinfo-inner .pinfo-btn {
-	display:none;}
+
+
 
 /*立委內頁*/
 .pinfo .people-info-block h2{
@@ -1590,32 +2470,78 @@ padding-top:19.5%;}
 	margin:0 auto 40px auto;
 
 	}
+.legislators-basic .name{
+	width:3.8em;}
+.edition span{
+	float:none;
+}	
+.vote-txt-group{
+	width:auto;
+	float:none;}
+.vote-result-block{
+	width:auto;
+	float:none;
+	padding:15px 0 0 0;}
+.vote-block{
+	width:47%;
+	float:left;}
+.all-vote{
+	float:right;}	
+
+	.vtitle-set h3{
+	float:none;
+	clear:both;}
+	.vtitle-set{
+		margin-bottom:15px;}
+.law-group-list .order-time,.law-group-list .view-proposal{
+	float:none;
+	}
 }	
 
 
 @media only screen and (max-width: 480px){
 /*表頭*/
 #first-nav{
-	width:100%;}
+	width:auto;}
 #first-nav li{
 	float:none;
 	display:block;
 	border:1px solid #3c3c3c;
-	border-bottom:none;
 	margin:0px ;
 	text-align:center;
 	}
 #first-nav li a{
 	display:block;}
+#secn01 li{
+width:32.5%;
+text-align:center;}
+	#secn02 li a{
+padding:3px 8px 7px 8px;
+margin-bottom:10px;
+}
 /*首頁*/
 #people-rank-list li{
-margin:0 0 8px 1.5%;
-	width:100%;
 	float:none;
+	width:42%;
+		border:none;
+		margin:0px;
 }
 #people-rank-list li span{width:30%;}
 #people-rank-list li em{width:44%;
-padding:0 0 0 9%;}
+padding:0 3% 0 17%;}
+
+	#people-rank-list li:nth-child(1),#people-rank-list li:nth-child(2),#people-rank-list li:nth-child(3),#people-rank-list li:nth-child(4),#people-rank-list li:nth-child(5),#people-rank-list li:nth-child(6){
+	float:left;
+	clear:left;
+	border-right:1px solid #D4D4D4;
+	margin:0 15% 0 0;
+	}
+#people-rank-list li:nth-child(7),#people-rank-list li:nth-child(8),#people-rank-list li:nth-child(9),#people-rank-list li:nth-child(10),#people-rank-list li:nth-child(11),#people-rank-list li:nth-child(12){
+	float:none;
+	}
+#video-show-list.all-list .small-video-show{
+	height:auto;
+	padding-bottom:25px;}
 /*立委列表*/
 .people-img{
 	max-width:85px;
@@ -1625,7 +2551,7 @@ padding:0 0 0 9%;}
 	width:63%;
 	}
 .info-number{
-	width:63%;
+	width:74%;
 	}
 /*立委內頁*/
 .pinfo .info-number{
@@ -1683,15 +2609,37 @@ float: none;
 	}
 .all-list#video-show-list .small-video-show h3 {
 	width:62%}
-.pinfo-inner-aside{
-	display:none;
-	margin:0px;}
 .slegislator h3{
 	float:none;
 	width:auto;}
 .ad,.constituency{
 	float:left;}
-
+.legislators-group{
+	min-width:380px;}
+.single-page-inner{
+	margin:auto;
+	float:none;}
+.legislators-basic .name{
+	width:auto;}
+.lmib-01,.lmib-02{
+	float:none;}
+.legislators-more-info,.vote-ly-g0v .legislators-more-info{
+	padding-left:95px;
+	top:45px;}
+.legislators-more-info li{
+	float:left;
+	width:33%;
+	}
+.legimg{
+	min-width:100px;}
+.edition,.lmib-02{
+	display:none;}
+.lmib-01 li{
+	width:auto;
+	margin-left:18px;}
+.view-proposal,.order-time{
+	float:none;
+	}
 }	
 
 @media only screen and (max-width: 360px){
@@ -1711,5 +2659,21 @@ float: none;
 {
 	width:135px;
 	height:auto;}
-}
+#secn01 li a{
+height:auto;
+padding:5px;}
+#people-rank-list li em{
+		padding:0 3% 0 22%;}
+		#people-rank-list li span{
+		padding:0 3% 0 22%;}
+		#people-rank-list li:nth-child(1),#people-rank-list li:nth-child(2),#people-rank-list li:nth-child(3),#people-rank-list li:nth-child(4),#people-rank-list li:nth-child(5),#people-rank-list li:nth-child(6){
 
+	margin:0 8% 0 0;
+	}
+	.people-img{
+	width:30%;}
+	.people-info-block h2{
+	width:63%;}
+	.info-number{
+	width:66%;}
+}
