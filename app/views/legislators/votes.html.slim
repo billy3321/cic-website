@@ -42,7 +42,6 @@
           li = link_to "反對", url_for(params.merge({decision: "disagree"}))
           li = link_to "棄權", url_for(params.merge({decision: "abstain"}))
           li = link_to "沒有投票", url_for(params.merge({decision: "notvote"}))
-      .hot-issue
     .inner-content-txt
       .vote-group-list
         - @votes.each do |v|
