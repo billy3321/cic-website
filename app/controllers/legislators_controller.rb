@@ -320,6 +320,20 @@ class LegislatorsController < ApplicationController
     end
     @decision = decision
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
+
+    set_meta_tags({
+      title: "#{@legislator.name}投票表決紀錄",
+      description: "你知道#{@legislator.name}贊成反對那些提案嗎?請看#{@legislator.name}的投票表決紀錄。",
+      keywords: "#{@legislator.name},#{@legislator.name}投票表決紀錄",
+      og: {
+        type: 'article',
+        description: "你知道#{@legislator.name}贊成反對那些提案嗎?請看#{@legislator.name}的投票表決紀錄。",
+        title: "#{@legislator.name}投票表決紀錄",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}",
+        site_name: "國會調查兵團"
+      }
+    })
+
   end
 
   def bills
@@ -340,8 +354,23 @@ class LegislatorsController < ApplicationController
     ad = Ad.last.id if 8 > ad or ad > Ad.last.id
     @candidate, @status = parse_vote_guide_candidate(@legislator.id, ad)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
-    puts @candidate
+
+    set_meta_tags({
+      title: "#{@legislator.name}法律修正案紀錄",
+      description: "你知道#{@legislator.name}提過哪些法律修正案嗎?請看#{@legislator.name}的法律修正案紀錄。",
+      keywords: "#{@legislator.name},#{@legislator.name}法律修正案紀錄",
+      og: {
+        type: 'article',
+        description: "你知道#{@legislator.name}提過哪些法律修正案嗎?請看#{@legislator.name}的法律修正案紀錄。",
+        title: "#{@legislator.name}法律修正案紀錄",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}",
+        site_name: "國會調查兵團"
+      }
+    })
+
   end
+
+
 
   def search
     @q = Election.search(params[:q])
