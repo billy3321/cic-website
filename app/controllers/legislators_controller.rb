@@ -308,7 +308,6 @@ class LegislatorsController < ApplicationController
     ad = params[:ad]
     ad = Ad.last.id if not ad or ad > Ad.last.id
     @votes, @pages, @status = parse_vote_guide_voter(@legislator.id, ad, page)
-    errors.add(:base, '網址擷取失敗，請稍後重新嘗試。') unless @status
   end
 
   def bills
@@ -316,14 +315,12 @@ class LegislatorsController < ApplicationController
     ad = params[:ad]
     ad = Ad.last.id if not ad or ad > Ad.last.id
     @bills, @pages, @status = parse_vote_guide_biller(@legislator.id, ad, page)
-    errors.add(:base, '網址擷取失敗，請稍後重新嘗試。') unless @status
   end
 
   def candidate
     ad = params[:ad]
     ad = Ad.last.id if not ad or ad > Ad.last.id
     @candidate, @status = parse_vote_guide_biller(@legislator.id, ad)
-    errors.add(:base, '網址擷取失敗，請稍後重新嘗試。') unless @status
   end
 
   def search
