@@ -70,7 +70,7 @@
               span 
                 = to_ten_thousands(@candidate["in"]["in_party"])
             .graphic-body
-              .gpb-04 style="width: #{get_percentage(@candidate["in"]["in_anonymous"], @candidate["in_total"])}"
+              .gpb-04 style="width: #{get_percentage(@candidate["in"]["in_party"], @candidate["in_total"])}"
           .gp-bar
             p
               | 匿名捐贈：
