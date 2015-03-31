@@ -306,13 +306,13 @@ class LegislatorsController < ApplicationController
   def votes
     page = params[:page]
     decision = params[:decision]
-    ad = params[:ad].to_i
-    ad = Ad.last.id if 8 > ad or ad > Ad.last.id
+    @ad = params[:ad].to_i
+    @ad = Ad.last.id if Ad.last.id < @ad or @ad < Ad.first.id
     unless ["agree", "disagree", "abstain", "notvote"].include?(decision)
       decision = nil
       params[:decision] = nil
     end
-    @votes, @pages, @status = parse_vote_guide_voter(@legislator.id, ad, page, decision)
+    @votes, @pages, @status = parse_vote_guide_voter(@legislator.id, @ad, page, decision)
     if page
       @current_page = page
     else
@@ -338,9 +338,9 @@ class LegislatorsController < ApplicationController
 
   def bills
     page = params[:page]
-    ad = params[:ad].to_i
-    ad = Ad.last.id if 8 > ad or ad > Ad.last.id
-    @bills, @pages, @count, @status = parse_vote_guide_biller(@legislator.id, ad, page)
+    @ad = params[:ad].to_i
+    @ad = Ad.last.id if Ad.last.id < @ad or @ad < Ad.first.id
+    @bills, @pages, @count, @status = parse_vote_guide_biller(@legislator.id, @ad, page)
     if page
       @current_page = page
     else
@@ -350,9 +350,9 @@ class LegislatorsController < ApplicationController
   end
 
   def candidate
-    ad = params[:ad].to_i
-    ad = Ad.last.id if 8 > ad or ad > Ad.last.id
-    @candidate, @status = parse_vote_guide_candidate(@legislator.id, ad)
+    @ad = params[:ad].to_i
+    @ad = Ad.last.id if Ad.last.id < @ad or @ad < Ad.first.id
+    @candidate, @status = parse_vote_guide_candidate(@legislator.id, @ad)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
 
     set_meta_tags({

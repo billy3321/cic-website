@@ -5,8 +5,9 @@
     #title-law.vtitle-set
       header
         h3 法律修正案
-        select#select name="select"
-          option 第8屆
+        = form_for(@legislator, url: bills_legislator_path(@legislator), method: :get) do |f|
+          = select_tag "ad", options_from_collection_for_select(Ad.all, :id, :name, @ad), id: "select"
+          = f.submit '送出', class: "srbtn", id: "button"
         | 資料來源：
         = link_to "立委投票指南", "http://vote.ly.g0v.tw/", target: "_blank"
         | 、
