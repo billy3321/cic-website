@@ -1363,7 +1363,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 #lmi-07 a{
 	background:url(../images/lmi-07.png) no-repeat left center;}
 #lmi-08 a{
-	background:url(../images/lmi-07.png) no-repeat left center;}
+	background:url(../images/lmi-08.png) no-repeat left center;}
 .legislators-more-info{
 	margin:10px 0 40px 0;}
 .legislators-more-info a{
@@ -2109,9 +2109,7 @@ padding:4px 6px;
 
 #video-list{
 	min-height:50px;}
-/*影片內頁*/
-.single-page-inner{
-	width:98%;}
+
 	
 /*無資料列表*/
 .big-news-show .blank,.big-video-show .blank{
@@ -2176,6 +2174,8 @@ padding-bottom:40px;}
 float:none;
 width:100%;
 overflow:hidden;}
+#single-data-page .legislators-group{
+	display:none;}
 }
 
 @media only screen and (max-width: 720px){
