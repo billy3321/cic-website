@@ -1,64 +1,65 @@
-.legislators-group
-  - @question.legislators.each do |l|
-    = render partial: 'shared/legislator_info', locals: { l: l }
+#single-data-page
+  .legislators-group
+    - @question.legislators.each do |l|
+      = render partial: 'shared/legislator_info', locals: { l: l }
 
-section class="single-page-inner"
-  header
-    h3 = @question.title
-  = social_share_button_tag(@question.title)
-  - @question.legislators.each do |l|
-    = render partial: 'shared/legislator_short_info', locals: { l: l }
-  ul id="sinner-src-list"
-    li 
-      | ivod出處：
-      = link_to @question.ivod_url, @question.ivod_url, target: "_blank"
-    li 
-      | 會議時間：
-      = @question.date.strftime('%Y年%m月%d日')
-    - if @question.time_start or @question.time_end
-      li ivod時間區間：#{@question.time_start.try(:strftime, '%H:%M:%S')}～#{@question.time_end.try(:strftime, '%H:%M:%S')}
-    - else
-      li ivod時間區間：無指定
-    li 
-      | 會議別：
-      = @question.committee.try(:name)
-    li 
-      | 會期：
-      = @question.ad_session.try(:ad).try(:name)
-      = @question.ad_session.try(:name)
-    li 
-      | 會議簡介：
-      br
-      div class="show-more-snippet" = @question.meeting_description
-      a class="show-more" 更多...
-    - unless @question.target.blank?
+  section class="single-page-inner"
+    header
+      h3 = @question.title
+    = social_share_button_tag(@question.title)
+    - @question.legislators.each do |l|
+      = render partial: 'shared/legislator_short_info', locals: { l: l }
+    ul id="sinner-src-list"
       li 
-        | 質詢對象：
-        = @question.target
-  .inner-content-txt
-    = @question.content.try(:html_safe)
+        | ivod出處：
+        = link_to @question.ivod_url, @question.ivod_url, target: "_blank"
+      li 
+        | 會議時間：
+        = @question.date.strftime('%Y年%m月%d日')
+      - if @question.time_start or @question.time_end
+        li ivod時間區間：#{@question.time_start.try(:strftime, '%H:%M:%S')}～#{@question.time_end.try(:strftime, '%H:%M:%S')}
+      - else
+        li ivod時間區間：無指定
+      li 
+        | 會議別：
+        = @question.committee.try(:name)
+      li 
+        | 會期：
+        = @question.ad_session.try(:ad).try(:name)
+        = @question.ad_session.try(:name)
+      li 
+        | 會議簡介：
+        br
+        div class="show-more-snippet" = @question.meeting_description
+        a class="show-more" 更多...
+      - unless @question.target.blank?
+        li 
+          | 質詢對象：
+          = @question.target
+    .inner-content-txt
+      = @question.content.try(:html_safe)
 
-  .writer
-    span 資料回報者
-    = @question.user.try(:name)
-    | &nbsp;
-    time class="time"
-      = @question.created_at.strftime('%Y-%m-%d')
-  aside id="writer-say"
-    = @question.comment.try(:html_safe)
+    .writer
+      span 資料回報者
+      = @question.user.try(:name)
+      | &nbsp;
+      time class="time"
+        = @question.created_at.strftime('%Y-%m-%d')
+    aside id="writer-say"
+      = @question.comment.try(:html_safe)
 
-  - if user_signed_in? and (@question.user == current_user or current_user.admin?)
-    .edit-block
-      ul class="edit-btn"
-        li = link_to '修改編輯', edit_question_path(@question)
-        li = link_to '刪除', question_path(@question), method: :delete, data: { confirm: '確認要刪除嗎？' }
-  #disqus_thread
-  aside id="aside-info"
-    #accordion
-      - @question.legislators.each do |l|
-        - if l.questions.published.created_after(@question.created_at).any?
-          h3 = l.name
-          div
-            ul class="news-info-list"
-              - l.questions.published.created_after(@question.created_at).first(5).each do |q|
-                li = link_to q.title, question_path(q)
+    - if user_signed_in? and (@question.user == current_user or current_user.admin?)
+      .edit-block
+        ul class="edit-btn"
+          li = link_to '修改編輯', edit_question_path(@question)
+          li = link_to '刪除', question_path(@question), method: :delete, data: { confirm: '確認要刪除嗎？' }
+    #disqus_thread
+    aside id="aside-info"
+      #accordion
+        - @question.legislators.each do |l|
+          - if l.questions.published.created_after(@question.created_at).any?
+            h3 = l.name
+            div
+              ul class="news-info-list"
+                - l.questions.published.created_after(@question.created_at).first(5).each do |q|
+                  li = link_to q.title, question_path(q)

@@ -1,80 +1,80 @@
-.legislators-group
-  - @video.legislators.each do |l|
-    = render partial: 'shared/legislator_info', locals: { l: l }
+#single-data-page
+  .legislators-group
+    - @video.legislators.each do |l|
+      = render partial: 'shared/legislator_info', locals: { l: l }
 
-section class="single-page-inner"
-  header
-    h3 = @video.title
-  = social_share_button_tag(@video.title)
-  .video-inner-show
-    iframe src="https://www.youtube.com/embed/#{@video.youtube_id}" frameborder="0" class="video-play" allowfullscreen="1"
-  - @video.legislators.each do |l|
-    = render partial: 'shared/legislator_short_info', locals: { l: l }
-  ul id="sinner-src-list"
-    - if ['news', 'others'].include? @video.video_type
-      li 
-        | 出處：
-        - unless @video.source_url.empty?
-          = link_to @video.source_name, @video.source_url, target: "_blank"
+  section class="single-page-inner"
+    header
+      h3 = @video.title
+    = social_share_button_tag(@video.title)
+    .video-inner-show
+      iframe src="https://www.youtube.com/embed/#{@video.youtube_id}" frameborder="0" class="video-play" allowfullscreen="1"
+    - @video.legislators.each do |l|
+      = render partial: 'shared/legislator_short_info', locals: { l: l }
+    ul id="sinner-src-list"
+      - if ['news', 'others'].include? @video.video_type
+        li 
+          | 出處：
+          - unless @video.source_url.empty?
+            = link_to @video.source_name, @video.source_url, target: "_blank"
+          - else
+            = @video.source_name
+        li
+          - if @video.video_type == 'news'
+            | 新聞日期：
+          - else
+            | 消息日期：
+          = @video.date.try(:strftime, '%Y年%m月%d日')
+
+      - elsif @video.video_type == 'ivod'
+        li 
+          | ivod出處：
+          = link_to @video.ivod_url, @video.ivod_url, target: "_blank"
+        - if @video.time_start or @video.time_end
+          li ivod時間區間：#{@video.time_start.try(:strftime, '%H:%M:%S')}～#{@video.time_end.try(:strftime, '%H:%M:%S')}
         - else
-          = @video.source_name
-      li
-        - if @video.video_type == 'news'
-          | 新聞日期：
-        - else
-          | 消息日期：
-        = @video.date.try(:strftime, '%Y年%m月%d日')
-
-    - elsif @video.video_type == 'ivod'
-      li 
-        | ivod出處：
-        = link_to @video.ivod_url, @video.ivod_url, target: "_blank"
-      - if @video.time_start or @video.time_end
-        li ivod時間區間：#{@video.time_start.try(:strftime, '%H:%M:%S')}～#{@video.time_end.try(:strftime, '%H:%M:%S')}
-      - else
-        li ivod時間區間：無指定
-      li 
-        | 會期：
-        = @video.ad_session.try(:ad).try(:name)
-        = @video.ad_session.try(:name)
-      li 
-        | 會議時間：
-        = @video.date.try(:strftime, '%Y年%m月%d日')
-      li 
-        | 會議別：
-        = @video.committee.try(:name)
-      li 
-        | 會議簡介：
-        br
-        div class="show-more-snippet" = @video.meeting_description
-        a class="show-more" 更多...
-      li 
-        | 質詢對象：
-        = @video.target
-  .inner-content-txt
-    .video-inner-txt
-      = @video.content.try(:html_safe)
-  .writer
-    span 資料回報者
-    = @video.user.try(:name)
-    | &nbsp;
-    time class="time"
-      = @video.created_at.strftime('%Y-%m-%d')
-  - if user_signed_in? and (@video.user == current_user or current_user.admin?)
-    .edit-block
-      ul class="edit-btn"
-        li = link_to '修改編輯', edit_video_path(@video)
-        li = link_to '刪除', video_path(@video), method: :delete, data: { confirm: '確認要刪除嗎？' }
-  #disqus_thread
-  aside id="aside-info"
-    #accordion
-      - @video.legislators.each do |l|
-        - if l.videos.published.created_after(@video.created_at).any?
-          h3 = l.name
-          div style="height: #{(130 * ((l.videos.published.created_after(@video.created_at).first(6).length + 1) / 2))}px;"
-            ul class="video-other-list"
-              - l.videos.published.created_after(@video.created_at).first(6).each do |v|
-                li 
-                  = link_to image_tag(v.image, width: "135", height: "102"), video_path(v), class: "vo-img"
-                  = link_to v.title, video_path(v), class: "vo-title"
-
+          li ivod時間區間：無指定
+        li 
+          | 會期：
+          = @video.ad_session.try(:ad).try(:name)
+          = @video.ad_session.try(:name)
+        li 
+          | 會議時間：
+          = @video.date.try(:strftime, '%Y年%m月%d日')
+        li 
+          | 會議別：
+          = @video.committee.try(:name)
+        li 
+          | 會議簡介：
+          br
+          div class="show-more-snippet" = @video.meeting_description
+          a class="show-more" 更多...
+        li 
+          | 質詢對象：
+          = @video.target
+    .inner-content-txt
+      .video-inner-txt
+        = @video.content.try(:html_safe)
+    .writer
+      span 資料回報者
+      = @video.user.try(:name)
+      | &nbsp;
+      time class="time"
+        = @video.created_at.strftime('%Y-%m-%d')
+    - if user_signed_in? and (@video.user == current_user or current_user.admin?)
+      .edit-block
+        ul class="edit-btn"
+          li = link_to '修改編輯', edit_video_path(@video)
+          li = link_to '刪除', video_path(@video), method: :delete, data: { confirm: '確認要刪除嗎？' }
+    #disqus_thread
+    aside id="aside-info"
+      #accordion
+        - @video.legislators.each do |l|
+          - if l.videos.published.created_after(@video.created_at).any?
+            h3 = l.name
+            div style="height: #{(130 * ((l.videos.published.created_after(@video.created_at).first(6).length + 1) / 2))}px;"
+              ul class="video-other-list"
+                - l.videos.published.created_after(@video.created_at).first(6).each do |v|
+                  li 
+                    = link_to image_tag(v.image, width: "135", height: "102"), video_path(v), class: "vo-img"
+                    = link_to v.title, video_path(v), class: "vo-title"

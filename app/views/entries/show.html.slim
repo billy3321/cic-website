@@ -1,46 +1,47 @@
-.legislators-group
-  - @entry.legislators.each do |l|
-    = render partial: 'shared/legislator_info', locals: { l: l }
+#single-data-page
+  .legislators-group
+    - @entry.legislators.each do |l|
+      = render partial: 'shared/legislator_info', locals: { l: l }
 
-section class="single-page-inner"
-  header
-    h3 = @entry.title
-  = social_share_button_tag(@entry.title)
-  - @entry.legislators.each do |l|
-    = render partial: 'shared/legislator_short_info', locals: { l: l }
-  ul id="sinner-src-list"
-    li 
-      | 新聞連結：
-      = link_to @entry.source_name, @entry.source_url, target: "_blank"
-    li 
-      | 新聞日期：
-      = @entry.date.strftime('%Y年%m月%d日')
-  .inner-content-txt
-    .read-txt
-      |  如欲閱讀新聞內容，請見
-      = link_to "新聞原文>>", @entry.source_url, target: "_blank"
-    / .video-inner-txt
-    /   = @entry.content.html_safe
+  section class="single-page-inner"
+    header
+      h3 = @entry.title
+    = social_share_button_tag(@entry.title)
+    - @entry.legislators.each do |l|
+      = render partial: 'shared/legislator_short_info', locals: { l: l }
+    ul id="sinner-src-list"
+      li 
+        | 新聞連結：
+        = link_to @entry.source_name, @entry.source_url, target: "_blank"
+      li 
+        | 新聞日期：
+        = @entry.date.strftime('%Y年%m月%d日')
+    .inner-content-txt
+      .read-txt
+        |  如欲閱讀新聞內容，請見
+        = link_to "新聞原文>>", @entry.source_url, target: "_blank"
+      / .video-inner-txt
+      /   = @entry.content.html_safe
 
-  .writer
-    span 資料回報者
-    = @entry.user.try(:name)
-    | &nbsp;
-    time class="time"
-      = @entry.created_at.strftime('%Y-%m-%d')
+    .writer
+      span 資料回報者
+      = @entry.user.try(:name)
+      | &nbsp;
+      time class="time"
+        = @entry.created_at.strftime('%Y-%m-%d')
 
-  - if user_signed_in? and (@entry.user == current_user or current_user.admin?)
-    .edit-block
-      ul class="edit-btn"
-        li = link_to '修改編輯', edit_entry_path(@entry)
-        li = link_to '刪除', entry_path(@entry), method: :delete, data: { confirm: '確認要刪除嗎？' }
-  #disqus_thread
-  aside id="aside-info"
-    #accordion
-      - @entry.legislators.each do |l|
-        - if l.entries.published.created_after(@entry.created_at).any?
-          h3 = l.name
-          div
-            ul class="news-info-list two-col-list"
-              - l.entries.published.created_after(@entry.created_at).first(6).each do |e|
-                li = link_to e.title, entry_path(e)
+    - if user_signed_in? and (@entry.user == current_user or current_user.admin?)
+      .edit-block
+        ul class="edit-btn"
+          li = link_to '修改編輯', edit_entry_path(@entry)
+          li = link_to '刪除', entry_path(@entry), method: :delete, data: { confirm: '確認要刪除嗎？' }
+    #disqus_thread
+    aside id="aside-info"
+      #accordion
+        - @entry.legislators.each do |l|
+          - if l.entries.published.created_after(@entry.created_at).any?
+            h3 = l.name
+            div
+              ul class="news-info-list two-col-list"
+                - l.entries.published.created_after(@entry.created_at).first(6).each do |e|
+                  li = link_to e.title, entry_path(e)

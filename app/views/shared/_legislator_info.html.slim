@@ -32,3 +32,7 @@
     ul.lmib-02
       li#lmi-05 = link_to "個人財產申報", "http://sunshine.cy.g0v.tw/people/#{l.name}/property/overview/", target: "_blank"
       li#lmi-06 = link_to "競選政見", "http://vote.ly.g0v.tw/legislator/platformer/#{l.id}/8/", target: "_blank"
+      - unless l.fb_link.blank?
+        li#lmi-07 = link_to "官方臉書", l.fb_link, target: "_blank"
+      - unless l.wiki_link.blank?
+        li#lmi-08 = link_to "維基百科", l.wiki_link, target: "_blank"

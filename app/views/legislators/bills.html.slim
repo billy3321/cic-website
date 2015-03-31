@@ -12,7 +12,7 @@
         | 、
         = link_to "國會大代誌", "http://ly.g0v.tw/", target: "_blank"
     = social_share_button_tag("#{@legislator.name}法律修正案")
-    nav.sec-nav
+    nav#sec-nav
       .count-law
         | 第8屆任期共提出
         span = @count
@@ -23,7 +23,6 @@
           .law-group
             .law-txt-group
               h4 = b[:title]
-              span.order-time 提案日期：#{b[:date]}
               = link_to "查看法條修正進度與詳細對修正照表", b[:link], class: "view-proposal", target: "_blank"
               .ss-txt = display_shorter(b[:reason], 110)
       #page

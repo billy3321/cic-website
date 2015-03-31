@@ -159,14 +159,25 @@ ActiveRecord::Base.connection.reset_pk_sequence!(District.table_name)
 ActiveRecord::Base.connection.execute("Delete from districts_elections;");
 
 #import mly-8.json
-filepath = Rails.root.join('db', 'g0v-lyparser', 'mly-8.json')
-legislators = JSON.parse(File.read(filepath))
+legislators_filepath = Rails.root.join('db', 'g0v-lyparser', 'mly-8.json')
+legislators_links_filepath = Rails.root.join('db', 'data', 'legislator-links.json')
+legislators = JSON.parse(File.read(legislators_filepath))
+legislator_links = JSON.parse(File.read(legislators_links_filepath))
 legislators.each do |l|
   legislator = Legislator.new()
   legislator.id = l['id']
   legislator.name = l['name']
   legislator.in_office = l['in_office']
   legislator.image = l['id'].to_s + '.jpg'
+  legislator_links.each do |links|
+    if links[0].to_i == l['id']
+      legislator.fb_link = links[2] unless links[2].blank?
+      legislator.wiki_link = links[3] unless links[3].blank?
+      legislator.musou_link = links[4] unless links[4].blank?
+      legislator.ccw_link = links[5] unless links[5].blank?
+      legislator.ivod_link = links[6] unless links[6].blank?
+    end
+  end
   election = Election.new()
   election.legislator_id = l['id']
   election.ad_id = ads.first[:id]
