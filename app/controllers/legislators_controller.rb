@@ -544,18 +544,22 @@ class LegislatorsController < ApplicationController
   end
 
   def parse_vote_guide_candidate(legislator_id, ad)
-    legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
-    unless legislator_term_data.blank?
-      candidate_url = legislator_term_data["elected_candidate"][0]
-      unless candidate_url.blank?
-        candidate_json = JSON.parse(get_cached_page(candidate_url))
-        if candidate_json.has_key? "politicalcontributions" and not candidate_json["politicalcontributions"].blank?
-          puts candidate_json["politicalcontributions"]
-          return candidate_json["politicalcontributions"], true
+    begin
+      legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
+      unless legislator_term_data.blank?
+        candidate_url = legislator_term_data["elected_candidate"][0]
+        unless candidate_url.blank?
+          candidate_json = JSON.parse(get_cached_page(candidate_url))
+          if candidate_json.has_key? "politicalcontributions" and not candidate_json["politicalcontributions"].blank?
+            puts candidate_json["politicalcontributions"]
+            return candidate_json["politicalcontributions"], true
+          end
         end
       end
+      return {}, false
+    rescue
+      return {}, false
     end
-    return {}, false
   end
 
   def get_vote_guide_legislator_term_data(legislator_id, ad)
