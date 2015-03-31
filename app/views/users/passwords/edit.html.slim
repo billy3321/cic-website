@@ -1,22 +1,23 @@
-#login-out-block
-  h2 改密碼囉！
-  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-    = render 'shared/error_messages', object: f.object
-    = f.input :reset_password_token, as: :hidden
-    = f.full_error :reset_password_token
-    ul class="form-list"
-      li
-        p 設定新密碼
-        p class="sonte" 請輸入最少8個字元。
-        p = f.input :password, required: true, autofocus: true, label: false
-      li
-        p 再輸入一次密碼
-        p = f.input :password_confirmation, required: true, label: false
-      li 
-        p 驗證碼
-        p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
-        p = recaptcha_tags ajax: true
-      li
-        = f.button :submit, "確定修改", class: "form-btn"
+#bg-wrap
+  #login-out-block
+    h2 改密碼囉！
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.input :reset_password_token, as: :hidden
+      = f.full_error :reset_password_token
+      ul class="form-list"
+        li
+          p 設定新密碼
+          p class="sonte" 請輸入最少8個字元。
+          p = f.input :password, required: true, autofocus: true, label: false
+        li
+          p 再輸入一次密碼
+          p = f.input :password_confirmation, required: true, label: false
+        li 
+          p 驗證碼
+          p class="snote" 輸入英文及數字即可，不分英文大小寫，如果看不清楚請點一下驗證碼圖片可換圖
+          p = recaptcha_tags ajax: true
+        li
+          = f.button :submit, "確定修改", class: "form-btn"
 
 - set_meta_tags({title: "修改密碼", og: {title: "修改密碼"}})

@@ -1,0 +1,115 @@
+@charset "utf-8";
+/* CSS Document */
+/*彈跳視窗*/
+#element_to_pop_up { 
+    background-color:#fff;
+    border-radius:15px;
+    color:#000;
+    display:none; 
+    padding:30px 3px 30px 30px;
+    min-width:400px;
+	max-width:900px;
+}
+.b-close{
+    cursor:pointer;
+    position:absolute;
+    right:-15px;
+    top:-25px;
+}
+.vote-proposal-txt{
+	max-height:420px;
+	overflow-y:scroll;
+	position:relative;}
+
+.vote-proposal-txt h4{
+	color:#fff;
+	background:#666666;
+	border-radius:8px;
+	padding:8px 12px;
+	font-size:20px;
+	width:95%;}
+.vote-time-s{
+	position:absolute;
+	color:#eee;
+	right:35px;
+	top:11px;}
+.proposal-inner{
+	padding:20px;
+	line-height:1.7em;}
+.proposal-inner p,.proposal-inner ul,.proposal-inner ol{
+	margin-bottom:20px;}
+@media only screen and (max-width: 960px){
+	#element_to_pop_up {
+		 min-width:200px;
+		max-width:85%;}
+		.vote-proposal-txt{
+	max-height:280px;
+	}
+	}
+	
+/*bootstrap下拉選單*/
+
+http://106.187.48.158:3000/legislators/515/candidate
+http://106.187.48.158:3000/legislators/515/votes
+http://106.187.48.158:3000/legislators/515/bills
+第x屆，改成像立委投票指南那樣的下拉超連結選單。
+
+
+legislators/515/candidate
+1.html結構應該有點問題，因為跟我原本做的版有點落差
+2.少了%數字，實際算出來的%好像也有點怪怪的
+3.項目要增加，靜態頁面的版項目作太少
+4.作後一槓line要調整
+
+
+
+.btn-default {
+    color: #333;
+    background-color: #FFF;
+    border-color: #CCC;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+button {
+    overflow: visible;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0px;
+    margin: 2px 0px 0px;
+    font-size: 14px;
+    text-align: left;
+    list-style: outside none none;
+    background-color: #FFF;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+}
+
+.dropdown {
+    position: relative;
+box-sizing: border-box;
+}
