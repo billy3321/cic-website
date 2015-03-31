@@ -1445,11 +1445,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	height:4px;}
 .gpg-01 .line-all-2{
 	position:relative;
-	top:282px;
+	top:324px;
 	}
 .gpg-02 .line-all-2{
 	position:relative;
-	top:408px;
+	top:492px;
 	}
 .linegps{
 	width:4px;
@@ -1522,11 +1522,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 .gpb-05{
 	background:#ecb8ff;}
 .gpb-06{
-	background:#a6aad0;}
+	background:#de9598;
+	}
 .gpb-07{
 	background:#e3bf91;}
 .gpb-08{
 	background:#9cba9d;}
+.gpb-09{
+	background:#6acac4;}
+.gpb-10{
+	background:#a6aad0;}
 .graphic-body span{
 	line-height:1em;
 	font-size:12px;
