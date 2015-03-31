@@ -548,15 +548,14 @@ class LegislatorsController < ApplicationController
     legislator_term_json = JSON.parse(get_cached_page(legislator_term_url))
     if legislator_term_json["results"].any?
       candidate_url = legislator_term_json["results"][0]["elected_candidate"][0]
-      candidate_json = JSON.parse(get_cached_page(candidate_url))
-      if candidate_json.has_key? "politicalcontributions"
-        puts candidate_json["politicalcontributions"]
-        return candidate_json["politicalcontributions"], true
-      else
-        return {}, false
+      unless candidate_url.blank?
+        candidate_json = JSON.parse(get_cached_page(candidate_url))
+        if candidate_json.has_key? "politicalcontributions" and not candidate_json["politicalcontributions"].blank?
+          puts candidate_json["politicalcontributions"]
+          return candidate_json["politicalcontributions"], true
+        end
       end
-    else
-      return {}, false
     end
+    return {}, false
   end
 end

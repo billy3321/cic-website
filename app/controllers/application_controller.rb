@@ -36,6 +36,9 @@ class ApplicationController < ActionController::Base
   end
 
   def get_cached_page(url)
+    if url.blank?
+      return nil
+    end
     page_content = $redis.get(url)
     unless page_content
       page_content = open(URI.parse(url)).read
