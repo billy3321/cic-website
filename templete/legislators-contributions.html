@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="css/popup.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/party-tag.css" rel="stylesheet" type="text/css">
 <link href="css/style-fix.css" rel="stylesheet" type="text/css">
@@ -72,9 +75,16 @@
               <div id="title-contributions" class="vtitle-set">
                 <header>
                   <h3>政治獻金
-                  </h3><select name="select" id="select">
-                    <option>第8屆</option>
-                    </select>
+                  </h3>
+                  <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">第8屆<i>2012~2016</i>
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">第8屆<i>2012~2016</i></a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">第7屆<i>2008~2012</i></a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">第6屆<i>2005~2008</i></a></li>
+        </ul>
+      </div>
                 資料來源：<a href="#">立委投票指南</a></header>
               </div>
               <!--fb讚分享按鈕放這，這是範例，實際套用需要改寫-->
