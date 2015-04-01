@@ -1375,7 +1375,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	float:right;
 	margin:0 10% 0 0;}
 .vtitle-set{
-	overflow:hidden;
+	height:70px;
 	font-size:15px;}
 .vtitle-set h3{
 	padding:0 10px 0 35px;
@@ -1445,11 +1445,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	height:4px;}
 .gpg-01 .line-all-2{
 	position:relative;
-	top:282px;
+	top:324px;
 	}
 .gpg-02 .line-all-2{
 	position:relative;
-	top:408px;
+	top:492px;
 	}
 .linegps{
 	width:4px;
@@ -1522,11 +1522,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 .gpb-05{
 	background:#ecb8ff;}
 .gpb-06{
-	background:#a6aad0;}
+	background:#de9598;
+	}
 .gpb-07{
 	background:#e3bf91;}
 .gpb-08{
 	background:#9cba9d;}
+.gpb-09{
+	background:#6acac4;}
+.gpb-10{
+	background:#a6aad0;}
 .graphic-body span{
 	line-height:1em;
 	font-size:12px;
@@ -1659,6 +1664,12 @@ margin-left:4%;}
 	color:#fff;}
 #bg-wrap-2 #secn01 a.current{
 	color:#000;}
+.dropdown{
+	float:left;
+	margin:5px 0 0 5px;}
+.data-src{
+	float:left;
+	padding:14px 0 0 12px;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
