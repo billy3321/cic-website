@@ -52,6 +52,7 @@ gem 'magnific-popup-rails'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'social-share-button'
 gem 'redis'
+gem "twitter-bootstrap-rails"
 
 
 group :development, :test do

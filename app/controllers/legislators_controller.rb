@@ -306,13 +306,18 @@ class LegislatorsController < ApplicationController
   def votes
     page = params[:page]
     decision = params[:decision]
-    @ad = params[:ad].to_i
-    @ad = Ad.last.id if Ad.last.id < @ad or @ad < Ad.first.id
+    ad = params[:ad].to_i
+    if Ad.last.id < ad or ad < Ad.first.id
+      @ad = Ad.last
+    else
+      @ad = Ad.find(ad)
+    end
+    @ads = Ad.all
     unless ["agree", "disagree", "abstain", "notvote"].include?(decision)
       decision = nil
       params[:decision] = nil
     end
-    @votes, @current_page, @pages, @status = parse_vote_guide_voter(@legislator.id, @ad, page, decision)
+    @votes, @current_page, @pages, @status = parse_vote_guide_voter(@legislator.id, @ad.id, page, decision)
     @decision = decision
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
 
@@ -333,16 +338,26 @@ class LegislatorsController < ApplicationController
 
   def bills
     page = params[:page]
-    @ad = params[:ad].to_i
-    @ad = Ad.last.id if Ad.last.id < @ad or @ad < Ad.first.id
-    @bills, @current_page, @pages, @count, @status = parse_vote_guide_biller(@legislator.id, @ad, page)
+    ad = params[:ad].to_i
+    if Ad.last.id < ad or ad < Ad.first.id
+      @ad = Ad.last
+    else
+      @ad = Ad.find(ad)
+    end
+    @ads = Ad.all
+    @bills, @current_page, @pages, @count, @status = parse_vote_guide_biller(@legislator.id, @ad.id, page)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
   end
 
   def candidate
-    @ad = params[:ad].to_i
-    @ad = Ad.last.id if Ad.last.id < @ad or @ad < Ad.first.id
-    @candidate, @status = parse_vote_guide_candidate(@legislator.id, @ad)
+    ad = params[:ad].to_i
+    if Ad.last.id < ad or ad < Ad.first.id
+      @ad = Ad.last
+    else
+      @ad = Ad.find(ad)
+    end
+    @ads = Ad.all
+    @candidate, @status = parse_vote_guide_candidate(@legislator.id, @ad.id)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
 
     set_meta_tags({
@@ -471,7 +486,7 @@ class LegislatorsController < ApplicationController
         pagination_section.css('li').each do | li |
           pages << li.text
         end
-        pages = pages[1..-2]
+        pages = pages.select { |i| i.match(/^\d+$/) }
       else
         pages = []
       end
@@ -516,7 +531,7 @@ class LegislatorsController < ApplicationController
     unless page.blank?
       params[:page] = page
       current_page = 1
-      url = "http://vote.ly.g0v.tw/legislator/biller/#{legislator_id}/#{ad}/" + params.to_query
+      url = "http://vote.ly.g0v.tw/legislator/biller/#{legislator_id}/#{ad}/?" + params.to_query
     else
       current_page = page.to_i
       url = "http://vote.ly.g0v.tw/legislator/biller/#{legislator_id}/#{ad}/"
@@ -534,11 +549,10 @@ class LegislatorsController < ApplicationController
         pagination_section.css('li').each do | li |
           pages << li.text
         end
-        pages = pages[1..-2]
+        pages = pages.select { |i| i.match(/^\d+$/) }
       else
         pages = []
       end
-      pages = pages[1..-2]
       bill_section = info_section.css('ul.media-list')[0]
       bill_section.css('li.media').each do | li |
         bill = {}

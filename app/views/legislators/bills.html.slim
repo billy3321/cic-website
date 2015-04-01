@@ -5,13 +5,21 @@
     #title-law.vtitle-set
       header
         h3 法律修正案
-        = form_for(@legislator, url: bills_legislator_path(@legislator), method: :get) do |f|
-          = select_tag "ad", options_from_collection_for_select(Ad.all, :id, :name, @ad), id: "select"
-          = f.submit '送出', class: "srbtn", id: "button"
-        | 資料來源：
-        = link_to "立委投票指南", "http://vote.ly.g0v.tw/", target: "_blank"
-        | 、
-        = link_to "國會大代誌", "http://ly.g0v.tw/", target: "_blank"
+        .dropdown
+          button#menu1.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown"
+            = @ad.name
+            i #{@ad.term_start.strftime('%Y')} ～ #{@ad.term_end.strftime('%Y')}
+          ul.dropdown-menu role="menu" aria-labelledby="menu1"
+            - @ads.each do |a|
+              li role="presentation"
+                = link_to url_for(params.merge({ad: a.id})) do
+                  = a.name
+                  i #{a.term_start.strftime('%Y')} ～ #{a.term_end.strftime('%Y')}
+        .data-src
+          | 資料來源：
+          = link_to "立委投票指南", "http://vote.ly.g0v.tw/", target: "_blank"
+          | 、
+          = link_to "國會大代誌", "http://ly.g0v.tw/", target: "_blank"
     = social_share_button_tag("#{@legislator.name}法律修正案")
     nav#sec-nav
       .count-law

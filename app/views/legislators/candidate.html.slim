@@ -5,11 +5,19 @@
     #title-contributions.vtitle-set
       header
         h3 政治獻金
-        = form_for(@legislator, url: candidate_legislator_path(@legislator), method: :get) do |f|
-          = select_tag "ad", options_from_collection_for_select(Ad.all, :id, :name, @ad), id: "select"
-          = f.submit '送出', class: "srbtn", id: "button"
-        | 資料來源：
-        = link_to "立委投票指南", "http://vote.ly.g0v.tw/", target: "_blank"
+        .dropdown
+          button#menu1.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown"
+            = @ad.name
+            i #{@ad.term_start.strftime('%Y')} ～ #{@ad.term_end.strftime('%Y')}
+          ul.dropdown-menu role="menu" aria-labelledby="menu1"
+            - @ads.each do |a|
+              li role="presentation"
+                = link_to url_for(params.merge({ad: a.id})) do
+                  = a.name
+                  i #{a.term_start.strftime('%Y')} ～ #{a.term_end.strftime('%Y')}
+        .data-src
+          | 資料來源：
+          = link_to "立委投票指南", "http://vote.ly.g0v.tw/", target: "_blank"
     = social_share_button_tag("#{@legislator.name}政治獻金")
     .inner-content-txt
       - if @candidate.any?
@@ -51,6 +59,7 @@
                 = to_ten_thousands(@candidate["in"]["in_profit"])
             .graphic-body
               .gpb-01 style="width: #{get_percentage(@candidate["in"]["in_profit"], @candidate["in_total"])}"
+                span = get_percentage(@candidate["in"]["in_profit"], @candidate["in_total"])
           .gp-bar
             p
               | 個人捐贈：
@@ -58,6 +67,7 @@
                 = to_ten_thousands(@candidate["in"]["in_individual"])
             .graphic-body
               .gpb-02 style="width: #{get_percentage(@candidate["in"]["in_individual"], @candidate["in_total"])}"
+                span = get_percentage(@candidate["in"]["in_individual"], @candidate["in_total"])
           .gp-bar
             p
               | 人民團體捐贈：
@@ -65,6 +75,7 @@
                 = to_ten_thousands(@candidate["in"]["in_civil"])
             .graphic-body
               .gpb-03 style="width: #{get_percentage(@candidate["in"]["in_civil"], @candidate["in_total"])}"
+                span = get_percentage(@candidate["in"]["in_civil"], @candidate["in_total"])
           .gp-bar
             p
               | 政黨捐贈：
@@ -72,6 +83,7 @@
                 = to_ten_thousands(@candidate["in"]["in_party"])
             .graphic-body
               .gpb-04 style="width: #{get_percentage(@candidate["in"]["in_party"], @candidate["in_total"])}"
+                span = get_percentage(@candidate["in"]["in_party"], @candidate["in_total"])
           .gp-bar
             p
               | 匿名捐贈：
@@ -79,6 +91,7 @@
                 = to_ten_thousands(@candidate["in"]["in_anonymous"])
             .graphic-body
               .gpb-05 style="width: #{get_percentage(@candidate["in"]["in_anonymous"], @candidate["in_total"])}"
+                span = get_percentage(@candidate["in"]["in_anonymous"], @candidate["in_total"])
           .gp-bar
             p
               | 其他：
@@ -86,15 +99,16 @@
                 = to_ten_thousands(@candidate["in"]["in_others"])
             .graphic-body
               .gpb-06 style="width: #{get_percentage(@candidate["in"]["in_others"], @candidate["in_total"])}"
+                span = get_percentage(@candidate["in"]["in_others"], @candidate["in_total"])
 
         .graphic-group
           .graphic-start
             h4
               | 支出共
               span 
-                = to_ten_thousands(@candidate["out_total"].to_f / 10000)
+                = to_ten_thousands(@candidate["out_total"])
               | 元
-            .gp-top.gpg-01
+            .gp-top.gpg-02
               .line-all.linegp
               .line-all.linegp.line-all-2
               .line-0.linegps
@@ -125,6 +139,7 @@
                 = to_ten_thousands(@candidate["out"]["out_personnel"])
             .graphic-body
               .gpb-01 style="width: #{get_percentage(@candidate["out"]["out_personnel"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_personnel"], @candidate["out_total"])
           .gp-bar
             p
               | 宣傳：
@@ -132,6 +147,7 @@
                 = to_ten_thousands(@candidate["out"]["out_propagate"])
             .graphic-body
               .gpb-02 style="width: #{get_percentage(@candidate["out"]["out_propagate"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_propagate"], @candidate["out_total"])
           .gp-bar
             p
               | 租用宣傳車輛：
@@ -139,6 +155,7 @@
                 = to_ten_thousands(@candidate["out"]["out_campaign_vehicle"])
             .graphic-body
               .gpb-03 style="width: #{get_percentage(@candidate["out"]["out_campaign_vehicle"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_campaign_vehicle"], @candidate["out_total"])
           .gp-bar
             p
               | 租用競選辦事處：
@@ -146,6 +163,7 @@
                 = to_ten_thousands(@candidate["out"]["out_campaign_office"])
             .graphic-body
               .gpb-04 style="width: #{get_percentage(@candidate["out"]["out_campaign_office"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_campaign_office"], @candidate["out_total"])
           .gp-bar
             p
               | 集會：
@@ -153,6 +171,7 @@
                 = to_ten_thousands(@candidate["out"]["out_rally"])
             .graphic-body
               .gpb-05 style="width: #{get_percentage(@candidate["out"]["out_rally"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_rally"], @candidate["out_total"])
           .gp-bar
             p
               | 交通旅運：
@@ -160,6 +179,7 @@
                 = to_ten_thousands(@candidate["out"]["out_travel"])
             .graphic-body
               .gpb-06 style="width: #{get_percentage(@candidate["out"]["out_travel"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_travel"], @candidate["out_total"])
           .gp-bar
             p
               | 雜支：
@@ -167,6 +187,7 @@
                 = to_ten_thousands(@candidate["out"]["out_miscellaneous"])
             .graphic-body
               .gpb-07 style="width: #{get_percentage(@candidate["out"]["out_miscellaneous"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_miscellaneous"], @candidate["out_total"])
           .gp-bar
             p
               | 返還捐贈：
@@ -174,6 +195,7 @@
                 = to_ten_thousands(@candidate["out"]["out_return"])
             .graphic-body
               .gpb-08 style="width: #{get_percentage(@candidate["out"]["out_return"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_return"], @candidate["out_total"])
           .gp-bar
             p
               | 繳庫：
@@ -181,6 +203,7 @@
                 = to_ten_thousands(@candidate["out"]["out_exchequer"])
             .graphic-body
               .gpb-09 style="width: #{get_percentage(@candidate["out"]["out_exchequer"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_exchequer"], @candidate["out_total"])
           .gp-bar
             p
               | 公共關係費用：
@@ -188,5 +211,6 @@
                 = to_ten_thousands(@candidate["out"]["out_public_relation"])
             .graphic-body
               .gpb-10 style="width: #{get_percentage(@candidate["out"]["out_public_relation"], @candidate["out_total"])}"
+                span = get_percentage(@candidate["out"]["out_public_relation"], @candidate["out_total"])
 
   #disqus_thread

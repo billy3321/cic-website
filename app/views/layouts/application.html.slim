@@ -13,6 +13,8 @@ html
       = stylesheet_link_tag 'admin-style', 'data-turbolinks-track' => false
     - else
       = javascript_include_tag 'analytics', 'data-turbolinks-track' => false
+    - if ['votes', 'bills', 'candidate'].include?([params[:action]])
+      = stylesheet_link_tag 'popup', 'data-turbolinks-track' => false
   body
     #outer
       article id="all-wrap"
