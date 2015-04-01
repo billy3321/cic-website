@@ -484,9 +484,8 @@ class LegislatorsController < ApplicationController
       pagination_section = info_section.css('div.pagination')[0]
       unless pagination_section.blank?
         pagination_section.css('li').each do | li |
-          pages << li.text
+          pages << li.text if li.text.match(/^\d+$/)
         end
-        pages = pages.select { |i| i.match(/^\d+$/) }
       else
         pages = []
       end
@@ -547,9 +546,8 @@ class LegislatorsController < ApplicationController
       pagination_section = info_section.css('div.pagination')[0]
       unless pagination_section.blank?
         pagination_section.css('li').each do | li |
-          pages << li.text
+          pages << li.text if li.text.match(/^\d+$/)
         end
-        pages = pages.select { |i| i.match(/^\d+$/) }
       else
         pages = []
       end
