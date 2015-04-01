@@ -49,31 +49,28 @@
 	
 /*bootstrap下拉選單*/
 
-http://106.187.48.158:3000/legislators/515/candidate
-http://106.187.48.158:3000/legislators/515/votes
-http://106.187.48.158:3000/legislators/515/bills
-第x屆，改成像立委投票指南那樣的下拉超連結選單。
-
-
-legislators/515/candidate
-1.html結構應該有點問題，因為跟我原本做的版有點落差
-2.少了%數字，實際算出來的%好像也有點怪怪的
-3.項目要增加，靜態頁面的版項目作太少
-4.作後一槓line要調整
-
-
+button{
+    text-transform: none;
+	cursor: pointer;
+	overflow: visible;
+	margin: 0px;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 .btn-default {
     color: #333;
     background-color: #FFF;
     border-color: #CCC;
 }
-
+.btn-default i{
+	font-style:normal;
+	margin:0 0 0 10px;
+	font-size:12px;}
 .btn {
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.42857;
     text-align: center;
@@ -82,13 +79,35 @@ legislators/515/candidate
     cursor: pointer;
     -moz-user-select: none;
     background-image: none;
-    border: 1px solid transparent;
+    border: 1px solid #D9D9D9;
     border-radius: 4px;
 }
-button {
-    overflow: visible;
+
+
+.dropdown {
+    position: relative;
+}
+.dropdown-toggle:focus {
+    outline: 0px none;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    color: #333;
+    background-color: #E6E6E6;
+    border-color: #ADADAD;
+}
+.btn:hover, .btn:focus {
+    color: #333;
+    text-decoration: none;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: thin dotted;
+    outline-offset: -2px;
 }
 
+
+.open > .dropdown-menu {
+    display: block;
+}
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -97,19 +116,26 @@ button {
     display: none;
     float: left;
     min-width: 160px;
-    padding: 5px 0px;
+    padding: 7px 0;
     margin: 2px 0px 0px;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
     list-style: outside none none;
     background-color: #FFF;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.176);
 }
 
-.dropdown {
-    position: relative;
-box-sizing: border-box;
-}
+.dropdown-menu a{
+	display:block;
+	padding:5px 12px;}
+.dropdown-menu a:hover{
+	background:#efefef;}
+.dropdown-menu a i{
+	font-style:normal;
+	margin:0 0 0 8px;
+	font-size:12px;
+	color:#aaa;}
