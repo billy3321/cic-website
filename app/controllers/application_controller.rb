@@ -59,9 +59,9 @@ class ApplicationController < ActionController::Base
       current_page = total_page
     end
     offset = (current_page - 1) * per
-    low_pages = [1, 2, 3]
-    high_pages = [(total_page - 2), (total_page - 1), total_page]
-    current_pages = [(current_page - 2), (current_page - 1), current_page, (current_page + 1), (current_page + 2)]
+    low_pages = [1, 2, 3, 4]
+    high_pages = [(total_page - 3), (total_page - 2), (total_page - 1), total_page]
+    current_pages = [(current_page - 3), (current_page - 2), (current_page - 1), current_page, (current_page + 1), (current_page + 2), (current_page + 3)]
     results = low_pages + current_pages + high_pages
     puts 'results', results
     results = results.uniq

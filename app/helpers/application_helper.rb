@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def get_percentage(numerator, denominator)
     unless numerator.blank?
-      return ((numerator.to_f / denominator.to_f).round(4) * 100.0).to_s + "%"
+      return ((numerator.to_f / denominator.to_f) * 100.0).round(2).to_s + "%"
     else
       return "0%"
     end

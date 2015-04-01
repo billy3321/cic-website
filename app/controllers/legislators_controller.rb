@@ -307,12 +307,12 @@ class LegislatorsController < ApplicationController
     page = params[:page]
     decision = params[:decision]
     ad = params[:ad].to_i
-    if Ad.last.id < ad or ad < Ad.first.id
-      @ad = Ad.last
+    if @legislator.ads.last.id < ad or ad < @legislator.ads.first.id
+      @ad = @legislator.ads.last
     else
-      @ad = Ad.find(ad)
+      @ad = @legislator.ads.find(ad)
     end
-    @ads = Ad.all
+    @ads = @legislator.ads
     unless ["agree", "disagree", "abstain", "notvote"].include?(decision)
       decision = nil
       params[:decision] = nil
@@ -339,24 +339,24 @@ class LegislatorsController < ApplicationController
   def bills
     page = params[:page]
     ad = params[:ad].to_i
-    if Ad.last.id < ad or ad < Ad.first.id
-      @ad = Ad.last
+    if @legislator.ads.last.id < ad or ad < @legislator.ads.first.id
+      @ad = @legislator.ads.last
     else
-      @ad = Ad.find(ad)
+      @ad = @legislator.ads.find(ad)
     end
-    @ads = Ad.all
+    @ads = @legislator.ads
     @bills, @current_page, @pages, @count, @status = parse_vote_guide_biller(@legislator.id, @ad.id, page)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
   end
 
   def candidate
     ad = params[:ad].to_i
-    if Ad.last.id < ad or ad < Ad.first.id
-      @ad = Ad.last
+    if @legislator.ads.last.id < ad or ad < @legislator.ads.first.id
+      @ad = @legislator.ads.last
     else
-      @ad = Ad.find(ad)
+      @ad = @legislator.ads.find(ad)
     end
-    @ads = Ad.all
+    @ads = @legislator.ads
     @candidate, @status = parse_vote_guide_candidate(@legislator.id, @ad.id)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
 
@@ -432,7 +432,6 @@ class LegislatorsController < ApplicationController
   end
 
   def parse_vote_guide_voter_api(legislator_id, ad, page = nil, decision = nil)
-
     params = {}
     legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
     params[:legislator] = legislator_term_data['id']
@@ -464,9 +463,9 @@ class LegislatorsController < ApplicationController
     params = {}
     unless page.blank?
       params[:page] = page
-      current_page = 1
-    else
       current_page = page.to_i
+    else
+      current_page = 1
     end
     unless decision.blank?
       params[:decision] = decision
@@ -484,7 +483,7 @@ class LegislatorsController < ApplicationController
       pagination_section = info_section.css('div.pagination')[0]
       unless pagination_section.blank?
         pagination_section.css('li').each do | li |
-          pages << li.text if li.text.match(/^\d+$/)
+          pages << li.text.to_i if li.text.match(/^\d+$/)
         end
       else
         pages = []
@@ -529,10 +528,10 @@ class LegislatorsController < ApplicationController
     params = {}
     unless page.blank?
       params[:page] = page
-      current_page = 1
+      current_page = page.to_i
       url = "http://vote.ly.g0v.tw/legislator/biller/#{legislator_id}/#{ad}/?" + params.to_query
     else
-      current_page = page.to_i
+      current_page = 1
       url = "http://vote.ly.g0v.tw/legislator/biller/#{legislator_id}/#{ad}/"
     end
     begin
@@ -546,7 +545,7 @@ class LegislatorsController < ApplicationController
       pagination_section = info_section.css('div.pagination')[0]
       unless pagination_section.blank?
         pagination_section.css('li').each do | li |
-          pages << li.text if li.text.match(/^\d+$/)
+          pages << li.text.to_i if li.text.match(/^\d+$/)
         end
       else
         pages = []

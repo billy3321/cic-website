@@ -52,48 +52,54 @@
           li = link_to "棄權", url_for(params.merge({decision: "abstain"}))
           li = link_to "沒有投票", url_for(params.merge({decision: "notvote"}))
     .inner-content-txt
-      .vote-group-list
-        - @votes.each do |v|
-          .vote-group
-            .vote-txt-group
-              span.order-time
-                | 表決日期：
-                = v[:date]
-              = link_to "查看提案完整內容", v[:link], class: "view-proposal mbtn", target: "_blank"
-              .ss-txt = display_shorter(v[:reason], 110)
-            .vote-result-block
-              .self-vote.vote-block
-                h4 個人投票
-                .vote-result
-                  span class="#{v[:decision]}"
-                    - if v[:decision] == "agree"
-                      | 贊成
-                    - elsif v[:decision] == "disagree"
-                      | 反對
-                    - elsif v[:decision] == "abstain"
-                      | 棄權
-                    - elsif v[:decision] == "notvote"
-                      | 未投票
-                    - else
-                      | 未知
-              .all-vote.vote-block
-                h4 表決結果
-                = link_to "看投票名單", v[:link], target: "_blank", class: "view-vote"
-                .vote-result
-                  span class="#{v[:result]}"
-                    - if v[:result] == "passed"
-                      | 通過
-                    - elsif v[:decision] == "notpass"
-                      | 不通過
-                    - else
-                      | 未知
-
-      #page
-        nav.pagination
-          - @pages.each do |p|
-            - if p == @current_page
-              span.page.current = p
-            - else
-              span.page = link_to p, url_for(params.merge({page: p}))
-      
-  #disqus_thread
+      - if @status
+        .vote-group-list
+          - @votes.each do |v|
+            .vote-group
+              .vote-txt-group
+                span.order-time
+                  | 表決日期：
+                  = v[:date]
+                = link_to "查看提案完整內容", v[:link], class: "view-proposal mbtn", target: "_blank"
+                .ss-txt = display_shorter(v[:reason], 110)
+              .vote-result-block
+                .self-vote.vote-block
+                  h4 個人投票
+                  .vote-result
+                    span class="#{v[:decision]}"
+                      - if v[:decision] == "agree"
+                        | 贊成
+                      - elsif v[:decision] == "disagree"
+                        | 反對
+                      - elsif v[:decision] == "abstain"
+                        | 棄權
+                      - elsif v[:decision] == "notvote"
+                        | 未投票
+                      - else
+                        | 未知
+                .all-vote.vote-block
+                  h4 表決結果
+                  = link_to "看投票名單", v[:link], target: "_blank", class: "view-vote"
+                  .vote-result
+                    span class="#{v[:result]}"
+                      - if v[:result] == "passed"
+                        | 通過
+                      - elsif v[:decision] == "notpass"
+                        | 不通過
+                      - else
+                        | 未知
+        #page
+          nav.pagination
+            - @pages.each do |p|
+              - if p == @current_page
+                span.page.current = p
+              - else
+                span.page = link_to p, url_for(params.merge({page: p}))
+      - else
+        .api-dead-block
+          | 唉呀！目前從立委投票指南抓取資料失敗，如果想要瀏覽相關資料請直接至立委投票指南查看。
+          br
+          = link_to "馬上來去看看", "http://vote.ly.g0v.tw/legislator/voter/#{@legislator.id}/#{@ad.id}/", target: "_blank"
+    
+  .reply-message
+    #disqus_thread

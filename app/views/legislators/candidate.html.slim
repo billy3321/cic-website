@@ -20,7 +20,7 @@
           = link_to "立委投票指南", "http://vote.ly.g0v.tw/", target: "_blank"
     = social_share_button_tag("#{@legislator.name}政治獻金")
     .inner-content-txt
-      - if @candidate.any?
+      - if @status
         .graphic-group
           .graphic-start
             h4
@@ -212,5 +212,11 @@
             .graphic-body
               .gpb-10 style="width: #{get_percentage(@candidate["out"]["out_public_relation"], @candidate["out_total"])}"
                 span = get_percentage(@candidate["out"]["out_public_relation"], @candidate["out_total"])
+      - else
+        .api-dead-block
+          | 唉呀！目前從立委投票指南抓取資料失敗，如果想要瀏覽相關資料請直接至立委投票指南查看。
+          br
+          = link_to "馬上來去看看", "http://vote.ly.g0v.tw/legislator/pc/#{@legislator.id}/#{@ad.id}/", target: "_blank"
 
-  #disqus_thread
+  .reply-message
+    #disqus_thread
