@@ -1536,10 +1536,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	line-height:1em;
 	font-size:12px;
 	position:absolute;
-	right:-35px;
-	top:9px;
+	left:10px;
+	top:6px;
 	color:#d10000;
-	letter-spacing:0px;}
+	letter-spacing:0px;
+	background:rgba(255, 255, 255, 0.6);
+	display:block;
+	padding:3px 7px;
+	border-radius:3px;
+	box-shadow:1px 1px 3px #ccc;}
 .show-more-snippet {
     height:34px;  /*this is set to the height of the how much text you want to show based on the font size, line height, etc*/
     overflow:hidden;
@@ -1670,6 +1675,13 @@ margin-left:4%;}
 .data-src{
 	float:left;
 	padding:14px 0 0 12px;}
+.api-dead-block{
+	background:url(../images/oops.png) no-repeat 30px center;
+	padding:50px 50px 50px 180px;
+	border:5px dotted #ccc;
+	max-width:430px;
+	margin:auto;
+	}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
