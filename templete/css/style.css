@@ -1389,6 +1389,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 #title-law h3{
 	background:url(../images/title-law.png) no-repeat left center;
 	}
+#title-analysis h3{
+	background:url(../images/title-analysis.png) no-repeat left center;
+	}
 .vote-ly-g0v .legislators-group{
 	width:86.5%;
 	float:none;
@@ -1682,6 +1685,126 @@ margin-left:4%;}
 	max-width:430px;
 	margin:auto;
 	}
+.analysis-sblock{
+	margin:0 0 45px 0;}
+.analysis-sblock h4{
+	font-size:30px;
+	color:#2e419a;
+	margin:0 0 8px 0;}
+.analysis-inner{
+	padding:30px;
+	background:#fafafa;
+	border:1px dotted #eeeeee;
+	overflow:hidden;}
+.attend-block{
+	width:33.33%;
+	float:left;
+	}
+.inner-content-txt .attend-block{
+	letter-spacing:0px;}
+.inner-content-txt .attend-block p{
+	margin:0px;
+	line-height:1.2em;
+	text-align:center;}
+.attend-block h5{
+	text-align:center;
+	font-size:24px;
+	padding:0 0 30px 0;}
+.attend-graphic{
+	border:3px solid #cfcfcf;
+	border-radius:10px;
+	margin:180px 25px 15px 25px;
+	height:105px;
+	}
+.attend-graphic p{
+	font-size:16px;}
+.attend-graphic p span{
+	font-size:30px;
+	letter-spacing:-2px;}
+.atg-color-01{
+	background:#b8bfe0;}
+.atg-color-02{
+	background:#ebebeb;}
+.atg{
+	width:50%;
+	float:left;
+	}
+.atg p{
+	padding:0 0 15px 0;}
+.atg .atg-txt{
+	padding-top:22px;}
+.atg span img{
+	margin:0 5px 0 0;}
+.atg i{
+	font-style:normal;
+	font-size:15px;
+	margin:0 0 0 5px;}
+.atg-bar{
+	height:170px;
+	margin:-180px auto 0 auto;
+	position:relative;
+	width:60%;}
+.atg-bar div{
+	position:absolute;
+	bottom:0px;
+	width:100%;
+	border-top-left-radius:8px;
+	border-top-right-radius:8px;}
+ .atg-bar div span{
+	 font-size:13px;
+	 display:block;
+	 text-align:center;
+	 background:rgba(0, 0, 0, 0.2) ;
+	 border-radius:8px;
+	 margin:-2em 18% 0 18%;
+	 line-height:1.8em;
+	 color:#fff;
+	 }
+.atg-number{
+	clear:both;
+	padding:0 13%;
+	font-size:13px;
+	}
+.atg-number li,.inner-content-txt .atg-number li{list-style:none;
+margin:0px;
+padding:0px;}
+.atg-number li{
+	width:33.33%;
+	float:left;
+	}
+
+.atg-number span{
+	display:block;
+	text-align:center;
+	font-size:26px;
+	letter-spacing:-2px;}
+.this-color{color:#f20000}
+.proposal-count h5 em{
+	font-style:normal;
+	font-size:30px;
+	color:#f20000;}
+.count-img{
+	overflow:hidden;
+	margin:0 0 25px 0;
+	padding:0 0 25px 30px;
+	border-bottom:1px dotted #eeeeee;
+	}
+.proposal-count:last-child .count-img{
+	margin:0px;
+	border-bottom:none;}
+.count-img i{
+	display:block;
+	float:left;}
+.law-img i{
+	width:45px;
+	height:54px;
+	background:url(../images/law-img.png);
+	margin-left:-24px;}
+.money-img i{
+	width:46px;
+	height:57px;
+	background:url(../images/money-img.png);
+	margin-left:-25px;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -1751,6 +1874,22 @@ clear:none;}
 
 #video-show-list.all-list .small-video-show .inner-content{
 	display:none;
+}
+	}
+@media only screen and (max-width: 1024px){
+	.analysis-inner{
+	padding:15px;}
+.attend-graphic{
+	margin:180px 10px 15px 10px;
+	}
+.atg-number{
+	padding:0 7%;
+	}
+.atg-number span {
+    font-size: 22px;
+}
+	.attend-graphic p span {
+    font-size: 24px;
 }
 	}
 @media only screen and (max-width: 960px){
@@ -2044,7 +2183,10 @@ width:auto;
 float:none;
 min-height:1px;
 padding-bottom:15px;}
-
+.attend-block {
+    width: 50%;
+	margin:0 0 30px 0;
+}
 
 }
 
@@ -2239,6 +2381,8 @@ margin:0 10px 0 0;
 	width:76%;}
 #video-show-list.all-list .small-video-show .inner-content{
 	display:none;}
+.lmib-02{
+	display:none;}
 }
 @media only screen and (max-width: 640px){
 #logo{
@@ -2321,8 +2465,14 @@ padding-bottom:0px;}
 .pinfo .info-number a{
 display:block;
 text-align:center;}	
-
-
+.attend-block {
+    width: 100%;
+	border-bottom:1px dotted #eeeeee;
+	padding-bottom:30px;
+}
+.attend-block:last-child{
+	border-bottom:none;
+	padding-bottom:0px;}
 }
 
 
@@ -2337,8 +2487,7 @@ text-align:center;}
 #first-nav li{
 	float:none;
 	display:inline;
-	border:1px solid #3c3c3c;
-	border-bottom:none;
+	
 	margin:0 0 0 -1px ;
 	}
 
@@ -2353,8 +2502,6 @@ text-align:center;}
 	width:94%;
 	float:none;
 	}
-	.index-sub-video{
-	width:45%;}
 #people-rank-list li{
 margin:0 0 8px 0;
 	width:48%;
