@@ -35,15 +35,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def get_cached_page(url)
+  def get_cached_page(url, day = 1)
     if url.blank?
       return nil
     end
     page_content = $redis.get(url)
     unless page_content
-      page_content = open(URI.parse(url)).read
-      $redis.set(url, page_content)
-      $redis.expire(url, 1.day.to_i)
+      response = HTTParty.get(url)
+      if response.code == 200
+        page_content = response.body
+        $redis.set(url, page_content)
+        $redis.expire(url, day.days.to_i)
+      else
+        page_content = false
+      end
     end
     return page_content
   end
@@ -63,7 +68,6 @@ class ApplicationController < ActionController::Base
     high_pages = [(total_page - 3), (total_page - 2), (total_page - 1), total_page]
     current_pages = [(current_page - 3), (current_page - 2), (current_page - 1), current_page, (current_page + 1), (current_page + 2), (current_page + 3)]
     results = low_pages + current_pages + high_pages
-    puts 'results', results
     results = results.uniq
     results.sort!
     results.select! { |x| 1 <= x and x <=  total_page}

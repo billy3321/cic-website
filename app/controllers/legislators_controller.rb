@@ -317,7 +317,7 @@ class LegislatorsController < ApplicationController
       decision = nil
       params[:decision] = nil
     end
-    @votes, @current_page, @pages, @status = parse_vote_guide_voter(@legislator.id, @ad.id, page, decision)
+    @votes, @current_page, @pages, @status = parse_vote_guide_voter_api(@legislator.id, @ad.id, page, decision)
     @decision = decision
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
 
@@ -345,7 +345,7 @@ class LegislatorsController < ApplicationController
       @ad = @legislator.ads.find(ad)
     end
     @ads = @legislator.ads
-    @bills, @current_page, @pages, @count, @status = parse_vote_guide_biller(@legislator.id, @ad.id, page)
+    @bills, @current_page, @pages, @count, @status = parse_vote_guide_biller_api(@legislator.id, @ad.id, page)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
   end
 
@@ -435,32 +435,65 @@ class LegislatorsController < ApplicationController
   end
 
   def parse_vote_guide_voter_api(legislator_id, ad, page = nil, decision = nil)
-    params = {}
-    legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
-    params[:legislator] = legislator_term_data['id']
-    unless page.blank?
-      params[:page] = page
-    end
-    unless decision.blank?
-      decision = decision.to_i
-      if decision == 'agree'
-        params[:decision] = 1
-      elsif decision == 'abstain'
-        params[:decision] = 0
-      elsif decision == 'disagree'
-        params[:decision] = -1
-      elsif decision == 'notvote'
-        params[:not_voting] = 1
+    begin
+      params = {}
+      legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
+      params[:legislator] = legislator_term_data['id']
+      unless page.blank?
+        params[:page] = page
       end
+      unless decision.blank?
+        if decision == 'agree'
+          params[:decision] = 1
+        elsif decision == 'abstain'
+          params[:decision] = 0
+        elsif decision == 'disagree'
+          params[:decision] = -1
+        elsif decision == 'notvote'
+          params[:not_voting] = 1
+        end
+      end
+      votes_url = "http://vote.ly.g0v.tw/api/legislator_vote/?" + params.to_query
+      votes_json = JSON.parse(get_cached_page(votes_url))
+      current_page, pages = parse_page_info(votes_json["count"], page)
+      results = votes_json['results']
+      # need to parse the vote
+      votes = []
+      results.each do |result|
+        vote = {}
+        if result["decision"] == 1
+          vote[:decision] = "agree"
+        elsif result["decision"] == 0
+          vote[:decision] = "abstain"
+        elsif result["decision"] == -1
+          vote[:decision] = "disagree"
+        elsif result["decision"] == nil
+          vote[:decision] = "notvote"
+        else
+          vote[:decision] = "unknown"
+        end
+        vote_url = result["vote"]
+        vote_json = JSON.parse(get_cached_page(vote_url))
+        if vote_json["result"] == "Passed"
+          vote[:result] = "passed"
+        elsif vote_json["result"] == "Not Passed"
+          vote[:result] = "notpass"
+        else
+          vote[:result] = "unknown"
+        end
+        vote[:reason] = vote_json["content"].strip.gsub("　", "")
+        sitting_id = vote_json["sitting_id"]
+        sitting_url = "http://vote.ly.g0v.tw/api/sittings/#{sitting_id}/"
+        sitting_json = JSON.parse(get_cached_page(sitting_url))
+        vote[:date] = sitting_json["date"]
+        vote[:link] = "http://vote.ly.g0v.tw/vote/#{vote_json["uid"]}/"
+        votes << vote
+      end
+      return votes, current_page, pages, true
+    rescue
+      return [], 1, [], false
     end
-    vote_url = "http://vote.ly.g0v.tw/api/legislator_vote/" + params.to_query
-    vote_json = JSON.parse(get_cached_page(vote_url))
-    results = vote_json['results']
-    # need to parse the vote
-    current_page, pages = parse_page_info(vote_json["count"], page)
   end
-
-
 
   def parse_vote_guide_voter(legislator_id, ad, page = nil, decision = nil)
     params = {}
@@ -524,6 +557,37 @@ class LegislatorsController < ApplicationController
       return votes, current_page, pages, true
     rescue
       return [], current_page, [], false
+    end
+  end
+
+  def parse_vote_guide_biller_api(legislator_id, ad, page = nil)
+    begin
+      params = {}
+      legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
+      params[:legislator] = legislator_term_data['id']
+      unless page.blank?
+        params[:page] = page
+      end
+      bills_url = "http://vote.ly.g0v.tw/api/legislator_bill/?" + params.to_query
+      bills_json = JSON.parse(get_cached_page(bills_url))
+      current_page, pages = parse_page_info(bills_json["count"], page)
+      count = bills_json["count"]
+      results = bills_json['results']
+      bills = []
+      results.each do |result|
+        bill = {}
+        bill_url = result["bill"]
+        bill_json = JSON.parse(get_cached_page(bill_url))
+        bill[:reason] = result["abstract"]
+        bill[:title] = result["summary"]
+        bill[:id] = result["uid"]
+        bill[:progress] = []
+        bill[:warning] = nil
+        bills << bill
+      end
+      return bills, current_page, pages, count, true
+    rescue
+      return [], 1, [], 0, false
     end
   end
 
