@@ -350,6 +350,9 @@ class LegislatorsController < ApplicationController
   end
 
   def candidate
+    if @legislator.elections.last.constituency == "全國不分區"
+      redirect_to legislator_path(@legislator)
+    end
     ad = params[:ad].to_i
     if @legislator.ads.last.id < ad or ad < @legislator.ads.first.id
       @ad = @legislator.ads.last
