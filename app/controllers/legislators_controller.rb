@@ -477,7 +477,7 @@ class LegislatorsController < ApplicationController
         if vote_json["result"] == "Passed"
           vote[:result] = "passed"
         elsif vote_json["result"] == "Not Passed"
-          vote[:result] = "notpass"
+          vote[:result] = "notpassed"
         else
           vote[:result] = "unknown"
         end
@@ -545,7 +545,7 @@ class LegislatorsController < ApplicationController
         if result == '通過'
           vote[:result] = 'passed'
         elsif result == '不通過'
-          vote[:result] = 'notpass'
+          vote[:result] = 'notpassed'
         else
           vote[:result] = 'unknown'
         end
