@@ -35,20 +35,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def get_page(url)
+    response = HTTParty.get(url)
+    if response.code == 200
+      return response.body
+    else
+      return false
+    end
+  end
+
   def get_cached_page(url, day = 1)
     if url.blank?
       return nil
     end
-    page_content = $redis.get(url)
-    unless page_content
-      response = HTTParty.get(url)
-      if response.code == 200
-        page_content = response.body
-        $redis.set(url, page_content)
-        $redis.expire(url, day.days.to_i)
-      else
-        page_content = false
+    if $redis.connected?
+      page_content = $redis.get(url)
+      unless page_content
+        page_content = get_page(url)
+        if page_content
+          $redis.set(url, page_content)
+          $redis.expire(url, day.days.to_i)
+        end
       end
+    else
+      page_content = get_page(url)
     end
     return page_content
   end

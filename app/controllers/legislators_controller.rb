@@ -303,6 +303,7 @@ class LegislatorsController < ApplicationController
     end
   end
 
+  # GET /legislators/1/votes
   def votes
     page = params[:page]
     decision = params[:decision]
@@ -336,6 +337,7 @@ class LegislatorsController < ApplicationController
 
   end
 
+  # GET /legislators/1/bills
   def bills
     page = params[:page]
     ad = params[:ad].to_i
@@ -349,6 +351,7 @@ class LegislatorsController < ApplicationController
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
   end
 
+  # GET /legislators/1/candidate
   def candidate
     if @legislator.elections.last.constituency == "全國不分區"
       redirect_to legislator_path(@legislator)
@@ -561,7 +564,7 @@ class LegislatorsController < ApplicationController
   end
 
   def parse_vote_guide_biller_api(legislator_id, ad, page = nil)
-    begin
+    #begin
       params = {}
       legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
       params[:legislator] = legislator_term_data['id']
@@ -578,17 +581,18 @@ class LegislatorsController < ApplicationController
         bill = {}
         bill_url = result["bill"]
         bill_json = JSON.parse(get_cached_page(bill_url))
-        bill[:reason] = result["abstract"]
-        bill[:title] = result["summary"]
-        bill[:id] = result["uid"]
+        bill[:reason] = bill_json["abstract"]
+        bill[:title] = bill_json["summary"]
+        bill[:id] = bill_json["uid"]
+        bill[:link] = "http://ly.g0v.tw/bills/#{bill_json['uid']}"
         bill[:progress] = []
         bill[:warning] = nil
         bills << bill
       end
       return bills, current_page, pages, count, true
-    rescue
-      return [], 1, [], 0, false
-    end
+    #rescue
+    #  return [], 1, [], 0, false
+    #end
   end
 
   def parse_vote_guide_biller(legislator_id, ad, page = nil)
