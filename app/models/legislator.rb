@@ -83,6 +83,10 @@ class Legislator < ActiveRecord::Base
     end
   end
 
+  def get_election(ad_id)
+    return self.elections.where(ad_id: ad_id).first
+  end
+
   def has_record?
     self.videos.any? or self.entries.any? or self.questions.any?
   end

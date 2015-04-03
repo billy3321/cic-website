@@ -353,18 +353,22 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators/1/candidate
   def candidate
-    if @legislator.elections.last.constituency == "全國不分區"
-      redirect_to legislator_path(@legislator)
-    end
     ad = params[:ad].to_i
     if @legislator.ads.last.id < ad or ad < @legislator.ads.first.id
       @ad = @legislator.ads.last
     else
       @ad = @legislator.ads.find(ad)
     end
+
     @ads = @legislator.ads
-    @candidate, @status = parse_vote_guide_candidate(@legislator.id, @ad.id)
-    flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
+    @constituency = @legislator.get_election(@ad.id).try(:constituency)
+    if @constituency == "全國不分區"
+      @candidate, @status = {}, false
+    else
+      @candidate, @status = parse_vote_guide_candidate(@legislator.id, @ad.id)
+      @constituency = @legislator.get_election(@ad.id).try(:constituency)
+      flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
+    end
 
     set_meta_tags({
       title: "#{@legislator.name}法律修正案紀錄",

@@ -212,11 +212,15 @@
             .graphic-body
               .gpb-10 style="width: #{get_percentage(@candidate["out"]["out_public_relation"], @candidate["out_total"])}"
                 span = get_percentage(@candidate["out"]["out_public_relation"], @candidate["out_total"])
+      - elsif @constituency == "全國不分區"
+        .api-dead-block
+          | 立委#{@legislator.name}#{@ad.name}為全國不分區立委，由於政治獻金法只有針對區域及原住民選出之立法委員收受政治獻金的期間有明文規定，所以不分區立法委員候選人是不可以收受政治獻金的。因此沒有政治獻金的資料喔！
+          br
+          = link_to "馬上來去看看政治獻金是什麼碗糕？", "http://sunshine.cy.gov.tw/GipOpenWeb/wSite/ct?xItem=4912&ctNode=280&mp=2", target: "_blank"
       - else
         .api-dead-block
           | 唉呀！目前從立委投票指南抓取資料失敗，如果想要瀏覽相關資料請直接至立委投票指南查看。
           br
           = link_to "馬上來去看看", "http://vote.ly.g0v.tw/legislator/pc/#{@legislator.id}/#{@ad.id}/", target: "_blank"
-
     .reply-message
       #disqus_thread
