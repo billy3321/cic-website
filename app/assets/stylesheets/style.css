@@ -15,6 +15,7 @@ ul,ol{
 
 img{
 	border:none;}
+i{font-style:normal;}
 a{
 	color:#5DAA32;
 	text-decoration:none;}
@@ -1691,6 +1692,12 @@ margin-left:4%;}
 	font-size:30px;
 	color:#2e419a;
 	margin:0 0 8px 0;}
+.analysis-sblock h4 i{
+	font-size:16px;
+	color:#000;
+	padding:0 0 0 10px;
+	font-family:新細明體;
+	font-weight:normal;}
 .analysis-inner{
 	padding:30px;
 	background:#fafafa;
@@ -1736,7 +1743,6 @@ margin-left:4%;}
 .atg span img{
 	margin:0 5px 0 0;}
 .atg i{
-	font-style:normal;
 	font-size:15px;
 	margin:0 0 0 5px;}
 .atg-bar{
@@ -1805,6 +1811,162 @@ padding:0px;}
 	height:57px;
 	background:url(../images/money-img.png);
 	margin-left:-25px;}
+.citizen-score-txt{
+	width:49%;
+	float:left;
+	letter-spacing:0px;
+	line-height:1.3em;
+	font-size:16px;}
+.citizen-score-txt ul{
+	margin:0 0 8px 0;
+	overflow:hidden;}
+.inner-content-txt .citizen-score-txt ul li{
+	list-style:none;
+	margin:0px;
+	padding:0px;}
+.citizen-score-txt ul li{
+	float:left;
+	width:33.33%;
+	text-align:center;
+	}
+
+.citizen-score-txt ul li span,.citizen-score-txt ul li i{
+	display:block;}
+.citizen-score-txt ul li span{
+	margin:0 0 5px 0;}
+.citizen-score-txt ul li i{line-height:40px;font-size:32px;padding:0 0 0 8px;}
+.citizen-score-txt ul li i img{
+	margin:0 5px 0 0;}
+.citizen-score-txt p{
+	clear:both;
+	font-size:13px;
+	text-align:center;}
+.citizen-score-graphic{
+	width:50%;
+	float:right;
+	border:3px solid #cfcfcf;
+	border-radius:8px;
+	box-sizing:border-box;
+	padding:6px 6px 0 6px;
+	letter-spacing:0px;}
+.citizen-score-graphic div{
+	margin:0 0 6px 0;
+	border-radius:5px;
+	height:40px;
+	position:relative;
+	font-size:15px;}
+.citizen-score-graphic div span{
+	position:absolute;
+	left:5px;
+	top:5px;
+	line-height:30px;
+	display:block;
+	padding:0 7px;
+	}
+.citizen-score-graphic div i{
+	background:#fff;
+	display:block;
+	float:right;
+	margin:0 0 0 8px;
+	border-radius:30px;
+	width:30px;
+	height:30px;
+	text-align:center;
+	line-height:30px;
+	background:rgba(255,255,255,0.6);
+	box-shadow:1px 1px 3px #8c8c8c;
+	}
+.citizen-score-graphic .atg-color-01 span{
+	width:115px;}
+.citizen-score-graphic .atg-color-02 span{
+	width:160px;}
+.inner-content-txt .plus-block ul li,.inner-content-txt .plus-list-nt li{
+	list-style:none;
+	padding:0px;
+	}
+.plus-01{
+	width:21%;
+	}
+.plus-02{
+	width:40%;
+	border-right:1px dotted #eeeeee;
+	border-left:1px dotted #eeeeee;
+	padding:0 2%;
+	}
+.plus-03{
+	width:34%;
+	}
+.plus-block{overflow:hidden;
+float:left;}
+.plus-block h5{
+	line-height:1.3em;
+	text-align:center;
+	height:70px;}
+.plus-block ul li{
+	float:left;}
+.plus-01 ul li{
+	width:40%;
+	margin:0 3%;
+	}
+.plus-02 ul li{
+	width:27%;
+	margin:0 2%;
+	}
+.plus-02 ul li:nth-child(2){
+	width:34%;
+	}
+.plus-block ul li span,.plus-block ul li i{
+	display:block;
+	text-align:center;}
+.plus-block ul li span{
+	background:#f1f1f1;
+	font-size:16px;
+	padding:8px 0;
+	line-height:1.3em;
+	height:46px;
+	}
+.plus-block ul li i{
+	background:#fff;
+	color:#f20000;
+	font-size:32px;
+	letter-spacing:-2px;
+	padding:8px 0;
+	line-height:1em;}
+.inner-content-txt .plus-list-nt li{
+	margin:0px 0 0 1.33%;
+	}
+.plus-list-nt{
+	padding:25px 0 0 7%;}
+.plus-list-nt li{
+	width:28%;
+	}
+.plus-list-nt li:nth-child(2){
+	width:38%;}
+.plus-list-nt h5,.plus-block .plus-list-nt h5{
+	border-bottom:5px solid #f1f1f1;
+	font-size:18px;
+	text-align:center;}
+.plus-list-nt i,.plus-block .plus-list-nt i{
+	background:none;
+	text-align:center;
+	display:block;}
+.subtraction-list.plus-list-nt{
+	padding:0px;}
+.subtraction-list.plus-list-nt li{
+	float:left;
+	margin:0 1.8%;
+	line-height:1.3em;}
+.subtraction-list.plus-list-nt li:nth-child(1){
+	width:31%;}
+.subtraction-list.plus-list-nt li:nth-child(2){
+	width:21%;}
+.subtraction-list.plus-list-nt li:nth-child(3){
+	width:9%;}
+.subtraction-list.plus-list-nt li:nth-child(4){
+	width:22%;}
+.subtraction-list.plus-list-nt li h5{
+	padding:5px 7% 20px 7%;}
+.subtraction-list.plus-list-nt li i{color:#f20000;font-size: 32px;padding: 8px 0px;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -2106,8 +2268,7 @@ margin:20px -11% 20px 0;
 padding: 40px 15% 0 15%;
 background:#eeeeee;
 }
-.pinfo .info-number{
-margin-bottom:7px;}
+
 .single-page-inner{
 padding-top:0px;}
 #video-show-list.all-list .big-video-show .img_url_l{
@@ -2187,7 +2348,21 @@ padding-bottom:15px;}
     width: 50%;
 	margin:0 0 30px 0;
 }
-
+.citizen-score-txt,.citizen-score-graphic{
+	width:100%;}
+.plus-01{
+	width:40%;}
+.plus-02{
+	width:55%;
+	border-right:none;}
+.plus-03{
+	width:96%;
+	border-top:1px dotted #eee;
+	margin-top:35px;}
+.plus-03 ul{
+	padding:30px 0 0 0;}
+.plus-03 ul h5{
+	height:40px;}
 }
 
 
@@ -2206,31 +2381,18 @@ padding:4px 6px;
 .selector-info div{
 	font-size:12px;
 	}
-#people-all-list .people-info-block{
-	float:left;
 
-	max-width:47%;
-	width:49%;
-	}
-#people-all-list{
-	max-width:700px;
-	}
-.people-img{
-	width:22%;}
+
+
 .party-tag{
 	width:20px;
 	height:16px;
 	}
-.people-info-block h2{
-	max-width:74%;
-	width:74%;
-	margin-bottom:9px;}
-.info-number{
-	width:74%;
-	}
+
+
 .info-number li{
 	float:left;
-	margin:0 5% 7px 0;}
+	margin:0 2% 7px 0;}
 
 
 /*立委內頁*/
@@ -2473,6 +2635,23 @@ text-align:center;}
 .attend-block:last-child{
 	border-bottom:none;
 	padding-bottom:0px;}
+.plus-01,.plus-02{
+	width:98%;}
+.plus-01 ul li span{height:24px;}
+.plus-01 ul li{
+	width:44%;}
+.plus-02 {
+	border:none;
+	border-top:1px dotted #eee;
+	border-bottom:1px dotted #eee;
+	padding:25px 0;
+	margin:30px 0 0px 0;}
+.plus-02 h5{
+	height:45px;}
+	
+.plus-03{
+	border-top:none;
+	margin-top:0px;}	
 }
 
 
@@ -2518,11 +2697,11 @@ padding:0 0 0 11%;}
 	margin-bottom:3%;
 	}
 .people-img{
-	max-width:70px;
-	width:15%;}
+	max-width:200px;
+	width:23%;}
 .people-info-block h2{
-	max-width:79%;
-	width:79%;
+	max-width:70%;
+	width:70%;
 	}
 .info-number{
 	width:79%;
