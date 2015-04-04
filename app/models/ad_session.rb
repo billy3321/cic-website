@@ -5,6 +5,7 @@ class AdSession < ActiveRecord::Base
   has_many :videos
   validates_presence_of :name, :ad_id, :date_start
   default_scope { order(date_start: :desc) }
+  scope :regulations, -> { where(regular: true) }
 
   def self.current_ad_session(date)
     where(["date_start <= ? AND ( date_end >= ? OR date_end IS NULL )", date, date ])

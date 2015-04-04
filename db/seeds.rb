@@ -38,19 +38,19 @@ AdSession.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(AdSession.table_name)
 
 ad_sessions = [
-  {:id => 1, :ad_id => ads.first[:id], :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15'},
-  {:id => 2, :ad_id => ads.first[:id], :name => '第1會期第1次臨時會', :date_start => '2012-07-24', :date_end => '2012-07-26'},
-  {:id => 3, :ad_id => ads.first[:id], :name => '第2會期', :date_start => '2012-09-18', :date_end => '2013-01-15'},
-  {:id => 4, :ad_id => ads.first[:id], :name => '第3會期', :date_start => '2013-02-26', :date_end => '2013-05-31'},
-  {:id => 5, :ad_id => ads.first[:id], :name => '第3會期第1次臨時會', :date_start => '2013-06-13', :date_end => '2013-06-27'},
-  {:id => 6, :ad_id => ads.first[:id], :name => '第3會期第2次臨時會', :date_start => '2013-07-30', :date_end => '2013-08-06'},
-  {:id => 7, :ad_id => ads.first[:id], :name => '第4會期', :date_start => '2013-09-17', :date_end => '2014-01-14'},
-  {:id => 8, :ad_id => ads.first[:id], :name => '第4會期第1次臨時會', :date_start => '2014-01-27', :date_end => '2014-01-28'},
-  {:id => 9, :ad_id => ads.first[:id], :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30'},
-  {:id => 10, :ad_id => ads.first[:id], :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04'},
-  {:id => 11, :ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08'},
-  {:id => 12, :ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23'},
-  {:id => 13, :ad_id => ads.first[:id], :name => '第7會期', :date_start => '2015-02-24', :date_end => nil}
+  {:id => 1, :ad_id => ads.first[:id], :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15', :regular => true},
+  {:id => 2, :ad_id => ads.first[:id], :name => '第1會期第1次臨時會', :date_start => '2012-07-24', :date_end => '2012-07-26', :regular => false},
+  {:id => 3, :ad_id => ads.first[:id], :name => '第2會期', :date_start => '2012-09-18', :date_end => '2013-01-15', :regular => true},
+  {:id => 4, :ad_id => ads.first[:id], :name => '第3會期', :date_start => '2013-02-26', :date_end => '2013-05-31', :regular => true},
+  {:id => 5, :ad_id => ads.first[:id], :name => '第3會期第1次臨時會', :date_start => '2013-06-13', :date_end => '2013-06-27', :regular => false},
+  {:id => 6, :ad_id => ads.first[:id], :name => '第3會期第2次臨時會', :date_start => '2013-07-30', :date_end => '2013-08-06', :regular => false},
+  {:id => 7, :ad_id => ads.first[:id], :name => '第4會期', :date_start => '2013-09-17', :date_end => '2014-01-14', :regular => true},
+  {:id => 8, :ad_id => ads.first[:id], :name => '第4會期第1次臨時會', :date_start => '2014-01-27', :date_end => '2014-01-28', :regular => false},
+  {:id => 9, :ad_id => ads.first[:id], :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30', :regular => true},
+  {:id => 10, :ad_id => ads.first[:id], :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04', :regular => false},
+  {:id => 11, :ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08', :regular => false},
+  {:id => 12, :ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23', :regular => true},
+  {:id => 13, :ad_id => ads.first[:id], :name => '第7會期', :date_start => '2015-02-24', :date_end => nil, :regular => true}
 ]
 
 ad_sessions.each do |a|
