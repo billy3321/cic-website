@@ -308,7 +308,7 @@ Ad.all.each do |ad|
         ccw_citizen_score.ad_session = ad_session
         ccw_citizen_score.total = ccw_citizen_scores["total"]
         ccw_citizen_score.average = ccw_citizen_scores["average"]
-        ccw_citizen_score.pdf = ccw_citizen_scores["pdf"]
+        ccw_citizen_score.ccw_link = ccw_citizen_scores["ccw_link"]
         ccw_citizen_score.save
       end
     end

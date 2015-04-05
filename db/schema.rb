@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150405112606) do
     t.integer "ad_session_id"
     t.float   "total"
     t.float   "average"
-    t.string  "pdf"
+    t.string  "ccw_link"
   end
 
   create_table "ccw_committee_data", force: true do |t|
