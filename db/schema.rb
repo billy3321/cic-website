@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331111346) do
+ActiveRecord::Schema.define(version: 20150404174323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20150331111346) do
     t.date     "date_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "session"
+    t.boolean  "regular"
   end
 
   create_table "ads", force: true do |t|
@@ -32,6 +34,44 @@ ActiveRecord::Schema.define(version: 20150331111346) do
     t.date     "term_end"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "ccw_citizen_scores", force: true do |t|
+    t.integer "ad_session_id"
+    t.float   "total"
+    t.float   "average"
+  end
+
+  create_table "ccw_committee_data", force: true do |t|
+    t.integer "ad_session_id"
+    t.integer "committee_id"
+    t.integer "should_attend_count"
+    t.float   "actually_average_attend_count"
+    t.integer "avaliable_interpellation_count"
+    t.float   "actually_average_interpellation_count"
+  end
+
+  create_table "ccw_legislator_data", force: true do |t|
+    t.integer "legislator_committee_id"
+    t.integer "ys_attend_count"
+    t.integer "sc_attend_count"
+    t.integer "first_proposal_count"
+    t.integer "not_first_proposal_count"
+    t.integer "budgetary_count"
+    t.integer "auditing_count"
+    t.float   "citizen_score"
+    t.float   "new_sunshine_bills"
+    t.float   "modify_sunshine_bills"
+    t.float   "budgetary_deletion_passed"
+    t.float   "budgetary_deletion_impact"
+    t.float   "budgetary_deletion_special"
+    t.float   "special"
+    t.float   "conflict_expose"
+    t.float   "allow_visitor"
+    t.float   "human_rights_infringing_bill"
+    t.float   "human_rights_infringing_budgetary"
+    t.float   "judicial_case"
+    t.float   "disorder"
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -128,6 +168,13 @@ ActiveRecord::Schema.define(version: 20150331111346) do
   end
 
   add_index "keywords_videos", ["keyword_id", "video_id"], name: "index_keywords_videos_on_keyword_id_and_video_id", unique: true, using: :btree
+
+  create_table "legislator_committees", force: true do |t|
+    t.integer "legislator_id"
+    t.integer "ad_session_id"
+    t.integer "committee_id"
+    t.boolean "convener"
+  end
 
   create_table "legislators", force: true do |t|
     t.string   "name"

@@ -18,6 +18,33 @@ parties.each do |p|
   party.save
 end
 
+committees = [
+  {:id => 1, :name => '內政委員會'},
+  {:id => 5, :name => '經濟委員會'},
+  {:id => 6, :name => '財政委員會'},
+  {:id => 8, :name => '教育及文化委員會'},
+  {:id => 9, :name => '交通委員會'},
+  {:id => 12, :name => '社會福利及衛生環境委員會'},
+  {:id => 13, :name => '程序委員會'},
+  {:id => 17, :name => '外交及國防委員會'},
+  {:id => 18, :name => '司法及法制委員會'},
+  {:id => 19, :name => '院會'},
+  {:id => 28, :name => '紀律委員會'},
+  {:id => 15, :name => '修憲委員會'},
+  {:id => 30, :name => '經費稽核委員會'},
+  {:id => 41, :name => '全院委員會'}
+]
+
+Committee.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Committee.table_name)
+
+committees.each do |c|
+  committee = Committee.new()
+  committee.id = c[:id]
+  committee.name = c[:name]
+  committee.save
+end
+
 Ad.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(Ad.table_name)
 
@@ -38,19 +65,19 @@ AdSession.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(AdSession.table_name)
 
 ad_sessions = [
-  {:id => 1, :ad_id => ads.first[:id], :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15', :regular => true},
-  {:id => 2, :ad_id => ads.first[:id], :name => '第1會期第1次臨時會', :date_start => '2012-07-24', :date_end => '2012-07-26', :regular => false},
-  {:id => 3, :ad_id => ads.first[:id], :name => '第2會期', :date_start => '2012-09-18', :date_end => '2013-01-15', :regular => true},
-  {:id => 4, :ad_id => ads.first[:id], :name => '第3會期', :date_start => '2013-02-26', :date_end => '2013-05-31', :regular => true},
-  {:id => 5, :ad_id => ads.first[:id], :name => '第3會期第1次臨時會', :date_start => '2013-06-13', :date_end => '2013-06-27', :regular => false},
-  {:id => 6, :ad_id => ads.first[:id], :name => '第3會期第2次臨時會', :date_start => '2013-07-30', :date_end => '2013-08-06', :regular => false},
-  {:id => 7, :ad_id => ads.first[:id], :name => '第4會期', :date_start => '2013-09-17', :date_end => '2014-01-14', :regular => true},
-  {:id => 8, :ad_id => ads.first[:id], :name => '第4會期第1次臨時會', :date_start => '2014-01-27', :date_end => '2014-01-28', :regular => false},
-  {:id => 9, :ad_id => ads.first[:id], :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30', :regular => true},
-  {:id => 10, :ad_id => ads.first[:id], :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04', :regular => false},
-  {:id => 11, :ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08', :regular => false},
-  {:id => 12, :ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23', :regular => true},
-  {:id => 13, :ad_id => ads.first[:id], :name => '第7會期', :date_start => '2015-02-24', :date_end => nil, :regular => true}
+  {:id => 1, :ad_id => ads.first[:id], :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15', :regular => true, :session => 1},
+  {:id => 2, :ad_id => ads.first[:id], :name => '第1會期第1次臨時會', :date_start => '2012-07-24', :date_end => '2012-07-26', :regular => false, :session => 1},
+  {:id => 3, :ad_id => ads.first[:id], :name => '第2會期', :date_start => '2012-09-18', :date_end => '2013-01-15', :regular => true, :session => 2},
+  {:id => 4, :ad_id => ads.first[:id], :name => '第3會期', :date_start => '2013-02-26', :date_end => '2013-05-31', :regular => true, :session => 3},
+  {:id => 5, :ad_id => ads.first[:id], :name => '第3會期第1次臨時會', :date_start => '2013-06-13', :date_end => '2013-06-27', :regular => false, :session => 3},
+  {:id => 6, :ad_id => ads.first[:id], :name => '第3會期第2次臨時會', :date_start => '2013-07-30', :date_end => '2013-08-06', :regular => false, :session => 3},
+  {:id => 7, :ad_id => ads.first[:id], :name => '第4會期', :date_start => '2013-09-17', :date_end => '2014-01-14', :regular => true, :session => 4},
+  {:id => 8, :ad_id => ads.first[:id], :name => '第4會期第1次臨時會', :date_start => '2014-01-27', :date_end => '2014-01-28', :regular => false, :session => 4},
+  {:id => 9, :ad_id => ads.first[:id], :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30', :regular => true, :session => 5},
+  {:id => 10, :ad_id => ads.first[:id], :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04', :regular => false, :session => 5},
+  {:id => 11, :ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08', :regular => false, :session => 5},
+  {:id => 12, :ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23', :regular => true, :session => 6},
+  {:id => 13, :ad_id => ads.first[:id], :name => '第7會期', :date_start => '2015-02-24', :date_end => nil, :regular => true, :session => 7}
 ]
 
 ad_sessions.each do |a|
@@ -150,9 +177,10 @@ ActiveRecord::Base.connection.reset_pk_sequence!(County.table_name)
 
 Legislator.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(Legislator.table_name)
+LegislatorCommittee.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(LegislatorCommittee.table_name)
 Election.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(Election.table_name)
-
 District.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(District.table_name)
 # Ugly hack
@@ -186,6 +214,14 @@ legislators.each do |l|
   election.constituency = constituency
   legislator.save
   election.save
+  l['committees'].each do |c|
+    legislator_committee = LegislatorCommittee.new
+    legislator_committee.ad_session = AdSession.where(ad_id: c['ad'], session: c['session'], regular: true).first
+    legislator_committee.convener = c["chair"]
+    legislator_committee.legislator = legislator
+    legislator_committee.committee = Committee.where(name: c["name"]).first
+    legislator_committee.save
+  end
   if l['county']
     county = County.where(name: l['county'][0]).first
     unless county
@@ -213,31 +249,66 @@ legislators.each do |l|
   election.save
 end
 
-committees = [
-  {:id => 1, :name => '內政委員會'},
-  {:id => 5, :name => '經濟委員會'},
-  {:id => 6, :name => '財政委員會'},
-  {:id => 8, :name => '教育及文化委員會'},
-  {:id => 9, :name => '交通委員會'},
-  {:id => 12, :name => '社會福利及衛生環境委員會'},
-  {:id => 13, :name => '程序委員會'},
-  {:id => 17, :name => '外交及國防委員會'},
-  {:id => 18, :name => '司法及法制委員會'},
-  {:id => 19, :name => '院會'},
-  {:id => 28, :name => '紀律委員會'},
-  {:id => 15, :name => '修憲委員會'},
-  {:id => 30, :name => '經費稽核委員會'},
-  {:id => 41, :name => '全院委員會'}
-]
+# CCW Data import
+CcwCommitteeDatum.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(CcwCommitteeDatum.table_name)
+CcwLegislatorDatum.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(CcwLegislatorDatum.table_name)
+CcwCitizenScore.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(CcwCitizenScore.table_name)
 
-Committee.delete_all
-ActiveRecord::Base.connection.reset_pk_sequence!(Committee.table_name)
-
-committees.each do |c|
-  committee = Committee.new()
-  committee.id = c[:id]
-  committee.name = c[:name]
-  committee.save
+Ad.all.each do |ad|
+  if [8].include? ad.id
+    ad.ad_sessions.each do |ad_session|
+      if ["第4會期", "第5會期"].include? ad_session.name
+        ccw_committee_data_filepath = Rails.root.join('db', 'data', 'ccw', "#{ad.id}-#{ad_session.session}_committee_data.json")
+        ccw_committee_data = JSON.parse(File.read(ccw_committee_data_filepath))
+        ccw_committee_data.each do |c|
+          ccw_committee_datum = CcwCommitteeDatum.new
+          ccw_committee_datum.ad_session = ad_session
+          ccw_committee_datum.committee = Committee.find(c[1])
+          ccw_committee_datum.should_attend_count = c[2]
+          ccw_committee_datum.actually_average_attend_count = c[3]
+          ccw_committee_datum.avaliable_interpellation_count = c[4] unless c[4].blank?
+          ccw_committee_datum.actually_average_interpellation_count = c[5] unless c[5].blank?
+        end
+        ccw_legislator_data_filepath = Rails.root.join('db', 'data', 'ccw', "#{ad.id}-#{ad_session.session}_legislator_data.json")
+        ccw_legislator_data = JSON.parse(File.read(ccw_legislator_data_filepath))
+        ccw_legislator_data.each do |c|
+          ccw_legislator_datum = CcwLegislatorDatum.new
+          legislator_committee = LegislatorCommittee.where(legislator_id: c[0].to_i, ad_session_id: ad_session.id, committee_id: c[4]).first
+          ccw_legislator_datum.legislator_committee = legislator_committee
+          ccw_legislator_datum.ys_attend_count = c[5]
+          ccw_legislator_datum.sc_attend_count = c[6]
+          ccw_legislator_datum.first_proposal_count = c[7]
+          ccw_legislator_datum.not_first_proposal_count = c[8]
+          ccw_legislator_datum.budgetary_count = c[9]
+          ccw_legislator_datum.auditing_count = c[10]
+          ccw_legislator_datum.citizen_score = c[11]
+          ccw_legislator_datum.new_sunshine_bills = c[12]
+          ccw_legislator_datum.modify_sunshine_bills = c[13]
+          ccw_legislator_datum.budgetary_deletion_passed = c[14]
+          ccw_legislator_datum.budgetary_deletion_impact = c[15]
+          ccw_legislator_datum.budgetary_deletion_special = c[16]
+          ccw_legislator_datum.special = c[17]
+          ccw_legislator_datum.conflict_expose = c[18]
+          ccw_legislator_datum.allow_visitor = c[19]
+          ccw_legislator_datum.human_rights_infringing_bill = c[20]
+          ccw_legislator_datum.human_rights_infringing_budgetary = c[21]
+          ccw_legislator_datum.judicial_case = c[22]
+          ccw_legislator_datum.disorder = c[23]
+          ccw_legislator_datum.save
+        end
+        ccw_citizen_scores_filepath = Rails.root.join('db', 'data', 'ccw', "#{ad.id}-#{ad_session.session}_citizen_scores.json")
+        ccw_citizen_scores = JSON.parse(File.read(ccw_citizen_scores_filepath))
+        ccw_citizen_score = CcwCitizenScore.new
+        ccw_citizen_score.ad_session = ad_session
+        ccw_citizen_score.total = ccw_citizen_scores["total"]
+        ccw_citizen_score.average = ccw_citizen_scores["average"]
+        ccw_citizen_score.save
+      end
+    end
+  end
 end
 
 ActiveRecord::Base.connection.tables.each do |t|

@@ -7,6 +7,6 @@ class CreateLegislatorCommittees < ActiveRecord::Migration
       t.boolean :convener
     end
   end
-
-  add_index :legislator_committees, [:legislator_id, :ad_session_id], :unique => true
 end
+
+  
