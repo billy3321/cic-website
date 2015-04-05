@@ -4,6 +4,7 @@ class CreateCcwLegislatorData < ActiveRecord::Migration
       t.belongs_to :legislator_committee
       t.integer :ys_attend_count
       t.integer :sc_attend_count
+      t.integer :sc_interpellation_count
       t.integer :first_proposal_count
       t.integer :not_first_proposal_count
       t.integer :budgetary_count

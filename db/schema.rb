@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404174323) do
+ActiveRecord::Schema.define(version: 20150405112606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150404174323) do
     t.integer "ad_session_id"
     t.float   "total"
     t.float   "average"
+    t.string  "pdf"
   end
 
   create_table "ccw_committee_data", force: true do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150404174323) do
     t.integer "legislator_committee_id"
     t.integer "ys_attend_count"
     t.integer "sc_attend_count"
+    t.integer "sc_interpellation_count"
     t.integer "first_proposal_count"
     t.integer "not_first_proposal_count"
     t.integer "budgetary_count"
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150404174323) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "kind"
   end
 
   create_table "counties", force: true do |t|

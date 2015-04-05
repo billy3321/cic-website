@@ -15,11 +15,16 @@ module ApplicationHelper
     end
   end
 
-  def get_percentage(numerator, denominator)
-    unless numerator.blank?
-      return ((numerator.to_f / denominator.to_f) * 100.0).round(2).to_s + "%"
+  def get_percentage(numerator, denominator, with_percent_mark = true)
+    if with_percent_mark
+      mark = "%"
     else
-      return "0%"
+      mark = ""
+    end
+    unless numerator.blank?
+      return ((numerator.to_f / denominator.to_f) * 100.0).round(2).to_s + mark
+    else
+      return "0" + mark
     end
   end
 

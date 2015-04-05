@@ -90,6 +90,20 @@ class Legislator < ActiveRecord::Base
     return self.elections.where(ad_id: ad_id).first
   end
 
+  def get_session_ccw_data(session_id)
+    legislator_committees = self.legislator_committees.where(ad_session_id: session_id)
+    return legislator_committees.map{ |l| l.ccw_legislator_datum }.select{ |c| c unless c.blank? }
+  end
+
+  def get_session_committee(session_id, kind = nil)
+    legislator_committees = self.legislator_committees.where(ad_session_id: session_id)
+    result = legislator_committees.map{ |l| l.committee }.select{ |c| c unless c.blank? }
+    if kind
+      result = result.select{ |c| c if c.kind = kind }
+    end
+    return result
+  end
+
   def has_record?
     self.videos.any? or self.entries.any? or self.questions.any?
   end

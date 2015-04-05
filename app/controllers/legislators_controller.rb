@@ -382,15 +382,38 @@ class LegislatorsController < ApplicationController
         site_name: "國會調查兵團"
       }
     })
-
   end
 
+  # GET /legislators/1/ccw
+  def ccw
+    ad_session_id = params[:ad_session].to_i
+    @ad_sessions = @legislator.ad_sessions.has_ccw_data
+    ad_session_ids = @ad_sessions.map { |a| a.id }
+    if ad_session_ids.include? ad_session_id
+      @ad_session = AdSession.find(ad_session_id)
+    else
+      @ad_session = @legislator.ad_sessions.has_ccw_data.last
+    end
+    @ccw_legislator_datum = @legislator.get_session_ccw_data(@ad_session.id).first
+    @sc_committee = @legislator.get_session_committee(@ad_session.id, 'sc').first
+    @ys_committee = Committee.find(19)
+    @sc_committee_datum = @sc_committee.ccw_committee_data.where(ad_session_id: @ad_session.id).first
+    @ys_committee_datum = @ys_committee.ccw_committee_data.where(ad_session_id: @ad_session.id).first
+    @ccw_citizen_score = @ad_session.ccw_citizen_score
+    if @sc_committee_datum.blank? or @ys_committee_datum.blank? or @ccw_citizen_score.blank?
+      @status = false
+      flash.now[:alert] = "目前尚未輸入相關資料"
+    else
+      @status = true
+    end
+  end
 
-
+  # GET /legislators/search
   def search
     @q = Election.search(params[:q])
   end
 
+  # GET /legislators/1/result
   def result
     @q = Election.search(params[:q])
     @ad_id_eq = params[:q] ? params[:q][:ad_id_eq] : nil

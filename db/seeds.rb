@@ -19,20 +19,20 @@ parties.each do |p|
 end
 
 committees = [
-  {:id => 1, :name => '內政委員會'},
-  {:id => 5, :name => '經濟委員會'},
-  {:id => 6, :name => '財政委員會'},
-  {:id => 8, :name => '教育及文化委員會'},
-  {:id => 9, :name => '交通委員會'},
-  {:id => 12, :name => '社會福利及衛生環境委員會'},
-  {:id => 13, :name => '程序委員會'},
-  {:id => 17, :name => '外交及國防委員會'},
-  {:id => 18, :name => '司法及法制委員會'},
-  {:id => 19, :name => '院會'},
-  {:id => 28, :name => '紀律委員會'},
-  {:id => 15, :name => '修憲委員會'},
-  {:id => 30, :name => '經費稽核委員會'},
-  {:id => 41, :name => '全院委員會'}
+  {:id => 1, :name => '內政委員會', :kind => 'sc'},
+  {:id => 5, :name => '經濟委員會', :kind => 'sc'},
+  {:id => 6, :name => '財政委員會', :kind => 'sc'},
+  {:id => 8, :name => '教育及文化委員會', :kind => 'sc'},
+  {:id => 9, :name => '交通委員會', :kind => 'sc'},
+  {:id => 12, :name => '社會福利及衛生環境委員會', :kind => 'sc'},
+  {:id => 13, :name => '程序委員會', :kind => 'ac'},
+  {:id => 17, :name => '外交及國防委員會', :kind => 'sc'},
+  {:id => 18, :name => '司法及法制委員會', :kind => 'sc'},
+  {:id => 19, :name => '院會', :kind => 'yc'},
+  {:id => 28, :name => '紀律委員會', :kind => 'ac'},
+  {:id => 15, :name => '修憲委員會', :kind => 'ac'},
+  {:id => 30, :name => '經費稽核委員會', :kind => 'ac'},
+  {:id => 41, :name => '全院委員會', :kind => 'ac'}
 ]
 
 Committee.delete_all
@@ -42,6 +42,7 @@ committees.each do |c|
   committee = Committee.new()
   committee.id = c[:id]
   committee.name = c[:name]
+  committee.kind = c[:kind]
   committee.save
 end
 
@@ -271,6 +272,7 @@ Ad.all.each do |ad|
           ccw_committee_datum.actually_average_attend_count = c[3]
           ccw_committee_datum.avaliable_interpellation_count = c[4] unless c[4].blank?
           ccw_committee_datum.actually_average_interpellation_count = c[5] unless c[5].blank?
+          ccw_committee_datum.save
         end
         ccw_legislator_data_filepath = Rails.root.join('db', 'data', 'ccw', "#{ad.id}-#{ad_session.session}_legislator_data.json")
         ccw_legislator_data = JSON.parse(File.read(ccw_legislator_data_filepath))
@@ -280,23 +282,24 @@ Ad.all.each do |ad|
           ccw_legislator_datum.legislator_committee = legislator_committee
           ccw_legislator_datum.ys_attend_count = c[5]
           ccw_legislator_datum.sc_attend_count = c[6]
-          ccw_legislator_datum.first_proposal_count = c[7]
-          ccw_legislator_datum.not_first_proposal_count = c[8]
-          ccw_legislator_datum.budgetary_count = c[9]
-          ccw_legislator_datum.auditing_count = c[10]
-          ccw_legislator_datum.citizen_score = c[11]
-          ccw_legislator_datum.new_sunshine_bills = c[12]
-          ccw_legislator_datum.modify_sunshine_bills = c[13]
-          ccw_legislator_datum.budgetary_deletion_passed = c[14]
-          ccw_legislator_datum.budgetary_deletion_impact = c[15]
-          ccw_legislator_datum.budgetary_deletion_special = c[16]
-          ccw_legislator_datum.special = c[17]
-          ccw_legislator_datum.conflict_expose = c[18]
-          ccw_legislator_datum.allow_visitor = c[19]
-          ccw_legislator_datum.human_rights_infringing_bill = c[20]
-          ccw_legislator_datum.human_rights_infringing_budgetary = c[21]
-          ccw_legislator_datum.judicial_case = c[22]
-          ccw_legislator_datum.disorder = c[23]
+          ccw_legislator_datum.sc_interpellation_count = c[7]
+          ccw_legislator_datum.first_proposal_count = c[8]
+          ccw_legislator_datum.not_first_proposal_count = c[9]
+          ccw_legislator_datum.budgetary_count = c[10]
+          ccw_legislator_datum.auditing_count = c[11]
+          ccw_legislator_datum.citizen_score = c[12]
+          ccw_legislator_datum.new_sunshine_bills = c[13]
+          ccw_legislator_datum.modify_sunshine_bills = c[14]
+          ccw_legislator_datum.budgetary_deletion_passed = c[15]
+          ccw_legislator_datum.budgetary_deletion_impact = c[16]
+          ccw_legislator_datum.budgetary_deletion_special = c[17]
+          ccw_legislator_datum.special = c[18]
+          ccw_legislator_datum.conflict_expose = c[19]
+          ccw_legislator_datum.allow_visitor = c[20]
+          ccw_legislator_datum.human_rights_infringing_bill = c[21]
+          ccw_legislator_datum.human_rights_infringing_budgetary = c[22]
+          ccw_legislator_datum.judicial_case = c[23]
+          ccw_legislator_datum.disorder = c[24]
           ccw_legislator_datum.save
         end
         ccw_citizen_scores_filepath = Rails.root.join('db', 'data', 'ccw', "#{ad.id}-#{ad_session.session}_citizen_scores.json")
@@ -305,6 +308,7 @@ Ad.all.each do |ad|
         ccw_citizen_score.ad_session = ad_session
         ccw_citizen_score.total = ccw_citizen_scores["total"]
         ccw_citizen_score.average = ccw_citizen_scores["average"]
+        ccw_citizen_score.pdf = ccw_citizen_scores["pdf"]
         ccw_citizen_score.save
       end
     end

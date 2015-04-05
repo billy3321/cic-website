@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get 'votes'
       get 'bills'
       get 'candidate'
+      get 'ccw'
     end
   end
 

@@ -4,6 +4,7 @@ class CreateCcwCitizenScores < ActiveRecord::Migration
       t.belongs_to :ad_session
       t.float :total
       t.float :average
+      t.string :pdf
     end
   end
 end

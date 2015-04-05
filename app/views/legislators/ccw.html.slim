@@ -1,0 +1,312 @@
+.vote-ly-g0v
+  .legislators-group
+    = render partial: 'shared/legislator_info', locals: { l: @legislator }
+  section.single-page-inner
+    #title-vote.vtitle-set
+      header
+        h3 立委戰力分析
+        .dropdown
+          button#menu1.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown"
+            = @ad_session.ad.name
+            i = @ad_session.name
+          ul.dropdown-menu role="menu" aria-labelledby="menu1"
+            - @ad_sessions.each do |a|
+              li role="presentation"
+                = link_to url_for(params.merge({ad_session: a.id})) do
+                  = a.ad.name
+                  i = a.name
+        .data-src
+          | 原始資料來源：
+          = link_to "公民監督國會聯盟", "http://www.ccw.org.tw/", target: "_blank"
+    = social_share_button_tag("#{@legislator.name}投票表決紀錄")
+    .inner-content-txt
+      - if @status
+        .analysis-sblock
+          h4 出席統計
+          .analysis-inner
+            .attend-block
+              h5 院會出席率
+              .attend-graphic
+                .atg-01.atg
+                  .atg-bar
+                    .atg-color-01 style="height: #{get_percentage(@ccw_legislator_datum.ys_attend_count, @ys_committee_datum.should_attend_count)};"
+                      span = get_percentage(@ccw_legislator_datum.ys_attend_count, @ys_committee_datum.should_attend_count)
+                  p.atg-txt
+                    = @legislator.name
+                    br
+                    | 出席率
+                  p
+                    span = image_tag('atg-color-01.png')
+                    span.this-color 
+                      = get_percentage(@ccw_legislator_datum.ys_attend_count, @ys_committee_datum.should_attend_count, false)
+                      i %
+                .atg-02.atg
+                  .atg-bar
+                    .atg-color-02 style="height: #{get_percentage(@ys_committee_datum.actually_average_attend_count, @ys_committee_datum.should_attend_count)};"
+                      span = get_percentage(@ys_committee_datum.actually_average_attend_count, @ys_committee_datum.should_attend_count)
+                  p.atg-txt
+                    | 所有委員
+                    br
+                    | 出席率平均數
+                  p
+                    span = image_tag('atg-color-02.png')
+                    span 
+                      = get_percentage(@ys_committee_datum.actually_average_attend_count, @ys_committee_datum.should_attend_count, false)
+                      i %
+              ul.atg-number
+                li
+                  p 
+                    | 院會
+                    br
+                    | 應出席數
+                  span = @ys_committee_datum.should_attend_count
+                li
+                  p 
+                    = @legislator.name
+                    br
+                    | 實際出席數
+                  span = @ccw_legislator_datum.ys_attend_count
+                li
+                  p 
+                    | 所有委員
+                    br
+                    | 出席數平均數
+                  span = @ys_committee_datum.actually_average_attend_count
+            .attend-block
+              h5 #{@sc_committee.name}出席率
+              .attend-graphic
+                .atg-01.atg
+                  .atg-bar
+                    .atg-color-01 style="height: #{get_percentage(@ccw_legislator_datum.sc_attend_count, @sc_committee_datum.should_attend_count)};"
+                      span = get_percentage(@ccw_legislator_datum.sc_attend_count, @sc_committee_datum.should_attend_count)
+                  p.atg-txt
+                    = @legislator.name
+                    br
+                    | 出席率
+                  p
+                    span = image_tag('atg-color-01.png')
+                    span.this-color 
+                      = get_percentage(@ccw_legislator_datum.sc_attend_count, @sc_committee_datum.should_attend_count, false)
+                      i %
+                .atg-02.atg
+                  .atg-bar
+                    .atg-color-02 style="height: #{get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.should_attend_count)};"
+                      span = get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.should_attend_count)
+                  p.atg-txt
+                    | 所有委員
+                    br
+                    | 出席率平均數
+                  p
+                    span = image_tag('atg-color-02.png')
+                    span 
+                      = get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.should_attend_count, false)
+                      i %
+              ul.atg-number
+                li
+                  p 
+                    = @sc_committee.name
+                    br
+                    | 應出席數
+                  span = @sc_committee_datum.should_attend_count
+                li
+                  p 
+                    = @legislator.name
+                    br
+                    | 實際出席數
+                  span = @ccw_legislator_datum.sc_attend_count
+                li
+                  p 
+                    | 所有委員
+                    br
+                    | 出席數平均數
+                  span = @sc_committee_datum.actually_average_attend_count
+            .attend-block
+              h5 #{@sc_committee.name}質詢率
+              .attend-graphic
+                .atg-01.atg
+                  .atg-bar
+                    .atg-color-01 style="height: #{get_percentage(@ccw_legislator_datum.sc_interpellation_count, @sc_committee_datum.avaliable_interpellation_count)};"
+                      span = get_percentage(@ccw_legislator_datum.sc_interpellation_count, @sc_committee_datum.avaliable_interpellation_count)
+                  p.atg-txt
+                    = @legislator.name
+                    br
+                    | 質詢率
+                  p
+                    span = image_tag('atg-color-01.png')
+                    span.this-color 
+                      = get_percentage(@ccw_legislator_datum.sc_interpellation_count, @sc_committee_datum.avaliable_interpellation_count, false)
+                      i %
+                .atg-02.atg
+                  .atg-bar
+                    .atg-color-02 style="height: #{get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.avaliable_interpellation_count)};"
+                      span = get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.avaliable_interpellation_count)
+                  p.atg-txt
+                    | 所有委員
+                    br
+                    | 質詢率平均數
+                  p
+                    span = image_tag('atg-color-02.png')
+                    span 
+                      = get_percentage(@sc_committee_datum.actually_average_interpellation_count, @sc_committee_datum.avaliable_interpellation_count, false)
+                      i %
+              ul.atg-number
+                li
+                  p 
+                    = @sc_committee.name
+                    br
+                    | 應質詢數
+                  span = @sc_committee_datum.avaliable_interpellation_count
+                li
+                  p 
+                    = @legislator.name
+                    br
+                    | 實際質詢數
+                  span = @ccw_legislator_datum.sc_interpellation_count
+                li
+                  p
+                    = @sc_committee.name
+                    | 委員
+                    br
+                    | 質詢數平均數
+                  span = @sc_committee_datum.actually_average_interpellation_count
+        .analysis-sblock
+          h4 提案統計
+          .analysis-inner
+            .proposal-count
+              h5
+                | 主提案第一人：
+                em = @ccw_legislator_datum.first_proposal_count
+                | 個
+              .count-img.law-img
+                - @ccw_legislator_datum.first_proposal_count.times do
+                  i
+            .proposal-count
+              h5
+                | 非主提案第一人：
+                em = @ccw_legislator_datum.not_first_proposal_count
+                | 個
+              .count-img.law-img
+                - @ccw_legislator_datum.not_first_proposal_count.times do
+                  i
+            .proposal-count
+              h5
+                | 預算案提案：
+                em = @ccw_legislator_datum.budgetary_count
+                | 個
+              .count-img.law-img
+                - @ccw_legislator_datum.budgetary_count.times do
+                  i
+            .proposal-count
+              h5
+                | 決算審查提案：
+                em = @ccw_legislator_datum.auditing_count
+                | 個
+              .count-img.law-img
+                - @ccw_legislator_datum.auditing_count.times do
+                  i
+        .analysis-sblock
+          h4 公民評鑑
+          .analysis-inner
+            .citizen-score-txt
+              ul
+                li
+                  span
+                    = @legislator.name
+                    | 得分
+                  i.this-color
+                    = image_tag('atg-color-01.png')
+                    = @ccw_legislator_datum.citizen_score
+                li
+                  span 全委員得分平均數
+                  i
+                    = image_tag('atg-color-02.png')
+                    = @ccw_citizen_score.average
+                li
+                  span 全委員得分總分
+                  i
+                    = image_tag('atg-color-03.png')
+                    = @ccw_citizen_score.total
+              p 評分項目：問政專業、價值立場、問題解決、問政態度與技巧
+            .citizen-score-graphic
+              .atg-color-01 style="width: #{get_percentage(@ccw_legislator_datum.citizen_score, @ccw_citizen_score.total)};"
+                span
+                  = @legislator.name
+                  | 得分
+                  i = @ccw_legislator_datum.citizen_score
+              .atg-color-02 style="width: #{get_percentage(@ccw_citizen_score.average, @ccw_citizen_score.total)};"
+                span
+                  | 全委員得分平均數
+                  i = @ccw_citizen_score.average
+        .analysis-sblock
+          h4
+            | 加分指標
+            i
+              | 指標說明請參考：
+              = link_to "公督盟#{@ad_session.ad.name}#{@ad_session.name}立法委員評鑑作業辦法", @ccw_citizen_score.pdf, target: "_blank"
+          .analysis-inner
+            .plus-01.plus-block
+              h5
+                | 陽光法案
+                br
+                | 公益（義）法案
+              ul
+                li
+                  span 新立
+                  i = @ccw_legislator_datum.new_sunshine_bills
+                li
+                  span 修正
+                  i = @ccw_legislator_datum.modify_sunshine_bills
+            .plus-02.plus-block
+              h5 預算刪減案
+              ul
+                li
+                  span 三讀通過
+                  i = @ccw_legislator_datum.budgetary_deletion_passed
+                li
+                  span
+                    | 符合重大
+                    br
+                    | 公益（義）價值
+                  i = @ccw_legislator_datum.budgetary_deletion_impact
+                li
+                  span
+                    | 特殊
+                    br
+                    | 事蹟加分
+                  i = @ccw_legislator_datum.budgetary_deletion_special
+            .plus-03.plus-block
+              ul.plus-list-nt
+                li
+                  h5 特殊事蹟
+                  i = @ccw_legislator_datum.special
+                li
+                  h5 特殊事蹟
+                  i = @ccw_legislator_datum.conflict_expose
+                li
+                  h5 特殊事蹟
+                  i = @ccw_legislator_datum.allow_visitor
+        .analysis-sblock
+          h4
+            | 減分指標
+            i
+              | 指標說明請參考：
+              = link_to "公督盟#{@ad_session.ad.name}#{@ad_session.name}立法委員評鑑作業辦法", @ccw_citizen_score.pdf, target: "_blank"
+          .analysis-inner
+            ul.plus-list-nt.subtraction-list
+              li
+                h5 侵害基本人權法案/提案與連署
+                i = @ccw_legislator_datum.human_rights_infringing_bill
+              li
+                h5 侵害基本人權預算案
+                i = @ccw_legislator_datum.human_rights_infringing_budgetary
+              li
+                h5 司法案件
+                i = @ccw_legislator_datum.judicial_case
+              li
+                h5 脫序表現（院內與院外）
+                i = @ccw_legislator_datum.disorder
+      - else
+        .api-dead-block 目前這位委員的公督盟評鑑資料尚未取得，敬請見諒！
+
+    .reply-message
+      #disqus_thread
