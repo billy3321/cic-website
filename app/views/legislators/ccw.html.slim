@@ -36,7 +36,7 @@
                     br
                     | 出席率
                   p
-                    span = image_tag('atg-color-01.png')
+                    span = image_tag('atg-color-01.png', alt: "")
                     span.this-color 
                       = get_percentage(@ccw_legislator_datum.ys_attend_count, @ys_committee_datum.should_attend_count, false)
                       i %
@@ -49,7 +49,7 @@
                     br
                     | 出席率平均數
                   p
-                    span = image_tag('atg-color-02.png')
+                    span = image_tag('atg-color-02.png', alt: "")
                     span 
                       = get_percentage(@ys_committee_datum.actually_average_attend_count, @ys_committee_datum.should_attend_count, false)
                       i %
@@ -84,7 +84,7 @@
                     br
                     | 出席率
                   p
-                    span = image_tag('atg-color-01.png')
+                    span = image_tag('atg-color-01.png', alt: "")
                     span.this-color 
                       = get_percentage(@ccw_legislator_datum.sc_attend_count, @sc_committee_datum.should_attend_count, false)
                       i %
@@ -97,7 +97,7 @@
                     br
                     | 出席率平均數
                   p
-                    span = image_tag('atg-color-02.png')
+                    span = image_tag('atg-color-02.png', alt: "")
                     span 
                       = get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.should_attend_count, false)
                       i %
@@ -132,7 +132,7 @@
                     br
                     | 質詢率
                   p
-                    span = image_tag('atg-color-01.png')
+                    span = image_tag('atg-color-01.png', alt: "")
                     span.this-color 
                       = get_percentage(@ccw_legislator_datum.sc_interpellation_count, @sc_committee_datum.avaliable_interpellation_count, false)
                       i %
@@ -145,7 +145,7 @@
                     br
                     | 質詢率平均數
                   p
-                    span = image_tag('atg-color-02.png')
+                    span = image_tag('atg-color-02.png', alt: "")
                     span 
                       = get_percentage(@sc_committee_datum.actually_average_interpellation_count, @sc_committee_datum.avaliable_interpellation_count, false)
                       i %
@@ -214,17 +214,17 @@
                     = @legislator.name
                     | 得分
                   i.this-color
-                    = image_tag('atg-color-01.png')
+                    = image_tag('atg-color-01.png', alt: "")
                     = @ccw_legislator_datum.citizen_score
                 li
                   span 全委員得分平均數
                   i
-                    = image_tag('atg-color-02.png')
+                    = image_tag('atg-color-02.png', alt: "")
                     = @ccw_citizen_score.average
                 li
                   span 全委員得分總分
                   i
-                    = image_tag('atg-color-03.png')
+                    = image_tag('atg-color-03.png', alt: "")
                     = @ccw_citizen_score.total
               p 評分項目：問政專業、價值立場、問題解決、問政態度與技巧
             .citizen-score-graphic
