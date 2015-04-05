@@ -17,7 +17,7 @@
                   i = a.name
         .data-src
           | 原始資料來源：
-          = link_to "公民監督國會聯盟", "http://www.ccw.org.tw/", target: "_blank"
+          = link_to "公民監督國會聯盟", @ccw_citizen_score.ccw_link, target: "_blank"
     = social_share_button_tag("#{@legislator.name}投票表決紀錄")
     .inner-content-txt
       - if @status
@@ -242,7 +242,7 @@
             | 加分指標
             i
               | 指標說明請參考：
-              = link_to "公督盟#{@ad_session.ad.name}#{@ad_session.name}立法委員評鑑作業辦法", @ccw_citizen_score.pdf, target: "_blank"
+              = link_to "公督盟#{@ad_session.ad.name}#{@ad_session.name}立法委員評鑑作業辦法", @ccw_citizen_score.ccw_link, target: "_blank"
           .analysis-inner
             .plus-01.plus-block
               h5
@@ -290,7 +290,7 @@
             | 減分指標
             i
               | 指標說明請參考：
-              = link_to "公督盟#{@ad_session.ad.name}#{@ad_session.name}立法委員評鑑作業辦法", @ccw_citizen_score.pdf, target: "_blank"
+              = link_to "公督盟#{@ad_session.ad.name}#{@ad_session.name}立法委員評鑑作業辦法", @ccw_citizen_score.ccw_link, target: "_blank"
           .analysis-inner
             ul.plus-list-nt.subtraction-list
               li
