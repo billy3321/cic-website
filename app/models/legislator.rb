@@ -2,6 +2,9 @@ class Legislator < ActiveRecord::Base
   has_many :elections
   has_many :ads, through: :elections
   has_many :parties, through: :elections
+  has_many :legislator_committees
+  has_many :ad_sessions, through: :legislator_committees
+  has_many :ccw_legislator_data, through: :legislator_committees
   has_and_belongs_to_many :entries, -> { uniq }
   has_and_belongs_to_many :questions, -> { uniq }
   has_and_belongs_to_many :videos, -> { uniq }
