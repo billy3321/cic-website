@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   has_many :entries
-  has_many :questions
+  has_many :interpellations
   has_many :videos
   validates_presence_of :name, :email
   validates :name, uniqueness: true

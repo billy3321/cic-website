@@ -1,4 +1,4 @@
-class Question < ActiveRecord::Base
+class Interpellation < ActiveRecord::Base
   has_and_belongs_to_many :legislators, -> { uniq }
   has_and_belongs_to_many :keywords, -> { uniq }
   belongs_to :user

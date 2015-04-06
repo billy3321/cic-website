@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
     q = params[:q]
     @videos    = Video.published.search(title_or_content_or_meeting_description_cont: q).result.first(10)
     @entries   = Entry.published.search(title_or_content_cont: q).result.first(10)
-    @questions = Question.published.search(title_or_content_or_meeting_description_cont: q).result.first(5)
+    @interpellations = Interpellation.published.search(title_or_content_or_meeting_description_cont: q).result.first(5)
 
     set_meta_tags({
       title: '國會調查兵團最新調查報告',
@@ -70,7 +70,7 @@ class StaticPagesController < ApplicationController
   def sitemap
     @legislators = Legislator.all
     @entries = Entry.all
-    @questions = Question.all
+    @interpellations = Interpellation.all
     @videos = Video.all
   end
 end

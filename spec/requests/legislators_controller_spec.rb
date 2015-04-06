@@ -33,7 +33,7 @@ describe "Legislator" do
 
     it "has_records success" do
       FactoryGirl.create(:entry, legislators: [legislator])
-      FactoryGirl.create(:question, legislators: [legislator])
+      FactoryGirl.create(:interpellation, legislators: [legislator])
       FactoryGirl.create(:video_news, legislators: [legislator])
       get "/legislators/#{legislator.id}"
       expect(response).to be_success
@@ -55,17 +55,17 @@ describe "Legislator" do
     end
   end
 
-  describe "#questions" do
+  describe "#interpellations" do
     it "no_record success" do
-      get "/legislators/#{legislator.id}/questions"
+      get "/legislators/#{legislator.id}/interpellations"
       expect(response).to be_success
     end
 
     it "has_records success" do
       2.times do
-        FactoryGirl.create(:question, legislators: [legislator])
+        FactoryGirl.create(:interpellation, legislators: [legislator])
       end
-      get "/legislators/#{legislator.id}/questions"
+      get "/legislators/#{legislator.id}/interpellations"
       expect(response).to be_success
     end
   end

@@ -130,7 +130,7 @@ class LegislatorsController < ApplicationController
     @main_video = @videos.shift
     @sub_videos = @videos
     @entries = @legislator.entries.published.first(5)
-    @questions = @legislator.questions.published.first(5)
+    @interpellations = @legislator.interpellations.published.first(5)
 
     set_meta_tags({
       title: "#{@legislator.name}調查報告",
@@ -157,7 +157,7 @@ class LegislatorsController < ApplicationController
             include: {ad: {except: [:created_at, :updated_at]}
             }
           },
-          questions: {}, entries:{}, videos:{}
+          interpellations: {}, entries:{}, videos:{}
         }))},
         callback: params[:callback]
       }
@@ -206,32 +206,32 @@ class LegislatorsController < ApplicationController
     end
   end
 
-  # GET /legislators/1/questions
-  def questions
+  # GET /legislators/1/interpellations
+  def interpellations
     if params[:format] == "json"
       if params[:query]
-        @questions = @legislator.questions.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations = @legislator.interpellations.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
           .published.offset(params[:offset]).limit(params[:limit])
-        @questions_count = @legislator.questions.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations_count = @legislator.interpellations.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
           .published.count
       else
-        @questions = @legislator.questions.published.offset(params[:offset]).limit(params[:limit])
-        @questions_count = @legislator.questions.published.count
+        @interpellations = @legislator.interpellations.published.offset(params[:offset]).limit(params[:limit])
+        @interpellations_count = @legislator.interpellations.published.count
       end
     else
-      @questions = @legislator.questions.published.page(params[:page])
+      @interpellations = @legislator.interpellations.published.page(params[:page])
     end
-    questions = @questions.clone.to_a
-    @main_question = questions.shift
-    @sub_questions = questions
+    interpellations = @interpellations.clone.to_a
+    @main_interpellation = interpellations.shift
+    @sub_interpellations = interpellations
 
     set_meta_tags({
       title: "#{@legislator.name}質詢列表",
-      description: @main_question.try(:title),
+      description: @main_interpellation.try(:title),
       keywords: "#{@legislator.name},#{@legislator.name}質詢調查",
       og: {
         type: 'article',
-        description: @main_question.try(:title),
+        description: @main_interpellation.try(:title),
         title: "#{@legislator.name}質詢調查報告",
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}"
       }
@@ -240,14 +240,14 @@ class LegislatorsController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          questions: JSON.parse(
-            @questions.to_json({include: {
+          interpellations: JSON.parse(
+            @interpellations.to_json({include: {
               ad_session: { except: [:created_at, :updated_at] },
               ad: { except: [:created_at, :updated_at] },
               committee: { except: [:created_at, :updated_at] }
             }, except: [:user_id, :user_ip, :published]})
           ),
-          count: @questions_count
+          count: @interpellations_count
         },
         callback: params[:callback]
       }

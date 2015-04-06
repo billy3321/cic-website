@@ -9,7 +9,7 @@
         th width="25%" 兵團總人數
       tr class="r"
         td = Video.all.count
-        td = Question.all.count
+        td = Interpellation.all.count
         td = Entry.all.count
         td = User.all.count
       tr
@@ -19,7 +19,7 @@
         th 本月加入兵團人數
       tr class="r"
         td = Video.created_in_time_count(@this_month, 1.month)
-        td = Question.created_in_time_count(@this_month, 1.month)
+        td = Interpellation.created_in_time_count(@this_month, 1.month)
         td = Entry.created_in_time_count(@this_month, 1.month)
         td = User.created_in_time_count(@this_month, 1.month)
       tr
@@ -29,6 +29,6 @@
         th 上個月加入兵團人數
       tr class="r"
         td = Video.created_in_time_count(@last_month, 1.month)
-        td = Question.created_in_time_count(@last_month, 1.month)
+        td = Interpellation.created_in_time_count(@last_month, 1.month)
         td = Entry.created_in_time_count(@last_month, 1.month)
         td = User.created_in_time_count(@last_month, 1.month)

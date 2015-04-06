@@ -87,7 +87,7 @@ xml.tag! 'urlset', "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
   end
 
   xml.url do
-    xml.loc "#{base_url}/questions"
+    xml.loc "#{base_url}/interpellations"
     xml.lastmod Time.now.to_date
     xml.changefreq "daily"
     xml.priority 1.0
@@ -137,7 +137,7 @@ xml.tag! 'urlset', "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     end
 
     xml.url do
-      xml.loc questions_legislator_url(legislator)
+      xml.loc interpellations_legislator_url(legislator)
       xml.lastmod legislator.updated_at.to_date
       xml.changefreq "daily"
       xml.priority 0.9
@@ -160,10 +160,10 @@ xml.tag! 'urlset', "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
     end
   end
 
-  @questions.each do |question|
+  @interpellations.each do |interpellation|
     xml.url do
-      xml.loc question_url(question)
-      xml.lastmod question.updated_at.to_date
+      xml.loc interpellation_url(interpellation)
+      xml.lastmod interpellation.updated_at.to_date
       xml.changefreq "monthly"
       xml.priority 0.9
     end

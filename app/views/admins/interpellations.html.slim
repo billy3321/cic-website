@@ -1,5 +1,5 @@
 #sys-block
-  = form_tag update_questions_path, method: :put do
+  = form_tag update_interpellations_path, method: :put do
     h2 
       | 質詢管理 ─ 僅供依回報時間條列查看，詳細內容請點選查看到前台觀看。
       = submit_tag "批次刪除", class: "add-btn"
@@ -13,10 +13,10 @@
           th width="14%" 回報者 / IP
           th width="8%" 狀態
           th width="5%" 查看
-        - if @questions.any?
-          - @questions.each do |q|
+        - if @interpellations.any?
+          - @interpellations.each do |q|
             tr 
-              = hidden_field_tag "question_ids[]", q.id
+              = hidden_field_tag "interpellation_ids[]", q.id
               - if q.published
                 td = check_box_tag "unpublished_ids[]", q.id, false, class: "published_box"
               - else
@@ -35,7 +35,7 @@
                 td class="c" 已發布
               - else
                 td class="c" 未發布
-              td class="c" = link_to "查看", question_path(q), target: "_blank"
+              td class="c" = link_to "查看", interpellation_path(q), target: "_blank"
       #page-bar
         #page
-          = paginate @questions
+          = paginate @interpellations

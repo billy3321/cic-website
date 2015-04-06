@@ -1,41 +1,41 @@
-class QuestionsController < ApplicationController
-  before_action :set_question, except: [:index, :new]
+class InterpellationsController < ApplicationController
+  before_action :set_interpellation, except: [:index, :new]
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_ip, only: [:create, :update]
   before_action :check_author, only: [:edit, :update, :destroy]
 
-  # GET /questions
+  # GET /interpellations
   def index
     if params[:format] == "json"
       if params[:query]
-        @questions = Question.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations = Interpellation.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
           .published.offset(params[:offset]).limit(params[:limit])
-        @questions_count = Question.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations_count = Interpellation.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
           .published.count
       else
-        @questions = Question.published.offset(params[:offset]).limit(params[:limit])
-        @questions_count = Question.published.count
+        @interpellations = Interpellation.published.offset(params[:offset]).limit(params[:limit])
+        @interpellations_count = Interpellation.published.count
       end
     else
       if user_signed_in? and current_user.admin?
-        @q = Question.search(params[:q])
-        @questions = @q.result(:distinct => true).page(params[:page])
+        @q = Interpellation.search(params[:q])
+        @interpellations = @q.result(:distinct => true).page(params[:page])
       else
-        @q = Question.published.search(params[:q])
-        @questions = @q.result(:distinct => true).page(params[:page])
+        @q = Interpellation.published.search(params[:q])
+        @interpellations = @q.result(:distinct => true).page(params[:page])
       end
     end
-    questions = @questions.clone.to_a
-    @main_question = questions.shift
-    @sub_questions = questions
+    interpellations = @interpellations.clone.to_a
+    @main_interpellation = interpellations.shift
+    @sub_interpellations = interpellations
 
-    meta_legislators = Legislator.order_by_questions_created.limit(3)
+    meta_legislators = Legislator.order_by_interpellations_created.limit(3)
     meta_keywords_list = meta_legislators.map { | l | "#{l.name}質詢" }
     legislator_names = meta_legislators.map { | l | l.name }.join('、')
-    if @main_question
+    if @main_interpellation
       set_meta_tags({
         title: "最新立委質詢",
-        description: "最新質詢由立委#{@main_question.legislators.first.name}出場。#{@main_question.title}",
+        description: "最新質詢由立委#{@main_interpellation.legislators.first.name}出場。#{@main_interpellation.title}",
         keywords: ["最新質詢"] + meta_keywords_list,
         og: {
           type: 'article',
@@ -59,8 +59,8 @@ class QuestionsController < ApplicationController
       format.html
       format.json { render :json => {
           status: "success",
-          questions: JSON.parse(
-            @questions.to_json({include: {
+          interpellations: JSON.parse(
+            @interpellations.to_json({include: {
               legislators: {
                 include: { party: {except: [:created_at, :updated_at]} },
                 except: [:description, :now_party_id, :created_at, :updated_at] },
@@ -69,16 +69,16 @@ class QuestionsController < ApplicationController
               committee: { except: [:created_at, :updated_at] }
             }, except: [:user_id, :user_ip, :published]})
           ),
-          count: @questions_count
+          count: @interpellations_count
         },
         callback: params[:callback]
       }
     end
   end
 
-  # GET /questions/1
+  # GET /interpellations/1
   def show
-    unless @question.published
+    unless @interpellation.published
       if user_signed_in? and current_user.admin?
       else
         not_found
@@ -86,21 +86,21 @@ class QuestionsController < ApplicationController
     end
 
     set_meta_tags({
-      title: [@question.legislators.first.name, @question.title],
-      description: @question.title,
-      keywords: [@question.legislators.first.name, "#{@question.legislators.first.name}質詢調查"],
+      title: [@interpellation.legislators.first.name, @interpellation.title],
+      description: @interpellation.title,
+      keywords: [@interpellation.legislators.first.name, "#{@interpellation.legislators.first.name}質詢調查"],
       og: {
         type: 'article',
-        description: @question.title,
-        title: "#{@question.legislators.first.name} － #{@question.title}",
-        image: "/images/legislators/160x214/#{@question.legislators.first.image}"
+        description: @interpellation.title,
+        title: "#{@interpellation.legislators.first.name} － #{@interpellation.title}",
+        image: "/images/legislators/160x214/#{@interpellation.legislators.first.image}"
       }
     })
     respond_to do |format|
       format.html
       format.json { render :json => {
         status: "success",
-        question: JSON.parse(@question.to_json({
+        interpellation: JSON.parse(@interpellation.to_json({
         include: {
           legislators: {
             include: { party: {except: [:created_at, :updated_at]} },
@@ -115,9 +115,9 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # GET /questions/new
+  # GET /interpellations/new
   def new
-    @question = Question.new
+    @interpellation = Interpellation.new
     set_meta_tags({
       title: "回報立委質詢文字紀錄",
       og: {
@@ -126,9 +126,9 @@ class QuestionsController < ApplicationController
     })
   end
 
-  # GET /questions/1/edit
+  # GET /interpellations/1/edit
   def edit
-    unless @question.published
+    unless @interpellation.published
       if current_user.admin?
       else
         not_found
@@ -136,58 +136,58 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # POST /questions
+  # POST /interpellations
   def create
-    if @question.save
-        redirect_to @question, notice: '質詢建立成功'
+    if @interpellation.save
+        redirect_to @interpellation, notice: '質詢建立成功'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /questions/1
+  # PATCH/PUT /interpellations/1
   def update
-    if @question.update(question_params)
-      redirect_to @question, notice: '質詢更新成功'
+    if @interpellation.update(interpellation_params)
+      redirect_to @interpellation, notice: '質詢更新成功'
     else
       render :edit
     end
   end
 
-  # DELETE /questions/1
+  # DELETE /interpellations/1
   def destroy
-    @question.destroy
-    redirect_to questions_url, notice: '質詢已刪除'
+    @interpellation.destroy
+    redirect_to interpellations_url, notice: '質詢已刪除'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = params[:id] ? Question.find(params[:id]) : Question.new(question_params)
+    def set_interpellation
+      @interpellation = params[:id] ? Interpellation.find(params[:id]) : Interpellation.new(interpellation_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def question_params
+    def interpellation_params
       if user_signed_in? and current_user.admin?
-        params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+        params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published, :time_start, :time_end, :target)
       else
-        params.require(:question).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+        params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :time_start, :time_end, :target)
       end
     end
 
     def set_ip
       if request.env['HTTP_CF_CONNECTING_IP']
-        @question.user_ip = request.env['HTTP_CF_CONNECTING_IP']
+        @interpellation.user_ip = request.env['HTTP_CF_CONNECTING_IP']
       else
-        @question.user_ip = request.env['REMOTE_ADDR']
+        @interpellation.user_ip = request.env['REMOTE_ADDR']
       end
     end
 
     def check_author
-      unless current_user == @question.user or current_user.admin?
-        redirect_to question_path(@question)
+      unless current_user == @interpellation.user or current_user.admin?
+        redirect_to interpellation_path(@interpellation)
       end
     end
 end

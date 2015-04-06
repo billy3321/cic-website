@@ -11,8 +11,8 @@ class AdminsController < ApplicationController
     @entries = Entry.all.page(params[:page])
   end
 
-  def questions
-    @questions = Question.all.page(params[:page])
+  def interpellations
+    @interpellations = Interpellation.all.page(params[:page])
   end
 
   def videos
@@ -47,11 +47,11 @@ class AdminsController < ApplicationController
     redirect_to admin_entries_path
   end
 
-  def update_questions
-    if admin_params[:question_ids]
-      @questions = Question.find(admin_params[:question_ids])
+  def update_interpellations
+    if admin_params[:interpellation_ids]
+      @interpellations = Interpellation.find(admin_params[:interpellation_ids])
       unpublished_ids = admin_params[:unpublished_ids] ? admin_params[:unpublished_ids] : []
-      @questions.each do |q|
+      @interpellations.each do |q|
         if unpublished_ids.include?(q.id.to_s)
           if q.published == true
             q.published = false
@@ -66,7 +66,7 @@ class AdminsController < ApplicationController
       end
       flash[:notice] = "質詢更新完畢！"
     end
-    redirect_to admin_questions_path
+    redirect_to admin_interpellations_path
   end
 
   def update_videos
@@ -95,7 +95,7 @@ class AdminsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_params
-    params.permit({:entry_ids => []}, {:question_ids => []},
+    params.permit({:entry_ids => []}, {:interpellation_ids => []},
       {:video_ids => []}, {:unpublished_ids => []}, :date)
   end
 

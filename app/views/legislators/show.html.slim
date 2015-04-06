@@ -49,11 +49,11 @@
 
   #say-list.side-sblock
     h3 【質詢紀錄】
-    - if @questions.any?
-      = link_to "更多", questions_legislator_path(@legislator), class: "more"
+    - if @interpellations.any?
+      = link_to "更多", interpellations_legislator_path(@legislator), class: "more"
       ul
-        - @questions.each do |q|
-          li = link_to q.title, question_path(q)
+        - @interpellations.each do |q|
+          li = link_to q.title, interpellation_path(q)
     - else
       .blank 
         | 目前尚無資料，

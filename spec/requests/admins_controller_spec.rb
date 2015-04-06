@@ -54,9 +54,9 @@ describe "Admin" do
       end
     end
 
-    describe "#questions" do
+    describe "#interpellations" do
       it "success" do
-        get "/admin/questions"
+        get "/admin/interpellations"
         expect(response).to be_success
       end
     end
@@ -68,18 +68,18 @@ describe "Admin" do
       end
     end
 
-    describe "#update_questions" do
+    describe "#update_interpellations" do
       it "success" do
-        question1 = FactoryGirl.create :question
-        question2 = FactoryGirl.create :question
-        question3 = FactoryGirl.create :question
+        interpellation1 = FactoryGirl.create :interpellation
+        interpellation2 = FactoryGirl.create :interpellation
+        interpellation3 = FactoryGirl.create :interpellation
         update_data = {
-          question_ids: [question1.id, question2.id, question3.id],
-          unpublished_ids: [question1.id, question3.id]
+          interpellation_ids: [interpellation1.id, interpellation2.id, interpellation3.id],
+          unpublished_ids: [interpellation1.id, interpellation3.id]
         }
-        put "/admin/update_questions", update_data
+        put "/admin/update_interpellations", update_data
         expect(response).to be_redirect
-        expect(Question.published).to eq([question2])
+        expect(Interpellation.published).to eq([interpellation2])
       end
     end
 

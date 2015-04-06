@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :legislators, only: [:show, :index] do
     member do
       get 'entries'
-      get 'questions'
+      get 'interpellations'
       get 'videos'
       get 'votes'
       get 'bills'
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   end
 
   resources :entries
-  resources :questions
+  resources :interpellations
   resources :videos
   scope '/admin' do
     resources :users, except: [:show, :new, :create] do
@@ -48,11 +48,11 @@ Rails.application.routes.draw do
     resources :parties
     root 'admins#index',             via: 'get', as: 'admin'
     match 'entries',          to: 'admins#entries',          via: 'get', as: 'admin_entries'
-    match 'questions',        to: 'admins#questions',        via: 'get', as: 'admin_questions'
+    match 'interpellations',        to: 'admins#interpellations',        via: 'get', as: 'admin_interpellations'
     match 'videos',           to: 'admins#videos',           via: 'get', as: 'admin_videos'
     match 'data',             to: 'admins#data',             via: 'get', as: 'admin_data'
     match 'update_entries',   to: 'admins#update_entries',   via: 'put'
-    match 'update_questions', to: 'admins#update_questions', via: 'put'
+    match 'update_interpellations', to: 'admins#update_interpellations', via: 'put'
     match 'update_videos',    to: 'admins#update_videos',    via: 'put'
   end
 

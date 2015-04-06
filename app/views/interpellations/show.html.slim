@@ -1,0 +1,65 @@
+#single-data-page
+  .legislators-group
+    - @interpellation.legislators.each do |l|
+      = render partial: 'shared/legislator_info', locals: { l: l }
+
+  section class="single-page-inner"
+    header
+      h3 = @interpellation.title
+    = social_share_button_tag(@interpellation.title)
+    - @interpellation.legislators.each do |l|
+      = render partial: 'shared/legislator_short_info', locals: { l: l }
+    ul id="sinner-src-list"
+      li 
+        | ivod出處：
+        = link_to @interpellation.ivod_url, @interpellation.ivod_url, target: "_blank"
+      li 
+        | 會議時間：
+        = @interpellation.date.strftime('%Y年%m月%d日')
+      - if @interpellation.time_start or @interpellation.time_end
+        li ivod時間區間：#{@interpellation.time_start.try(:strftime, '%H:%M:%S')}～#{@interpellation.time_end.try(:strftime, '%H:%M:%S')}
+      - else
+        li ivod時間區間：無指定
+      li 
+        | 會議別：
+        = @interpellation.committee.try(:name)
+      li 
+        | 會期：
+        = @interpellation.ad_session.try(:ad).try(:name)
+        = @interpellation.ad_session.try(:name)
+      li 
+        | 會議簡介：
+        br
+        div class="show-more-snippet" = @interpellation.meeting_description
+        a class="show-more" 更多...
+      - unless @interpellation.target.blank?
+        li 
+          | 質詢對象：
+          = @interpellation.target
+    .inner-content-txt
+      = @interpellation.content.try(:html_safe)
+
+    .writer
+      span 資料回報者
+      = @interpellation.user.try(:name)
+      | &nbsp;
+      time class="time"
+        = @interpellation.created_at.strftime('%Y-%m-%d')
+    aside id="writer-say"
+      = @interpellation.comment.try(:html_safe)
+
+    - if user_signed_in? and (@interpellation.user == current_user or current_user.admin?)
+      .edit-block
+        ul class="edit-btn"
+          li = link_to '修改編輯', edit_interpellation_path(@interpellation)
+          li = link_to '刪除', interpellation_path(@interpellation), method: :delete, data: { confirm: '確認要刪除嗎？' }
+    #disqus_thread
+    aside id="aside-info"
+      #accordion
+        - @interpellation.legislators.each do |l|
+          - if l.interpellations.published.created_after(@interpellation.created_at).any?
+            h3 = l.name
+            div
+              ul class="news-info-list"
+                - l.interpellations.published.created_after(@interpellation.created_at).first(5).each do |q|
+                  li = link_to q.title, interpellation_path(q)

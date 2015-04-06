@@ -1,16 +1,16 @@
 require "rails_helper"
 
-describe "Question" do
+describe "Interpellation" do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:another_user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
-  let(:question) { FactoryGirl.create(:question, user: user) }
+  let(:interpellation) { FactoryGirl.create(:interpellation, user: user) }
   let(:committee) { FactoryGirl.create(:committee, name: "內政委員會") }
-  let(:new_question) do
+  let(:new_interpellation) do
     {
-      :title => "new_question_title",
-      :content => "new_question_content",
+      :title => "new_interpellation_title",
+      :content => "new_interpellation_content",
       :legislator_ids => [ FactoryGirl.create(:legislator).id ],
       :ivod_url => 'http://ivod.ly.gov.tw/Play/VOD/77018/300K'
     }
@@ -19,66 +19,66 @@ describe "Question" do
   describe "before login" do
     describe "#index with nothing" do
       it "success" do
-        get "/questions/"
+        get "/interpellations/"
         expect(response).to be_success
       end
     end
 
     describe "#show" do
       it "success" do
-        2.times { FactoryGirl.create(:question) }
-        get "/questions/#{question.id}"
+        2.times { FactoryGirl.create(:interpellation) }
+        get "/interpellations/#{interpellation.id}"
         expect(response).to be_success
       end
     end
 
     describe "#show unpublished" do
       it "failed" do
-        question
-        question.published = false
-        question.save
+        interpellation
+        interpellation.published = false
+        interpellation.save
         expect{
-          get "/questions/#{question.id}"
+          get "/interpellations/#{interpellation.id}"
         }.to raise_error(ActionController::RoutingError)
       end
     end
 
     describe "#new" do
       it "redirect" do
-        get "/questions/new"
+        get "/interpellations/new"
         expect(response).to be_redirect
       end
     end
 
     describe "#edit" do
       it "redirect" do
-        get "/questions/#{question.id}/edit"
+        get "/interpellations/#{interpellation.id}/edit"
         expect(response).to be_redirect
       end
     end
 
     describe "#create" do
       it "redirect" do
-        post "/questions", :question => new_question
+        post "/interpellations", :interpellation => new_interpellation
         expect(response).to be_redirect
       end
     end
 
     describe "#update" do
       it "redirect" do
-        question
+        interpellation
         update_data = { :title => "new_title" }
-        put "/questions/#{question.id}", :question => update_data
+        put "/interpellations/#{interpellation.id}", :interpellation => update_data
         expect(response).to be_redirect
       end
     end
 
     describe "#destroy" do
       it "redirect" do
-        question
+        interpellation
         expect {
-          delete "/questions/#{question.id}"
-        }.to change { Question.count }.by(0)
+          delete "/interpellations/#{interpellation.id}"
+        }.to change { Interpellation.count }.by(0)
         expect(response).to be_redirect
       end
     end
@@ -89,80 +89,80 @@ describe "Question" do
 
     describe "#show unpublished" do
       it "failed" do
-        question
-        question.published = false
-        question.save
+        interpellation
+        interpellation.published = false
+        interpellation.save
         expect{
-          get "/questions/#{question.id}"
+          get "/interpellations/#{interpellation.id}"
         }.to raise_error(ActionController::RoutingError)
       end
     end
 
     describe "#new" do
       it "success" do
-        get "/questions/new"
+        get "/interpellations/new"
         expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
-        get "/questions/#{question.id}/edit"
+        get "/interpellations/#{interpellation.id}/edit"
         expect(response).to be_success
       end
     end
 
     describe "#edit unpublished" do
       it "failed" do
-        question
-        question.published = false
-        question.save
+        interpellation
+        interpellation.published = false
+        interpellation.save
         expect{
-          get "/questions/#{question.id}/edit"
+          get "/interpellations/#{interpellation.id}/edit"
         }.to raise_error(ActionController::RoutingError)
       end
     end
 
     describe "#create" do
       it "success" do
-        new_question[:user_id] = user.id
+        new_interpellation[:user_id] = user.id
         expect {
-          post "/questions", :question => new_question
-        }.to change { Question.count }.by(1)
+          post "/interpellations", :interpellation => new_interpellation
+        }.to change { Interpellation.count }.by(1)
         expect(response).to be_redirect
       end
     end
 
     describe "#update" do
       it "success" do
-        question
+        interpellation
         update_data = { :title => "new_title" }
-        put "/questions/#{question.id}", :question => update_data
+        put "/interpellations/#{interpellation.id}", :interpellation => update_data
         expect(response).to be_redirect
-        question.reload
-        expect(question.title).to match(update_data[:title])
+        interpellation.reload
+        expect(interpellation.title).to match(update_data[:title])
       end
     end
 
     describe "#update unpublished" do
       it "failed" do
-        question
-        question.published = false
-        question.save
+        interpellation
+        interpellation.published = false
+        interpellation.save
         update_data = { :published => true }
-        put "/questions/#{question.id}", :question => update_data
+        put "/interpellations/#{interpellation.id}", :interpellation => update_data
         expect(response).to be_redirect
-        question.reload
-        expect(question.published).to eq(false)
+        interpellation.reload
+        expect(interpellation.published).to eq(false)
       end
     end
 
     describe "#destroy" do
       it "success" do
-        question
+        interpellation
         expect {
-          delete "/questions/#{question.id}"
-        }.to change { Question.count }.by(-1)
+          delete "/interpellations/#{interpellation.id}"
+        }.to change { Interpellation.count }.by(-1)
         expect(response).to be_redirect
       end
     end
@@ -174,24 +174,24 @@ describe "Question" do
 
     describe "#edit" do
       it "redirect" do
-        get "/questions/#{question.id}/edit"
+        get "/interpellations/#{interpellation.id}/edit"
         expect(response).to be_redirect
       end
     end
 
     describe "#update" do
       it "failed" do
-        question
+        interpellation
         update_data = { :title => "new_title" }
-        put "/questions/#{question.id}", :question => update_data
+        put "/interpellations/#{interpellation.id}", :interpellation => update_data
         expect(response).to be_redirect
       end
     end
 
     describe "#destroy" do
       it "failed" do
-        question
-        delete "/questions/#{question.id}"
+        interpellation
+        delete "/interpellations/#{interpellation.id}"
         expect(response).to be_redirect
       end
     end
@@ -203,76 +203,76 @@ describe "Question" do
 
     describe "#show unpublished" do
       it "success" do
-        question.published = false
-        question.save
-        get "/questions/#{question.id}"
+        interpellation.published = false
+        interpellation.save
+        get "/interpellations/#{interpellation.id}"
         expect(response).to be_success
       end
     end
 
     describe "#edit unpublished" do
       it "success" do
-        question.published = false
-        question.save
-        get "/questions/#{question.id}/edit"
+        interpellation.published = false
+        interpellation.save
+        get "/interpellations/#{interpellation.id}/edit"
         expect(response).to be_success
       end
     end
 
     describe "#new" do
       it "success" do
-        get "/questions/new"
+        get "/interpellations/new"
         expect(response).to be_success
       end
     end
 
     describe "#edit" do
       it "success" do
-        get "/questions/#{question.id}/edit"
+        get "/interpellations/#{interpellation.id}/edit"
         expect(response).to be_success
       end
     end
 
     describe "#create" do
       it "success" do
-        new_question[:user_id] = admin.id
+        new_interpellation[:user_id] = admin.id
         expect {
-          post "/questions", :question => new_question
-        }.to change { Question.count }.by(1)
+          post "/interpellations", :interpellation => new_interpellation
+        }.to change { Interpellation.count }.by(1)
         expect(response).to be_redirect
       end
     end
 
     describe "#update" do
       it "success" do
-        question
+        interpellation
         update_data = { :title => "new_title" }
-        put "/questions/#{question.id}", :question => update_data
+        put "/interpellations/#{interpellation.id}", :interpellation => update_data
         expect(response).to be_redirect
-        question.reload
-        expect(question.title).to match(update_data[:title])
+        interpellation.reload
+        expect(interpellation.title).to match(update_data[:title])
       end
     end
 
     describe "#update unpublished" do
       it "success" do
-        question
-        question.published = false
-        question.save
+        interpellation
+        interpellation.published = false
+        interpellation.save
         update_data = { :published => true }
-        put "/questions/#{question.id}", :question => update_data
+        put "/interpellations/#{interpellation.id}", :interpellation => update_data
         expect(response).to be_redirect
-        question.reload
-        expect(question.published).to eq(true)
+        interpellation.reload
+        expect(interpellation.published).to eq(true)
       end
     end
 
     describe "#destroy" do
       it "success" do
-        question
+        interpellation
         expect {
-          delete "/questions/#{question.id}"
-        }.to change { Question.count }.by(-1)
+          delete "/interpellations/#{interpellation.id}"
+        }.to change { Interpellation.count }.by(-1)
         expect(response).to be_redirect
       end
     end

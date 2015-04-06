@@ -6,7 +6,7 @@ class Legislator < ActiveRecord::Base
   has_many :ad_sessions, through: :legislator_committees
   has_many :ccw_legislator_data, through: :legislator_committees
   has_and_belongs_to_many :entries, -> { uniq }
-  has_and_belongs_to_many :questions, -> { uniq }
+  has_and_belongs_to_many :interpellations, -> { uniq }
   has_and_belongs_to_many :videos, -> { uniq }
   validates_presence_of :name
   default_scope { order(name: :asc) }
@@ -24,10 +24,10 @@ class Legislator < ActiveRecord::Base
     joins(:entries).
     order("entries.created_at DESC") }
 
-  scope :order_by_questions_created, -> {
+  scope :order_by_interpellations_created, -> {
     unscoped.
-    joins(:questions).
-    order("questions.created_at DESC") }
+    joins(:interpellations).
+    order("interpellations.created_at DESC") }
 
   scope :order_by_videos_created, -> {
     unscoped.
@@ -36,24 +36,24 @@ class Legislator < ActiveRecord::Base
 
   scope :has_records, -> {
     select("legislators.*, (count(legislators_videos.video_id) +
-      count(legislators_questions.question_id) +
+      count(interpellations_legislators.interpellation_id) +
       count(entries_legislators.entry_id)) AS associations_count").
     joins('LEFT OUTER JOIN "legislators_videos" ON "legislators_videos"."legislator_id" = "legislators"."id"
-      LEFT OUTER JOIN "legislators_questions" ON "legislators_questions"."legislator_id" = "legislators"."id"
+      LEFT OUTER JOIN "interpellations_legislators" ON "interpellations_legislators"."legislator_id" = "legislators"."id"
       LEFT OUTER JOIN "entries_legislators" ON "entries_legislators"."legislator_id" = "legislators"."id"').
     group("legislators.id").
     having("(count(legislators_videos.video_id) +
-      count(legislators_questions.question_id) +
+      count(interpellations_legislators.interpellation_id) +
       count(entries_legislators.entry_id)) > 0").
     order("associations_count DESC") }
 
   scope :has_no_record, -> {
     joins('LEFT OUTER JOIN "legislators_videos" ON "legislators_videos"."legislator_id" = "legislators"."id"
-      LEFT OUTER JOIN "legislators_questions" ON "legislators_questions"."legislator_id" = "legislators"."id"
+      LEFT OUTER JOIN "interpellations_legislators" ON "interpellations_legislators"."legislator_id" = "legislators"."id"
       LEFT OUTER JOIN "entries_legislators" ON "entries_legislators"."legislator_id" = "legislators"."id"').
     group("legislators.id").
     having("(count(legislators_videos.video_id) +
-      count(legislators_questions.question_id) +
+      count(interpellations_legislators.interpellation_id) +
       count(entries_legislators.entry_id)) = 0")
   }
 
@@ -71,12 +71,12 @@ class Legislator < ActiveRecord::Base
     group("legislators.id").
     order("entries_count DESC") }
 
-  scope :order_by_questions_count, -> {
+  scope :order_by_interpellations_count, -> {
     unscoped.
-    select("legislators.*, count(legislators_questions.question_id) AS questions_count").
-    joins(:legislators_questions).
+    select("legislators.*, count(interpellations_legislators.interpellation_id) AS interpellations_count").
+    joins(:interpellations_legislators).
     group("legislators.id").
-    order("questions_count DESC") }
+    order("interpellations_count DESC") }
 
   def party
     if self.now_party_id
@@ -105,7 +105,7 @@ class Legislator < ActiveRecord::Base
   end
 
   def has_record?
-    self.videos.any? or self.entries.any? or self.questions.any?
+    self.videos.any? or self.entries.any? or self.interpellations.any?
   end
 end
 

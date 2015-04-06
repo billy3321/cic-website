@@ -20,9 +20,9 @@
             | 新聞數
             span = l.entries.published.count
         li 
-          = link_to questions_legislator_path(l) do
+          = link_to interpellations_legislator_path(l) do
             | 質詢數
-            span = l.questions.published.count
+            span = l.interpellations.published.count
   aside.legislators-more-info
     ul.lmib-01
       li#lmi-01 = link_to "立委戰力分析", "#"

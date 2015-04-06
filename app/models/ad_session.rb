@@ -1,7 +1,7 @@
 class AdSession < ActiveRecord::Base
   belongs_to :ad
   has_many :entries
-  has_many :questions
+  has_many :interpellations
   has_many :videos
   has_many :ccw_committee_data
   has_one :ccw_citizen_score

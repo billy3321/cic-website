@@ -3,26 +3,26 @@
 
 #news-show-list
   section class="big-news-show"
-    - if @main_question
+    - if @main_interpellation
       header
-        h3 = link_to @main_question.title, question_path(@main_question)
+        h3 = link_to @main_interpellation.title, interpellation_path(@main_interpellation)
       time class="time"
-        = @main_question.created_at.strftime('%Y-%m-%d')
+        = @main_interpellation.created_at.strftime('%Y-%m-%d')
       .inner-content
-        = display_shorter(@main_question.content, 75)
+        = display_shorter(@main_interpellation.content, 75)
     - else
       .blank 
         | 目前尚無資料，
         = link_to "立刻回報！", report_path
-  - if @sub_questions
-    - @sub_questions.each do |e|
+  - if @sub_interpellations
+    - @sub_interpellations.each do |e|
       #news-inner-list
         section class="small-news-show"
           header
-            h3 = link_to e.title, question_path(e)
+            h3 = link_to e.title, interpellation_path(e)
           time class="time"
             = e.created_at.strftime('%Y-%m-%d')
           .inner-content
             = display_shorter(e.content, 75)
 #page
-  = paginate @questions
+  = paginate @interpellations

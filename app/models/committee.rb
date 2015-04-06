@@ -1,6 +1,6 @@
 class Committee < ActiveRecord::Base
   has_many :entries
-  has_many :questions
+  has_many :interpellations
   has_many :videos
   has_many :legislator_committees
   has_many :ccw_committee_data
