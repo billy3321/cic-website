@@ -1,5 +1,4 @@
 [
-  ["立委id", "姓名", "屆次+會期", "委員會", "委員會id", "院會實際出席數 ys_attend_count", "委員會實際出席數\nsc_attend_count", "委員會實際質詢數\nsc_interpellation_count", "主提案第一人案數\nfirst_proposal_count", "非主提案第一人案數\nnot_first_proposal_count", "預算案提案數\nBudgetary_count", "決算審查提案數\n\nAuditing_count", "公民評鑑得分數\ncitizen_score", "陽光公益法案-新立\nnew_sunshine_bills", "陽光公益法案-修正\nmodify_sunshine_bills", "預算刪減案-三讀通過\nbudgetary_deletion_passed", "預算刪減案-重大公益\n\nbudgetary_deletion_impact", "預算刪減案-特殊事蹟\n\nbudgetary_deletion_special", "特殊事蹟\n\nspecial", "利益衝突接露\n\nconflict_expose", "開放旁聽\n\nallow_visitor", "侵害人權法案提案\n\nhuman_rights_infringing_bill", "侵害人權預算案\n\nhuman_rights_infringing_budgetary", "司法案件\n\njudicial_case", "脫序表現\n\ndisorder"],
   ["515", "丁守中", "第8屆第5會期", "經濟", 5, 12, 31, 16, 3, 10, 0, 1, 16.75, 1.2, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ["1745", "姚文智", "第8屆第5會期", "內政", 1, 12, 46, 7, 0, 2, 0, 0, 12.95, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ["1638", "羅淑蕾", "第8屆第5會期", "交通", 9, 12, 16, 17, 3, 7, 0, 0, 14.98, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
