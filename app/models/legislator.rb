@@ -99,7 +99,7 @@ class Legislator < ActiveRecord::Base
     legislator_committees = self.legislator_committees.where(ad_session_id: session_id)
     result = legislator_committees.map{ |l| l.committee }.select{ |c| c unless c.blank? }
     if kind
-      result = result.select{ |c| c if c.kind = kind }
+      result = result.select{ |c| c if c.kind == kind }
     end
     return result
   end
