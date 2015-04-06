@@ -324,11 +324,11 @@ class LegislatorsController < ApplicationController
 
     set_meta_tags({
       title: "#{@legislator.name}投票表決紀錄",
-      description: "你知道#{@legislator.name}贊成反對那些提案嗎?請看#{@legislator.name}的投票表決紀錄。",
+      description: "你知道#{@legislator.name}贊成反對那些提案嗎？請看#{@legislator.name}的投票表決紀錄。",
       keywords: "#{@legislator.name},#{@legislator.name}投票表決紀錄",
       og: {
         type: 'article',
-        description: "你知道#{@legislator.name}贊成反對那些提案嗎?請看#{@legislator.name}的投票表決紀錄。",
+        description: "你知道#{@legislator.name}贊成反對那些提案嗎？請看#{@legislator.name}的投票表決紀錄。",
         title: "#{@legislator.name}投票表決紀錄",
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}",
         site_name: "國會調查兵團"
@@ -349,6 +349,19 @@ class LegislatorsController < ApplicationController
     @ads = @legislator.ads
     @bills, @current_page, @pages, @count, @status = parse_vote_guide_biller_api(@legislator.id, @ad.id, page)
     flash.now[:alert] = "網站解析失敗，請稍後嘗試。" unless @status
+
+    set_meta_tags({
+      title: "#{@legislator.name}法律修正案紀錄",
+      description: "你知道#{@legislator.name}提過哪些法律修正案嗎？請看#{@legislator.name}的法律修正案紀錄。",
+      keywords: "#{@legislator.name},#{@legislator.name}法律修正案紀錄",
+      og: {
+        type: 'article',
+        description: "你知道#{@legislator.name}提過哪些法律修正案嗎？請看#{@legislator.name}的法律修正案紀錄。",
+        title: "#{@legislator.name}法律修正案紀錄",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}",
+        site_name: "國會調查兵團"
+      }
+    })
   end
 
   # GET /legislators/1/candidate
@@ -371,13 +384,13 @@ class LegislatorsController < ApplicationController
     end
 
     set_meta_tags({
-      title: "#{@legislator.name}法律修正案紀錄",
-      description: "你知道#{@legislator.name}提過哪些法律修正案嗎?請看#{@legislator.name}的法律修正案紀錄。",
-      keywords: "#{@legislator.name},#{@legislator.name}法律修正案紀錄",
+      title: "#{@legislator.name}政治獻金紀錄",
+      description: "你知道#{@legislator.name}的政治獻金收入與支出狀況嗎？請看#{@legislator.name}的政治獻金紀錄。",
+      keywords: "#{@legislator.name},#{@legislator.name}政治獻金紀錄,政治獻金",
       og: {
         type: 'article',
-        description: "你知道#{@legislator.name}提過哪些法律修正案嗎?請看#{@legislator.name}的法律修正案紀錄。",
-        title: "#{@legislator.name}法律修正案紀錄",
+        description: "你知道#{@legislator.name}的政治獻金收入與支出狀況嗎？請看#{@legislator.name}的政治獻金紀錄。",
+        title: "#{@legislator.name}政治獻金紀錄",
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}",
         site_name: "國會調查兵團"
       }
@@ -411,6 +424,19 @@ class LegislatorsController < ApplicationController
     else
       @status = true
     end
+
+    set_meta_tags({
+      title: "#{@legislator.name}公督盟#{@ad_session.ad.name}#{@ad_session.name}評鑑",
+      description: "你知道#{@legislator.name}在公督盟立委評鑑的評價嗎？請看#{@legislator.name}#{@ad_session.ad.name}#{@ad_session.name}公督盟評鑑。",
+      keywords: "#{@legislator.name},#{@legislator.name}公督盟評鑑",
+      og: {
+        type: 'article',
+        description: "你知道#{@legislator.name}在公督盟立委評鑑的評價嗎？請看#{@legislator.name}#{@ad_session.ad.name}#{@ad_session.name}公督盟評鑑。",
+        title: "#{@legislator.name}公督盟#{@ad_session.ad.name}#{@ad_session.name}評鑑",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@legislator.image}",
+        site_name: "國會調查兵團"
+      }
+    })
   end
 
   # GET /legislators/search

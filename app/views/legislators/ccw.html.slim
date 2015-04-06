@@ -25,7 +25,10 @@
           h4 出席統計
           .analysis-inner
             .attend-block
-              h5 院會出席率
+              h5
+                | 院會
+                br
+                | 出席率
               .attend-graphic
                 .atg-01.atg
                   .atg-bar
@@ -73,7 +76,10 @@
                     | 出席數平均數
                   span = @ys_committee_datum.actually_average_attend_count
             .attend-block
-              h5 #{@sc_committee.name}出席率
+              h5
+                = @sc_committee.name
+                br
+                | 出席率
               .attend-graphic
                 .atg-01.atg
                   .atg-bar
@@ -93,7 +99,7 @@
                     .atg-color-02 style="height: #{get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.should_attend_count)};"
                       span = get_percentage(@sc_committee_datum.actually_average_attend_count, @sc_committee_datum.should_attend_count)
                   p.atg-txt
-                    | 所有委員
+                    | 此委員會
                     br
                     | 出席率平均數
                   p
@@ -104,7 +110,7 @@
               ul.atg-number
                 li
                   p 
-                    = @sc_committee.name
+                    | 此委員會
                     br
                     | 應出席數
                   span = @sc_committee_datum.should_attend_count
@@ -116,12 +122,15 @@
                   span = @ccw_legislator_datum.sc_attend_count
                 li
                   p 
-                    | 所有委員
+                    | 此委員會
                     br
                     | 出席數平均數
                   span = @sc_committee_datum.actually_average_attend_count
             .attend-block
-              h5 #{@sc_committee.name}質詢率
+              h5
+                = @sc_committee.name
+                br
+                | 質詢率
               .attend-graphic
                 .atg-01.atg
                   .atg-bar
@@ -141,7 +150,7 @@
                     .atg-color-02 style="height: #{get_percentage(@sc_committee_datum.actually_average_interpellation_count, @sc_committee_datum.avaliable_interpellation_count)};"
                       span = get_percentage(@sc_committee_datum.actually_average_interpellation_count, @sc_committee_datum.avaliable_interpellation_count)
                   p.atg-txt
-                    | 所有委員
+                    | 此委員會
                     br
                     | 質詢率平均數
                   p
@@ -152,7 +161,7 @@
               ul.atg-number
                 li
                   p 
-                    = @sc_committee.name
+                    | 此委員會
                     br
                     | 應質詢數
                   span = @sc_committee_datum.avaliable_interpellation_count
@@ -164,8 +173,7 @@
                   span = @ccw_legislator_datum.sc_interpellation_count
                 li
                   p
-                    = @sc_committee.name
-                    | 委員
+                    | 此委員會
                     br
                     | 質詢數平均數
                   span = @sc_committee_datum.actually_average_interpellation_count
@@ -280,10 +288,10 @@
                   h5 特殊事蹟
                   i = @ccw_legislator_datum.special
                 li
-                  h5 特殊事蹟
+                  h5 利益衝突迴避揭露
                   i = @ccw_legislator_datum.conflict_expose
                 li
-                  h5 特殊事蹟
+                  h5 開放旁聽
                   i = @ccw_legislator_datum.allow_visitor
         .analysis-sblock
           h4
