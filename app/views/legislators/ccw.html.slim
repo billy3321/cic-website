@@ -6,19 +6,23 @@
       header
         h3 立委戰力分析
         .dropdown
-          button#menu1.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown"
-            = @ad_session.ad.name
-            i = @ad_session.name
-          ul.dropdown-menu role="menu" aria-labelledby="menu1"
-            - @ad_sessions.each do |a|
-              li role="presentation"
-                = link_to url_for(params.merge({ad_session: a.id})) do
-                  = a.ad.name
-                  i = a.name
+          - if @ad_session
+            button#menu1.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown"
+              = @ad_session.ad.name
+              i = @ad_session.name
+            ul.dropdown-menu role="menu" aria-labelledby="menu1"
+              - @ad_sessions.each do |a|
+                li role="presentation"
+                  = link_to url_for(params.merge({ad_session: a.id})) do
+                    = a.ad.name
+                    i = a.name
         .data-src
           | 原始資料來源：
-          = link_to "公民監督國會聯盟", @ccw_citizen_score.ccw_link, target: "_blank"
-    = social_share_button_tag("#{@legislator.name}投票表決紀錄")
+          - if @ccw_citizen_score
+            = link_to "公民監督國會聯盟", @ccw_citizen_score.ccw_link, target: "_blank"
+          - else
+            = link_to "公民監督國會聯盟", "http://ccw.org.tw", target: "_blank"
+    = social_share_button_tag("#{@legislator.name}公督盟評鑑")
     .inner-content-txt
       - if @status
         .analysis-sblock
@@ -314,7 +318,7 @@
                 h5 脫序表現（院內與院外）
                 i = @ccw_legislator_datum.disorder
       - else
-        .api-dead-block 目前這位委員的公督盟評鑑資料尚未取得，敬請見諒！
+        .api-dead-block 目前#{@legislator.name}的公督盟評鑑資料尚未取得，敬請見諒！
 
     .reply-message
       #disqus_thread
