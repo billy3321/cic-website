@@ -394,6 +394,11 @@ class LegislatorsController < ApplicationController
     else
       @ad_session = @legislator.ad_sessions.has_ccw_data.last
     end
+    if @ad_session.blank?
+      @status = false
+      flash.now[:alert] = "目前尚未輸入相關資料"
+      return
+    end
     @ccw_legislator_datum = @legislator.get_session_ccw_data(@ad_session.id).first
     @sc_committee = @legislator.get_session_committee(@ad_session.id, 'sc').first
     @ys_committee = Committee.find(19)
