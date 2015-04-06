@@ -11,29 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405112606) do
+ActiveRecord::Schema.define(version: 20150406034445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ad_sessions", force: true do |t|
-    t.string   "name"
-    t.integer  "ad_id"
-    t.date     "date_start"
-    t.date     "date_end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "session"
-    t.boolean  "regular"
+    t.string  "name"
+    t.integer "ad_id"
+    t.date    "date_start"
+    t.date    "date_end"
+    t.integer "session"
+    t.boolean "regular"
   end
 
   create_table "ads", force: true do |t|
-    t.string   "name"
-    t.date     "vote_date"
-    t.date     "term_start"
-    t.date     "term_end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
+    t.date   "vote_date"
+    t.date   "term_start"
+    t.date   "term_end"
   end
 
   create_table "ccw_citizen_scores", force: true do |t|
@@ -93,10 +89,8 @@ ActiveRecord::Schema.define(version: 20150405112606) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "committees", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "kind"
+    t.string "name"
+    t.string "kind"
   end
 
   create_table "counties", force: true do |t|
@@ -116,13 +110,11 @@ ActiveRecord::Schema.define(version: 20150405112606) do
   add_index "districts_elections", ["district_id", "election_id"], name: "index_districts_elections_on_district_id_and_election_id", unique: true, using: :btree
 
   create_table "elections", force: true do |t|
-    t.integer  "ad_id"
-    t.integer  "legislator_id"
-    t.integer  "party_id"
-    t.string   "constituency"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "county_id"
+    t.integer "ad_id"
+    t.integer "legislator_id"
+    t.integer "party_id"
+    t.string  "constituency"
+    t.integer "county_id"
   end
 
   create_table "entries", force: true do |t|
@@ -152,71 +144,7 @@ ActiveRecord::Schema.define(version: 20150405112606) do
 
   add_index "entries_legislators", ["legislator_id", "entry_id"], name: "index_entries_legislators_on_legislator_id_and_entry_id", unique: true, using: :btree
 
-  create_table "keywords", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "keywords_questions", id: false, force: true do |t|
-    t.integer "keyword_id"
-    t.integer "question_id"
-  end
-
-  add_index "keywords_questions", ["keyword_id", "question_id"], name: "index_keywords_questions_on_keyword_id_and_question_id", unique: true, using: :btree
-
-  create_table "keywords_videos", id: false, force: true do |t|
-    t.integer "keyword_id"
-    t.integer "video_id"
-  end
-
-  add_index "keywords_videos", ["keyword_id", "video_id"], name: "index_keywords_videos_on_keyword_id_and_video_id", unique: true, using: :btree
-
-  create_table "legislator_committees", force: true do |t|
-    t.integer "legislator_id"
-    t.integer "ad_session_id"
-    t.integer "committee_id"
-    t.boolean "convener"
-  end
-
-  create_table "legislators", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "image"
-    t.boolean  "in_office"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "now_party_id"
-    t.string   "fb_link"
-    t.string   "wiki_link"
-    t.string   "musou_link"
-    t.string   "ccw_link"
-    t.string   "ivod_link"
-  end
-
-  create_table "legislators_questions", id: false, force: true do |t|
-    t.integer "legislator_id"
-    t.integer "question_id"
-  end
-
-  add_index "legislators_questions", ["legislator_id", "question_id"], name: "index_legislators_questions_on_legislator_id_and_question_id", unique: true, using: :btree
-
-  create_table "legislators_videos", id: false, force: true do |t|
-    t.integer "legislator_id"
-    t.integer "video_id"
-  end
-
-  add_index "legislators_videos", ["legislator_id", "video_id"], name: "index_legislators_videos_on_legislator_id_and_video_id", unique: true, using: :btree
-
-  create_table "parties", force: true do |t|
-    t.string   "name"
-    t.string   "image"
-    t.string   "abbreviation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "questions", force: true do |t|
+  create_table "interpellations", force: true do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
@@ -233,6 +161,66 @@ ActiveRecord::Schema.define(version: 20150405112606) do
     t.boolean  "published",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "interpellations_keywords", id: false, force: true do |t|
+    t.integer "keyword_id"
+    t.integer "interpellation_id"
+  end
+
+  add_index "interpellations_keywords", ["interpellation_id", "keyword_id"], name: "interpellations_keywords_index", unique: true, using: :btree
+
+  create_table "interpellations_legislators", id: false, force: true do |t|
+    t.integer "legislator_id"
+    t.integer "interpellation_id"
+  end
+
+  add_index "interpellations_legislators", ["interpellation_id", "legislator_id"], name: "interpellations_legislators_index", unique: true, using: :btree
+
+  create_table "keywords", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "keywords_videos", id: false, force: true do |t|
+    t.integer "keyword_id"
+    t.integer "video_id"
+  end
+
+  add_index "keywords_videos", ["keyword_id", "video_id"], name: "index_keywords_videos_on_keyword_id_and_video_id", unique: true, using: :btree
+
+  create_table "legislator_committees", force: true do |t|
+    t.integer "legislator_id"
+    t.integer "ad_session_id"
+    t.integer "committee_id"
+    t.boolean "convener"
+  end
+
+  create_table "legislators", force: true do |t|
+    t.string  "name"
+    t.text    "description"
+    t.string  "image"
+    t.boolean "in_office"
+    t.integer "now_party_id"
+    t.string  "fb_link"
+    t.string  "wiki_link"
+    t.string  "musou_link"
+    t.string  "ccw_link"
+    t.string  "ivod_link"
+  end
+
+  create_table "legislators_videos", id: false, force: true do |t|
+    t.integer "legislator_id"
+    t.integer "video_id"
+  end
+
+  add_index "legislators_videos", ["legislator_id", "video_id"], name: "index_legislators_videos_on_legislator_id_and_video_id", unique: true, using: :btree
+
+  create_table "parties", force: true do |t|
+    t.string "name"
+    t.string "image"
+    t.string "abbreviation"
   end
 
   create_table "users", force: true do |t|
