@@ -1740,7 +1740,8 @@ margin-left:4%;}
 .attend-block h5{
 	text-align:center;
 	font-size:24px;
-	padding:0 0 30px 0;}
+	padding:0 0 30px 0;
+	line-height:1.2em;}
 .attend-graphic{
 	border:3px solid #cfcfcf;
 	border-radius:10px;
@@ -2060,6 +2061,14 @@ clear:none;}
 #video-show-list.all-list .small-video-show .inner-content{
 	display:none;
 }
+.attend-block h5{
+	min-height:2.6em;
+	width:80%;
+	margin:auto;}
+.attend-block h5 br{
+	display:none;}
+.attend-block:nth-child(1) h5 br{
+	display:block;}
 	}
 @media only screen and (max-width: 1024px){
 	.analysis-inner{
@@ -2390,6 +2399,7 @@ padding-bottom:15px;}
 	padding:30px 0 0 0;}
 .plus-03 ul h5{
 	height:40px;}
+
 }
 
 
