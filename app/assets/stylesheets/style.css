@@ -1357,24 +1357,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	background:url(../images/lmi-03.png) no-repeat left center;}
 #lmi-04 a{
 	background:url(../images/lmi-04.png) no-repeat left center;}
+.legislators-more-info .lmib-02 li a{
+	padding:0px;
+	width:28px;
+	height:1px;
+	padding-top:50px;
+	overflow:hidden;}
+
+.legislators-more-info li{
+	float:left;
+	}
 #lmi-05 a{
-	background:url(../images/lmi-05.png) no-repeat left center;}
+	background:url(../images/outlink-01.png) no-repeat center bottom;}
 #lmi-06 a{
-	background:url(../images/lmi-06.png) no-repeat left center;}
+	background:url(../images/outlink-02.png) no-repeat center bottom;}
 #lmi-07 a{
-	background:url(../images/lmi-07.png) no-repeat left center;}
+	background:url(../images/outlink-03.png) no-repeat center bottom;}
 #lmi-08 a{
-	background:url(../images/lmi-08.png) no-repeat left center;}
+	background:url(../images/outlink-04.png) no-repeat center bottom;}
+#lmi-09 a{
+	width:40px;
+	background:url(../images/outlink-05.png) no-repeat center bottom;}
+#lmi-10 a{
+	width:45px;
+	background:url(../images/outlink-06.png) no-repeat center bottom;}
+#lmi-11 a{
+	width:47px;
+	background:url(../images/outlink-07.png) no-repeat center bottom;}
 .legislators-more-info{
 	margin:10px 0 40px 0;}
 .legislators-more-info a{
 	display:block;}
+.lmib-01,.lmib-02{
+	overflow:hidden;}
+.lmib-01 li{
+	width:50%;}
+.lmib-02 li{
+	margin:0 8px 0 0;}
 .lmib-01{
-	float:left;
-	margin:0 0 0 10%;}
-.lmib-02{
-	float:right;
-	margin:0 10% 0 0;}
+	margin:0 0 0 13%;}
 .vtitle-set{
 	height:70px;
 	font-size:15px;}
@@ -1407,7 +1428,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	position:absolute;
 	right:0px;
 	top:-4px;
-	font-size:15px;}
+	font-size:15px;
+	width:320px;}
+.vote-ly-g0v .legislators-more-info h6{
+	display:none;}
 .vote-ly-g0v .lmib-01,.vote-ly-g0v .lmib-02{
 	float:left;
 	margin:0 20px 0 0;	
@@ -1716,7 +1740,8 @@ margin-left:4%;}
 .attend-block h5{
 	text-align:center;
 	font-size:24px;
-	padding:0 0 30px 0;}
+	padding:0 0 30px 0;
+	line-height:1.2em;}
 .attend-graphic{
 	border:3px solid #cfcfcf;
 	border-radius:10px;
@@ -2000,8 +2025,7 @@ float:left;}
 	}
 .lmib-01{
 	margin:0 0 0 5%;}
-.lmib-02{
-	margin:0 5% 0 0;}
+
 .local-data li span{
 	display:block;}
 .vote-ly-g0v .local-data li span{
@@ -2037,6 +2061,14 @@ clear:none;}
 #video-show-list.all-list .small-video-show .inner-content{
 	display:none;
 }
+.attend-block h5{
+	min-height:2.6em;
+	width:80%;
+	margin:auto;}
+.attend-block h5 br{
+	display:none;}
+.attend-block:nth-child(1) h5 br{
+	display:block;}
 	}
 @media only screen and (max-width: 1024px){
 	.analysis-inner{
@@ -2118,9 +2150,13 @@ background-size:40%;
 	margin:0 10px 0 0;}
 .legislators-more-info{
 	position:absolute;
-	right:0px;
+	right:-10px;
 	top:-4px;
-	font-size:15px;}
+	font-size:15px;
+	width:320px;
+	}
+.legislators-more-info h6{
+	display:none;}
 .lmib-01,.lmib-02{
 	float:left;
 	margin:0 20px 0 0;	
@@ -2363,6 +2399,7 @@ padding-bottom:15px;}
 	padding:30px 0 0 0;}
 .plus-03 ul h5{
 	height:40px;}
+
 }
 
 
@@ -2543,8 +2580,20 @@ margin:0 10px 0 0;
 	width:76%;}
 #video-show-list.all-list .small-video-show .inner-content{
 	display:none;}
+.legislators-more-info,.vote-ly-g0v .legislators-more-info{
+	width:130px;
+	}
+.lmib-01 li{
+	float:none;
+	width:auto;}
+.legislators-block{
+	padding-bottom:60px;}
 .lmib-02{
-	display:none;}
+	position:absolute;
+	right:-10px;
+	top:180px;
+	width:300px;}
+
 }
 @media only screen and (max-width: 640px){
 #logo{
@@ -2983,12 +3032,16 @@ float: none;
 	min-width:100px;}
 .edition,.lmib-02{
 	display:none;}
+.legislators-block{
+	padding:0px;}
 .lmib-01 li{
 	width:auto;
 	margin-left:18px;}
 .view-proposal,.order-time{
 	float:none;
 	}
+.legislators-more-info,.vote-ly-g0v .legislators-more-info{
+	width:auto;}
 }	
 
 @media only screen and (max-width: 360px){
