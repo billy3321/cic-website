@@ -1360,9 +1360,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 .legislators-more-info .lmib-02 li a{
 	padding:0px;
 	width:28px;
-	height:1px;
-	padding-top:50px;
-	overflow:hidden;}
+	height:51px;
+	overflow:hidden;
+	text-indent:-1000px;
+	display:block;}
 
 .legislators-more-info li{
 	float:left;
