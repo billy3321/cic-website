@@ -1150,9 +1150,9 @@ overflow:hidden;}
 .delete-id h3{
 	margin:0 0 7px 0;}
 
-.form-list .question_time_start,.form-list .question_time_end{
+.form-list .interpellation_time_start,.form-list .interpellation_time_end{
 	display:inline-block;}
-.form-list .question_time_start input,.form-list .question_time_end input{
+.form-list .interpellation_time_start input,.form-list .interpellation_time_end input{
 	width:110px;}
 .form-list .video_time_start,.form-list .video_time_end{
 	display:inline-block;}
