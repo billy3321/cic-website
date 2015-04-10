@@ -1201,7 +1201,7 @@ width:auto;}
 	text-decoration:underline;}
 	/* 收缩展开效果 */
 .text{line-height:1.6em;letter-spacing:1px;padding:0 6px;color:#eee;}
-.box h3{padding:0 0 0.5em 0;line-height:22px;font-weight:bold;
+.box h3{padding:0 0 0.5em 0;line-height:1.3em;font-weight:bold;
 cursor:pointer;}
 .box{position:relative;border-bottom:1px dotted #8b8b8b;padding:10px;}
 .text img{
@@ -2541,6 +2541,17 @@ width:100%;
 overflow:hidden;}
 #single-data-page .legislators-group{
 	display:none;}
+#secn01.txt-nav li:nth-child(4){
+	border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+	}
+#secn01.txt-nav li:nth-child(5){
+	border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+clear:left;
+margin:10px 0 0 0;}
+#secn01.txt-nav li:nth-child(6){
+margin:10px 0 0 -1px;}
 }
 
 @media only screen and (max-width: 720px){
@@ -2914,6 +2925,32 @@ padding-top:19.5%;}
 #secn01 li{
 width:32.5%;
 text-align:center;}
+#secn01.txt-nav{
+	margin-left:0px;}
+
+#secn01.txt-nav li a{
+	line-height:1.2em;
+	height:40px;}
+#secn01.txt-nav li:nth-child(1){
+	border-bottom-left-radius: 0px;}
+#secn01.txt-nav li:nth-child(3){
+	border-top-right-radius: 5px;}
+#secn01.txt-nav li:nth-child(4){
+	border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+
+border-bottom-left-radius: 5px;
+margin:-1px 0 0 0;
+}
+#secn01.txt-nav li:nth-child(5){
+	border-top-left-radius: 0px;
+border-bottom-left-radius: 0px;
+clear:none;
+margin:-1px 0 0 -1px;}
+#secn01.txt-nav li:nth-child(6){
+margin:-1px 0 0 -1px;
+border-top-right-radius: 0px;}
+
 	#secn02 li a{
 padding:3px 8px 7px 8px;
 margin-bottom:10px;
