@@ -164,7 +164,7 @@ class EntriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
       if user_signed_in? and current_user.admin?
-        if @entry.new_record?
+        if @entry.blank? or @entry.new_record?
           params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
             :user_id, :date, :source_name, :source_url, :published)
         else

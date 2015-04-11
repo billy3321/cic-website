@@ -169,7 +169,7 @@ class InterpellationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def interpellation_params
       if user_signed_in? and current_user.admin?
-        if @interpellation.new_record?
+        if @interpellation.blank? or @interpellation.new_record?
           params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published, :time_start, :time_end, :target)
         else

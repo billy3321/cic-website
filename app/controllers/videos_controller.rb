@@ -170,7 +170,7 @@ class VideosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
       if user_signed_in? and current_user.admin?
-        if @video.new_record?
+        if @video.blank? or @video.new_record?
           params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
             :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
             :source_name, :published, :time_start, :time_end, :target, :video_type)
