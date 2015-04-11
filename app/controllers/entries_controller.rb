@@ -164,8 +164,13 @@ class EntriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
       if user_signed_in? and current_user.admin?
-        params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-          :user_id, :date, :source_name, :source_url, :published)
+        if @entry.new_record?
+          params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+            :user_id, :date, :source_name, :source_url, :published)
+        else
+          params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+            :date, :source_name, :source_url, :published)
+        end
       else
         params.require(:entry).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
           :user_id, :date, :source_name, :source_url)
@@ -173,10 +178,12 @@ class EntriesController < ApplicationController
     end
 
     def set_ip
-      if request.env['HTTP_CF_CONNECTING_IP']
-        @entry.user_ip = request.env['HTTP_CF_CONNECTING_IP']
-      else
-        @entry.user_ip = request.env['REMOTE_ADDR']
+      if not current_user.admin? or @entry.new_record?
+        if request.env['HTTP_CF_CONNECTING_IP']
+          @entry.user_ip = request.env['HTTP_CF_CONNECTING_IP']
+        else
+          @entry.user_ip = request.env['REMOTE_ADDR']
+        end
       end
     end
 

@@ -170,9 +170,15 @@ class VideosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
       if user_signed_in? and current_user.admin?
-        params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
-          :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
-          :source_name, :published, :time_start, :time_end, :target, :video_type)
+        if @video.new_record?
+          params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+            :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
+            :source_name, :published, :time_start, :time_end, :target, :video_type)
+        else
+          params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+            :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
+            :source_name, :published, :time_start, :time_end, :target, :video_type)
+        end
       else
         params.require(:video).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :youtube_url, :source_url,
@@ -181,10 +187,12 @@ class VideosController < ApplicationController
     end
 
     def set_ip
-      if request.env['HTTP_CF_CONNECTING_IP']
-        @video.user_ip = request.env['HTTP_CF_CONNECTING_IP']
-      else
-        @video.user_ip = request.env['REMOTE_ADDR']
+      if not current_user.admin? or @video.new_record?
+        if request.env['HTTP_CF_CONNECTING_IP']
+          @video.user_ip = request.env['HTTP_CF_CONNECTING_IP']
+        else
+          @video.user_ip = request.env['REMOTE_ADDR']
+        end
       end
     end
 

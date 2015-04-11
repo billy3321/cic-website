@@ -169,8 +169,13 @@ class InterpellationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def interpellation_params
       if user_signed_in? and current_user.admin?
-        params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+        if @interpellation.new_record?
+          params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published, :time_start, :time_end, :target)
+        else
+          params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          :ivod_url, :committee_id, :meeting_description, :date, :comment, :published, :time_start, :time_end, :target)
+        end
       else
         params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :time_start, :time_end, :target)
@@ -178,10 +183,12 @@ class InterpellationsController < ApplicationController
     end
 
     def set_ip
-      if request.env['HTTP_CF_CONNECTING_IP']
-        @interpellation.user_ip = request.env['HTTP_CF_CONNECTING_IP']
-      else
-        @interpellation.user_ip = request.env['REMOTE_ADDR']
+      if not current_user.admin? or @interpellation.new_record?
+        if request.env['HTTP_CF_CONNECTING_IP']
+          @interpellation.user_ip = request.env['HTTP_CF_CONNECTING_IP']
+        else
+          @interpellation.user_ip = request.env['REMOTE_ADDR']
+        end
       end
     end
 
