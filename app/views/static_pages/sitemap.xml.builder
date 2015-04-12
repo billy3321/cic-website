@@ -149,6 +149,34 @@ xml.tag! 'urlset', "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
       xml.changefreq "daily"
       xml.priority 0.9
     end
+
+    xml.url do
+      xml.loc votes_legislator_url(legislator)
+      xml.lastmod legislator.updated_at.to_date
+      xml.changefreq "daily"
+      xml.priority 0.9
+    end
+
+    xml.url do
+      xml.loc bills_legislator_url(legislator)
+      xml.lastmod legislator.updated_at.to_date
+      xml.changefreq "daily"
+      xml.priority 0.9
+    end
+
+    xml.url do
+      xml.loc candidate_legislator_url(legislator)
+      xml.lastmod legislator.updated_at.to_date
+      xml.changefreq "yearly"
+      xml.priority 0.9
+    end
+
+    xml.url do
+      xml.loc ccw_legislator_url(legislator)
+      xml.lastmod legislator.updated_at.to_date
+      xml.changefreq "monthly"
+      xml.priority 0.9
+    end
   end
  
   @entries.each do |entry|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406034445) do
+ActiveRecord::Schema.define(version: 20150412024103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,16 +198,17 @@ ActiveRecord::Schema.define(version: 20150406034445) do
   end
 
   create_table "legislators", force: true do |t|
-    t.string  "name"
-    t.text    "description"
-    t.string  "image"
-    t.boolean "in_office"
-    t.integer "now_party_id"
-    t.string  "fb_link"
-    t.string  "wiki_link"
-    t.string  "musou_link"
-    t.string  "ccw_link"
-    t.string  "ivod_link"
+    t.string   "name"
+    t.text     "description"
+    t.string   "image"
+    t.boolean  "in_office"
+    t.integer  "now_party_id"
+    t.string   "fb_link"
+    t.string   "wiki_link"
+    t.string   "musou_link"
+    t.string   "ccw_link"
+    t.string   "ivod_link"
+    t.datetime "updated_at",   default: '2015-04-12 02:43:37', null: false
   end
 
   create_table "legislators_videos", id: false, force: true do |t|
