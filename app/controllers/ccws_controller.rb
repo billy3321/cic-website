@@ -10,13 +10,16 @@ class CcwsController < ApplicationController
           ad_session: ad_session,
           ccw: {
             citizen_score: ad_session.ccw_citizen_score,
-            committees: ad_session.ccw_committee_data.to_json(
+            committees: JSON.parse(
+              ad_session.ccw_committee_data.to_json(
                 include: [:committee ]
-              ),
-            legislators: ad_session.ccw_legislator_data.to_json(
+              )
+            ),
+            legislators: JSON.parse(
+              ad_session.ccw_legislator_data.to_json(
                 include: {legislator: {except: [:updated_at]}}
               )
-            }
+            )}
           }
         @ccws << result
       end
@@ -45,11 +48,15 @@ class CcwsController < ApplicationController
         ad_session: @ad_session,
         ccw: {
           citizen_score: @ad_session.ccw_citizen_score,
-          committees: @ad_session.ccw_committee_data.to_json(
-              include: [:committee ]
+          committees: JSON.parse(
+            @ad_session.ccw_committee_data.to_json(
+                include: [:committee ]
+              )
             ),
-          legislators: @ad_session.ccw_legislator_data.to_json(
-              include: {legislator: {except: [:updated_at]}}
+          legislators: JSON.parse(
+            @ad_session.ccw_legislator_data.to_json(
+                include: {legislator: {except: [:updated_at]}}
+              )
             )
           },
         callback: params[:callback]
