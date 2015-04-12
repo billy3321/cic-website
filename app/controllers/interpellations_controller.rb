@@ -8,9 +8,9 @@ class InterpellationsController < ApplicationController
   def index
     if params[:format] == "json"
       if params[:query]
-        @interpellations = Interpellation.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations = Interpellation.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.offset(params[:offset]).limit(params[:limit])
-        @interpellations_count = Interpellation.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations_count = Interpellation.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.count
       else
         @interpellations = Interpellation.published.offset(params[:offset]).limit(params[:limit])

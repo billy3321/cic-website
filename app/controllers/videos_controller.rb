@@ -8,9 +8,9 @@ class VideosController < ApplicationController
   def index
     if params[:format] == "json"
       if params[:query]
-        @videos = Video.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @videos = Video.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.offset(params[:offset]).limit(params[:limit])
-        @videos_count = Video.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @videos_count = Video.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.count
       else
         @videos = Video.published.offset(params[:offset]).limit(params[:limit])

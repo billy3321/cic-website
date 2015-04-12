@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :entries
   resources :interpellations
   resources :videos
+  resources :ccws, only: [:show, :index]
   scope '/admin' do
     resources :users, except: [:show, :new, :create] do
       member do

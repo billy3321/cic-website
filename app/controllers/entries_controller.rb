@@ -8,9 +8,9 @@ class EntriesController < ApplicationController
   def index
     if params[:format] == "json"
       if params[:query]
-        @entries = Entry.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @entries = Entry.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .published.offset(params[:offset]).limit(params[:limit])
-        @entries_count = Entry.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @entries_count = Entry.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .published.count
       else
         @entries = Entry.published.offset(params[:offset]).limit(params[:limit])
