@@ -195,6 +195,10 @@ legislator_links = JSON.parse(File.read(legislators_links_filepath))
 legislators.each do |l|
   legislator = Legislator.new()
   legislator.id = l['id']
+  if l['id'] == 1747
+    # 徐欣瑩現在屬於民國黨
+    legislator.now_party_id = 7
+  end
   legislator.name = l['name']
   legislator.in_office = l['in_office']
   legislator.image = l['id'].to_s + '.jpg'
