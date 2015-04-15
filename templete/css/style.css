@@ -1517,6 +1517,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1a1a1', end
 	right:100%;}
 .gp-bar{
 	overflow:hidden;
+	clear:both;
 	}
 .gp-bar p{
 	float:left;
@@ -1993,6 +1994,28 @@ float:left;}
 .subtraction-list.plus-list-nt li h5{
 	padding:5px 7% 20px 7%;}
 .subtraction-list.plus-list-nt li i{color:#f20000;font-size: 32px;padding: 8px 0px;}
+.committee-list{
+	overflow:hidden;
+	clear:both;
+	}
+.inner-content-txt .committee-list{
+	line-height:1em;}
+.committee-list li{
+	float:left;
+	width:8%;
+	}
+.inner-content-txt .committee-list li{
+	list-style:none;
+	margin:0px;}
+.committee-list li em{
+	font-style:normal;
+	display:block;
+	text-align:center;
+	font-size:13px;}
+.committee-list li img{
+	width:100%;
+	display:block;
+	}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
