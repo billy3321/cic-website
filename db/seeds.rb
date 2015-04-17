@@ -265,7 +265,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!(CcwCitizenScore.table_name)
 Ad.all.each do |ad|
   if [8].include? ad.id
     ad.ad_sessions.each do |ad_session|
-      if ["第4會期", "第5會期"].include? ad_session.name
+      if ["第4會期", "第5會期", "第6會期"].include? ad_session.name
         ccw_committee_data_filepath = Rails.root.join('db', 'data', 'ccw', "#{ad.id}-#{ad_session.session}_committee_data.json")
         ccw_committee_data = JSON.parse(File.read(ccw_committee_data_filepath))
         ccw_committee_data.each do |c|
