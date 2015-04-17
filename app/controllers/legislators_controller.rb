@@ -442,6 +442,18 @@ class LegislatorsController < ApplicationController
   # GET /legislators/search
   def search
     @q = Election.search(params[:q])
+
+    set_meta_tags({
+      title: "找立委",
+      description: "你知道現任立委是誰嗎？想看看各黨立委有誰嗎？趕快來查查他們在立法院的表現吧！",
+      keywords: "找立委,區域立委,不分區立委",
+      og: {
+        type: 'article',
+        description: "你知道現任立委是誰嗎？想看看各黨立委有誰嗎？趕快來查查他們在立法院的表現吧！",
+        title: "找立委",
+        site_name: "國會調查兵團"
+      }
+    })
   end
 
   # GET /legislators/1/result
