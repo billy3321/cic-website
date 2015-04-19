@@ -20,4 +20,8 @@ class AdSession < ActiveRecord::Base
   def self.current_ad_session(date)
     where(["date_start <= ? AND ( date_end >= ? OR date_end IS NULL )", date, date ])
   end
+
+  def sc_committees
+    committees.where(kind: 'sc').distinct
+  end
 end

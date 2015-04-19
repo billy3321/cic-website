@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412024103) do
+ActiveRecord::Schema.define(version: 20150419093047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,16 +42,16 @@ ActiveRecord::Schema.define(version: 20150412024103) do
   create_table "ccw_committee_data", force: true do |t|
     t.integer "ad_session_id"
     t.integer "committee_id"
-    t.integer "should_attend_count"
-    t.float   "actually_average_attend_count"
+    t.integer "should_attendance"
+    t.float   "actually_average_attendance"
     t.integer "avaliable_interpellation_count"
     t.float   "actually_average_interpellation_count"
   end
 
   create_table "ccw_legislator_data", force: true do |t|
     t.integer "legislator_committee_id"
-    t.integer "ys_attend_count"
-    t.integer "sc_attend_count"
+    t.integer "ys_attendance"
+    t.integer "sc_attendance"
     t.integer "sc_interpellation_count"
     t.integer "first_proposal_count"
     t.integer "not_first_proposal_count"
