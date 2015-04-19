@@ -284,7 +284,7 @@ Ad.all.each do |ad|
           ccw_legislator_datum = CcwLegislatorDatum.new
           legislator_committee = LegislatorCommittee.where(legislator_id: c[0].to_i, ad_session_id: ad_session.id, committee_id: c[4]).first
           ccw_legislator_datum.legislator_committee = legislator_committee
-          ccw_legislator_datum.ys_attendance = c[5]
+          ccw_legislator_datum.yc_attendance = c[5]
           ccw_legislator_datum.sc_attendance = c[6]
           ccw_legislator_datum.sc_interpellation_count = c[7]
           ccw_legislator_datum.first_proposal_count = c[8]

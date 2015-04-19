@@ -36,8 +36,8 @@
               .attend-graphic
                 .atg-01.atg
                   .atg-bar
-                    .atg-color-01 style="height: #{get_percentage(@ccw_legislator_datum.ys_attendance, @ys_committee_datum.should_attendance)};"
-                      span = get_percentage(@ccw_legislator_datum.ys_attendance, @ys_committee_datum.should_attendance)
+                    .atg-color-01 style="height: #{get_percentage(@ccw_legislator_datum.yc_attendance, @ys_committee_datum.should_attendance)};"
+                      span = get_percentage(@ccw_legislator_datum.yc_attendance, @ys_committee_datum.should_attendance)
                   p.atg-txt
                     = @legislator.name
                     br
@@ -45,7 +45,7 @@
                   p
                     span = image_tag('atg-color-01.png', alt: "")
                     span.this-color 
-                      = get_percentage(@ccw_legislator_datum.ys_attendance, @ys_committee_datum.should_attendance, false)
+                      = get_percentage(@ccw_legislator_datum.yc_attendance, @ys_committee_datum.should_attendance, false)
                       i %
                 .atg-02.atg
                   .atg-bar
@@ -72,7 +72,7 @@
                     = @legislator.name
                     br
                     | 實際出席數
-                  span = @ccw_legislator_datum.ys_attendance
+                  span = @ccw_legislator_datum.yc_attendance
                 li
                   p 
                     | 所有委員
