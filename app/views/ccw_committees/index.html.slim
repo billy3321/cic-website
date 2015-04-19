@@ -1,0 +1,80 @@
+.vote-ly-g0v
+  section.single-page-inner
+    #title-total-data.vtitle-set
+      header
+        h3 各委員會出席率、質詢率比一比
+        .dropdown
+          button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+            = @ad_session.ad.name
+            i = @ad_session.name
+          ul.dropdown-menu role="menu" aria-labelledby="menu1"
+            - @ad_sessions.each do |a|
+              li role="presentation"
+                = link_to committees_path(a) do
+                  = a.ad.name
+                  i = a.name
+        .data-src
+          | 原始資料來源：
+          = link_to '公民監督國會聯盟', @ad_session.ccw_citizen_score.ccw_link, target: "_blank"
+    = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}出席率、質詢率排行")
+    .inner-content-txt
+      - @ad_session.ccw_committee_data.each do |c|
+        .graphic-group
+          .graphic-start
+            h4 = c.committee.name
+            .gp-top.gpg-00
+              .line-all.linegp
+                .line-0.linegps
+                .line-01.linegps
+                  span 2
+                .line-02.linegps
+                  span 4
+                .line-03.linegps
+                  span 6
+                .line-04.linegps
+                  span 8
+                .line-05.linegps
+                  span 10
+                .line-06.linegps
+                  span 12
+                .line-07.linegps
+                  span 14
+                .line-08.linegps
+                  span 16
+                .line-09.linegps
+                  span 18
+                .line-10.linegps
+                  span 20
+          - unless c.committee.kind == 'yc'
+            .gp-bar
+              p 平均出席率
+              .graphic-body
+                .gpb-01 style="width: #{get_percentage(c.actually_average_attendance, c.should_attendance)}%;"
+                  span = get_percentage(c.actually_average_attendance, c.should_attendance)
+            .gp-bar
+              p 平均質詢率
+              .graphic-body
+                .gpb-02 style="width: #{get_percentage(c.actually_average_interpellation_count, c.avaliable_interpellation_count)}%;"
+                  span = get_percentage(c.actually_average_interpellation_count, c.avaliable_interpellation_count)
+          - else
+            .gp-bar
+              p 平均出席率
+              .graphic-body
+                .gpb-01 style="width: #{get_percentage(c.actually_average_attendance, c.should_attendance)}%;"
+                  span = get_percentage(c.actually_average_attendance, c.should_attendance)
+        - unless c.committee.kind == 'yc'
+          .committee-data 
+            = link_to "查看#{c.committee.name}全委員出席率", committee_path(@ad_session, c.committee), class: "view-cd-list"
+            ul.committee-list
+              - c.committee.session_legislators(@ad_session.id).each do |l|
+                li
+                  = link_to image_tag("legislators/40x54/#{l.image}"), legislator_path(l), class: 'cl-img'
+                  = link_to legislator_path(l) do
+                    em = l.name
+        - else
+          .committee-data 
+            = link_to "查看#{c.committee.name}全委員出席率", committee_path(@ad_session, c.committee), class: "view-cd-list"
+
+
+    .reply-message
+      #disqus_thread

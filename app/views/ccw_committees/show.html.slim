@@ -1,0 +1,118 @@
+.vote-ly-g0v
+  section.single-page-inner
+    #title-total-data.vtitle-set
+      header
+        h3 #{@committee.name}出席率、質詢率比一比
+        .dropdown
+          button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+            = @ad_session.ad.name
+            i = @ad_session.name
+          ul.dropdown-menu role="menu" aria-labelledby="menu1"
+            - @ad_sessions.each do |a|
+              li role="presentation"
+                = link_to committees_path(a) do
+                  = a.ad.name
+                  i = a.name
+        .data-src
+          | 原始資料來源：
+          = link_to '公民監督國會聯盟', @ad_session.ccw_citizen_score.ccw_link, target: "_blank"
+    = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}出席率、質詢率排行")
+    .inner-content-txt
+      .graphic-group
+        .graphic-start
+          h4 = @committee.name
+          .gp-top.gpg-00
+            .line-all.linegp
+              .line-0.linegps
+              .line-01.linegps
+                span 10%
+              .line-02.linegps
+                span 20%
+              .line-03.linegps
+                span 30%
+              .line-04.linegps
+                span 40%
+              .line-05.linegps
+                span 50%
+              .line-06.linegps
+                span 60%
+              .line-07.linegps
+                span 70%
+              .line-08.linegps
+                span 80%
+              .line-09.linegps
+                span 90%
+              .line-10.linegps
+                span 100%
+        .gp-bar
+            p 平均出席率
+            .graphic-body
+              .gpb-01 style="width: #{get_percentage(@ccw_committee_datum.actually_average_attendance, @ccw_committee_datum.should_attendance)};"
+                span = get_percentage(@ccw_committee_datum.actually_average_attendance, @ccw_committee_datum.should_attendance)
+        - unless @committee.kind == 'yc'
+          .gp-bar
+            p 平均質詢率
+            .graphic-body
+              .gpb-02 style="width: #{get_percentage(@ccw_committee_datum.actually_average_interpellation_count, @ccw_committee_datum.avaliable_interpellation_count)};"
+                span = get_percentage(@ccw_committee_datum.actually_average_interpellation_count, @ccw_committee_datum.avaliable_interpellation_count)
+      .graphic-group
+        .graphic-start
+          - unless @committee.kind == 'yc'
+            h4 #{@committee.name}所有委員
+          - else
+            h4 所有委員
+          .gp-top.gpg-00
+            .line-all.linegp
+              .line-0.linegps
+              .line-01.linegps
+                span 10%
+              .line-02.linegps
+                span 20%
+              .line-03.linegps
+                span 30%
+              .line-04.linegps
+                span 40%
+              .line-05.linegps
+                span 50%
+              .line-06.linegps
+                span 60%
+              .line-07.linegps
+                span 70%
+              .line-08.linegps
+                span 80%
+              .line-09.linegps
+                span 90%
+              .line-10.linegps
+                span 100%
+        - unless @committee.kind == 'yc'
+          - @ccw_legislator_data.each do |c|
+            .gp-bar-sg
+              .committee-single
+                = link_to image_tag("legislators/40x54/#{c.legislator.image}"), legislator_path(c.legislator), class: 'cl-img'
+                = link_to legislator_path(c.legislator) do
+                  em = c.legislator.name
+              .gp-bar
+                p 出席率
+                .graphic-body
+                  .gpb-01 style="width: #{get_percentage(c.sc_attendance, @ccw_committee_datum.should_attendance)};"
+                    span = get_percentage(c.sc_attendance, @ccw_committee_datum.should_attendance)
+              .gp-bar
+                p 質詢率
+                .graphic-body
+                  .gpb-02 style="width: #{get_percentage(c.sc_interpellation_count, @ccw_committee_datum.avaliable_interpellation_count)};"
+                    span = get_percentage(c.sc_interpellation_count, @ccw_committee_datum.avaliable_interpellation_count)
+        - else
+          - @ccw_legislator_data.each do |c|
+            .gp-bar-sg
+              .committee-single
+                = link_to image_tag("legislators/40x54/#{c.legislator.image}"), legislator_path(c.legislator), class: 'cl-img'
+                = link_to legislator_path(c.legislator) do
+                  em = c.legislator.name
+              .gp-bar
+                p 出席率
+                .graphic-body
+                  .gpb-01 style="width: #{get_percentage(c.yc_attendance, @ccw_committee_datum.should_attendance)};"
+                    span = get_percentage(c.yc_attendance, @ccw_committee_datum.should_attendance)
+    .reply-message
+      #disqus_thread
+

@@ -1,0 +1,59 @@
+.vote-ly-g0v
+  section.single-page-inner
+    #title-total-data.vtitle-set
+      header
+        h3 公民評鑑比一比
+        .dropdown
+          button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+            = @ad_session.ad.name
+            i = @ad_session.name
+          ul.dropdown-menu role="menu" aria-labelledby="menu1"
+            - @ad_sessions.each do |a|
+              li role="presentation"
+                = link_to citizen_score_ccw_path(a) do
+                  = a.ad.name
+                  i = a.name
+        .data-src
+          | 原始資料來源：
+          = link_to '公民監督國會聯盟', @ad_session.ccw_citizen_score.ccw_link, target: "_blank"
+    = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}公督盟公民分數排行")
+    .inner-content-txt
+      .graphic-group
+        .graphic-start
+          h4 公民評鑑評分
+          .gp-top.gpg-00
+            .line-all.linegp
+              .line-0.linegps
+              .line-01.linegps
+                span 2
+              .line-02.linegps
+                span 4
+              .line-03.linegps
+                span 6
+              .line-04.linegps
+                span 8
+              .line-05.linegps
+                span 10
+              .line-06.linegps
+                span 12
+              .line-07.linegps
+                span 14
+              .line-08.linegps
+                span 16
+              .line-09.linegps
+                span 18
+              .line-10.linegps
+                span 20
+        .gp-bar
+          p 所有委員平均分數
+          .graphic-body
+            .gpb-01 style="width: #{@ad_session.ccw_citizen_score.average * 5}%;"
+              span #{@ad_session.ccw_citizen_score.average}分
+        - @ccw_legislator_data.each do |c|
+          .gp-bar
+            p = link_to c.legislator.name, legislator_path(c.legislator)
+            .graphic-body
+              .gpb-02 style="width: #{c.citizen_score * 5}%;"
+                span #{c.citizen_score}分
+    .reply-message
+      #disqus_thread

@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150419093047) do
 
   create_table "ccw_legislator_data", force: true do |t|
     t.integer "legislator_committee_id"
-    t.integer "ys_attendance"
+    t.integer "yc_attendance"
     t.integer "sc_attendance"
     t.integer "sc_interpellation_count"
     t.integer "first_proposal_count"

@@ -1,4 +1,5 @@
 class CcwsController < ApplicationController
+  before_filter :set_ad_sessions
   before_action :set_ad_session, except: [:index]
 
   def index
@@ -65,7 +66,16 @@ class CcwsController < ApplicationController
     end
   end
 
+  def citizen_score
+
+    @ccw_legislator_data = @ad_session.ccw_legislator_data.order(citizen_score: :desc)
+  end
+
   private
+
+  def set_ad_sessions
+    @ad_sessions = AdSession.has_ccw_data
+  end
 
   def set_ad_session
     @ad_session = AdSession.find(params[:id])

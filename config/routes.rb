@@ -39,7 +39,12 @@ Rails.application.routes.draw do
   resources :entries
   resources :interpellations
   resources :videos
-  resources :ccws, only: [:show, :index]
+  resources :ccws, only: [:show, :index] do
+    member do
+      get 'citizen_score'
+      resources :committees, controller: 'ccw_committees', param: :committee_id, only: [:show, :index]
+    end
+  end
   scope '/admin' do
     resources :users, except: [:show, :new, :create] do
       member do
