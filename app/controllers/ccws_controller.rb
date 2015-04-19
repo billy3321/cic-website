@@ -42,6 +42,7 @@ class CcwsController < ApplicationController
   end
 
   def show
+    @yc_committee = Committee.where(kind: 'yc').first
     respond_to do |format|
       format.html
       format.json {render :json => {
@@ -67,7 +68,6 @@ class CcwsController < ApplicationController
   end
 
   def citizen_score
-
     @ccw_legislator_data = @ad_session.ccw_legislator_data.order(citizen_score: :desc)
   end
 

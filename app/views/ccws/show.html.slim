@@ -1,0 +1,36 @@
+.vote-ly-g0v
+  section.single-page-inner
+    #title-total-data.vtitle-set
+      header
+        h3 立委表現比一比
+        .dropdown
+          button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
+            = @ad_session.ad.name
+            i = @ad_session.name
+          ul.dropdown-menu role="menu" aria-labelledby="menu1"
+            - @ad_sessions.each do |a|
+              li role="presentation"
+                = link_to committees_path(a) do
+                  = a.ad.name
+                  i = a.name
+    = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}公督盟數據排行")
+    .inner-content-txt
+      .complex-link
+        = link_to committee_path(@ad_session, @yc_committee), class: 'clink-01' do
+          h4
+            | 院會出席率
+            br
+            | 比一比
+          p 誰的出席率最高？立委出席率排名一目了然。
+        = link_to committees_path(@ad_session), class: 'clink-02' do
+          h4
+            | 委員會出席率質詢率
+            br
+            | 比一比
+          p 每個委員會的出席與質詢狀況如何？哪個委員在委員會內是吊車尾？
+        = link_to citizen_score_ccw_path(@ad_session), class: 'clink-03' do
+          h4
+            | 公民評鑑總分
+            br
+            | 比一比
+          p 根據問政專業、價值立場、問題解決、問政態度與技巧，哪一個立委最受公民青睞？
