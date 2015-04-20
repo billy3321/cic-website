@@ -10,7 +10,7 @@
           ul.dropdown-menu role="menu" aria-labelledby="menu1"
             - @ad_sessions.each do |a|
               li role="presentation"
-                = link_to committees_path(a) do
+                = link_to ccw_path(a) do
                   = a.ad.name
                   i = a.name
     = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}公督盟數據排行")

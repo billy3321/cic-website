@@ -25,9 +25,19 @@ class CcwsController < ApplicationController
         @ccws << result
       end
       @ad_sessions_count = AdSession.has_ccw_data.length
-    else
-      @ad_sessions = AdSession.has_ccw_data
     end
+    
+    set_meta_tags({
+      title: '立委表現比一比',
+      description: '立委表現比一比！哪個立委在院會的出席率最高？哪個立委在委員會質詢最認真?公民評鑑最青睞哪個立委？',
+      keywords: '立委院會出席率,委員會出席率,委員會質詢率,公民評鑑',
+      og: {
+        type: 'article',
+        title: '立委表現比一比',
+        description: '立委表現比一比！哪個立委在院會的出席率最高？哪個立委在委員會質詢最認真?公民評鑑最青睞哪個立委？'
+      }
+    })
+
     respond_to do |format|
       format.html
       format.json { 
@@ -43,6 +53,18 @@ class CcwsController < ApplicationController
 
   def show
     @yc_committee = Committee.where(kind: 'yc').first
+
+    set_meta_tags({
+      title: '立委表現比一比',
+      description: '立委表現比一比！哪個立委在院會的出席率最高？哪個立委在委員會質詢最認真?公民評鑑最青睞哪個立委？',
+      keywords: '立委院會出席率,委員會出席率,委員會質詢率,公民評鑑',
+      og: {
+        type: 'article',
+        title: '立委表現比一比',
+        description: '立委表現比一比！哪個立委在院會的出席率最高？哪個立委在委員會質詢最認真?公民評鑑最青睞哪個立委？'
+      }
+    })
+
     respond_to do |format|
       format.html
       format.json {render :json => {
@@ -69,6 +91,17 @@ class CcwsController < ApplicationController
 
   def citizen_score
     @ccw_legislator_data = @ad_session.ccw_legislator_data.order(citizen_score: :desc)
+
+    set_meta_tags({
+      title: '公民評鑑比一比',
+      description: '公民評鑑比一比！哪個立委的表現最好？',
+      keywords: "公民評鑑,#{@ad_session.ad.name}#{@ad_session.name}公民評鑑",
+      og: {
+        type: 'article',
+        title: '公民評鑑比一比',
+        description: '公民評鑑比一比！哪個立委的表現最好？'
+      }
+    })
   end
 
   private

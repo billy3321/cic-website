@@ -10,7 +10,7 @@
           ul.dropdown-menu role="menu" aria-labelledby="menu1"
             - @ad_sessions.each do |a|
               li role="presentation"
-                = link_to committees_path(a) do
+                = link_to committee_path(a, @committee) do
                   = a.ad.name
                   i = a.name
         .data-src
