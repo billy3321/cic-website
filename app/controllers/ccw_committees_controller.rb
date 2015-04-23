@@ -21,7 +21,7 @@ class CcwCommitteesController < ApplicationController
       set_meta_tags({
         title: "#{@committee.name}出席率比一比",
         description: "#{@committee.name}出席率比一比！哪個立委在#{@committee.name}的出席率最高？所有立委平均出席率又是多少？",
-        keywords: '立委院會出席率,委員會出席率,委員會質詢率,公民評鑑',
+        keywords: '立委院會出席率,委員會出席率,公民評鑑',
         og: {
           type: 'article',
           title: "#{@committee.name}出席率比一比",
