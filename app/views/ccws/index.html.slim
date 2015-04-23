@@ -1,0 +1,50 @@
+.vote-ly-g0v
+  section.single-page-inner
+    #title-total-data.vtitle-set
+      header
+        h3 立委表現比一比
+    = social_share_button_tag('立委表現比一比')
+    .inner-content-txt
+      .complex-link
+        .clink-01.clink
+          h4
+            | 院會出席率
+            br
+            | 比一比
+          .dropdown
+            button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button" 請選擇會期
+            ul.dropdown-menu aria-labelledby="menu1" role="menu"
+              - @ad_sessions.each do |a|
+                li role="presentation"
+                  = link_to committee_path(a, @yc_committee), role: "menuitem", tabindex: "-1" do
+                    = a.ad.name
+                    i = a.name
+          p 誰的出席率最高？立委出席率排名一目了然。
+        .clink-02.clink
+          h4
+            | 委員會出席率質詢率
+            br
+            | 比一比
+          .dropdown
+            button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"  請選擇會期
+            ul.dropdown-menu aria-labelledby="menu1" role="menu"
+              - @ad_sessions.each do |a|
+                li role="presentation"
+                  = link_to committees_path(a), role: "menuitem", tabindex: "-1" do
+                    = a.ad.name
+                    i = a.name
+          p 每個委員會的出席與質詢狀況如何？哪個委員在委員會內是吊車尾？
+        .clink-03.clink
+          h4
+            | 公民評鑑總
+            br
+            | 比一比
+          .dropdown
+            button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"  請選擇會期
+            ul.dropdown-menu aria-labelledby="menu1" role="menu"
+              - @ad_sessions.each do |a|
+                li role="presentation"
+                  = link_to citizen_score_ccw_path(a), role: "menuitem", tabindex: "-1" do
+                    = a.ad.name
+                    i = a.name
+          p 根據問政專業、價值立場、問題解決、問政態度與技巧，哪一個立委最受公民青睞？

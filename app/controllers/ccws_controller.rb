@@ -25,6 +25,9 @@ class CcwsController < ApplicationController
         @ccws << result
       end
       @ad_sessions_count = AdSession.has_ccw_data.length
+    else
+      @yc_committee = Committee.where(kind: 'yc').first
+      @ad_sessions = AdSession.has_ccw_data
     end
     
     set_meta_tags({
