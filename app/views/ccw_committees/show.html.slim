@@ -16,7 +16,10 @@
         .data-src
           | 原始資料來源：
           = link_to '公民監督國會聯盟', @ad_session.ccw_citizen_score.ccw_link, target: "_blank"
-    = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}出席率、質詢率排行")
+    - unless @committee.kind == 'yc'
+      = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}出席率、質詢率排行")
+    - else
+      = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}院會出席率排行")
     .inner-content-txt
       .graphic-group
         .graphic-start
@@ -103,16 +106,13 @@
                     span = get_percentage(c.sc_interpellation_count, @ccw_committee_datum.avaliable_interpellation_count)
         - else
           - @ccw_legislator_data.each do |c|
-            .gp-bar-sg
-              .committee-single
-                = link_to image_tag("legislators/40x54/#{c.legislator.image}"), legislator_path(c.legislator), class: 'cl-img'
-                = link_to legislator_path(c.legislator) do
-                  em = c.legislator.name
-              .gp-bar
-                p 出席率
-                .graphic-body
-                  .gpb-01 style="width: #{get_percentage(c.yc_attendance, @ccw_committee_datum.should_attendance)};"
-                    span = get_percentage(c.yc_attendance, @ccw_committee_datum.should_attendance)
+            .gp-bar
+              p
+                = link_to c.legislator.name, legislator_path(c.legislator)
+              .graphic-body
+                .gpb-02 style="width: #{get_percentage(c.yc_attendance, @ccw_committee_datum.should_attendance)};"
+                  span = get_percentage(c.yc_attendance, @ccw_committee_datum.should_attendance)
+
     .reply-message
       #disqus_thread
 
