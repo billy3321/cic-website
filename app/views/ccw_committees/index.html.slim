@@ -72,7 +72,7 @@
                   = link_to legislator_path(l) do
                     em = l.name
         - else
-          .committee-data 
+          .committee-data.assembly-data
             = link_to "查看#{c.committee.name}全委員出席率", committee_path(@ad_session, c.committee), class: "view-cd-list"
 
 

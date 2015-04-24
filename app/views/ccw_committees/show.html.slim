@@ -2,7 +2,10 @@
   section.single-page-inner
     #title-total-data.vtitle-set
       header
-        h3 #{@committee.name}出席率、質詢率比一比
+        - unless @committee.kind == 'yc'
+          h3 #{@committee.name}出席率、質詢率比一比
+        - else
+          h3 #{@committee.name}出席率比一比
         .dropdown
           button#menu1.btn.btn-default.dropdown-toggle data-toggle="dropdown" type="button"
             = @ad_session.ad.name
