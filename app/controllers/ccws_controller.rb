@@ -47,9 +47,9 @@ class CcwsController < ApplicationController
         render :json => {
           status: "success",
           ccws: @ccws,
-          count: @ad_sessions_count,
-          callback: params[:callback]
-        }
+          count: @ad_sessions_count
+        },
+        callback: params[:callback]
       }
     end
   end
