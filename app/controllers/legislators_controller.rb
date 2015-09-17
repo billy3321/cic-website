@@ -5,8 +5,8 @@ class LegislatorsController < ApplicationController
   def index
     if params[:format] == "json"
       if params[:query]
-        @legislators = Legislator.where("name LIKE '%#{params[:query]}%'").offset(params[:offset]).limit(params[:limit])
-        @legislators_count = Legislator.where("name LIKE '%#{params[:query]}%'").count
+        @legislators = Legislator.ransack({name_cont: params[:query]}).result(distinct: true).offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.ransack({name_cont: params[:query]}).result(distinct: true).count
       else
         @legislators = Legislator.offset(params[:offset]).limit(params[:limit])
         @legislators_count = Legislator.all.count
@@ -46,8 +46,8 @@ class LegislatorsController < ApplicationController
   def no_record
     if params[:format] == "json"
       if params[:query]
-        @legislators = Legislator.where("name LIKE '%#{params[:query]}%'").has_no_record.offset(params[:offset]).limit(params[:limit])
-        @legislators_count = Legislator.where("name LIKE '%#{params[:query]}%'").has_no_record.length
+        @legislators = Legislator.ransack({name_cont: params[:query]}).result(distinct: true).has_no_record.offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.ransack({name_cont: params[:query]}).result(distinct: true).has_no_record.length
       else
         @legislators = Legislator.has_no_record.offset(params[:offset]).limit(params[:limit])
         @legislators_count = Legislator.has_no_record.length
@@ -87,8 +87,8 @@ class LegislatorsController < ApplicationController
   def has_records
     if params[:format] == "json"
       if params[:query]
-        @legislators = Legislator.where("name LIKE '%#{params[:query]}%'").has_records.offset(params[:offset]).limit(params[:limit])
-        @legislators_count = Legislator.where("name LIKE '%#{params[:query]}%'").has_records.length
+        @legislators = Legislator.ransack({name_cont: params[:query]}).result(distinct: true).has_records.offset(params[:offset]).limit(params[:limit])
+        @legislators_count = Legislator.ransack({name_cont: params[:query]}).result(distinct: true).has_records.length
       else
         @legislators = Legislator.has_records.offset(params[:offset]).limit(params[:limit])
         @legislators_count = Legislator.has_records.length
@@ -168,9 +168,9 @@ class LegislatorsController < ApplicationController
   def entries
     if params[:format] == "json"
       if params[:query]
-        @entries = @legislator.entries.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @entries = @legislator.entries.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .published.offset(params[:offset]).limit(params[:limit])
-        @entries_count = @legislator.entries.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @entries_count = @legislator.entries.ransack({title_or_content_cont: params[:query]}).result(distinct: true)
           .published.count
       else
         @entries = @legislator.entries.published.offset(params[:offset]).limit(params[:limit])
@@ -210,9 +210,9 @@ class LegislatorsController < ApplicationController
   def interpellations
     if params[:format] == "json"
       if params[:query]
-        @interpellations = @legislator.interpellations.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations = @legislator.interpellations.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.offset(params[:offset]).limit(params[:limit])
-        @interpellations_count = @legislator.interpellations.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @interpellations_count = @legislator.interpellations.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.count
       else
         @interpellations = @legislator.interpellations.published.offset(params[:offset]).limit(params[:limit])
@@ -259,9 +259,9 @@ class LegislatorsController < ApplicationController
   def videos
     if params[:format] == "json"
       if params[:query]
-        @videos = @legislator.videos.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @videos = @legislator.videos.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.offset(params[:offset]).limit(params[:limit])
-        @videos_count = @legislator.videos.where("title LIKE '%#{params[:query]}%' or content LIKE '%#{params[:query]}%'")
+        @videos_count = @legislator.videos.ransack({title_or_content_or_meeting_description_cont: params[:query]}).result(distinct: true)
           .published.count
       else
         @videos = @legislator.videos.published.offset(params[:offset]).limit(params[:limit])
