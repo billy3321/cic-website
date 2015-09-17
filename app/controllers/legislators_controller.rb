@@ -458,7 +458,7 @@ class LegislatorsController < ApplicationController
 
   # GET /legislators/1/result
   def result
-    @q = Election.search(params[:q])
+    @q = Election.includes(:ad, :legislator, :party, :districts).search(params[:q])
     @ad_id_eq = params[:q] ? params[:q][:ad_id_eq] : nil
     @county_id_eq = params[:q] ? params[:q][:county_id_eq] : nil
     @party_id_eq = params[:q] ? params[:q][:party_id_eq] : nil

@@ -163,7 +163,7 @@ class InterpellationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interpellation
-      @interpellation = params[:id] ? Interpellation.find(params[:id]) : Interpellation.new(interpellation_params)
+      @interpellation = params[:id] ? Interpellation.includes(legislators: :elections).find(params[:id]) : Interpellation.new(interpellation_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

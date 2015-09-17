@@ -18,7 +18,7 @@
           = link_to '公民監督國會聯盟', @ad_session.ccw_citizen_score.ccw_link, target: "_blank"
     = social_share_button_tag("#{@ad_session.ad.name}#{@ad_session.name}出席率、質詢率排行")
     .inner-content-txt
-      - @ad_session.ccw_committee_data.each do |c|
+      - @ccw_committee_data.each do |c|
         .graphic-group
           .graphic-start
             h4 = c.committee.name

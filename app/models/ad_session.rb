@@ -13,7 +13,8 @@ class AdSession < ActiveRecord::Base
   default_scope { order(date_start: :asc) }
   scope :regulations, -> { where(regular: true) }
   scope :has_ccw_data, -> {
-    joins(:ccw_committee_data)
+    includes(:ad)
+    .joins(:ccw_committee_data)
     .group("ad_sessions.id")
   }
 

@@ -158,7 +158,7 @@ class EntriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_entry
-      @entry = params[:id] ? Entry.find(params[:id]) : Entry.new(entry_params)
+      @entry = params[:id] ? Entry.includes(legislators: :elections).find(params[:id]) : Entry.new(entry_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

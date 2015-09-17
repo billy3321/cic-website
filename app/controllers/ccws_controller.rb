@@ -93,7 +93,7 @@ class CcwsController < ApplicationController
   end
 
   def citizen_score
-    @ccw_legislator_data = @ad_session.ccw_legislator_data.order(citizen_score: :desc)
+    @ccw_legislator_data = @ad_session.ccw_legislator_data.includes(legislator_committee: :legislator).order(citizen_score: :desc)
 
     set_meta_tags({
       title: '公民評鑑比一比',

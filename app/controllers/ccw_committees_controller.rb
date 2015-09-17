@@ -34,6 +34,7 @@ class CcwCommitteesController < ApplicationController
   def index
     @committees = @ad_session.sc_committees
     @committees.unshift(Committee.where(kind: 'yc').first)
+    @ccw_committee_data = @ad_session.ccw_committee_data.includes(:committee)
 
     set_meta_tags({
       title: '委員會出席率、質詢率比一比',

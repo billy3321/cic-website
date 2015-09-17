@@ -164,7 +164,7 @@ class VideosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
-      @video = params[:id] ? Video.find(params[:id]) : Video.new(video_params)
+      @video = params[:id] ? Video.includes(legislators: :elections).find(params[:id]) : Video.new(video_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

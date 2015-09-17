@@ -27,12 +27,12 @@ class Committee < ActiveRecord::Base
   def session_ccw_legislator_data(ad_session_id, order = "attendance")
     if kind == 'sc'
       if order == "attendance"
-        results = legislator_committees.joins(:ccw_legislator_datum).where(ad_session_id: ad_session_id).order("ccw_legislator_data.sc_attendance desc")
+        results = legislator_committees.includes(:legislator, :ccw_legislator_datum).joins(:ccw_legislator_datum).where(ad_session_id: ad_session_id).order("ccw_legislator_data.sc_attendance desc")
       elsif order == "interpellation"
-        results = legislator_committees.joins(:ccw_legislator_datum).where(ad_session_id: ad_session_id).order("ccw_legislator_data.sc_interpellation_count desc")
+        results = legislator_committees.includes(:legislator, :ccw_legislator_datum).joins(:ccw_legislator_datum).where(ad_session_id: ad_session_id).order("ccw_legislator_data.sc_interpellation_count desc")
       end
     elsif kind == 'yc'
-      results = LegislatorCommittee.joins(:ccw_legislator_datum).where(ad_session_id: ad_session_id).order("ccw_legislator_data.yc_attendance desc")
+      results = LegislatorCommittee.includes(:legislator, :ccw_legislator_datum).joins(:ccw_legislator_datum).where(ad_session_id: ad_session_id).order("ccw_legislator_data.yc_attendance desc")
     else
       []
     end
