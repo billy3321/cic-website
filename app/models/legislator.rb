@@ -75,7 +75,7 @@ class Legislator < ActiveRecord::Base
   scope :order_by_interpellations_count, -> {
     unscoped.
     select("legislators.*, count(interpellations_legislators.interpellation_id) AS interpellations_count").
-    joins(:interpellations_legislators).
+    joins(:legislators_interpellations).
     group("legislators.id").
     order("interpellations_count DESC") }
 

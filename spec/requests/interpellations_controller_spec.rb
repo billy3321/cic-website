@@ -5,13 +5,14 @@ describe "Interpellation" do
   let(:user) { FactoryGirl.create(:user) }
   let(:another_user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
-  let(:interpellation) { FactoryGirl.create(:interpellation, user: user) }
+  let(:interpellation) { FactoryGirl.create(:interpellation_record, user: user) }
   let(:committee) { FactoryGirl.create(:committee, name: "內政委員會") }
   let(:new_interpellation) do
     {
       :title => "new_interpellation_title",
       :content => "new_interpellation_content",
       :legislator_ids => [ FactoryGirl.create(:legislator).id ],
+      :interpellation_type => 'ivod',
       :ivod_url => 'http://ivod.ly.gov.tw/Play/VOD/77018/300K'
     }
   end
@@ -26,7 +27,7 @@ describe "Interpellation" do
 
     describe "#show" do
       it "success" do
-        2.times { FactoryGirl.create(:interpellation) }
+        2.times { FactoryGirl.create(:interpellation_record) }
         get "/interpellations/#{interpellation.id}"
         expect(response).to be_success
       end

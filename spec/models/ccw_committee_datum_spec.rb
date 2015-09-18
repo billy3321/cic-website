@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe CcwCommitteeDatum, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe CcwCommitteeDatum do
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :ccw_committee_datum
+    }.to change { CcwCommitteeDatum.count }.by(1)
+  end
 end

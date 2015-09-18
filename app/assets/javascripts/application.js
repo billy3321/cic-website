@@ -78,6 +78,17 @@ var ready = function(){
   });
   $(".video_type").change();
 
+  $(".interpellation_type").change(function(){
+    if (this.value == 'ivod'){
+      $('.record_field').hide();
+      $('.ivod_field').show();
+    } else if (this.value == 'record'){
+      $('.ivod_field').hide();
+      $('.record_field').show();
+    }
+  });
+  $(".interpellation_type").change();
+
   $("#accordion").accordion({
     heightStyle: "content"
   });

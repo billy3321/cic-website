@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe CcwCitizenScore, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe CcwCitizenScore do
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :ccw_citizen_score
+    }.to change { CcwCitizenScore.count }.by(1)
+  end
 end

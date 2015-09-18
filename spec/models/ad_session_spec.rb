@@ -7,12 +7,12 @@ describe AdSession do
     }.to change { AdSession.count }.by(1)
   end
 
-  it "should order by date_start desc" do
+  it "should order by date_start asc" do
     ad_session1 = FactoryGirl.create(:ad_session, date_start: 1.year.ago)
     ad_session2 = FactoryGirl.create(:ad_session, date_start: 2.years.ago)
     ad_session3 = FactoryGirl.create(:ad_session, date_start: 3.years.ago)
 
-    expect(AdSession.all).to eq([ad_session1, ad_session2, ad_session3])
+    expect(AdSession.all).to eq([ad_session3, ad_session2, ad_session1])
   end
 
   it "should get current ad session" do

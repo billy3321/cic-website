@@ -8,17 +8,35 @@ ul class="form-list"
     p = f.association :legislators, label: false, collection: Legislator.all, input_html: { class: 'chosen-select' }, required: true
   li
     p 標題
-    p class="snote" 請填寫標題，若無則由系統產生。
+    p class="snote" 請填寫標題，若消息來源是ivod，可自動產生。
     p = f.input :title, label: false
   li
+    p 發言出處分類＊
+    p.snote 請選擇您的消息出處是來自看ivod，或是擷取自立院其他議事公報。
+    p = f.input :interpellation_type, label: false, as: :select, collection: [['立法院議事轉播ivod', 'ivod'], ['議事錄', 'record']], input_html: { class: 'interpellation_type' }, include_blank: false
+  li.ivod_field
     p 立法院議事轉播ivod出處＊
     p class="snote" 
       | 請填寫ivod出處之影片連結。
       = link_to '如何看影片連結>>', tutorial_path, target: "_blank"
       br
       | 網址格式：http://ivod.ly.gov.tw/Play/VOD/76736/1M
-    p = f.input :ivod_url, label: false, required: true
-  li
+    p = f.input :ivod_url, label: false
+  li.record_field
+    p 立法院議事公報連結＊
+    p.snote
+      | 請填寫議事公報出處之文件連結。
+      = link_to '什麼是立法院議事公報？>>', tutorial_path, target: "_blank"
+    p = f.input :record_url, label: false
+  li.record_field
+    p 所屬委員會＊
+    p = f.association :committee, label: false, label_method: :name, value_method: :id, include_blank: true
+  li.record_field
+    p 會議日期＊
+    p class="snote"
+      | 日期可手動填寫，日期格式為年-月-日：2015-01-30
+    p = f.input :date, as: :string, label: false, input_html: { class: "datepicker" }
+  li.ivod_field
     p ivod時間區間
     p class="snote" 
       | 請填寫此段質詢出現的時間區間。

@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe LegislatorCommittee, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe LegislatorCommittee do
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :legislator_committee
+    }.to change { LegislatorCommittee.count }.by(1)
+  end
 end

@@ -10,32 +10,57 @@
     - @interpellation.legislators.each do |l|
       = render partial: 'shared/legislator_short_info', locals: { l: l }
     ul id="sinner-src-list"
-      li 
-        | ivod出處：
-        = link_to @interpellation.ivod_url, @interpellation.ivod_url, target: "_blank"
-      li 
-        | 會議時間：
-        = @interpellation.date.strftime('%Y年%m月%d日')
-      - if @interpellation.time_start or @interpellation.time_end
-        li ivod時間區間：#{@interpellation.time_start.try(:strftime, '%H:%M:%S')}～#{@interpellation.time_end.try(:strftime, '%H:%M:%S')}
-      - else
-        li ivod時間區間：無指定
-      li 
-        | 會議別：
-        = @interpellation.committee.try(:name)
-      li 
-        | 會期：
-        = @interpellation.ad_session.try(:ad).try(:name)
-        = @interpellation.ad_session.try(:name)
-      li 
-        | 會議簡介：
-        br
-        div class="show-more-snippet" = @interpellation.meeting_description
-        a class="show-more" 更多...
-      - unless @interpellation.target.blank?
-        li 
-          | 質詢對象：
-          = @interpellation.target
+      - if @interpellation.interpellation_type == 'ivod'
+        li
+          | ivod出處：
+          = link_to @interpellation.ivod_url, @interpellation.ivod_url, target: "_blank"
+        li
+          | 會議時間：
+          = @interpellation.date.strftime('%Y年%m月%d日')
+        - if @interpellation.time_start or @interpellation.time_end
+          li ivod時間區間：#{@interpellation.time_start.try(:strftime, '%H:%M:%S')}～#{@interpellation.time_end.try(:strftime, '%H:%M:%S')}
+        - else
+          li ivod時間區間：無指定
+        li
+          | 會議別：
+          = @interpellation.committee.try(:name)
+        li
+          | 會期：
+          = @interpellation.ad_session.try(:ad).try(:name)
+          = @interpellation.ad_session.try(:name)
+        li
+          | 會議簡介：
+          br
+          div class="show-more-snippet" = @interpellation.meeting_description
+          a class="show-more" 更多...
+        - unless @interpellation.target.blank?
+          li
+            | 質詢對象：
+            = @interpellation.target
+      - elsif @interpellation.interpellation_type == 'record'
+        li
+          | 立法院議事公報連結：
+          = link_to @interpellation.record_url, @interpellation.record_url, target: "_blank"
+        li
+          | 會議時間：
+          = @interpellation.date.strftime('%Y年%m月%d日')
+        li
+          | 會議別：
+          = @interpellation.committee.try(:name)
+        li
+          | 會期：
+          = @interpellation.ad_session.try(:ad).try(:name)
+          = @interpellation.ad_session.try(:name)
+        - unless @interpellation.meeting_description.blank?
+          li
+            | 會議簡介：
+            br
+            div class="show-more-snippet" = @interpellation.meeting_description
+            a class="show-more" 更多...
+        - unless @interpellation.target.blank?
+          li
+            | 質詢對象：
+            = @interpellation.target
     .inner-content-txt
       = @interpellation.content.try(:html_safe)
 

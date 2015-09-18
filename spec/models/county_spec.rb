@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe County, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe County do
+  it "#factory_creat_success" do
+    expect {
+      FactoryGirl.create :county
+    }.to change { County.count }.by(1)
+  end
 end

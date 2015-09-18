@@ -60,6 +60,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem "bullet"
+  gem 'web-console', '~> 2.0'
+  gem 'byebug'
+  gem 'simplecov'
 end
 
 # Use ActiveModel has_secure_password

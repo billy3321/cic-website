@@ -170,14 +170,14 @@ class InterpellationsController < ApplicationController
     def interpellation_params
       if user_signed_in? and current_user.admin?
         if @interpellation.blank? or @interpellation.new_record?
-          params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []}, :interpellation_type, :record_url,
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :published, :time_start, :time_end, :target)
         else
-          params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+          params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []}, :interpellation_type, :record_url,
           :ivod_url, :committee_id, :meeting_description, :date, :comment, :published, :time_start, :time_end, :target)
         end
       else
-        params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []},
+        params.require(:interpellation).permit(:title, :content, {:legislator_ids => []}, {:keyword_ids => []}, :interpellation_type, :record_url,
           :user_id, :ivod_url, :committee_id, :meeting_description, :date, :comment, :time_start, :time_end, :target)
       end
     end

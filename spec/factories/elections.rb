@@ -4,5 +4,9 @@ FactoryGirl.define do
     legislator { FactoryGirl.create(:legislator) }
     party { FactoryGirl.create(:party) }
     sequence(:constituency)  { |n| "Constituency #{n}" }
+    county { FactoryGirl.create(:county) }
+    after :create do |election|
+      create :district, county: election.county
+    end
   end
 end

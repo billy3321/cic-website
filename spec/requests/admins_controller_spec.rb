@@ -70,9 +70,9 @@ describe "Admin" do
 
     describe "#update_interpellations" do
       it "success" do
-        interpellation1 = FactoryGirl.create :interpellation
-        interpellation2 = FactoryGirl.create :interpellation
-        interpellation3 = FactoryGirl.create :interpellation
+        interpellation1 = FactoryGirl.create :interpellation_record
+        interpellation2 = FactoryGirl.create :interpellation_record
+        interpellation3 = FactoryGirl.create :interpellation_ivod
         update_data = {
           interpellation_ids: [interpellation1.id, interpellation2.id, interpellation3.id],
           unpublished_ids: [interpellation1.id, interpellation3.id]

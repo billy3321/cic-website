@@ -16,7 +16,7 @@ describe "Static pages" do
     describe "#home" do
       it "success" do
         3.times { FactoryGirl.create :entry }
-        3.times { FactoryGirl.create :interpellation }
+        3.times { FactoryGirl.create :interpellation_record }
         3.times { FactoryGirl.create :video_news }
         get "/"
         expect(response).to be_success
@@ -33,7 +33,7 @@ describe "Static pages" do
     describe "#recent" do
       it "success" do
         3.times { FactoryGirl.create :entry }
-        3.times { FactoryGirl.create :interpellation }
+        3.times { FactoryGirl.create :interpellation_record }
         3.times { FactoryGirl.create :video_news }
         get "/recent"
         expect(response).to be_success
@@ -43,7 +43,7 @@ describe "Static pages" do
     describe "#report" do
       it "success" do
         get "/report"
-        expect(response).to be_redirect
+        expect(response).to be_success
       end
     end
 

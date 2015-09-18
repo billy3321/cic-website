@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419093047) do
+ActiveRecord::Schema.define(version: 20150917161536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ad_sessions", force: true do |t|
+  create_table "ad_sessions", force: :cascade do |t|
     t.string  "name"
     t.integer "ad_id"
     t.date    "date_start"
@@ -25,21 +25,21 @@ ActiveRecord::Schema.define(version: 20150419093047) do
     t.boolean "regular"
   end
 
-  create_table "ads", force: true do |t|
+  create_table "ads", force: :cascade do |t|
     t.string "name"
     t.date   "vote_date"
     t.date   "term_start"
     t.date   "term_end"
   end
 
-  create_table "ccw_citizen_scores", force: true do |t|
+  create_table "ccw_citizen_scores", force: :cascade do |t|
     t.integer "ad_session_id"
     t.float   "total"
     t.float   "average"
     t.string  "ccw_link"
   end
 
-  create_table "ccw_committee_data", force: true do |t|
+  create_table "ccw_committee_data", force: :cascade do |t|
     t.integer "ad_session_id"
     t.integer "committee_id"
     t.integer "should_attendance"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150419093047) do
     t.float   "actually_average_interpellation_count"
   end
 
-  create_table "ccw_legislator_data", force: true do |t|
+  create_table "ccw_legislator_data", force: :cascade do |t|
     t.integer "legislator_committee_id"
     t.integer "yc_attendance"
     t.integer "sc_attendance"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20150419093047) do
     t.float   "disorder"
   end
 
-  create_table "ckeditor_assets", force: true do |t|
+  create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
     t.integer  "data_file_size"
@@ -88,28 +88,28 @@ ActiveRecord::Schema.define(version: 20150419093047) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
-  create_table "committees", force: true do |t|
+  create_table "committees", force: :cascade do |t|
     t.string "name"
     t.string "kind"
   end
 
-  create_table "counties", force: true do |t|
+  create_table "counties", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "districts", force: true do |t|
+  create_table "districts", force: :cascade do |t|
     t.integer "county_id"
     t.string  "name"
   end
 
-  create_table "districts_elections", id: false, force: true do |t|
+  create_table "districts_elections", id: false, force: :cascade do |t|
     t.integer "district_id"
     t.integer "election_id"
   end
 
   add_index "districts_elections", ["district_id", "election_id"], name: "index_districts_elections_on_district_id_and_election_id", unique: true, using: :btree
 
-  create_table "elections", force: true do |t|
+  create_table "elections", force: :cascade do |t|
     t.integer "ad_id"
     t.integer "legislator_id"
     t.integer "party_id"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20150419093047) do
     t.integer "county_id"
   end
 
-  create_table "entries", force: true do |t|
+  create_table "entries", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
@@ -130,21 +130,21 @@ ActiveRecord::Schema.define(version: 20150419093047) do
     t.datetime "updated_at"
   end
 
-  create_table "entries_keywords", id: false, force: true do |t|
+  create_table "entries_keywords", id: false, force: :cascade do |t|
     t.integer "keyword_id"
     t.integer "entry_id"
   end
 
   add_index "entries_keywords", ["keyword_id", "entry_id"], name: "index_entries_keywords_on_keyword_id_and_entry_id", unique: true, using: :btree
 
-  create_table "entries_legislators", id: false, force: true do |t|
+  create_table "entries_legislators", id: false, force: :cascade do |t|
     t.integer "legislator_id"
     t.integer "entry_id"
   end
 
   add_index "entries_legislators", ["legislator_id", "entry_id"], name: "index_entries_legislators_on_legislator_id_and_entry_id", unique: true, using: :btree
 
-  create_table "interpellations", force: true do |t|
+  create_table "interpellations", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
@@ -161,43 +161,45 @@ ActiveRecord::Schema.define(version: 20150419093047) do
     t.boolean  "published",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "interpellation_type"
+    t.string   "record_url"
   end
 
-  create_table "interpellations_keywords", id: false, force: true do |t|
+  create_table "interpellations_keywords", id: false, force: :cascade do |t|
     t.integer "keyword_id"
     t.integer "interpellation_id"
   end
 
   add_index "interpellations_keywords", ["interpellation_id", "keyword_id"], name: "interpellations_keywords_index", unique: true, using: :btree
 
-  create_table "interpellations_legislators", id: false, force: true do |t|
+  create_table "interpellations_legislators", id: false, force: :cascade do |t|
     t.integer "legislator_id"
     t.integer "interpellation_id"
   end
 
   add_index "interpellations_legislators", ["interpellation_id", "legislator_id"], name: "interpellations_legislators_index", unique: true, using: :btree
 
-  create_table "keywords", force: true do |t|
+  create_table "keywords", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "keywords_videos", id: false, force: true do |t|
+  create_table "keywords_videos", id: false, force: :cascade do |t|
     t.integer "keyword_id"
     t.integer "video_id"
   end
 
   add_index "keywords_videos", ["keyword_id", "video_id"], name: "index_keywords_videos_on_keyword_id_and_video_id", unique: true, using: :btree
 
-  create_table "legislator_committees", force: true do |t|
+  create_table "legislator_committees", force: :cascade do |t|
     t.integer "legislator_id"
     t.integer "ad_session_id"
     t.integer "committee_id"
     t.boolean "convener"
   end
 
-  create_table "legislators", force: true do |t|
+  create_table "legislators", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "image"
@@ -211,20 +213,20 @@ ActiveRecord::Schema.define(version: 20150419093047) do
     t.datetime "updated_at",   default: '2015-04-12 11:24:59', null: false
   end
 
-  create_table "legislators_videos", id: false, force: true do |t|
+  create_table "legislators_videos", id: false, force: :cascade do |t|
     t.integer "legislator_id"
     t.integer "video_id"
   end
 
   add_index "legislators_videos", ["legislator_id", "video_id"], name: "index_legislators_videos_on_legislator_id_and_video_id", unique: true, using: :btree
 
-  create_table "parties", force: true do |t|
+  create_table "parties", force: :cascade do |t|
     t.string "name"
     t.string "image"
     t.string "abbreviation"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "name",                   default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -255,7 +257,7 @@ ActiveRecord::Schema.define(version: 20150419093047) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  create_table "videos", force: true do |t|
+  create_table "videos", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.text     "video_type"

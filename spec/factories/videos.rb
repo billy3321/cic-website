@@ -12,6 +12,7 @@ FactoryGirl.define do
 
   factory :video_news, parent: :video do
     video_type "news"
+    source_name "新聞"
   end
 
   factory :video_ivod, parent: :video do

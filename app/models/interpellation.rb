@@ -4,11 +4,11 @@ class Interpellation < ActiveRecord::Base
   belongs_to :user
   belongs_to :committee
   belongs_to :ad_session
-  validates_presence_of :ivod_url, message: '必須填寫ivod出處之影片連結'
   validates_presence_of :content, message: '必須填寫質詢內容'
   validates_presence_of :user_id, message: '必須有回報者'
   validate :has_at_least_one_legislator
   validate :is_ivod_url
+  validate :record_validate
   delegate :ad, :to => :ad_session, :allow_nil => true
 
   before_save :update_ivod_values, :update_ad_session_values, :update_title_values
@@ -29,8 +29,12 @@ class Interpellation < ActiveRecord::Base
     ivod_uri = URI.parse(self.ivod_url)
     html = Nokogiri::HTML(open(self.ivod_url))
     info_section = html.css('div.legislator-video div.video-text')[0]
-    unless info_section
+    if info_section.blank?
       # the ivod url is error
+      self.ivod_url = nil
+      errors.add(:base, 'ivod網址錯誤')
+      return false
+    elsif info_section.css('p')[3].text == '第屆 第會期'
       self.ivod_url = nil
       errors.add(:base, 'ivod網址錯誤')
       return false
@@ -41,11 +45,11 @@ class Interpellation < ActiveRecord::Base
     self.committee_id = Committee.where(name: committee_name).first.try(:id)
     self.meeting_description = meeting_description
     if ivod_uri.path.split('/')[2].downcase == 'full'
-      date = info_section.css('p')[2].text.sub('會議時間：', '').split(' ')[0].strip
+      date = info_section.css('p')[4].text.sub('會議時間：', '').split(' ')[0].strip
       self.date = date
     elsif ivod_uri.path.split('/')[2].downcase == 'vod'
-      legislator_name = info_section.css('p')[2].text.sub('委員名稱：', '').strip
-      date = info_section.css('p')[5].text.sub('會議時間：', '').split(' ')[0].strip
+      legislator_name = info_section.css('p')[4].text.sub('委員名稱：', '').strip
+      date = info_section.css('p')[7].text.sub('會議時間：', '').split(' ')[0].strip
       legislator = Legislator.where(name: legislator_name).first
       self.date = date
       if legislator
@@ -83,8 +87,12 @@ class Interpellation < ActiveRecord::Base
 
   def is_ivod_url
     if self.ivod_url.to_s == ''
-      errors.add(:base, '尚未填寫ivod網址')
-      return nil
+      if ['record'].include? self.interpellation_type
+        return true
+      else
+        errors.add(:base, '必須填寫ivod出處網址')
+        return false
+      end
     end
     begin
       ivod_uri = URI.parse(self.ivod_url)
@@ -92,6 +100,44 @@ class Interpellation < ActiveRecord::Base
       errors.add(:base, 'ivod網址無法存取') unless HTTParty.get(self.ivod_url).code == 200
     rescue
       errors.add(:base, 'ivod網址錯誤')
+    end
+  end
+
+  def record_validate
+    if self.interpellation_type == 'record'
+      error = 0
+      if self.date.to_s == ''
+        error = 1
+        errors.add(:base, '必須填寫議事日期')
+      end
+      unless self.record_url.to_s == ''
+        begin
+          record_uri = URI.parse(URI.escape(self.record_url))
+          unless HTTParty.get(URI.escape(self.record_url)).code == 200
+            errors.add(:base, '議事錄網址無法存取')
+            error = 1
+          end
+        rescue
+          self.record_url = nil
+          errors.add(:base, '議事錄網址錯誤')
+          error = 1
+        end
+      end
+      if self.committee_id == nil
+        error = 1
+        errors.add(:base, '請選擇所屬委員會')
+      end
+      if self.title.to_s == ''
+        error = 1
+        errors.add(:base, '請填寫標題')
+      end
+      if error == 1
+        return false
+      else
+        return true
+      end
+    else
+      return true
     end
   end
 

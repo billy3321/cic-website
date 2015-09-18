@@ -13,7 +13,9 @@ describe "Video" do
       :ivod_url => 'http://ivod.ly.gov.tw/Play/VOD/77018/300K',
       :youtube_url => 'https://www.youtube.com/watch?v=6tg_I9O-dV0',
       :video_type => 'news',
-      :source_url => "http://www.google.com"
+      :source_url => "http://www.google.com",
+      :date => Date.today,
+      :source_name => 'Google'
     }
   end
 

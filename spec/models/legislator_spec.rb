@@ -51,8 +51,8 @@ describe Legislator do
     legislator1 = FactoryGirl.create(:legislator)
     legislator2 = FactoryGirl.create(:legislator)
     legislator3 = FactoryGirl.create(:legislator)
-    FactoryGirl.create(:interpellation, legislators: [legislator1], created_at: 1.day.ago)
-    FactoryGirl.create(:interpellation, legislators: [legislator2], created_at: 2.days.ago)
+    FactoryGirl.create(:interpellation_record, legislators: [legislator1], created_at: 1.day.ago)
+    FactoryGirl.create(:interpellation_ivod, legislators: [legislator2], created_at: 2.days.ago)
     expect(Legislator.order_by_interpellations_created).to eq([legislator1, legislator2])
   end
 
@@ -69,7 +69,7 @@ describe Legislator do
     legislator1 = FactoryGirl.create(:legislator)
     legislator2 = FactoryGirl.create(:legislator)
     legislator3 = FactoryGirl.create(:legislator)
-    FactoryGirl.create(:interpellation, legislators: [legislator1])
+    FactoryGirl.create(:interpellation_record, legislators: [legislator1])
     FactoryGirl.create(:video_news, legislators: [legislator1])
     FactoryGirl.create(:entry, legislators: [legislator2])
     expect(Legislator.has_records).to eq([legislator1, legislator2])
@@ -93,9 +93,9 @@ describe Legislator do
     legislator1 = FactoryGirl.create(:legislator)
     legislator2 = FactoryGirl.create(:legislator)
     legislator3 = FactoryGirl.create(:legislator)
-    FactoryGirl.create(:interpellation, legislators: [legislator1])
-    FactoryGirl.create(:interpellation, legislators: [legislator1])
-    FactoryGirl.create(:interpellation, legislators: [legislator2])
+    FactoryGirl.create(:interpellation_record, legislators: [legislator1])
+    FactoryGirl.create(:interpellation_ivod, legislators: [legislator1])
+    FactoryGirl.create(:interpellation_record, legislators: [legislator2])
     expect(Legislator.order_by_interpellations_count).to eq([legislator1, legislator2])
   end
 
