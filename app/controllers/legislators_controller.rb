@@ -133,7 +133,7 @@ class LegislatorsController < ApplicationController
     @interpellations = @legislator.interpellations.published.first(5)
 
     set_meta_tags({
-      title: "#{@legislator.name}調查報告",
+      title: "#{@legislator.name}調查報告 — #{@legislator.name}立委",
       description: '看看現任立委在國會殿堂的表現吧！',
       keywords: "#{@legislator.name},#{@legislator.name}調查報告",
       og: {
@@ -184,7 +184,7 @@ class LegislatorsController < ApplicationController
     @sub_entries = entries
 
     set_meta_tags({
-      title: "#{@legislator.name}新聞列表",
+      title: "#{@legislator.name}新聞列表 — #{@legislator.name}立委",
       description: @main_entry.try(:title),
       keywords: "#{@legislator.name},#{@legislator.name}新聞調查",
       og: {
@@ -226,7 +226,7 @@ class LegislatorsController < ApplicationController
     @sub_interpellations = interpellations
 
     set_meta_tags({
-      title: "#{@legislator.name}質詢列表",
+      title: "#{@legislator.name}質詢列表 — #{@legislator.name}立委",
       description: @main_interpellation.try(:title),
       keywords: "#{@legislator.name},#{@legislator.name}質詢調查",
       og: {
@@ -275,7 +275,7 @@ class LegislatorsController < ApplicationController
     @sub_videos = videos
 
     set_meta_tags({
-      title: "#{@legislator.name}影片列表",
+      title: "#{@legislator.name}影片列表 — #{@legislator.name}立委",
       description: @main_video.try(:title),
       keywords: "#{@legislator.name},#{@legislator.name}影片調查",
       og: {

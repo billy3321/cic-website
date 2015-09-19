@@ -34,7 +34,7 @@ module ApplicationHelper
 
   def default_meta_tags
     {
-      separator: "&mdash;".html_safe,
+      separator: "—",
       site: '國會調查兵團 CIC',
       reverse: true,
       description: ' ',
