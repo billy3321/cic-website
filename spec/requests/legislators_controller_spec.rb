@@ -20,6 +20,16 @@ describe "Legislator" do
       get "/legislators/"
       expect(response).to be_success
     end
+
+    it "json success" do
+      get "/legislators.json"
+      expect(response).to be_success
+    end
+
+    it "json query success" do
+      get "/legislators.json?query=#{legislator.name}"
+      expect(response).to be_success
+    end
   end
 
   describe "#no_record" do
@@ -27,11 +37,41 @@ describe "Legislator" do
       get "/legislators/no_record"
       expect(response).to be_success
     end
+
+    it "json success" do
+      get "/legislators/no_record.json"
+      expect(response).to be_success
+    end
   end
 
   describe "#has_records" do
     it "success" do
       get "/legislators/has_records"
+      expect(response).to be_success
+    end
+
+    it "json success" do
+      get "/legislators/has_records.json"
+      expect(response).to be_success
+    end
+  end
+
+  describe "#search" do
+    it "success" do
+      legislator
+      get "/legislators/search"
+      expect(response).to be_success
+    end
+  end
+
+  describe "#result" do
+    it "success" do
+      get "/legislators/result"
+      expect(response).to be_success
+    end
+
+    it "search success" do
+      get "/legislators/result?q%5Blegislator_name_cont%5D=#{legislator.name}"
       expect(response).to be_success
     end
   end
@@ -49,6 +89,11 @@ describe "Legislator" do
       get "/legislators/#{legislator.id}"
       expect(response).to be_success
     end
+
+    it "json success" do
+      get "/legislators/#{legislator.id}.json"
+      expect(response).to be_success
+    end
   end
 
   describe "#entries" do
@@ -62,6 +107,11 @@ describe "Legislator" do
         FactoryGirl.create(:entry, legislators: [legislator])
       end
       get "/legislators/#{legislator.id}/entries"
+      expect(response).to be_success
+    end
+
+    it "json success" do
+      get "/legislators/#{legislator.id}/entries.json"
       expect(response).to be_success
     end
   end
@@ -79,6 +129,11 @@ describe "Legislator" do
       get "/legislators/#{legislator.id}/interpellations"
       expect(response).to be_success
     end
+
+    it "json success" do
+      get "/legislators/#{legislator.id}/interpellations.json"
+      expect(response).to be_success
+    end
   end
 
   describe "#videos" do
@@ -94,6 +149,11 @@ describe "Legislator" do
       get "/legislators/#{legislator.id}/videos"
       expect(response).to be_success
     end
+
+    it "json success" do
+      get "/legislators/#{legislator.id}/videos.json"
+      expect(response).to be_success
+    end
   end
 
   describe "#ccw" do
@@ -105,5 +165,4 @@ describe "Legislator" do
       expect(response).to be_success
     end
   end
-
 end

@@ -34,7 +34,7 @@ class Committee < ActiveRecord::Base
     elsif kind == 'yc'
       results = LegislatorCommittee.includes(:legislator, :ccw_legislator_datum).joins(:ccw_legislator_datum).where(ad_session_id: ad_session_id).order("ccw_legislator_data.yc_attendance desc")
     else
-      []
+      return []
     end
     results.to_a.map! { |l| l.ccw_legislator_datum }
   end

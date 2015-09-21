@@ -25,6 +25,16 @@ describe "Video" do
         get "/videos/"
         expect(response).to be_success
       end
+
+      it "json success" do
+        get "/videos.json"
+        expect(response).to be_success
+      end
+
+      it "json query success" do
+        get "/videos.json?query=#{video.title}"
+        expect(response).to be_success
+      end
     end
 
     describe "#index" do
@@ -38,6 +48,11 @@ describe "Video" do
     describe "#show" do
       it "success" do
         get "/videos/#{video.id}"
+        expect(response).to be_success
+      end
+
+      it "json success" do
+        get "/videos/#{video.id}.json"
         expect(response).to be_success
       end
     end

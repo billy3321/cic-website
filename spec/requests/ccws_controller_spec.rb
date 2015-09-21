@@ -15,6 +15,11 @@ describe "Ccw" do
       get "/ccws/"
       expect(response).to be_success
     end
+
+    it "json success" do 
+      get "/ccws.json"
+      expect(response).to be_success
+    end
   end
 
   describe "#citizen_score" do
@@ -23,6 +28,16 @@ describe "Ccw" do
       legislator_committee_sc
       ccw_citizen_score
       get "/ccws/#{ad_session.id}/citizen_score/"
+      expect(response).to be_success
+    end
+  end
+
+  describe "#show" do
+    it "json success" do
+      legislator_committee_yc
+      legislator_committee_sc
+      ccw_citizen_score
+      get "/ccws/#{ad_session.id}.json"
       expect(response).to be_success
     end
   end

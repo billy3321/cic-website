@@ -23,6 +23,16 @@ describe "Entry" do
         get "/entries/"
         expect(response).to be_success
       end
+
+      it "json success" do
+        get "/entries.json"
+        expect(response).to be_success
+      end
+
+      it "json success" do
+        get "/entries.json?query=#{entry.title}"
+        expect(response).to be_success
+      end
     end
 
     describe "#index" do
@@ -36,6 +46,11 @@ describe "Entry" do
     describe "#show" do
       it "success" do
         get "/entries/#{entry.id}"
+        expect(response).to be_success
+      end
+
+      it "json success" do
+        get "/entries/#{entry.id}.json"
         expect(response).to be_success
       end
     end

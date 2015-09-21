@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 20150917161536) do
     t.string   "musou_link"
     t.string   "ccw_link"
     t.string   "ivod_link"
-    t.datetime "updated_at",   default: '2015-04-12 11:24:59', null: false
+    t.datetime "updated_at",   default: '2015-09-21 01:01:27', null: false
   end
 
   create_table "legislators_videos", id: false, force: :cascade do |t|

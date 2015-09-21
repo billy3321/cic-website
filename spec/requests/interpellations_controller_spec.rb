@@ -23,12 +23,27 @@ describe "Interpellation" do
         get "/interpellations/"
         expect(response).to be_success
       end
+
+      it "json success" do
+        get "/interpellations.json"
+        expect(response).to be_success
+      end
+
+      it "json query success" do
+        get "/interpellations.json?query=#{interpellation.title}"
+        expect(response).to be_success
+      end
     end
 
     describe "#show" do
       it "success" do
         2.times { FactoryGirl.create(:interpellation_record) }
         get "/interpellations/#{interpellation.id}"
+        expect(response).to be_success
+      end
+
+      it "json success" do
+        get "/interpellations/#{interpellation.id}.json"
         expect(response).to be_success
       end
     end
