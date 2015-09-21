@@ -461,11 +461,11 @@ class LegislatorsController < ApplicationController
     @q = Election.includes(:ad, :legislator, :party, :districts).search(params[:q])
     @ad_id_eq = params[:q] ? params[:q][:ad_id_eq] : nil
     @county_id_eq = params[:q] ? params[:q][:county_id_eq] : nil
-    @party_id_eq = params[:q] ? params[:q][:party_id_eq] : nil
+    @party_id_eq = params[:q] ? params[:q][:party_id_or_legislator_now_party_id_eq] : nil
     if params[:q] and \
         params[:q][:ad_id_eq].blank? and \
         params[:q][:county_id_eq].blank? and \
-        params[:q][:party_id_eq].blank? and \
+        params[:q][:party_id_or_legislator_now_party_id_eq].blank? and \
         params[:q][:legislator_name_cont].blank?
       params[:commit] = nil
     end
@@ -474,8 +474,8 @@ class LegislatorsController < ApplicationController
       @elections = []
     else
       @title = "立委"
-      unless params[:q][:party_id_eq].blank?
-        party = Party.find(params[:q][:party_id_eq])
+      unless params[:q][:party_id_or_legislator_now_party_id_eq].blank?
+        party = Party.find(params[:q][:party_id_or_legislator_now_party_id_eq])
         if party
           @title = party.name + @title
         end

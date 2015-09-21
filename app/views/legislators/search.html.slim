@@ -4,7 +4,7 @@
     .search-select
       = f.hidden_field :ad_id_eq, value: Ad.last.id
       = f.collection_select :county_id_eq, County.all, :id, :name, include_blank: "選擇選區或種類", id: "select"
-      = f.collection_select :party_id_eq, Party.all, :id, :name, include_blank: "不分黨籍", id: "select2"
+      = f.collection_select :party_id_or_legislator_now_party_id_eq, Party.all, :id, :name, include_blank: "不分黨籍", id: "select2"
     = f.submit '找現任立委', class: "srbtn", id: "button"
 
 .srblock
