@@ -52,6 +52,10 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'social-share-button'
 gem 'redis'
 gem "twitter-bootstrap-rails"
+gem 'rabl-rails'
+gem 'responders', '~> 2.0'
+gem 'swagger-docs', git: 'git://github.com/billy3321/swagger-docs.git'
+
 
 
 group :development, :test do
