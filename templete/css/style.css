@@ -187,27 +187,32 @@ padding:30px 7% 15px 7%;}
 #sec-nav li a{
 	text-decoration:none;
 	display:block;}
+#secn00{
+	overflow:hidden;
+	margin:0 auto 12px auto;
+	clear:both;
+	}
 #secn01{
 	overflow:hidden;
 	margin:0 auto 12px auto;
 float:left;
 	}
-#secn01 li{
+#secn01 li,#secn00 li{
 	border:1px solid #d4d4d4;
 	margin:0 0 0 -1px;}
-#secn01 li:nth-child(1){
+#secn01 li:nth-child(1),#secn00 li:nth-child(1){
 border-top-left-radius:5px;
 border-bottom-left-radius:5px;
 margin-left:0px;}
-#secn01 .current{
+#secn01 .current,#secn00 .current{
 	background:#d4d4d4;
 	font-weight:bold;}
-#secn01 a{
+#secn01 a,#secn00 a{
 	height:30px;
 line-height:30px;
 padding:5px 15px;
 	}
-#secn01 li:nth-last-child(1){
+#secn01 li:nth-last-child(1),#secn00 li:nth-last-child(1){
 border-top-right-radius:5px;
 border-bottom-right-radius:5px;
 }
