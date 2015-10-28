@@ -35,7 +35,7 @@ h2{
 	position:relative;
 	}
 #top{
-	border-bottom:1px solid #d4d4d4;	overflow:hidden;
+	border-bottom:1px solid #fff;	overflow:hidden;
 	padding:0 6%;
 	margin:0px;
 	background:url(../images/top-bg.jpg) -275px top no-repeat #000;
@@ -52,12 +52,13 @@ h2{
 height:60px;}
 #logo a{
 	display:block;
-	padding:100px 0 0 0;}
+	padding:100px 0 0 0;
+	}
 #first-nav li{
 	float:left;
 	margin:0 0 0 -1px ;}
 #first-nav li:hover{
-	background:#3c3c3c;}
+	}
 #first-nav{
 	float:right;
 	}
@@ -66,7 +67,7 @@ height:60px;}
 	font-weight:bold;
 	display:block;
 			padding:4px 17px;
-			color:#fff;
+			color:#000;
 			
 	}
 #first-nav li a:hover{
@@ -822,11 +823,10 @@ border:none;}
 	float:left;
 	margin:0 0 0 5px ;}
 #footer{
-	border-top:1px solid #d4d4d4;
+	border-top:1px solid #fff;
 	font-size:12px;
 	text-align:center;
 background:url(../images/footer.jpg) center center no-repeat #000;
-color:#fff;
 margin:0px;
 padding:1em 3em;
 }
