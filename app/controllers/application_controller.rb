@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
     super
     payload[:request_id] = request.uuid
     payload[:user_id] = current_user.id if current_user
+    if request.env['HTTP_CF_CONNECTING_IP']
+      payload[:ip] = request.env['HTTP_CF_CONNECTING_IP']
+    else
+      payload[:ip] = request.env['REMOTE_ADDR']
+    end
   end
 
   protected
