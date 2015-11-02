@@ -36,6 +36,6 @@
       ul
         - @interpellations.each do |q|
           = link_to interpellation_path(q) do
-            li = display_shorter(q.content, 80)
+            li = display_shorter(q.title, 80)
     - else
       .blank 目前尚無資料

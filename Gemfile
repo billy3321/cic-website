@@ -55,8 +55,7 @@ gem "twitter-bootstrap-rails"
 gem 'rabl-rails'
 gem 'responders', '~> 2.0'
 gem 'swagger-docs', git: 'git://github.com/billy3321/swagger-docs.git'
-
-
+gem 'lograge'
 
 group :development, :test do
   gem 'minitest'

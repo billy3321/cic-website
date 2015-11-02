@@ -44,6 +44,7 @@ Rails.application.configure do
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
+  config.logger = Logger.new(config.paths["log"].first, 'weekly')
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -85,6 +86,13 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.lograge.enabled = true
+  config.lograge.custom_options = lambda do |event|
+    options = event.payload.slice(:request_id, :user_id, :visit_id)
+    options[:params] = event.payload[:params].except("controller", "action")
+    options
+  end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

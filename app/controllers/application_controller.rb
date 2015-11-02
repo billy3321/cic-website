@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
-
+  def append_info_to_payload(payload)
+    super
+    payload[:request_id] = request.uuid
+    payload[:user_id] = current_user.id if current_user
+    payload[:visit_id] = ahoy.visit_id # if you use Ahoy
+  end
 
   protected
 
