@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     payload[:user_id] = current_user.id if current_user
     if request.env['HTTP_CF_CONNECTING_IP']
       payload[:ip] = request.env['HTTP_CF_CONNECTING_IP']
+    elsif request.env["HTTP_X_FORWARDED_FOR"]
+      payload[:ip] = request.env["HTTP_X_FORWARDED_FOR"]
     else
       payload[:ip] = request.env['REMOTE_ADDR']
     end
