@@ -62,6 +62,29 @@ Rails.application.routes.draw do
     match 'update_videos',    to: 'admins#update_videos',    via: 'put'
   end
 
+  namespace :api do
+    resources :legislators, only: [:show, :index] do
+      member do
+        get 'entries'
+        get 'interpellations'
+        get 'videos'
+      end
+    end
+    resources :entries, only: [:show, :index]
+    resources :interpellations, only: [:show, :index]
+    resources :videos, only: [:show, :index]
+    namespace :ccw do
+      resources :ad_sessions, only: [:index] do
+        resources :legislators, only: [:show, :index] do
+          collection do
+            get 'citizen_score'
+          end
+        end
+        resources :committees, only: [:show, :index]
+      end
+    end
+  end
+
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'not_found'
   match "/422" => "errors#error422", via: [ :get, :post, :patch, :delete ]
   match "/500" => "errors#error500", via: [ :get, :post, :patch, :delete ]

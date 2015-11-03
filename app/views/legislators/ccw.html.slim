@@ -36,8 +36,8 @@
               .attend-graphic
                 .atg-01.atg
                   .atg-bar
-                    .atg-color-01 style="height: #{get_percentage(@ccw_legislator_datum.yc_attendance, @ys_committee_datum.should_attendance)};"
-                      span = get_percentage(@ccw_legislator_datum.yc_attendance, @ys_committee_datum.should_attendance)
+                    .atg-color-01 style="height: #{get_percentage(@ccw_legislator_datum.yc_attendance, @yc_committee_datum.should_attendance)};"
+                      span = get_percentage(@ccw_legislator_datum.yc_attendance, @yc_committee_datum.should_attendance)
                   p.atg-txt
                     = @legislator.name
                     br
@@ -45,12 +45,12 @@
                   p
                     span = image_tag('atg-color-01.png', alt: "")
                     span.this-color 
-                      = get_percentage(@ccw_legislator_datum.yc_attendance, @ys_committee_datum.should_attendance, false)
+                      = get_percentage(@ccw_legislator_datum.yc_attendance, @yc_committee_datum.should_attendance, false)
                       i %
                 .atg-02.atg
                   .atg-bar
-                    .atg-color-02 style="height: #{get_percentage(@ys_committee_datum.actually_average_attendance, @ys_committee_datum.should_attendance)};"
-                      span = get_percentage(@ys_committee_datum.actually_average_attendance, @ys_committee_datum.should_attendance)
+                    .atg-color-02 style="height: #{get_percentage(@yc_committee_datum.actually_average_attendance, @yc_committee_datum.should_attendance)};"
+                      span = get_percentage(@yc_committee_datum.actually_average_attendance, @yc_committee_datum.should_attendance)
                   p.atg-txt
                     | 所有委員
                     br
@@ -58,7 +58,7 @@
                   p
                     span = image_tag('atg-color-02.png', alt: "")
                     span 
-                      = get_percentage(@ys_committee_datum.actually_average_attendance, @ys_committee_datum.should_attendance, false)
+                      = get_percentage(@yc_committee_datum.actually_average_attendance, @yc_committee_datum.should_attendance, false)
                       i %
               ul.atg-number
                 li
@@ -66,7 +66,7 @@
                     | 院會
                     br
                     | 應出席數
-                  span = @ys_committee_datum.should_attendance
+                  span = @yc_committee_datum.should_attendance
                 li
                   p 
                     = @legislator.name
@@ -78,7 +78,7 @@
                     | 所有委員
                     br
                     | 出席數平均數
-                  span = @ys_committee_datum.actually_average_attendance
+                  span = @yc_committee_datum.actually_average_attendance
             .attend-block
               h5
                 = @sc_committee.name

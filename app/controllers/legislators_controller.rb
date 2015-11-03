@@ -414,11 +414,11 @@ class LegislatorsController < ApplicationController
     end
     @ccw_legislator_datum = @legislator.get_session_ccw_data(@ad_session.id).first
     @sc_committee = @legislator.get_session_committee(@ad_session.id, 'sc').first
-    @ys_committee = Committee.find(19)
+    @yc_committee = Committee.find(19)
     @sc_committee_datum = @sc_committee.ccw_committee_data.where(ad_session_id: @ad_session.id).first
-    @ys_committee_datum = @ys_committee.ccw_committee_data.where(ad_session_id: @ad_session.id).first
+    @yc_committee_datum = @yc_committee.ccw_committee_data.where(ad_session_id: @ad_session.id).first
     @ccw_citizen_score = @ad_session.ccw_citizen_score
-    if @sc_committee_datum.blank? or @ys_committee_datum.blank? or @ccw_citizen_score.blank?
+    if @sc_committee_datum.blank? or @yc_committee_datum.blank? or @ccw_citizen_score.blank?
       @status = false
       flash.now[:alert] = "目前尚未輸入相關資料"
     else
