@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     match 'update_videos',    to: 'admins#update_videos',    via: 'put'
   end
 
-  namespace :api do
+  namespace :api, defaults: { format: 'json' } do
     resources :legislators, only: [:show, :index] do
       member do
         get 'entries'
