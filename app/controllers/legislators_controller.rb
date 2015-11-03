@@ -634,7 +634,7 @@ class LegislatorsController < ApplicationController
   end
 
   def parse_vote_guide_biller_api(legislator_id, ad, page = nil)
-    #begin
+    begin
       params = {}
       legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
       params[:legislator] = legislator_term_data['id']
@@ -660,9 +660,9 @@ class LegislatorsController < ApplicationController
         bills << bill
       end
       return bills, current_page, pages, count, true
-    #rescue
-    #  return [], 1, [], 0, false
-    #end
+    rescue
+      return [], 1, [], 0, false
+    end
   end
 
   def parse_vote_guide_biller(legislator_id, ad, page = nil)
@@ -729,7 +729,6 @@ class LegislatorsController < ApplicationController
         unless candidate_url.blank?
           candidate_json = JSON.parse(get_cached_page(candidate_url))
           if candidate_json.has_key? "politicalcontributions" and not candidate_json["politicalcontributions"].blank?
-            puts candidate_json["politicalcontributions"]
             return candidate_json["politicalcontributions"], true
           end
         end
