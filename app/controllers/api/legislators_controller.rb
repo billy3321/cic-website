@@ -59,6 +59,15 @@ class Api::LegislatorsController < ApplicationController
     respond_with(@legislator)
   end
 
+  swagger_api :entries do
+    summary '立委新聞列表'
+    notes '回應、查詢立委新聞資訊'
+    param :query, :query, :string, :optional, "查詢新聞標題或內文"
+    param :query, :limit, :integer, :optional, "一次顯示多少筆"
+    param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
+    response :ok, "Success", :APILegislatorEntries
+  end
+
   def entries
     limit = params[:limit].blank? ? 10 : params[:limit]
     ransack_params = {}
@@ -75,6 +84,15 @@ class Api::LegislatorsController < ApplicationController
     respond_with(@entries, @entries_count)
   end
 
+  swagger_api :interpellations do
+    summary '立委質詢列表'
+    notes '回應、查詢立委質詢資訊'
+    param :query, :query, :string, :optional, "查詢質詢標題、內文或會議資訊"
+    param :query, :limit, :integer, :optional, "一次顯示多少筆"
+    param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
+    response :ok, "Success", :APILegislatorInterpellations
+  end
+
   def interpellations
     limit = params[:limit].blank? ? 10 : params[:limit]
     ransack_params = {}
@@ -89,6 +107,15 @@ class Api::LegislatorsController < ApplicationController
         .published.count
     end
     respond_with(@interpellations, @interpellations_count)
+  end
+
+  swagger_api :videos do
+    summary '立委影片列表'
+    notes '回應、查詢立委影片資訊'
+    param :query, :query, :string, :optional, "查詢影片標題、內文或會議資訊"
+    param :query, :limit, :integer, :optional, "一次顯示多少筆"
+    param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
+    response :ok, "Success", :APILegislatorVideos
   end
 
   def videos
@@ -117,6 +144,27 @@ class Api::LegislatorsController < ApplicationController
   swagger_model :APILegislatorShow do
     description "Legislator show structure"
     property :legislator, nil, :required, "立委", '$ref' => :Legislator
+    property :status, :string, :required, "狀態"
+  end
+
+  swagger_model :APILegislatorEntries do
+    description "Legislator entries structure"
+    property :count, :integer, :required, "新聞數"
+    property :entries, :array, :required, "新聞列表", items: { '$ref' => :Entry }
+    property :status, :string, :required, "狀態"
+  end
+
+  swagger_model :APILegislatorInterpellations do
+    description "Legislator interpellations structure"
+    property :count, :integer, :required, "質詢數"
+    property :interpellations, :array, :required, "質詢列表", items: { '$ref' => :Interpellation }
+    property :status, :string, :required, "狀態"
+  end
+
+  swagger_model :APILegislatorVideos do
+    description "Legislator videos structure"
+    property :count, :integer, :required, "影片數"
+    property :videos, :array, :required, "影片列表", items: { '$ref' => :Video }
     property :status, :string, :required, "狀態"
   end
 
@@ -178,6 +226,78 @@ class Api::LegislatorsController < ApplicationController
     property :name, :string, :required, "委員會名稱"
     property :convener, :boolean, :required, "是否為召委"
     property :ad_session, nil, :required, "參與之會期", '$ref' => :AdSession
+  end
+
+  swagger_model :SimpleLegislator do
+    description "立委"
+    property :id, :integer, :required, "立委 Id"
+    property :name, :string, :required, "立委名稱"
+    property :image, :string, :required, "立委圖片"
+    property :party, nil, :required, "政黨", '$ref' => :Party
+  end
+
+  swagger_model :SimpleCommittee do
+    description "委員會"
+    property :id, :integer, :required, "委員會 Id"
+    property :name, :string, :required, "委員會名稱"
+  end
+
+  swagger_model :Entry do
+    description "新聞"
+    property :legislators, :array, :required, "立委列表", items: { '$ref' => :SimpleLegislator }
+    property :id, :integer, :required, "新聞 Id"
+    property :title, :string, :required, "新聞標題"
+    property :content, :text, :required, "新聞內文"
+    property :source_url, :string, :required, "新聞來源網址"
+    property :source_name, :string, :required, "新聞來源名稱"
+    property :date, :date, :required, "新聞日期"
+    property :created_at, :datetime, :required, "建立時間"
+    property :updated_at, :datetime, :required, "更新時間"
+  end
+
+  swagger_model :Interpellation do
+    description "質詢"
+    property :legislators, :array, :required, "立委列表", items: { '$ref' => :SimpleLegislator }
+    property :ad_session, nil, :required, "會期資料", '$ref' => :AdSession
+    property :committee, nil, :required, '委員會資料', '$ref' => :SimpleCommittee
+    property :id, :integer, :required, "質詢 Id"
+    property :title, :string, :required, "質詢標題"
+    property :content, :text, :required, "質詢內文"
+    property :meeting_description, :string, :required, "會議內容"
+    property :ivod_url, :string, :optional, "IVOD連結"
+    property :time_start, :time, :optional, "開始時間"
+    property :time_end, :time, :optional, "結束時間"
+    property :target, :string, :optional, "質詢對象"
+    property :date, :date, :required, "日期"
+    property :comment, :text, :optional, "心得"
+    property :interpellation_type, :string, :required, "質詢類別"
+    property :record_url, :string, :optional, "記錄網址"
+    property :created_at, :datetime, :required, "建立時間"
+    property :updated_at, :datetime, :required, "更新時間"
+  end
+
+  swagger_model :Video do
+    description "影片"
+    property :legislators, :array, :required, "立委列表", items: { '$ref' => :SimpleLegislator }
+    property :ad_session, nil, :required, "會期資料", '$ref' => :AdSession
+    property :committee, nil, :optional, '委員會資料', '$ref' => :SimpleCommittee
+    property :id, :integer, :required, "影片 Id"
+    property :title, :string, :required, "影片標題"
+    property :content, :text, :required, "影片內文"
+    property :video_type, :string, :required, "影片類型"
+    property :meeting_description, :string, :optional, "會議描述"
+    property :youtube_url, :string, :required, "Youtube 連結"
+    property :youtube_id, :string, :required, "Youtube Id"
+    property :image, :string, :required, "圖片網址"
+    property :ivod_url, :string, :optional, "Ivod 網址"
+    property :source_url, :string, :optional, "來源網址"
+    property :source_name, :string, :optional, "來源名稱"
+    property :time_start, :time, :optional, "開始時間"
+    property :time_end, :time, :optional, "結束時間"
+    property :date, :date, :required, "日期"
+    property :target, :string, :optional, "質詢對象"
+    property :created_at, :datetime, :required, "建立時間"
+    property :updated_at, :datetime, :required, "更新時間"
   end
 
   private

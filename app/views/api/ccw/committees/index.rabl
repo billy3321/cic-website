@@ -7,8 +7,7 @@ child(:@ad_session) do
 end
 child(:@ccw_committee_data => :committees) do
   child(:committee) do
-    attributes id: :id
-    attributes name: :name
+    attributes :id, :name
   end
   attributes :should_attendance, :actually_average_attendance
   attributes :avaliable_interpellation_count, :actually_average_interpellation_count

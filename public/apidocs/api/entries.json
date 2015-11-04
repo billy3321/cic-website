@@ -1,0 +1,231 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000/",
+  "resourcePath": "entries",
+  "apis": [
+    {
+      "path": "/api/entries.json",
+      "operations": [
+        {
+          "summary": "新聞列表",
+          "notes": "回應、查詢新聞資訊",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "query",
+              "type": "string",
+              "description": "查詢新聞標題或內文",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "limit",
+              "type": "integer",
+              "description": "一次顯示多少筆",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "offset",
+              "type": "integer",
+              "description": "從第幾筆開始顯示",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APIEntryIndex",
+              "message": "Success"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Entries#index"
+        }
+      ]
+    },
+    {
+      "path": "/api/entries/{id}.json",
+      "operations": [
+        {
+          "summary": "單一新聞",
+          "notes": "回應單一新聞資訊",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "新聞 Id",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APIEntryShow",
+              "message": "Success"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Entries#show"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "APIEntryIndex": {
+      "id": "APIEntryIndex",
+      "required": [
+        "count",
+        "entries",
+        "status"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "新聞數"
+        },
+        "entries": {
+          "type": "array",
+          "description": "新聞列表",
+          "items": {
+            "$ref": "Entry"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "Entry index structure"
+    },
+    "APIEntryShow": {
+      "id": "APIEntryShow",
+      "required": [
+        "entry",
+        "status"
+      ],
+      "properties": {
+        "entry": {
+          "type": null,
+          "description": "新聞資料",
+          "$ref": "Entry"
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "Entry show structure"
+    },
+    "Entry": {
+      "id": "Entry",
+      "required": [
+        "legislators",
+        "id",
+        "title",
+        "content",
+        "source_url",
+        "source_name",
+        "date",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "legislators": {
+          "type": "array",
+          "description": "立委列表",
+          "items": {
+            "$ref": "Legislator"
+          }
+        },
+        "id": {
+          "type": "integer",
+          "description": "新聞 Id"
+        },
+        "title": {
+          "type": "string",
+          "description": "新聞標題"
+        },
+        "content": {
+          "type": "text",
+          "description": "新聞內文"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "description": "新聞來源網址"
+        },
+        "sourceName": {
+          "type": "string",
+          "description": "新聞來源名稱"
+        },
+        "date": {
+          "type": "date",
+          "description": "新聞日期"
+        },
+        "createdAt": {
+          "type": "datetime",
+          "description": "建立時間"
+        },
+        "updatedAt": {
+          "type": "datetime",
+          "description": "更新時間"
+        }
+      },
+      "description": "新聞"
+    },
+    "Legislator": {
+      "id": "Legislator",
+      "required": [
+        "id",
+        "name",
+        "image",
+        "party"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "立委 Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "立委名稱"
+        },
+        "image": {
+          "type": "string",
+          "description": "立委圖片"
+        },
+        "party": {
+          "type": null,
+          "description": "政黨",
+          "$ref": "Party"
+        }
+      },
+      "description": "立委"
+    },
+    "Committee": {
+      "id": "Committee",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "委員會 Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "委員會名稱"
+        }
+      },
+      "description": "委員會"
+    }
+  }
+}

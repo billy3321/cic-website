@@ -19,7 +19,7 @@ child(:@interpellation) do
     attributes id: :id
     attributes name: :name
   end
-  attributes :title, :content, :meeting_description, :ivod_url, :time_start, :time_end
+  attributes :id, :title, :content, :meeting_description, :ivod_url, :time_start, :time_end
   attributes :target, :date, :comment, :interpellation_type, :record_url, :created_at, :updated_at
 end
 node(:status) {"success"}

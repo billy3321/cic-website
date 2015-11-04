@@ -19,9 +19,9 @@ Swagger::Docs::Config.register_apis({
     # add custom attributes to api-docs
     :attributes => {
       :info => {
-        "title" => "民間司改會數位典藏",
-        "description" => "民間司改會數位典藏 API",
-        "contact" => "contact@jrf.org.tw",
+        "title" => "國會調查兵團",
+        "description" => "國會調查兵團 API",
+        "contact" => "contact@cic.tw",
         "license" => "MIT"
       }
     }

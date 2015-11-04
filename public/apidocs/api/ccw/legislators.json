@@ -1,0 +1,508 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000/",
+  "resourcePath": "legislators",
+  "apis": [
+    {
+      "path": "/api/ccw/ad_sessions/{ad_session_id}/legislators.json",
+      "operations": [
+        {
+          "summary": "公督盟立委統計列表",
+          "notes": "回應公督盟立委統計列表資訊",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "ad_session_id",
+              "type": "integer",
+              "description": "會期 Id",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "query",
+              "type": "string",
+              "description": "查詢立委姓名",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "limit",
+              "type": "integer",
+              "description": "一次顯示多少筆",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "offset",
+              "type": "integer",
+              "description": "從第幾筆開始顯示",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "party",
+              "type": "string",
+              "description": "查詢該黨派立委",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APICcwLegislatorDatumIndex",
+              "message": "Success"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Ccw::Legislators#index"
+        }
+      ]
+    },
+    {
+      "path": "/api/ccw/ad_sessions/{ad_session_id}/legislators/{id}.json",
+      "operations": [
+        {
+          "summary": "公督盟立委統計",
+          "notes": "回應公督盟立委統計資訊",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "ad_session_id",
+              "type": "integer",
+              "description": "會期 Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "立委 Id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APICcwLegislatorDatumShow",
+              "message": "Success"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Ccw::Legislators#show"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "APICcwLegislatorDatumIndex": {
+      "id": "APICcwLegislatorDatumIndex",
+      "required": [
+        "count",
+        "ad_session",
+        "legislators",
+        "status"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "立委數"
+        },
+        "adSession": {
+          "type": null,
+          "description": "會期資料",
+          "$ref": "AdSession"
+        },
+        "legislators": {
+          "type": "array",
+          "description": "立委數據列表",
+          "items": {
+            "$ref": "CcwLegislatorDatum"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "CcwLegislatorData index structure"
+    },
+    "APICcwLegislatorDatumShow": {
+      "id": "APICcwLegislatorDatumShow",
+      "required": [
+        "ad_session",
+        "legislator",
+        "sc_committee",
+        "yc_committee",
+        "citizen_score",
+        "status"
+      ],
+      "properties": {
+        "adSession": {
+          "type": null,
+          "description": "會期資料",
+          "$ref": "AdSession"
+        },
+        "legislator": {
+          "type": null,
+          "description": "立委個人統計數據",
+          "$ref": "CcwLegislatorDatum"
+        },
+        "scCommittee": {
+          "type": null,
+          "description": "委員會數據",
+          "$ref": "ScCommitteeDatum"
+        },
+        "ycCommittee": {
+          "type": null,
+          "description": "院會數據",
+          "$ref": "YcCommitteeDatum"
+        },
+        "citizenScore": {
+          "type": null,
+          "description": "公民分數數據",
+          "$ref": "CitizenScore"
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "CcwLegislatorData show structure"
+    },
+    "AdSession": {
+      "id": "AdSession",
+      "required": [
+        "id",
+        "name",
+        "date_start",
+        "session",
+        "regular",
+        "ad"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "會期 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "會期名稱"
+        },
+        "dateStart": {
+          "type": "date",
+          "description": "會期開始日期"
+        },
+        "dateEnd": {
+          "type": "date",
+          "description": "會期結束日期"
+        },
+        "session": {
+          "type": "integer",
+          "description": "第幾會期"
+        },
+        "regular": {
+          "type": "boolean",
+          "description": "是否為正式會期"
+        },
+        "ad": {
+          "type": null,
+          "description": "屆次",
+          "$ref": "Ad"
+        }
+      },
+      "description": "會期"
+    },
+    "Ad": {
+      "id": "Ad",
+      "required": [
+        "id",
+        "name",
+        "vote_date",
+        "term_start",
+        "term_end"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "屆次 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "屆次名稱"
+        },
+        "voteDate": {
+          "type": "date",
+          "description": "投票日期"
+        },
+        "termStart": {
+          "type": "date",
+          "description": "屆次開始日期"
+        },
+        "termEnd": {
+          "type": "date",
+          "description": "屆次結束日期"
+        }
+      },
+      "description": "屆次"
+    },
+    "ScCommitteeDatum": {
+      "id": "ScCommitteeDatum",
+      "required": [
+        "committee",
+        "should_attendance",
+        "actually_average_attendance"
+      ],
+      "properties": {
+        "committee": {
+          "type": null,
+          "description": "委員會資料",
+          "$ref": "Committee"
+        },
+        "shouldAttendance": {
+          "type": "integer",
+          "description": "應出席數"
+        },
+        "actuallyAverageAttendance": {
+          "type": "float",
+          "description": "平均出席數"
+        },
+        "avaliableInterpellationCount": {
+          "type": "integer",
+          "description": "可質詢數"
+        },
+        "actuallyAverageInterpellationCount": {
+          "type": "float",
+          "description": "平均質詢數"
+        }
+      },
+      "description": "委員會統計資料"
+    },
+    "YcCommitteeDatum": {
+      "id": "YcCommitteeDatum",
+      "required": [
+        "committee",
+        "should_attendance",
+        "actually_average_attendance"
+      ],
+      "properties": {
+        "committee": {
+          "type": null,
+          "description": "院會資料",
+          "$ref": "Committee"
+        },
+        "shouldAttendance": {
+          "type": "integer",
+          "description": "應出席數"
+        },
+        "actuallyAverageAttendance": {
+          "type": "float",
+          "description": "平均出席數"
+        }
+      },
+      "description": "院會統計資料"
+    },
+    "Committee": {
+      "id": "Committee",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "委員會 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "委員會名稱"
+        }
+      },
+      "description": "委員會"
+    },
+    "CitizenScore": {
+      "id": "CitizenScore",
+      "required": [
+        "total",
+        "average"
+      ],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "公民評分滿分"
+        },
+        "average": {
+          "type": "float",
+          "description": "平均公民評分"
+        }
+      },
+      "description": "公民分數"
+    },
+    "CcwLegislatorDatum": {
+      "id": "CcwLegislatorDatum",
+      "required": [
+        "id",
+        "name",
+        "image",
+        "party",
+        "yc_attendance",
+        "sc_attendance",
+        "first_proposal_count",
+        "not_first_proposal_count",
+        "budgetary_count",
+        "auditing_count",
+        "citizen_score",
+        "new_sunshine_bills",
+        "modify_sunshine_bills",
+        "budgetary_deletion_passed",
+        "budgetary_deletion_impact",
+        "budgetary_deletion_special",
+        "special",
+        "conflict_expose",
+        "allow_visitor",
+        "human_rights_infringing_bill",
+        "human_rights_infringing_budgetary",
+        "judicial_case",
+        "disorder"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "立委 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "立委姓名"
+        },
+        "image": {
+          "type": "string",
+          "description": "立委圖片"
+        },
+        "party": {
+          "type": null,
+          "description": "政黨",
+          "$ref": "Party"
+        },
+        "ycAttendance": {
+          "type": "integer",
+          "description": "院會出席數"
+        },
+        "scAttendance": {
+          "type": "integer",
+          "description": "委員會出席數"
+        },
+        "scInterpellationCount": {
+          "type": "integer",
+          "description": "委員會質詢數"
+        },
+        "firstProposalCount": {
+          "type": "integer",
+          "description": "主提案第一人"
+        },
+        "notFirstProposalCount": {
+          "type": "integer",
+          "description": "非主提案第一人"
+        },
+        "budgetaryCount": {
+          "type": "integer",
+          "description": "預算案提案"
+        },
+        "auditingCount": {
+          "type": "integer",
+          "description": "決算審查提案"
+        },
+        "citizenScore": {
+          "type": "float",
+          "description": "公民評鑑得分"
+        },
+        "newSunshineBills": {
+          "type": "float",
+          "description": "新立陽光法案"
+        },
+        "modifySunshineBills": {
+          "type": "float",
+          "description": "修正陽光法案"
+        },
+        "budgetaryDeletionPassed": {
+          "type": "float",
+          "description": "三讀通過預算刪減案"
+        },
+        "budgetaryDeletionImpact": {
+          "type": "float",
+          "description": "符合重大公益價值預算刪減案"
+        },
+        "budgetaryDeletionSpecial": {
+          "type": "float",
+          "description": "特殊事蹟預算刪減案"
+        },
+        "special": {
+          "type": "float",
+          "description": "特殊事蹟"
+        },
+        "conflictExpose": {
+          "type": "float",
+          "description": "利益衝突迴避揭露"
+        },
+        "allowVisitor": {
+          "type": "float",
+          "description": "開放旁聽"
+        },
+        "humanRightsInfringingBill": {
+          "type": "float",
+          "description": "傷害基本人拳法案提案與連署"
+        },
+        "humanRightsInfringingBudgetary": {
+          "type": "float",
+          "description": "侵害基本人權預算案"
+        },
+        "judicialCase": {
+          "type": "float",
+          "description": "司法案件"
+        },
+        "disorder": {
+          "type": "float",
+          "description": "脫序表現"
+        }
+      },
+      "description": "立委統計資料"
+    },
+    "Party": {
+      "id": "Party",
+      "required": [
+        "id",
+        "name",
+        "abbreviation",
+        "image"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "政黨名稱"
+        },
+        "abbreviation": {
+          "type": "string",
+          "description": "政黨縮寫"
+        },
+        "image": {
+          "type": "string",
+          "description": "政黨圖片"
+        }
+      },
+      "description": "政黨"
+    }
+  }
+}

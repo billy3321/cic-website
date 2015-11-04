@@ -1,0 +1,333 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000/",
+  "resourcePath": "committees",
+  "apis": [
+    {
+      "path": "/api/ccw/ad_sessions/{ad_session_id}/committees.json",
+      "operations": [
+        {
+          "summary": "公督盟委員會統計列表",
+          "notes": "回應公督盟委員會統計列表資訊",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "ad_session_id",
+              "type": "integer",
+              "description": "會期 Id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APICcwCommitteeDatumIndex",
+              "message": "Success"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Ccw::Committees#index"
+        }
+      ]
+    },
+    {
+      "path": "/api/ccw/ad_sessions/{ad_session_id}/committees/{id}.json",
+      "operations": [
+        {
+          "summary": "公督盟單獨委員會統計",
+          "notes": "回應公督盟委員會統計資訊",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "ad_session_id",
+              "type": "integer",
+              "description": "會期 Id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "委員會 Id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APICcwCommitteeDatumShow",
+              "message": "Success"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Ccw::Committees#show"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "APICcwCommitteeDatumIndex": {
+      "id": "APICcwCommitteeDatumIndex",
+      "required": [
+        "ad_session",
+        "committees",
+        "status"
+      ],
+      "properties": {
+        "adSession": {
+          "type": null,
+          "description": "會期資料",
+          "$ref": "AdSession"
+        },
+        "committees": {
+          "type": "array",
+          "description": "委員會列表",
+          "items": {
+            "$ref": "CcwCommitteeDatum"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "CcwCommitteeData index structure"
+    },
+    "APICcwCommitteeDatumShow": {
+      "id": "APICcwCommitteeDatumShow",
+      "required": [
+        "ad_session",
+        "committee",
+        "legislators",
+        "status"
+      ],
+      "properties": {
+        "adSession": {
+          "type": null,
+          "description": "會期資料",
+          "$ref": "AdSession"
+        },
+        "committee": {
+          "type": null,
+          "description": "委員會數據",
+          "$ref": "CcwCommitteeDatum"
+        },
+        "legislators": {
+          "type": "array",
+          "description": "委員會立委數據",
+          "items": {
+            "$ref": "CcwLegislatorDatum"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "CcwCommitteeDatum show structure"
+    },
+    "AdSession": {
+      "id": "AdSession",
+      "required": [
+        "id",
+        "name",
+        "date_start",
+        "session",
+        "regular",
+        "ad"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "會期 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "會期名稱"
+        },
+        "dateStart": {
+          "type": "date",
+          "description": "會期開始日期"
+        },
+        "dateEnd": {
+          "type": "date",
+          "description": "會期結束日期"
+        },
+        "session": {
+          "type": "integer",
+          "description": "第幾會期"
+        },
+        "regular": {
+          "type": "boolean",
+          "description": "是否為正式會期"
+        },
+        "ad": {
+          "type": null,
+          "description": "屆次",
+          "$ref": "Ad"
+        }
+      },
+      "description": "會期"
+    },
+    "Ad": {
+      "id": "Ad",
+      "required": [
+        "id",
+        "name",
+        "vote_date",
+        "term_start",
+        "term_end"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "屆次 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "屆次名稱"
+        },
+        "voteDate": {
+          "type": "date",
+          "description": "投票日期"
+        },
+        "termStart": {
+          "type": "date",
+          "description": "屆次開始日期"
+        },
+        "termEnd": {
+          "type": "date",
+          "description": "屆次結束日期"
+        }
+      },
+      "description": "屆次"
+    },
+    "CcwCommitteeDatum": {
+      "id": "CcwCommitteeDatum",
+      "required": [
+        "committee",
+        "should_attendance",
+        "actually_average_attendance"
+      ],
+      "properties": {
+        "committee": {
+          "type": null,
+          "description": "委員會資料",
+          "$ref": "Committee"
+        },
+        "shouldAttendance": {
+          "type": "integer",
+          "description": "應出席數"
+        },
+        "actuallyAverageAttendance": {
+          "type": "float",
+          "description": "平均出席數"
+        },
+        "avaliableInterpellationCount": {
+          "type": "integer",
+          "description": "可質詢數"
+        },
+        "actuallyAverageInterpellationCount": {
+          "type": "float",
+          "description": "平均質詢數"
+        }
+      },
+      "description": "委員會統計數據"
+    },
+    "Committee": {
+      "id": "Committee",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "委員會 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "委員會名稱"
+        }
+      },
+      "description": "委員會"
+    },
+    "CcwLegislatorDatum": {
+      "id": "CcwLegislatorDatum",
+      "required": [
+        "id",
+        "name",
+        "image",
+        "party",
+        "attendance"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "立委 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "立委姓名"
+        },
+        "image": {
+          "type": "string",
+          "description": "立委圖片"
+        },
+        "party": {
+          "type": null,
+          "description": "政黨",
+          "$ref": "Party"
+        },
+        "attendance": {
+          "type": "integer",
+          "description": "委員會出席數"
+        },
+        "interpellationCount": {
+          "type": "integer",
+          "description": "委員會質詢數"
+        }
+      },
+      "description": "立委統計數據"
+    },
+    "Party": {
+      "id": "Party",
+      "required": [
+        "id",
+        "name",
+        "abbreviation",
+        "image"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "政黨名稱"
+        },
+        "abbreviation": {
+          "type": "string",
+          "description": "政黨縮寫"
+        },
+        "image": {
+          "type": "string",
+          "description": "政黨圖片"
+        }
+      },
+      "description": "政黨"
+    }
+  }
+}

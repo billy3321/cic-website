@@ -1,0 +1,284 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000/",
+  "resourcePath": "ad_sessions",
+  "apis": [
+    {
+      "path": "/api/ccw/ad_sessions/{id}/citizen_score.json",
+      "operations": [
+        {
+          "summary": "會期公民評鑑比較",
+          "notes": "回應會期公民評鑑比較",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "會期 Id",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "query",
+              "type": "string",
+              "description": "查詢立委姓名",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "limit",
+              "type": "integer",
+              "description": "一次顯示多少筆",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "offset",
+              "type": "integer",
+              "description": "從第幾筆開始顯示",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "party",
+              "type": "string",
+              "description": "查詢該黨派立委",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APIAdSessionCitizenScore",
+              "message": "Success"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Ccw::AdSessions#citizen_score"
+        }
+      ]
+    },
+    {
+      "path": "/api/ccw/ad_sessions.json",
+      "operations": [
+        {
+          "summary": "會期列表",
+          "notes": "回應會期列表",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APIAdSessionIndex",
+              "message": "Success"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Ccw::AdSessions#index"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "APIAdSessionIndex": {
+      "id": "APIAdSessionIndex",
+      "required": [
+        "count",
+        "ad_session",
+        "status"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "會期數"
+        },
+        "adSession": {
+          "type": "array",
+          "description": "會期列表",
+          "items": {
+            "$ref": "AdSession"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "Ad Session index"
+    },
+    "APIAdSessionCitizenScore": {
+      "id": "APIAdSessionCitizenScore",
+      "required": [
+        "count",
+        "ad_session",
+        "legislators",
+        "status"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "立委數"
+        },
+        "adSession": {
+          "type": null,
+          "description": "會期資料",
+          "$ref": "AdSession"
+        },
+        "legislators": {
+          "type": "array",
+          "description": "立委數據列表",
+          "items": {
+            "$ref": "CcwLegislatorDatum"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "狀態"
+        }
+      },
+      "description": "Ad Session Citizen Score list"
+    },
+    "AdSession": {
+      "id": "AdSession",
+      "required": [
+        "id",
+        "name",
+        "date_start",
+        "session",
+        "regular",
+        "ad"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "會期 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "會期名稱"
+        },
+        "dateStart": {
+          "type": "date",
+          "description": "會期開始日期"
+        },
+        "dateEnd": {
+          "type": "date",
+          "description": "會期結束日期"
+        },
+        "session": {
+          "type": "integer",
+          "description": "第幾會期"
+        },
+        "regular": {
+          "type": "boolean",
+          "description": "是否為正式會期"
+        },
+        "ad": {
+          "type": null,
+          "description": "屆次",
+          "$ref": "Ad"
+        }
+      },
+      "description": "會期"
+    },
+    "Ad": {
+      "id": "Ad",
+      "required": [
+        "id",
+        "name",
+        "vote_date",
+        "term_start",
+        "term_end"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "屆次 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "屆次名稱"
+        },
+        "voteDate": {
+          "type": "date",
+          "description": "投票日期"
+        },
+        "termStart": {
+          "type": "date",
+          "description": "屆次開始日期"
+        },
+        "termEnd": {
+          "type": "date",
+          "description": "屆次結束日期"
+        }
+      },
+      "description": "屆次"
+    },
+    "CcwLegislatorDatum": {
+      "id": "CcwLegislatorDatum",
+      "required": [
+        "id",
+        "name",
+        "image",
+        "party",
+        "citizen_score"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "立委 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "立委姓名"
+        },
+        "image": {
+          "type": "string",
+          "description": "立委圖片"
+        },
+        "party": {
+          "type": null,
+          "description": "政黨",
+          "$ref": "Party"
+        },
+        "citizenScore": {
+          "type": "float",
+          "description": "公民評鑑得分"
+        }
+      },
+      "description": "立委統計資料"
+    },
+    "Party": {
+      "id": "Party",
+      "required": [
+        "id",
+        "name",
+        "abbreviation",
+        "image"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "政黨名稱"
+        },
+        "abbreviation": {
+          "type": "string",
+          "description": "政黨縮寫"
+        },
+        "image": {
+          "type": "string",
+          "description": "政黨圖片"
+        }
+      },
+      "description": "政黨"
+    }
+  }
+}

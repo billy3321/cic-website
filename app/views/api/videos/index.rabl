@@ -20,7 +20,7 @@ child(:@videos) do
     attributes id: :id
     attributes name: :name
   end
-  attributes :title, :content, :video_type, :meeting_description, :youtube_url, :youtube_id
+  attributes :id, :title, :content, :video_type, :meeting_description, :youtube_url, :youtube_id
   attributes :image, :source_url, :source_name, :time_start, :time_end, :date, :target, :created_at, :updated_at
 end
 node(:status) {"success"}
