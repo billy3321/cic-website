@@ -160,6 +160,34 @@ def county_parser(constituency)
   end
 end
 
+def get_page(url)
+  response = HTTParty.get(url)
+  if response.code == 200
+    return response.body
+  else
+    return false
+  end
+end
+
+def get_vote_guide_legislator_term_data(legislator_id, ad)
+  legislator_term_url = "http://vote.ly.g0v.tw/api/legislator_terms/?format=json&ad=#{ad}&legislator=#{legislator_id}"
+  legislator_term_json = JSON.parse(get_page(legislator_term_url))
+  if legislator_term_json["results"].any?
+    return legislator_term_json["results"][0]
+  else
+    return nil
+  end
+end
+
+def get_vote_guide_candidate_data(candidate_url)
+  candidate_json = JSON.parse(get_page(candidate_url))
+  unless candidate_json.blank?
+    return candidate_json
+  else
+    return nil
+  end
+end
+
 County.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(County.table_name)
 
@@ -210,71 +238,87 @@ ActiveRecord::Base.connection.reset_pk_sequence!(District.table_name)
 # Ugly hack
 ActiveRecord::Base.connection.execute("Delete from districts_elections;");
 
-#import mly-8.json
-legislators_filepath = Rails.root.join('db', 'g0v-lyparser', 'mly-8.json')
-legislators_links_filepath = Rails.root.join('db', 'data', 'legislator-links.json')
-legislators = JSON.parse(File.read(legislators_filepath))
-legislator_links = JSON.parse(File.read(legislators_links_filepath))
-legislators.each do |l|
-  legislator = Legislator.new()
-  legislator.id = l['id']
-  if l['id'] == 1747
-    # 徐欣瑩現在屬於民國黨
-    legislator.now_party_id = 7
-  end
-  legislator.name = l['name']
-  legislator.in_office = l['in_office']
-  legislator.image = l['id'].to_s + '.jpg'
-  legislator_links.each do |links|
-    if links[0].to_i == l['id']
-      legislator.fb_link = links[2] unless links[2].blank?
-      legislator.wiki_link = links[3] unless links[3].blank?
-      legislator.musou_link = links[4] unless links[4].blank?
-      legislator.ccw_link = links[5] unless links[5].blank?
-      legislator.ivod_link = links[6] unless links[6].blank?
-    end
-  end
-  election = Election.new()
-  election.legislator_id = l['id']
-  election.ad_id = ads.first[:id]
-  election.party_id = Party.where(abbreviation: l['party']).first.id
-  constituency = constituency_parser(l['constituency'])
-  election.constituency = constituency
-  legislator.save
-  election.save
-  l['committees'].each do |c|
-    legislator_committee = LegislatorCommittee.new
-    legislator_committee.ad_session = AdSession.where(ad_id: c['ad'], session: c['session'], regular: true).first
-    legislator_committee.convener = c["chair"]
-    legislator_committee.legislator = legislator
-    legislator_committee.committee = Committee.where(name: c["name"]).first
-    legislator_committee.save
-  end
-  if l['county']
-    county = County.where(name: l['county'][0]).first
-    unless county
-      county = County.new(name: l['county'][0])
-      county.save
-    end
-    election.county = county
-    l['district'].each do |d|
-      district = District.where("name = ? AND county_id = ?", d, county.id).first
-      unless district
-        district = District.new(name: d)
-        district.county = county
-        district.save
+ads.each do |ad|
+  #import mly-{ad}.json
+  legislators_filepath = Rails.root.join('db', 'g0v-lyparser', "mly-#{ad[:id]}.json")
+  legislators_links_filepath = Rails.root.join('db', 'data', 'legislator-links.json')
+  legislators = JSON.parse(File.read(legislators_filepath))
+  legislator_links = JSON.parse(File.read(legislators_links_filepath))
+  legislators.each do |l|
+    vote_guide_data = get_vote_guide_legislator_term_data(l['id'], ad[:id])
+    unless vote_guide_data.blank?
+      l['county'] = vote_guide_data['county'] unless vote_guide_data['county'].blank?
+      if vote_guide_data['district'].blank?
+        if vote_guide_data['elected_candidate'].length > 0
+          candidate_data = get_vote_guide_candidate_data(vote_guide_data['elected_candidate'].first)
+          l['district'] = candidate_data['district'].split('，')
+        end
+      else
+        l['district'] = vote_guide_data['district'].split('，')
       end
-      election.districts << district
     end
-  else
-    county = County.where(name: county_parser(l['constituency'])).first
-    unless county
-      county = County.new(name: county_parser(l['constituency']))
-      county.save
+    legislator = Legislator.new()
+    legislator.id = l['id']
+    if l['id'] == 1747
+      # 徐欣瑩現在屬於民國黨
+      legislator.now_party_id = 7
     end
-    election.county = county
+    legislator.name = l['name']
+    legislator.in_office = l['in_office']
+    legislator.image = l['id'].to_s + '.jpg'
+    legislator_links.each do |links|
+      if links[0].to_i == l['id']
+        legislator.fb_link = links[2] unless links[2].blank?
+        legislator.wiki_link = links[3] unless links[3].blank?
+        legislator.musou_link = links[4] unless links[4].blank?
+        legislator.ccw_link = links[5] unless links[5].blank?
+        legislator.ivod_link = links[6] unless links[6].blank?
+      end
+    end
+    election = Election.new()
+    election.legislator_id = l['id']
+    election.ad_id = ad[:id]
+    election.party_id = Party.where(abbreviation: l['party']).first.id
+    constituency = constituency_parser(l['constituency'])
+    election.constituency = constituency
+    legislator.save
+    election.save
+    l['committees'].each do |c|
+      legislator_committee = LegislatorCommittee.new
+      legislator_committee.ad_session = AdSession.where(ad_id: c['ad'], session: c['session'], regular: true).first
+      legislator_committee.convener = c["chair"]
+      legislator_committee.legislator = legislator
+      legislator_committee.committee = Committee.where(name: c["name"]).first
+      legislator_committee.save
+    end
+    if l['county']
+      county = County.where(name: l['county']).first
+      unless county
+        county = County.new(name: l['county'])
+        county.save
+      end
+      election.county = county
+      unless l['district'].blank?
+        l['district'].each do |d|
+          district = District.where("name = ? AND county_id = ?", d, county.id).first
+          unless district
+            district = District.new(name: d)
+            district.county = county
+            district.save
+          end
+          election.districts << district
+        end
+      end
+    else
+      county = County.where(name: county_parser(l['constituency'])).first
+      unless county
+        county = County.new(name: county_parser(l['constituency']))
+        county.save
+      end
+      election.county = county
+    end
+    election.save
   end
-  election.save
 end
 
 # CCW Data import
