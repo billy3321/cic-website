@@ -139,6 +139,27 @@ def constituency_parser(constituency)
   end
 end
 
+def county_parser(constituency)
+  case (constituency[0])
+  when 'proportional'
+    return '全國不分區'
+  when 'aborigine'
+    if constituency[1] == 'lowland'
+      return '平地原住民'
+    elsif constituency[1] == 'highland'
+      return '山地原住民'
+    end
+  when 'foreign'
+    return '僑居國外國民'
+  else
+    if ISO3166TW[constituency[0]]
+      return ISO3166TW[constituency[0]]
+    else
+      return '不明'
+    end
+  end
+end
+
 County.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(County.table_name)
 
@@ -246,9 +267,9 @@ legislators.each do |l|
       election.districts << district
     end
   else
-    county = County.where(name: constituency).first
+    county = County.where(name: county_parser(l['constituency'])).first
     unless county
-      county = County.new(name: constituency)
+      county = County.new(name: county_parser(l['constituency']))
       county.save
     end
     election.county = county
