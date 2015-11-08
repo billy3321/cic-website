@@ -150,6 +150,7 @@ class Api::LegislatorsController < ApplicationController
     param :query, :limit, :integer, :optional, "一次顯示多少筆"
     param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
     response :ok, "Success", :APILegislatorEntries
+    response :not_found
   end
 
   def entries
@@ -175,6 +176,7 @@ class Api::LegislatorsController < ApplicationController
     param :query, :limit, :integer, :optional, "一次顯示多少筆"
     param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
     response :ok, "Success", :APILegislatorInterpellations
+    response :not_found
   end
 
   def interpellations
@@ -200,6 +202,7 @@ class Api::LegislatorsController < ApplicationController
     param :query, :limit, :integer, :optional, "一次顯示多少筆"
     param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
     response :ok, "Success", :APILegislatorVideos
+    response :not_found
   end
 
   def videos
