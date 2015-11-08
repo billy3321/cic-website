@@ -1,6 +1,6 @@
 class Api::LegislatorsController < ApplicationController
   respond_to :json
-  before_action :set_legislator, except: [:index]
+  before_action :set_legislator, except: [:index, :no_record, :has_records]
 
   swagger_controller :legislators, 'Legislators'
 
@@ -42,6 +42,90 @@ class Api::LegislatorsController < ApplicationController
       @legislators = Legislator.includes({elections: [:party, :ad], legislator_committees: [:committee, {ad_session: :ad}]}).ransack(ransack_params).result(distinct: true)
         .offset(params[:offset]).limit(limit)
       @legislators_count = Legislator.ransack(ransack_params).result(distinct: true).count
+    end
+    respond_with(@legislators, @legislators_count)
+  end
+
+  swagger_api :no_record do
+    summary '沒有新聞、質詢、影片的立委列表'
+    notes '回應、查詢沒有新聞、質詢、影片的立委列表資訊'
+    param :query, :query, :string, :optional, "查詢立委姓名"
+    param :query, :limit, :integer, :optional, "一次顯示多少筆"
+    param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
+    param :query, :ad, :integer, :optional, "查詢該屆立委"
+    param :query, :in_office, :boolean, :optional, "查詢在職/不在職立委"
+    param :query, :party, :string, :optional, "查詢該黨派立委"
+    response :ok, "Success", :APILegislatorIndex
+  end
+
+  def no_record
+    limit = params[:limit].blank? ? 10 : params[:limit]
+    ransack_params = {}
+    ransack_params[:name_cont] = params[:query] if params[:query]
+    if params[:in_office]
+      if params[:in_office] == 'true'
+        ransack_params[:in_office_eq] = true
+      elsif params[:in_office] == 'false'
+        ransack_params[:in_office_eq] = false
+      end
+    end
+    ransack_params[:elections_ad_id_eq] = params[:ad] if params[:ad]
+    if params[:party]
+      if params[:party] == 'null'
+        ransack_params[:elections_party_abbreviation_null] = 1
+      else
+        ransack_params[:elections_party_abbreviation_eq] = params[:party].upcase
+      end
+    end
+    if ransack_params.blank?
+      @legislators = Legislator.includes({elections: [:party, :ad], legislator_committees: [:committee, {ad_session: :ad}]}).has_no_record.offset(params[:offset]).limit(limit)
+      @legislators_count = Legislator.has_no_record.length
+    else
+      @legislators = Legislator.includes({elections: [:party, :ad], legislator_committees: [:committee, {ad_session: :ad}]}).ransack(ransack_params).result(distinct: true).has_no_record
+        .offset(params[:offset]).limit(limit)
+      @legislators_count = Legislator.ransack(ransack_params).result(distinct: true).has_no_record.length
+    end
+    respond_with(@legislators, @legislators_count)
+  end
+
+  swagger_api :has_records do
+    summary '有新聞、質詢、影片的立委列表'
+    notes '回應、查詢有新聞、質詢、影片的立委列表資訊'
+    param :query, :query, :string, :optional, "查詢立委姓名"
+    param :query, :limit, :integer, :optional, "一次顯示多少筆"
+    param :query, :offset, :integer, :optional, "從第幾筆開始顯示"
+    param :query, :ad, :integer, :optional, "查詢該屆立委"
+    param :query, :in_office, :boolean, :optional, "查詢在職/不在職立委"
+    param :query, :party, :string, :optional, "查詢該黨派立委"
+    response :ok, "Success", :APILegislatorIndex
+  end
+
+  def has_records
+    limit = params[:limit].blank? ? 10 : params[:limit]
+    ransack_params = {}
+    ransack_params[:name_cont] = params[:query] if params[:query]
+    if params[:in_office]
+      if params[:in_office] == 'true'
+        ransack_params[:in_office_eq] = true
+      elsif params[:in_office] == 'false'
+        ransack_params[:in_office_eq] = false
+      end
+    end
+    ransack_params[:elections_ad_id_eq] = params[:ad] if params[:ad]
+    if params[:party]
+      if params[:party] == 'null'
+        ransack_params[:elections_party_abbreviation_null] = 1
+      else
+        ransack_params[:elections_party_abbreviation_eq] = params[:party].upcase
+      end
+    end
+    if ransack_params.blank?
+      @legislators = Legislator.includes({elections: [:party, :ad], legislator_committees: [:committee, {ad_session: :ad}]}).has_records.offset(params[:offset]).limit(limit)
+      @legislators_count = Legislator.has_records.length
+    else
+      @legislators = Legislator.includes({elections: [:party, :ad], legislator_committees: [:committee, {ad_session: :ad}]}).ransack(ransack_params).result(distinct: true).has_records
+        .offset(params[:offset]).limit(limit)
+      @legislators_count = Legislator.ransack(ransack_params).result(distinct: true).has_records.length
     end
     respond_with(@legislators, @legislators_count)
   end

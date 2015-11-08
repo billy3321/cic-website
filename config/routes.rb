@@ -71,6 +71,10 @@ Rails.application.routes.draw do
         get 'interpellations'
         get 'videos'
       end
+      collection do
+        get 'no_record'
+        get 'has_records'
+      end
     end
     resources :entries, only: [:show, :index]
     resources :interpellations, only: [:show, :index]

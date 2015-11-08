@@ -128,6 +128,130 @@
       ]
     },
     {
+      "path": "/api/legislators/no_record.json",
+      "operations": [
+        {
+          "summary": "沒有新聞、質詢、影片的立委列表",
+          "notes": "回應、查詢沒有新聞、質詢、影片的立委列表資訊",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "query",
+              "type": "string",
+              "description": "查詢立委姓名",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "limit",
+              "type": "integer",
+              "description": "一次顯示多少筆",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "offset",
+              "type": "integer",
+              "description": "從第幾筆開始顯示",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "ad",
+              "type": "integer",
+              "description": "查詢該屆立委",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "in_office",
+              "type": "boolean",
+              "description": "查詢在職/不在職立委",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "party",
+              "type": "string",
+              "description": "查詢該黨派立委",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APILegislatorIndex",
+              "message": "Success"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Legislators#no_record"
+        }
+      ]
+    },
+    {
+      "path": "/api/legislators/has_records.json",
+      "operations": [
+        {
+          "summary": "有新聞、質詢、影片的立委列表",
+          "notes": "回應、查詢有新聞、質詢、影片的立委列表資訊",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "query",
+              "type": "string",
+              "description": "查詢立委姓名",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "limit",
+              "type": "integer",
+              "description": "一次顯示多少筆",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "offset",
+              "type": "integer",
+              "description": "從第幾筆開始顯示",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "ad",
+              "type": "integer",
+              "description": "查詢該屆立委",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "in_office",
+              "type": "boolean",
+              "description": "查詢在職/不在職立委",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "party",
+              "type": "string",
+              "description": "查詢該黨派立委",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "APILegislatorIndex",
+              "message": "Success"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::Legislators#has_records"
+        }
+      ]
+    },
+    {
       "path": "/api/legislators.json",
       "operations": [
         {
