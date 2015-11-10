@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def get_cached_page(url, day = 80)
+  def get_cached_page(url, day = 7)
     if url.blank?
       return nil
     end
