@@ -725,7 +725,7 @@ class LegislatorsController < ApplicationController
     begin
       legislator_term_data = get_vote_guide_legislator_term_data(legislator_id, ad)
       unless legislator_term_data.blank?
-        candidate_url = legislator_term_data["elected_candidate"][0]
+        candidate_url = legislator_term_data["elected_candidate"]
         unless candidate_url.blank?
           candidate_json = JSON.parse(get_cached_page(candidate_url))
           if candidate_json.has_key? "politicalcontributions" and not candidate_json["politicalcontributions"].blank?
