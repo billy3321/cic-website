@@ -2,6 +2,12 @@
   #active-btn
     = link_to "回報立委紀錄", report_path
     = link_to "馬上找立委", legislators_search_path
+
+#book-sell
+  = link_to image_tag('banners/book-banner-1920.jpg', alt:'蒂瑪小姐咖啡館新書預購中'), "http://event.cic.tw/book2015/", target: '_blank'
+  = link_to image_tag('banners/book-banner-960.jpg', alt:'蒂瑪小姐咖啡館新書預購中'), "http://event.cic.tw/book2015/", target: '_blank'
+  = link_to image_tag('banners/book-banner-480.jpg', alt:'蒂瑪小姐咖啡館新書預購中'), "http://event.cic.tw/book2015/", target: '_blank'
+
 #legislators-complex
   = link_to '馬上看立委表現', ccws_path
 
@@ -39,3 +45,6 @@
           span = l.party.name
   - else
     .blank 目前尚無資料
+
+
+

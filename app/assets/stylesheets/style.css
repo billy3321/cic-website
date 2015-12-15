@@ -2111,6 +2111,14 @@ float:left;}
 	float:none;
 	margin:auto;
 	width:100px;}
+#book-sell{
+	}
+#book-sell img{
+	display:block;
+	width:100%;
+	}	
+#book-sell a:nth-child(2),#book-sell a:nth-child(3){
+	display:none;}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -2211,6 +2219,10 @@ clear:none;}
 	height:500px;
 	background:url(../images/banners/index-banner-02.jpg) center top no-repeat;
 	}
+	#book-sell a:nth-child(1),#book-sell a:nth-child(3){
+	display:none;}
+	#book-sell a:nth-child(2){
+		display:block;}
 #active-btn{
 	top:250px;
 	width:180px;
@@ -3000,6 +3012,10 @@ padding-top:19.5%;}
 
 
 @media only screen and (max-width: 480px){
+	#book-sell a:nth-child(1),#book-sell a:nth-child(2){
+	display:none;}
+	#book-sell a:nth-child(3){
+		display:block;}
 /*表頭*/
 #first-nav{
 	width:auto;}
