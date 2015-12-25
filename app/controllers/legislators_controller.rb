@@ -651,11 +651,11 @@ class LegislatorsController < ApplicationController
         bill = {}
         bill_url = result["bill"]
         bill_json = JSON.parse(get_cached_page(bill_url))
-        bill[:reason] = bill_json["abstract"]
-        bill[:title] = bill_json["summary"]
+        bill[:reason] = bill_json["data"]["motions"][-1]["議案內容"]
+        bill[:title] = bill_json["data"]["motions"][-1]["議案內容"]
         bill[:id] = bill_json["uid"]
-        bill[:link] = "http://ly.g0v.tw/bills/#{bill_json['uid']}"
-        bill[:progress] = []
+        bill[:link] = bill_json["data"]["links"]["審議進度"]
+        bill[:progress] = bill_json["data"]["進度"]
         bill[:warning] = nil
         bills << bill
       end

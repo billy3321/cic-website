@@ -33,7 +33,7 @@
             .law-group
               .law-txt-group
                 h4 = b[:title]
-                = link_to "查看法條修正進度與詳細對修正照表", b[:link], class: "view-proposal", target: "_blank"
+                = link_to "查看議案審理進度", b[:link], class: "view-proposal", target: "_blank"
                 .ss-txt = display_shorter(b[:reason], 110)
         #page
           nav.pagination
