@@ -652,7 +652,7 @@ class LegislatorsController < ApplicationController
         bill_url = result["bill"]
         bill_json = JSON.parse(get_cached_page(bill_url))
         bill[:reason] = bill_json["data"]["motions"][-1]["議案內容"]
-        bill[:title] = bill_json["data"]["motions"][-1]["議案內容"]
+        bill[:title] = bill_json["data"]["提案名稱"]
         bill[:id] = bill_json["uid"]
         bill[:link] = bill_json["data"]["links"]["審議進度"]
         bill[:progress] = bill_json["data"]["進度"]
