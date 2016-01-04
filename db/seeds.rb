@@ -79,7 +79,7 @@ ad_sessions = [
   {:id => 11, :ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08', :regular => false, :session => 5},
   {:id => 12, :ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23', :regular => true, :session => 6},
   {:id => 13, :ad_id => ads.first[:id], :name => '第7會期', :date_start => '2015-02-24', :date_end => '2015-06-16', :regular => true, :session => 7},
-  {:id => 14, :ad_id => ads.first[:id], :name => '第8會期', :date_start => '2015-09-15', :date_end => nil, :regular => true, :session => 8},
+  {:id => 14, :ad_id => ads.first[:id], :name => '第8會期', :date_start => '2015-09-15', :date_end => '2015-12-18', :regular => true, :session => 8},
 ]
 
 ad_sessions.each do |a|
