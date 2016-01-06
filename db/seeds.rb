@@ -249,8 +249,13 @@ ads.each do |ad|
     unless vote_guide_data.blank?
       l['county'] = vote_guide_data['county'] unless vote_guide_data['county'].blank?
       if vote_guide_data['district'].blank?
-        if vote_guide_data['elected_candidate'].length > 0
-          candidate_data = get_vote_guide_candidate_data(vote_guide_data['elected_candidate'].first)
+        if vote_guide_data['elected_candidate'].present? and vote_guide_data['elected_candidate'].length > 0
+          if vote_guide_data['elected_candidate'].kind_of?(Array)
+            candidate_url = vote_guide_data['elected_candidate'].first
+          else
+            candidate_url = vote_guide_data['elected_candidate']
+          end
+          candidate_data = get_vote_guide_candidate_data(candidate_url)
           l['district'] = candidate_data['district'].split('，')
         end
       else
@@ -332,7 +337,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!(CcwCitizenScore.table_name)
 Ad.all.each do |ad|
   if [8].include? ad.id
     ad.ad_sessions.each do |ad_session|
-      if ["第4會期", "第5會期", "第6會期"].include? ad_session.name
+      if ["第4會期", "第5會期", "第6會期", "第7會期"].include? ad_session.name
         ccw_committee_data_filepath = Rails.root.join('db', 'data', 'ccw', "#{ad.id}-#{ad_session.session}_committee_data.json")
         ccw_committee_data = JSON.parse(File.read(ccw_committee_data_filepath))
         ccw_committee_data.each do |c|
