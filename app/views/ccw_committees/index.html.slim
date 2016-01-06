@@ -49,18 +49,18 @@
             .gp-bar
               p 平均出席率
               .graphic-body
-                .gpb-01 style="width: #{get_percentage(c.actually_average_attendance, c.should_attendance)}%;"
+                .gpb-01 style="width: #{get_percentage(c.actually_average_attendance, c.should_attendance)};"
                   span = get_percentage(c.actually_average_attendance, c.should_attendance)
             .gp-bar
               p 平均質詢率
               .graphic-body
-                .gpb-02 style="width: #{get_percentage(c.actually_average_interpellation_count, c.avaliable_interpellation_count)}%;"
+                .gpb-02 style="width: #{get_percentage(c.actually_average_interpellation_count, c.avaliable_interpellation_count)};"
                   span = get_percentage(c.actually_average_interpellation_count, c.avaliable_interpellation_count)
           - else
             .gp-bar
               p 平均出席率
               .graphic-body
-                .gpb-01 style="width: #{get_percentage(c.actually_average_attendance, c.should_attendance)}%;"
+                .gpb-01 style="width: #{get_percentage(c.actually_average_attendance, c.should_attendance)};"
                   span = get_percentage(c.actually_average_attendance, c.should_attendance)
         - unless c.committee.kind == 'yc'
           .committee-data 
