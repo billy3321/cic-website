@@ -2119,6 +2119,27 @@ float:left;}
 	}	
 #book-sell a:nth-child(2),#book-sell a:nth-child(3){
 	display:none;}
+#banner0108{
+	overflow: hidden;
+}
+#banner0108 a{
+	display: block;
+	float: left;
+	width: 44%;
+	padding: 3%;
+}
+a.bb01{
+	background: #ececec;
+}
+a.bb02{
+}
+#banner0108 a h3{
+	font-size: 24px;
+	
+}
+#banner0108 a p{
+	color: #000;
+}
 @media only screen and (max-width: 1152px){
 	.srblock#search01{
 	background:#e9e0ad url(../images/banners/search-banner-01.jpg) 18% center no-repeat;
@@ -2696,6 +2717,10 @@ min-height:420px;}
 }
 
 @media only screen and (max-width: 720px){
+	#banner0108 a{
+		width: auto;
+		float: none;
+	}
 .big-video-show .img_url_l{
 width:98%;
 padding-top:55%;}
