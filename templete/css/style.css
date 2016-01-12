@@ -26,11 +26,11 @@ h2{
 	font-size:1.5em;
 	margin-bottom:4px;}
 #outer{
-	overflow:hidden;}
+	overflow:hidden;
+	}
 #all-wrap{
 	width:100%;
 	margin:auto;
-	max-width:1920px; /*桌機板寬度*/ 
 	background:#fff;
 	position:relative;
 	}
@@ -193,27 +193,39 @@ padding:30px 7% 15px 7%;}
 	margin:0 auto 12px auto;
 	clear:both;
 	}
+#secn00 li{
+	width: 33%;
+	margin: 0 1px;
+	text-align: center;
+	background: #f0f0f0;
+}
+#secn00 li a{
+	color: #999;
+}
 #secn01{
 	overflow:hidden;
 	margin:0 auto 12px auto;
 float:left;
 	}
-#secn01 li,#secn00 li{
+#secn01 li{
 	border:1px solid #d4d4d4;
 	margin:0 0 0 -1px;}
-#secn01 li:nth-child(1),#secn00 li:nth-child(1){
+#secn01 li:nth-child(1){
 border-top-left-radius:5px;
 border-bottom-left-radius:5px;
 margin-left:0px;}
 #secn01 .current,#secn00 .current{
 	background:#d4d4d4;
 	font-weight:bold;}
+#secn00 .current{
+	color: #000;
+}
 #secn01 a,#secn00 a{
 	height:30px;
 line-height:30px;
 padding:5px 15px;
 	}
-#secn01 li:nth-last-child(1),#secn00 li:nth-last-child(1){
+#secn01 li:nth-last-child(1){
 border-top-right-radius:5px;
 border-bottom-right-radius:5px;
 }
@@ -3033,6 +3045,8 @@ padding-top:19.5%;}
 	height:auto;
 	margin:0 0 10px 0;
 	}
+	#secn00 li{
+	width: 32.5%;}
 }
 
 
@@ -3218,6 +3232,7 @@ float: none;
 	background:#fff2b7 url(../images/banners/complex-banner-3.jpg) no-repeat top center;
 	background-size:cover;
 	padding-top:40%;}
+
 }	
 
 @media only screen and (max-width: 360px){
