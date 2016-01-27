@@ -418,7 +418,7 @@ class LegislatorsController < ApplicationController
     @sc_committee_datum = @sc_committee.ccw_committee_data.where(ad_session_id: @ad_session.id).first
     @yc_committee_datum = @yc_committee.ccw_committee_data.where(ad_session_id: @ad_session.id).first
     @ccw_citizen_score = @ad_session.ccw_citizen_score
-    if @sc_committee_datum.blank? or @yc_committee_datum.blank? or @ccw_citizen_score.blank?
+    if @sc_committee_datum.blank? or @yc_committee_datum.blank? or @ccw_citizen_score.blank? or @ccw_legislator_datum.blank?
       @status = false
       flash.now[:alert] = "目前尚未輸入相關資料"
     else
