@@ -1,9 +1,10 @@
 [
-  {"id":1, "name": "無黨籍", "abbreviation": null, "image":"null.gif"},
-	{"id":2, "name": "中國國民黨", "abbreviation": "KMT", "image":"kmt.gif"},
-	{"id":3, "name": "民主進步黨", "abbreviation": "DPP", "image":"dpp.gif"},
-	{"id":4, "name": "親民黨", "abbreviation": "PFP", "image":"pfp.gif"},
-	{"id":5, "name": "無黨團結聯盟", "abbreviation": "NSU", "image":"nsu.gif"},
-	{"id":6, "name": "台灣團結聯盟", "abbreviation": "TSU", "image":"tsu.gif"},
-  {"id":7, "name": "民國黨", "abbreviation": "MKT", "image":"mkt.gif"}
+  {"id":1, "name": "無黨籍", "abbreviation": null, "image": "null.gif"},
+	{"id":2, "name": "中國國民黨", "abbreviation": "KMT", "image": "kmt.gif"},
+	{"id":3, "name": "民主進步黨", "abbreviation": "DPP", "image": "dpp.gif"},
+	{"id":4, "name": "親民黨", "abbreviation": "PFP", "image": "pfp.gif"},
+	{"id":5, "name": "無黨團結聯盟", "abbreviation": "NSU", "image": "nsu.gif"},
+	{"id":6, "name": "台灣團結聯盟", "abbreviation": "TSU", "image": "tsu.gif"},
+  {"id":7, "name": "民國黨", "abbreviation": "MKT", "image": "mkt.gif"},
+  {"id":8, "name": "時代力量", "abbreviation": "NPP", "image": "npp.gif"}
 ]
