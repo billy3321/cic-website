@@ -59,7 +59,13 @@ class LegislatorsController < ApplicationController
         @legislators_count = Legislator.has_no_record.length
       end
     else
-      @q = Legislator.has_no_record.search(params[:q])
+      if params[:ad] and Ad.exists?(id: params[:ad])
+        @ad = Ad.find(params[:ad])
+        @q = @ad.legislators.has_no_record.search(params[:q])
+      else
+        @ad = nil
+        @q = Legislator.has_no_record.search(params[:q])
+      end
       @legislators = @q.result(:distinct => true).all
     end
     @parties = Party.all
@@ -100,7 +106,13 @@ class LegislatorsController < ApplicationController
         @legislators_count = Legislator.has_records.length
       end
     else
-      @q = Legislator.has_records.search(params[:q])
+      if params[:ad] and Ad.exists?(id: params[:ad])
+        @ad = Ad.find(params[:ad])
+        @q = @ad.legislators.has_records.search(params[:q])
+      else
+        @ad = nil
+        @q = Legislator.has_records.search(params[:q])
+      end
       @legislators = @q.result(:distinct => true).all
     end
     @parties = Party.all
