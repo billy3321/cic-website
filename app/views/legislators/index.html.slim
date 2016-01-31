@@ -1,6 +1,20 @@
 #search-bar
   = render 'search_form'
 nav id="sec-nav"
+  ul#secn00
+    li
+      - if @ad.blank?
+        = link_to '全部屆次', url_for(params.merge({ad: nil})), class: 'current'
+      - else
+        = link_to '全部屆次', url_for(params.merge({ad: nil}))
+    li
+      / = link_to '第九屆', url_for(params.merge({ad: nil}))
+      = link_to '第九屆', nil
+    li
+      - if @ad.present? and @ad.id == 8
+        = link_to '第八屆', url_for(params.merge({ad: 8})), class: 'current'
+      - else
+        = link_to '第八屆', url_for(params.merge({ad: 8}))
   ul id="secn01"
     li = link_to '所有立委', legislators_path, class: "current"
     li = link_to '已有資料', legislators_has_records_path
@@ -30,4 +44,5 @@ nav id="sec-nav"
               li
                 em 質詢數
                 = link_to l.interpellations.published.count, interpellations_legislator_path(l)
+
 
