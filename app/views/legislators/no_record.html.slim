@@ -18,12 +18,12 @@ nav id="sec-nav"
   ul id="secn01"
     - if @ad.present?
       li = link_to '所有立委', legislators_path(ad: @ad.id)
-      li = link_to '已有資料', legislators_has_records_path(ad: @ad.id), class: "current"
-      li = link_to '尚無資料', legislators_no_record_path(ad: @ad.id)
+      li = link_to '已有資料', legislators_has_records_path(ad: @ad.id)
+      li = link_to '尚無資料', legislators_no_record_path(ad: @ad.id), class: "current"
     - else
       li = link_to '所有立委', legislators_path
-      li = link_to '已有資料', legislators_has_records_path, class: "current"
-      li = link_to '尚無資料', legislators_no_record_path
+      li = link_to '已有資料', legislators_has_records_path
+      li = link_to '尚無資料', legislators_no_record_path, class: "current"
   ul id="secn02"
     li = link_to '不分黨籍', '#', class: "all_party_button current"
     - @parties.each do |p|
