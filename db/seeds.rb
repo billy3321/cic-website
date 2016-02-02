@@ -49,12 +49,21 @@ end
 Ad.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(Ad.table_name)
 
-ads = [{
-  :id => 8,
-  :name => '第8屆',
-  :vote_date => '2012-01-14',
-  :term_start => '2012-02-01',
-  :term_end => '2016-01-31'}]
+ads = [
+    {
+      :id => 8,
+      :name => '第8屆',
+      :vote_date => '2012-01-14',
+      :term_start => '2012-02-01',
+      :term_end => '2016-01-31'
+    }, {
+      :id => 9,
+      :name => '第9屆',
+      :vote_date => '2016-01-16',
+      :term_start => '2016-02-01',
+      :term_end => '2020-01-31'
+    }
+  ]
 
 ads.each do |a|
   ad = Ad.new(a)
@@ -66,20 +75,21 @@ AdSession.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!(AdSession.table_name)
 
 ad_sessions = [
-  {:id => 1, :ad_id => ads.first[:id], :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15', :regular => true, :session => 1},
-  {:id => 2, :ad_id => ads.first[:id], :name => '第1會期第1次臨時會', :date_start => '2012-07-24', :date_end => '2012-07-26', :regular => false, :session => 1},
-  {:id => 3, :ad_id => ads.first[:id], :name => '第2會期', :date_start => '2012-09-18', :date_end => '2013-01-15', :regular => true, :session => 2},
-  {:id => 4, :ad_id => ads.first[:id], :name => '第3會期', :date_start => '2013-02-26', :date_end => '2013-05-31', :regular => true, :session => 3},
-  {:id => 5, :ad_id => ads.first[:id], :name => '第3會期第1次臨時會', :date_start => '2013-06-13', :date_end => '2013-06-27', :regular => false, :session => 3},
-  {:id => 6, :ad_id => ads.first[:id], :name => '第3會期第2次臨時會', :date_start => '2013-07-30', :date_end => '2013-08-06', :regular => false, :session => 3},
-  {:id => 7, :ad_id => ads.first[:id], :name => '第4會期', :date_start => '2013-09-17', :date_end => '2014-01-14', :regular => true, :session => 4},
-  {:id => 8, :ad_id => ads.first[:id], :name => '第4會期第1次臨時會', :date_start => '2014-01-27', :date_end => '2014-01-28', :regular => false, :session => 4},
-  {:id => 9, :ad_id => ads.first[:id], :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30', :regular => true, :session => 5},
-  {:id => 10, :ad_id => ads.first[:id], :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04', :regular => false, :session => 5},
-  {:id => 11, :ad_id => ads.first[:id], :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08', :regular => false, :session => 5},
-  {:id => 12, :ad_id => ads.first[:id], :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23', :regular => true, :session => 6},
-  {:id => 13, :ad_id => ads.first[:id], :name => '第7會期', :date_start => '2015-02-24', :date_end => '2015-06-16', :regular => true, :session => 7},
-  {:id => 14, :ad_id => ads.first[:id], :name => '第8會期', :date_start => '2015-09-15', :date_end => '2015-12-18', :regular => true, :session => 8},
+  {:id => 1, :ad_id => 8, :name => '第1會期', :date_start => '2012-02-24', :date_end => '2012-06-15', :regular => true, :session => 1},
+  {:id => 2, :ad_id => 8, :name => '第1會期第1次臨時會', :date_start => '2012-07-24', :date_end => '2012-07-26', :regular => false, :session => 1},
+  {:id => 3, :ad_id => 8, :name => '第2會期', :date_start => '2012-09-18', :date_end => '2013-01-15', :regular => true, :session => 2},
+  {:id => 4, :ad_id => 8, :name => '第3會期', :date_start => '2013-02-26', :date_end => '2013-05-31', :regular => true, :session => 3},
+  {:id => 5, :ad_id => 8, :name => '第3會期第1次臨時會', :date_start => '2013-06-13', :date_end => '2013-06-27', :regular => false, :session => 3},
+  {:id => 6, :ad_id => 8, :name => '第3會期第2次臨時會', :date_start => '2013-07-30', :date_end => '2013-08-06', :regular => false, :session => 3},
+  {:id => 7, :ad_id => 8, :name => '第4會期', :date_start => '2013-09-17', :date_end => '2014-01-14', :regular => true, :session => 4},
+  {:id => 8, :ad_id => 8, :name => '第4會期第1次臨時會', :date_start => '2014-01-27', :date_end => '2014-01-28', :regular => false, :session => 4},
+  {:id => 9, :ad_id => 8, :name => '第5會期', :date_start => '2014-02-21', :date_end => '2014-05-30', :regular => true, :session => 5},
+  {:id => 10, :ad_id => 8, :name => '第5會期第1次臨時會', :date_start => '2014-06-13', :date_end => '2014-07-04', :regular => false, :session => 5},
+  {:id => 11, :ad_id => 8, :name => '第5會期第2次臨時會', :date_start => '2014-07-28', :date_end => '2014-08-08', :regular => false, :session => 5},
+  {:id => 12, :ad_id => 8, :name => '第6會期', :date_start => '2014-09-12', :date_end => '2015-01-23', :regular => true, :session => 6},
+  {:id => 13, :ad_id => 8, :name => '第7會期', :date_start => '2015-02-24', :date_end => '2015-06-16', :regular => true, :session => 7},
+  {:id => 14, :ad_id => 8, :name => '第8會期', :date_start => '2015-09-15', :date_end => '2015-12-18', :regular => true, :session => 8},
+  {:id => 15, :ad_id => 9, :name => '第1會期', :date_start => '2016-02-19', :date_end => nil, :regular => true, :session => 1}
 ]
 
 ad_sessions.each do |a|
@@ -262,22 +272,26 @@ ads.each do |ad|
         l['district'] = vote_guide_data['district'].split('，')
       end
     end
-    legislator = Legislator.new()
-    legislator.id = l['id']
-    if l['id'] == 1747
-      # 徐欣瑩現在屬於民國黨
-      legislator.now_party_id = 7
-    end
-    legislator.name = l['name']
-    legislator.in_office = l['in_office']
-    legislator.image = l['id'].to_s + '.jpg'
-    legislator_links.each do |links|
-      if links[0].to_i == l['id']
-        legislator.fb_link = links[2] unless links[2].blank?
-        legislator.wiki_link = links[3] unless links[3].blank?
-        legislator.musou_link = links[4] unless links[4].blank?
-        legislator.ccw_link = links[5] unless links[5].blank?
-        legislator.ivod_link = links[6] unless links[6].blank?
+    if Legislator.exists? l['id']
+      legislator = Legislator.find(l['id'])
+    else
+      legislator = Legislator.new()
+      legislator.id = l['id']
+      # if l['id'] == 1747
+        # 徐欣瑩現在屬於民國黨
+        # legislator.now_party_id = 7
+      # end
+      legislator.name = l['name']
+      legislator.in_office = l['in_office']
+      legislator.image = l['id'].to_s + '.jpg'
+      legislator_links.each do |links|
+        if links[0].to_i == l['id']
+          legislator.fb_link = links[2] unless links[2].blank?
+          legislator.wiki_link = links[3] unless links[3].blank?
+          legislator.musou_link = links[4] unless links[4].blank?
+          legislator.ccw_link = links[5] unless links[5].blank?
+          legislator.ivod_link = links[6] unless links[6].blank?
+        end
       end
     end
     election = Election.new()
