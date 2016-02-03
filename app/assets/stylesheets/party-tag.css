@@ -16,6 +16,9 @@
 	background:url(../images/parties/null.gif);}
 .party-mkt{
 	background:url(../images/parties/mkt.gif);}
+.party-npp{
+	background:url(../images/parties/npp.gif);}
+
 /*依區域找立委搜尋結果黨籍*/
 .slegislator .party-kmt{
 	background:url(../images/parties/kmt2.png);}
@@ -30,10 +33,10 @@
 	}
 .slegislator  .party-tsu{
 	background:url(../images/parties/tsu2.png);}
-	
 .slegislator  .party-mkt{
 	background:url(../images/parties/mkt2.png);}	
-	
+.slegislator  .party-npp{
+	background:url(../images/parties/npp2.png);}	
 
 /*立委個人區塊黨籍*/
 .legislators-block .party-kmt{
@@ -51,3 +54,5 @@
 	background:#f3f3f3 url(../images/parties/tsu2.png) no-repeat right bottom;}
 .legislators-block  .party-mkt{
 	background:#f3f3f3 url(../images/parties/mkt2.png) no-repeat right bottom;}	
+.legislators-block  .party-npp{
+	background:#f3f3f3 url(../images/parties/npp2.png) no-repeat right bottom;}	

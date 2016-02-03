@@ -8,8 +8,10 @@ nav id="sec-nav"
       - else
         = link_to '全部屆次', url_for(params.merge({ad: nil}))
     li
-      / = link_to '第九屆', url_for(params.merge({ad: nil}))
-      = link_to '第九屆', nil
+      - if @ad.present? and @ad.id == 9
+        = link_to '第九屆', url_for(params.merge({ad: 9})), class: 'current'
+      - else
+        = link_to '第九屆', url_for(params.merge({ad: 9}))
     li
       - if @ad.present? and @ad.id == 8
         = link_to '第八屆', url_for(params.merge({ad: 8})), class: 'current'

@@ -14,10 +14,10 @@ class LegislatorsController < ApplicationController
     else
       if params[:ad] and Ad.exists?(id: params[:ad])
         @ad = Ad.find(params[:ad])
-        @q = @ad.legislators.search(params[:q])
+        @q = @ad.legislators.includes(elections: :party).search(params[:q])
       else
         @ad = nil
-        @q = Legislator.search(params[:q])
+        @q = Legislator.includes(elections: :party).search(params[:q])
       end
       @legislators = @q.result(:distinct => true).all
     end
@@ -61,10 +61,10 @@ class LegislatorsController < ApplicationController
     else
       if params[:ad] and Ad.exists?(id: params[:ad])
         @ad = Ad.find(params[:ad])
-        @q = @ad.legislators.has_no_record.search(params[:q])
+        @q = @ad.legislators.includes(elections: :party).has_no_record.search(params[:q])
       else
         @ad = nil
-        @q = Legislator.has_no_record.search(params[:q])
+        @q = Legislator.includes(elections: :party).has_no_record.search(params[:q])
       end
       @legislators = @q.result(:distinct => true).all
     end
@@ -108,10 +108,10 @@ class LegislatorsController < ApplicationController
     else
       if params[:ad] and Ad.exists?(id: params[:ad])
         @ad = Ad.find(params[:ad])
-        @q = @ad.legislators.has_records.search(params[:q])
+        @q = @ad.legislators.includes(elections: :party).has_records.search(params[:q])
       else
         @ad = nil
-        @q = Legislator.has_records.search(params[:q])
+        @q = Legislator.includes(elections: :party).has_records.search(params[:q])
       end
       @legislators = @q.result(:distinct => true).all
     end
