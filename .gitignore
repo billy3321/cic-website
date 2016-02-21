@@ -28,3 +28,4 @@ config/skylight.yml
 public/uploads/
 public/assets/
 public/apidocs/
+*.Ulysses-Group.plist
