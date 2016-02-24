@@ -95,6 +95,19 @@ class VideosController < ApplicationController
         description: @video.title,
         title: "#{@video.legislators.first.name} － #{@video.title}",
         image: @video.image
+      },
+      video: {
+        director: Setting.url.fb,
+        release_date: @video.created_at.strftime('%FT%T%:z'),
+      },
+      article: {
+        author: Setting.url.fb,
+        publisher: Setting.url.fb,
+        published_time: @video.created_at.strftime('%FT%T%:z'),
+        modified_time: @video.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: @video.image
       }
     })
     respond_to do |format|

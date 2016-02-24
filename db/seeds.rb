@@ -261,6 +261,11 @@ ads.each do |ad|
     vote_guide_data = get_vote_guide_legislator_term_data(l['id'], ad[:id])
     unless vote_guide_data.blank?
       l['county'] = vote_guide_data['county'] unless vote_guide_data['county'].blank?
+      if ad[:id] == 8 and l['county'] == "桃園市"
+        l['county'] == "桃園縣"
+      elsif ad[:id] > 8 and l['county'] == "桃園縣"
+        l['county'] == "桃園市"
+      end
       if vote_guide_data['district'].blank?
         if vote_guide_data['elected_candidate'].present? and vote_guide_data['elected_candidate'].length > 0
           if vote_guide_data['elected_candidate'].kind_of?(Array)

@@ -91,7 +91,16 @@ class EntriesController < ApplicationController
         type: 'article',
         description: @entry.title,
         title: "#{@entry.legislators.first.name} － #{@entry.title}",
-        image: "/images/legislators/160x214/#{@entry.legislators.first.image}"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@entry.legislators.first.image}"
+      },
+      article: {
+        author: Setting.url.fb,
+        publisher: Setting.url.fb,
+        published_time: @entry.created_at.strftime('%FT%T%:z'),
+        modified_time: @entry.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@entry.legislators.first.image}"
       }
     })
     respond_to do |format|

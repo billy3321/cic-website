@@ -93,7 +93,16 @@ class InterpellationsController < ApplicationController
         type: 'article',
         description: @interpellation.title,
         title: "#{@interpellation.legislators.first.name} － #{@interpellation.title}",
-        image: "/images/legislators/160x214/#{@interpellation.legislators.first.image}"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@interpellation.legislators.first.image}"
+      },
+      article: {
+        author: Setting.url.fb,
+        publisher: Setting.url.fb,
+        published_time: @interpellation.created_at.strftime('%FT%T%:z'),
+        modified_time: @interpellation.updated_at.strftime('%FT%T%:z')
+      },
+      twitter: {
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/legislators/160x214/#{@interpellation.legislators.first.image}"
       }
     })
     respond_to do |format|

@@ -37,13 +37,18 @@ module ApplicationHelper
       separator: "—",
       site: '國會調查兵團 CIC',
       reverse: true,
-      description: ' ',
+      description: '',
       og: {
         title: '國會調查兵團 CIC',
-        description: ' ',
+        description: '',
         type: 'website',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/FB-img-default.gif",
-        site_name: '國會調查兵團' }
+        site_name: '國會調查兵團'
+      },
+      twitter: {
+        card: 'summary_large_image',
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/FB-img-default.gif"
+      }
     }
   end
 end

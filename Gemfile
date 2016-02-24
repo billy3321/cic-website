@@ -58,6 +58,7 @@ gem 'swagger-docs', git: 'git://github.com/billy3321/swagger-docs.git'
 gem 'lograge'
 gem 'rollbar', '~> 2.5.1'
 gem 'oj', '~> 2.12.14'
+gem 'canonical-rails'
 # gem "skylight"
 
 group :development, :test do
