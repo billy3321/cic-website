@@ -11,3 +11,5 @@ Rails.application.config.assets.precompile += %w( popup.css )
 Rails.application.config.assets.precompile += %w( analytics.js )
 Rails.application.config.assets.precompile += Ckeditor.assets
 Rails.application.config.assets.precompile += %w( ckeditor/* )
+Rails.application.config.assets.precompile += %w( events_incantations.css )
+Rails.application.config.assets.precompile += %w( events_incantations.js )

@@ -413,6 +413,57 @@ Ad.all.each do |ad|
   end
 end
 
+# Event data import
+
+Incantation.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!(Incantation.table_name)
+
+incantations = [
+  {
+    id: 1,
+    title: "用功認真閃光咒",
+    word: "天眼勅我紙，書符驅鬼邪，電灼筆光納，認真天下傳。急急如律令。"
+  }, {
+    id: 2,
+    title: "問政犀利強心咒",
+    word: "神將無極，律令九章，霹靂問政，諸鬼伏藏，神兵急急如律令。"
+  }, {
+    id: 3,
+    title: "弱勢發聲響聲咒",
+    word: "天眼無極，公民發聲，孤苦弱勢，神墨急磨，立委疾行，霹靂雷霆。風火雷電如律令。"
+  }, {
+    id: 4,
+    title: "囂張跋扈收斂咒",
+    word: "天眼尊尊，日月無極，接我號令，天將壓頂，囂張氣焰，無所遁形，符至則行，雷電急急如律令。"
+  }, {
+    id: 5,
+    title: "曠職怠工上工咒",
+    word: "天皇皇，地皇皇，立院有個懶委郎，持符君子念一遍，懶委上工不得閒！"
+  }, {
+    id: 6,
+    title: "公私不分明辨咒",
+    word: "公器公用，私心避嫌，公私分明，廉潔自守，神兵火急如律令。"
+  }, {
+    id: 7,
+    title: "護航作戲終結咒",
+    word: "無極天眼神將，電灼筆光納，一則削貪官，再則縛爛委，一切都終亡，天道必重生。風火急急如律令。"
+  }, {
+    id: 8,
+    title: "胡言亂語矯正咒",
+    word: "太上天眼，無極所至，驅邪縛魅，淨身醒腦；智慧明凈，心神安寧，言行合一，言無不實。急急如律令。"
+  }, {
+    id: 9,
+    title: "昨是今非打臉咒",
+    word: "公民開眼，天眼無極；時光朔源，歷史言行；青龍白虎，真相現形；朱雀玄武，還彼初心。急急如律令。"
+  }
+]
+
+incantations.each do |i|
+  incantation = Incantation.new(i)
+  incantation.id = i[:id]
+  incantation.save
+end
+
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end

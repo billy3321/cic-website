@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917161536) do
+ActiveRecord::Schema.define(version: 20160414094055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,11 @@ ActiveRecord::Schema.define(version: 20150917161536) do
 
   add_index "entries_legislators", ["legislator_id", "entry_id"], name: "index_entries_legislators_on_legislator_id_and_entry_id", unique: true, using: :btree
 
+  create_table "incantations", force: :cascade do |t|
+    t.string "title"
+    t.string "word"
+  end
+
   create_table "interpellations", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -210,7 +215,7 @@ ActiveRecord::Schema.define(version: 20150917161536) do
     t.string   "musou_link"
     t.string   "ccw_link"
     t.string   "ivod_link"
-    t.datetime "updated_at",   default: '2015-09-21 01:01:27', null: false
+    t.datetime "updated_at",   default: '2016-04-14 08:23:50', null: false
   end
 
   create_table "legislators_videos", id: false, force: :cascade do |t|

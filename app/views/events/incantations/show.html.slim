@@ -1,0 +1,22 @@
+section.main
+  h1.stitle 天眼公民咒
+  h2.inctitle.inc-01 = @incantation.title
+  p.ftitle 你要為誰貼咒？
+  select#legislators-name-select.legislators-name-select name="legislators-name-select"
+    option value="" 請選擇立委姓名
+    - @legislators.each do |legislator|
+      option value="#{legislator.id}" = legislator.name
+  a#paste.btn href="#" 立刻貼咒
+.incantation.inc-01 = @incantation.title
+
+javascript:
+  $( document ).ready(function() {
+    $('#paste').click(function() {
+      var id = $('#legislators-name-select')[0].value;
+      if (id === ""){
+        console.log('error');
+      } else {
+        window.location.href = "#{result_events_incantation_path(@incantation)}?l=" + id;
+      }
+    })
+  });

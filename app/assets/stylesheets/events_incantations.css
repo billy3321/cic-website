@@ -1,0 +1,394 @@
+body,p,h1,h2,h3,h4,h5,h6,ul,ol{
+  font-size: 1em;
+  padding: 0px;
+  margin: 0px;
+  font-weight: normal;
+}
+body{
+  background: #000;
+  color: #fff;
+  font-family: Arial,"Microsoft JhengHei","Apple LiGothic Medium","LiHei Pro Medium";
+
+}
+.main{
+  max-width: 370px;
+  margin: 30px auto 0 51%;
+}
+.incantation{
+  width: 271px;
+  height: 526px;
+  background: #fce003;
+  position: absolute;
+  right: 51%;
+  top: 30px;
+  background-size:cover;
+  background-repeat: no-repeat;
+  
+}
+
+.incantation.inc-01{
+  background-image: url(/images/events/incantations/inc-01.jpg);
+}
+
+.incantation.inc-02{
+  background-image: url(/images/events/incantations/inc-02.jpg);
+}
+.incantation.inc-03{
+  background-image: url(/images/events/incantations/inc-03.jpg);
+}
+.incantation.inc-04{
+  background-image: url(/images/events/incantations/inc-04.jpg);
+}
+.incantation.inc-05{
+  background-image: url(/images/events/incantations/inc-05.jpg);
+}
+.incantation.inc-06{
+  background-image: url(/images/events/incantations/inc-06.jpg);
+}
+.incantation.inc-07{
+  background-image: url(/images/events/incantations/inc-07.jpg);
+}
+.incantation.inc-08{
+  background-image: url(/images/events/incantations/inc-08.jpg);
+}
+.incantation.inc-09{
+  background-image: url(/images/events/incantations/inc-09.jpg);
+}
+.stitle,.inctitle,.incantation,.ftitle,.btn{
+  overflow: hidden;
+  text-indent: -1200px;
+}
+.stitle{width: 101px;height: 19px;
+background-image: url(/images/events/incantations/stitle.png);
+margin-bottom: 10px;
+}
+
+.inctitle{
+  width: 455px;
+  height: 47px;
+  background-size:auto cover;
+  background-repeat: no-repeat;
+  margin-bottom: 90px;
+}
+
+.inctitle.inc-01{
+  background-image: url(/images/events/incantations/inctitle-01.png);
+}
+.inctitle.inc-02{
+  background-image: url(/images/events/incantations/inctitle-02.png);
+}
+.inctitle.inc-03{
+  background-image: url(/images/events/incantations/inctitle-03.png);
+}
+.inctitle.inc-04{
+  background-image: url(/images/events/incantations/inctitle-04.png);
+}
+.inctitle.inc-05{
+  background-image: url(/images/events/incantations/inctitle-05.png);
+}
+.inctitle.inc-06{
+  background-image: url(/images/events/incantations/inctitle-06.png);
+}
+.inctitle.inc-07{
+  background-image: url(/images/events/incantations/inctitle-07.png);
+}
+.inctitle.inc-08{
+  background-image: url(/images/events/incantations/inctitle-08.png);
+}
+.inctitle.inc-09{
+  background-image: url(/images/events/incantations/inctitle-09.png);
+}
+
+.ftitle{
+  width: 267px;
+  height: 36px;
+  background-image: url(/images/events/incantations/ftitle.png);
+  background-size:auto cover;
+  margin-bottom: 15px;
+}
+
+
+.legislators-name-select{
+  width: 300px;
+  height: 70px;
+  font-size: 32px;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+.btn{width: 307px;
+height: 69px;
+background-image: url(/images/events/incantations/btn.png);
+display: block;
+background-size:auto cover;
+  background-repeat: no-repeat;}
+
+.result-main{
+  margin: 30px auto;
+  width: 370px;
+}
+.result-inc-title{
+  margin-bottom: 5px;
+}
+.result-inc{
+  position: absolute;
+  width: 60px;
+  height: 117px;
+  left: 50%;
+  margin-left: -110px;
+  top: 300px;
+  transform:rotate(10deg);
+}
+.legislators-info{
+  text-align: center;
+}
+.legislators-info span,.legislators-info em{
+  display: block;
+  font-style: normal;
+  font-size: 15px;
+}
+.inc-word{
+  font-size: 13px;
+  height: 60px;
+  overflow: hidden;
+}
+.legislators-info h3{
+  font-size: 35px;
+  height: 47px;
+  overflow: hidden;
+  
+}
+.legislators-photo{
+  width: 160px;
+  height: 214px;
+  background: #ccc;
+  display: block;
+  margin: 8px auto;
+}
+.btn-gruop{
+  max-width: 370px;
+  margin: auto; 
+}
+.history-btn{
+  display: block;
+  width: 50%;
+  height: 50px;
+  overflow: hidden;
+  text-indent: -1000px;
+  background-image: url(/images/events/incantations/history-btn.png);
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+  background-position: center;
+  float: left;
+}
+.share-btn{
+  display: block;
+  width: 50%;
+  height: 50px;
+  overflow: hidden;
+  text-indent: -1000px;
+  background-image: url(/images/events/incantations/share-btn.png);
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+  background-position: center;
+  float: right;
+}
+.fade-in{
+  animation: fade-in 6s;
+-moz-animation: fade-in 6s; /* Firefox */
+-webkit-animation: fade-in 6s;  /* Safari 和 Chrome */
+-o-animation: fade-in 6s;
+}
+
+@keyframes fade-in
+{
+0%   {background: white;}
+2%  {background: black;}
+4%  {background: yellow;}
+6% {background: black;}
+8%  {background: white;}
+10% {background: black;}
+15%   {background: white;}
+30%  {background: black;}
+35%  {background: yellow;}
+40% {background: black;}
+60%  {background: white;}
+100% {background: black;}
+}
+
+@-moz-keyframes fade-in /* Firefox */
+{
+0%   {background: white;}
+2%  {background: black;}
+4%  {background: yellow;}
+6% {background: black;}
+8%  {background: white;}
+10% {background: black;}
+15%   {background: white;}
+30%  {background: black;}
+35%  {background: yellow;}
+40% {background: black;}
+60%  {background: white;}
+100% {background: black;}
+}
+
+@-webkit-keyframes fade-in /* Safari 和 Chrome */
+{
+0%   {background: white;}
+2%  {background: black;}
+4%  {background: yellow;}
+6% {background: black;}
+8%  {background: white;}
+10% {background: black;}
+15%   {background: white;}
+30%  {background: black;}
+35%  {background: yellow;}
+40% {background: black;}
+60%  {background: white;}
+100% {background: black;}
+}
+
+@-o-keyframes fade-in /* Opera */
+{
+0%   {background: white;}
+2%  {background: black;}
+4%  {background: yellow;}
+6% {background: black;}
+8%  {background: white;}
+10% {background: black;}
+15%   {background: white;}
+30%  {background: black;}
+35%  {background: yellow;}
+40% {background: black;}
+60%  {background: white;}
+100% {background: black;}
+}
+
+.fly-in{
+  animation: fly-in 6s;
+-moz-animation: fly-in 6s;  /* Firefox */
+-webkit-animation: fly-in 6s; /* Safari 和 Chrome */
+-o-animation: fly-in 6s;
+}
+
+@keyframes fly-in
+{
+0%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+10%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+20%  {left:100%;top:100%;width: 60px;height: 117px;transform:rotate(20deg)}
+30% {left:100%;top:-100%;width: 60px;height: 117px;transform:rotate(40deg)}
+40% {left:0%;top:100%;width: 60px;height: 117px;transform:rotate(60deg)}
+43%{left:30%;top:0%;width: 464px;height: 900px;transform:rotate(-20deg);}
+55% {left: 50%;top: 300px;width: 60px;height: 117px;margin-left: -110px;transform:rotate(10deg);}
+}
+
+@-moz-keyframes fly-in /* Firefox */
+{
+0%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+10%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+20%  {left:100%;top:100%;width: 60px;height: 117px;transform:rotate(20deg)}
+30% {left:100%;top:-100%;width: 60px;height: 117px;transform:rotate(40deg)}
+40% {left:0%;top:100%;width: 60px;height: 117px;transform:rotate(60deg)}
+43%{left:30%;top:0%;width: 464px;height: 900px;transform:rotate(-20deg);}
+55% {left: 50%;top: 300px;width: 60px;height: 117px;margin-left: -110px;transform:rotate(10deg);}
+}
+
+@-webkit-keyframes fly-in /* Safari 和 Chrome */
+{
+0%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+10%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+20%  {left:100%;top:100%;width: 60px;height: 117px;transform:rotate(20deg)}
+30% {left:100%;top:-100%;width: 60px;height: 117px;transform:rotate(40deg)}
+40% {left:0%;top:100%;width: 60px;height: 117px;transform:rotate(60deg)}
+43%{left:30%;top:0%;width: 464px;height: 900px;transform:rotate(-20deg);}
+55% {left: 50%;top: 300px;width: 60px;height: 117px;margin-left: -110px;transform:rotate(10deg);}
+}
+
+@-o-keyframes fly-in /* Opera */
+{
+0%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+10%   {left:-50%;top:-50%;width: 60px;height: 117px;transform:rotate(3deg)}
+20%  {left:100%;top:100%;width: 60px;height: 117px;transform:rotate(20deg)}
+30% {left:100%;top:-100%;width: 60px;height: 117px;transform:rotate(40deg)}
+40% {left:0%;top:100%;width: 60px;height: 117px;transform:rotate(60deg)}
+43%{left:30%;top:0%;width: 464px;height: 900px;transform:rotate(-20deg);}
+55% {left: 50%;top: 300px;width: 60px;height: 117px;margin-left: -110px;transform:rotate(10deg);}
+}
+
+@media screen and (max-width: 780px){
+  .main{
+  margin: 5px auto 0 auto;}
+.result-main{
+  margin: 5px auto;
+  width: auto;
+}
+  .incantation{
+  position: relative;
+  right: auto;
+  top: auto;
+  margin: 15px auto;
+  
+}
+
+.result-inc{
+  position: absolute;
+  margin-left: -110px;
+  top: 300px;
+}
+
+.stitle,.ftitle{
+  background-position: top center; 
+  width: 100%;
+  background-repeat: no-repeat;
+}
+
+.ftitle{
+  background-size: auto 25px;
+  height: 25px;
+}
+
+.inctitle{
+  height: 47px;
+  background-size: 95% auto;
+  background-position: top center; 
+  width: 100%;
+  max-width: 320px;
+  margin:0 auto 30px auto;
+}
+.legislators-name-select{
+  display: block;
+  margin: 15px auto;
+}
+.btn{
+  margin: auto;
+}
+.inc-word{
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+}
+.result-inc-title{
+  margin-bottom: 5px;
+}
+}
+
+
+@media screen and (max-width: 420px){
+
+
+.legislators-name-select{
+  width: 280px;
+  font-size: 28px;
+  height: 50px;
+}
+.btn{
+  width: 280px;
+  background-size: auto 62px;
+  height: 62px;
+}
+.inctitle{
+  height: 1px;
+  padding-top: 12%;
+}
+
+}

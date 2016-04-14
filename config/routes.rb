@@ -90,6 +90,14 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :events do
+    resources :incantations, only: [:show] do
+      member do
+        get 'result'
+      end
+    end
+  end
+
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'not_found'
   match "/422" => "errors#error422", via: [ :get, :post, :patch, :delete ]
   match "/500" => "errors#error500", via: [ :get, :post, :patch, :delete ]
