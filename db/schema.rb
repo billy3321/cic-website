@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414094055) do
+ActiveRecord::Schema.define(version: 20160416044836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,8 +145,9 @@ ActiveRecord::Schema.define(version: 20160414094055) do
   add_index "entries_legislators", ["legislator_id", "entry_id"], name: "index_entries_legislators_on_legislator_id_and_entry_id", unique: true, using: :btree
 
   create_table "incantations", force: :cascade do |t|
-    t.string "title"
-    t.string "word"
+    t.string  "title"
+    t.string  "word"
+    t.boolean "positive", default: true
   end
 
   create_table "interpellations", force: :cascade do |t|
