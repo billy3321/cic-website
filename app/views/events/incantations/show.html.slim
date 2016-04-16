@@ -8,13 +8,23 @@ section.main
       option value="#{legislator.id}" = legislator.name
   a#paste.btn href="#" 立刻貼咒
 .incantation.inc-01 = @incantation.title
+#opps-bg
+  #opps-box
+    p 您沒有選擇立委，貼不成喔！
+    a.sbtn#ok href="#" 
+      | 回去
+      br
+      | 選個立委
 
 javascript:
   $( document ).ready(function() {
+    $('#ok').click(function() {
+      $('#opps-bg').hide();
+    })
     $('#paste').click(function() {
       var id = $('#legislators-name-select')[0].value;
       if (id === ""){
-        console.log('error');
+        $('#opps-bg').show();
       } else {
         window.location.href = "#{result_events_incantation_path(@incantation)}?l=" + id;
       }

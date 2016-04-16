@@ -15,7 +15,7 @@ class Events::IncantationsController < ApplicationController
   private
 
   def set_legislator
-    @legislator = params[:l] ? Legislator.find(params[:l]) : nil
+    @legislator = Legislator.exists?(params[:l]) ? Legislator.find(params[:l]) : nil
   end
 
   def set_legislators
