@@ -12,7 +12,7 @@ class Events::IncantationsController < ApplicationController
         type: 'website',
         title: "#{@incantation.title}-天眼公民咒",
         description: "天眼公民咒，#{@incantation.title}，你要為誰貼咒？",
-        image: "/images/events/incantations/inc-0#{@incantation.id}-fb.gif",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/events/incantations/inc-0#{@incantation.id}-fb.gif",
         site_name: "國會調查兵團"
       },
       article: {
@@ -20,7 +20,7 @@ class Events::IncantationsController < ApplicationController
         publisher: "https://www.facebook.com/cictw/"
       },
       twitter: {
-        image: "/images/events/incantations/inc-0#{@incantation.id}-fb.gif"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/events/incantations/inc-0#{@incantation.id}-fb.gif"
       }
     })
   end
@@ -37,7 +37,7 @@ class Events::IncantationsController < ApplicationController
         type: 'profile',
         title: "#{@legislator.name}-#{@incantation.title}",
         description: "#{@legislator.name}聽我令：#{@incantation.word}",
-        image: "/images/events/incantations/inc-0#{@incantation.id}-fb.gif",
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/events/incantations/inc-0#{@incantation.id}-fb.gif",
         site_name: "國會調查兵團"
       },
       article: {
@@ -45,7 +45,7 @@ class Events::IncantationsController < ApplicationController
         publisher: "https://www.facebook.com/cictw/"
       },
       twitter: {
-        image: "/images/events/incantations/inc-0#{@incantation.id}-fb.gif"
+        image: "#{Setting.url.protocol}://#{Setting.url.host}/images/events/incantations/inc-0#{@incantation.id}-fb.gif"
       }
     })
   end
