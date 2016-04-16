@@ -1,7 +1,7 @@
 .music
   audio preload="auto" autoplay="" controls="" 
-    source src="/images/events/incantations/music/01.mp3" type="audio/mpeg" 
-    source src="/images/events/incantations/music/01.ogg" type="audio/mpeg"
+    source src="/images/events/incantations/music/0#{@incantation.id}.mp3" type="audio/mpeg" 
+    source src="/images/events/incantations/music/0#{@incantation.id}.ogg" type="audio/mpeg"
 - if @incantation.positive
   .bg-wrap-s01
     .bg-wrap.fade-in
