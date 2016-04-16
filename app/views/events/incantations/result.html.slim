@@ -6,7 +6,7 @@
   .bg-wrap.fade-in
     section.result-main
       h1.stitle 天眼公民咒
-      h2.inctitle.inc-01.result-inc-title = @incantation.title
+      h2.inctitle.result-inc-title class="inc-0#{@incantation.id}" = @incantation.title
       p.inc-word = @incantation.word
       section.legislators-info
         header
@@ -18,4 +18,4 @@
       .btn-gruop
         = link_to '歷史表現', legislator_path(@legislator), class: 'history-btn'
         = link_to '分享此頁', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: '_blank', class: 'share-btn'
-    .incantation.inc-01.result-inc.fly-in = @incantation.title
+    .incantation.result-inc.fly-in class="inc-0#{@incantation.id}" = @incantation.title
