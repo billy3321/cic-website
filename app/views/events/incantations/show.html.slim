@@ -18,6 +18,7 @@ section.main
 
 javascript:
   $( document ).ready(function() {
+
     $('#ok').click(function() {
       $('#opps-bg').hide();
     })
@@ -26,7 +27,8 @@ javascript:
       if (id === ""){
         $('#opps-bg').show();
       } else {
-        window.location.href = "#{result_events_incantation_path(@incantation)}?l=" + id;
+        var url = "#{result_events_incantation_path(@incantation)}?l=" + id;
+        trackOutboundLink(url)
       }
     })
   });

@@ -517,7 +517,7 @@ class LegislatorsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_legislator
-    @legislator = params[:id] ? Legislator.find(params[:id]) : Legislator.new(legislator_params)
+    @legislator = params[:id] ? Legislator.includes({elections: [:ad, :party]}).find(params[:id]) : Legislator.new(legislator_params)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

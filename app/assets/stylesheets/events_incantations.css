@@ -12,7 +12,7 @@ body{
   color: #fff;
   font-family: Arial,"Microsoft JhengHei","Apple LiGothic Medium","LiHei Pro Medium";
   height: 100%;
-
+  min-height: 680px;
 }
 .music{
   width: 1px;
@@ -250,7 +250,7 @@ background-size:auto cover;
   background-size: 90% auto;
   background-position: center;
   float: left;
-  margin-bottom: 12px;
+  margin-bottom: 30px;
 }
 .share-btn{
   display: block;
@@ -263,7 +263,7 @@ background-size:auto cover;
   background-size: 90% auto;
   background-position: center;
   float: right;
-  margin-bottom: 12px;  
+  margin-bottom: 30px;  
 }
 .buy-btn{
   display: block;

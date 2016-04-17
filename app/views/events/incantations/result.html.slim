@@ -17,7 +17,7 @@
             em #{@legislator.elections.last.constituency}｜#{@legislator.party.name}
           = image_tag("legislators/160x214/#{@legislator.image}", alt: @legislator.name, class: 'legislators-photo')
         .btn-gruop
-          = link_to '歷史表現', legislator_path(@legislator), class: 'history-btn'
+          = link_to '歷史表現', '#', class: 'history-btn', onclick: "trackOutboundLink('#{legislator_path(@legislator)}')"
           = link_to '分享此頁', "https://www.facebook.com/sharer/sharer.php?u=#{Setting.url.protocol}://#{Setting.url.host}#{result_events_incantation_path(@incantation)}?l=#{@legislator.id}", target: '_blank', class: 'share-btn'
       .incantation.result-inc.fly-in class="inc-0#{@incantation.id}" = @incantation.title
 - else
@@ -35,6 +35,6 @@
             em #{@legislator.elections.last.constituency}｜#{@legislator.party.name}
           = image_tag("legislators/160x214/#{@legislator.image}", alt: @legislator.name, class: 'legislators-photo')
         .btn-gruop
-          = link_to '歷史表現', legislator_path(@legislator), class: 'history-btn'
+          = link_to '歷史表現', '#', class: 'history-btn', onclick: "trackOutboundLink('#{legislator_path(@legislator)}')"
           = link_to '分享此頁', "https://www.facebook.com/sharer/sharer.php?u=#{Setting.url.protocol}://#{Setting.url.host}#{result_events_incantation_path(@incantation)}?l=#{@legislator.id}", target: '_blank', class: 'share-btn'
       .incantation.result-inc.fly-in class="inc-0#{@incantation.id}" = @incantation.title
