@@ -19,6 +19,7 @@
         .btn-gruop
           = link_to '歷史表現', '#', class: 'history-btn', onclick: "trackOutboundLink('#{legislator_path(@legislator)}')"
           = link_to '分享此頁', "https://www.facebook.com/sharer/sharer.php?u=#{Setting.url.protocol}://#{Setting.url.host}#{result_events_incantation_path(@incantation)}?l=#{@legislator.id}", target: '_blank', class: 'share-btn'
+          = link_to '贊助國會調查兵團', 'http://event.cic.tw/CitizensMiaokou2016/', target: '_blank', class: 'buy-btn'
       .incantation.result-inc.fly-in class="inc-0#{@incantation.id}" = @incantation.title
 - else
   .bg-wrap-s02
@@ -37,4 +38,5 @@
         .btn-gruop
           = link_to '歷史表現', '#', class: 'history-btn', onclick: "trackOutboundLink('#{legislator_path(@legislator)}')"
           = link_to '分享此頁', "https://www.facebook.com/sharer/sharer.php?u=#{Setting.url.protocol}://#{Setting.url.host}#{result_events_incantation_path(@incantation)}?l=#{@legislator.id}", target: '_blank', class: 'share-btn'
+          = link_to '贊助國會調查兵團', 'http://event.cic.tw/CitizensMiaokou2016/', target: '_blank', class: 'buy-btn'
       .incantation.result-inc.fly-in class="inc-0#{@incantation.id}" = @incantation.title

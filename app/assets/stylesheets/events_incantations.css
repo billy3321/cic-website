@@ -1,52 +1,50 @@
 body,p,h1,h2,h3,h4,h5,h6,ul,ol{
-  font-size: 1em;
-  padding: 0px;
-  margin: 0px;
-  font-weight: normal;
+	font-size: 1em;
+	padding: 0px;
+	margin: 0px;
+	font-weight: normal;
 }
 html{
-  height: 100%;
 }
 body{
-  background: #000;
-  color: #fff;
-  font-family: Arial,"Microsoft JhengHei","Apple LiGothic Medium","LiHei Pro Medium";
-  height: 100%;
-  min-height: 680px;
+	background: #000;
+	color: #fff;
+	font-family: Arial,"Microsoft JhengHei","Apple LiGothic Medium","LiHei Pro Medium";
 }
 .music{
-  width: 1px;
-  height: 1px;
-  position: absolute;
-  left: 0;
-  top: 0; 
-  overflow: hidden;
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	top: 0;	
+	overflow: hidden;
 }
 .bg-wrap{
-  overflow: hidden;
-  height: 100%;
+	min-height: 800px;
+	height: 100vh;
+	overflow: hidden;
 }
 .bg-wrap-s01{
-  background-image: url(/images/events/incantations/bg-fire-01.jpg);
-  background-repeat: no-repeat;
-  background-position: center top;
-  overflow: hidden; 
-  height: 100%;
-  animation: fireA 4s;
--moz-animation: fireA 4s; /* Firefox */
--webkit-animation: fireA 4s;  /* Safari 和 Chrome */
--o-animation: fireA 4s;
+	background-image: url(/images/events/incantations/bg-fire-01.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	overflow: hidden;	
+	height: 100%;
+	animation: fireA 13s;
+-moz-animation: fireA 13s;	/* Firefox */
+-webkit-animation: fireA 13s;	/* Safari 和 Chrome */
+-o-animation: fireA 13s;
 }
 .bg-wrap-s02{
-  background-image: url(/images/events/incantations/bg-fire-02.jpg);
-  background-repeat: no-repeat;
-  background-position: center top;
-  overflow: hidden; 
-  height: 100%;
-  animation: fireA 4s;
--moz-animation: fireA 4s; /* Firefox */
--webkit-animation: fireA 4s;  /* Safari 和 Chrome */
--o-animation: fireA 4s;
+	background-image: url(/images/events/incantations/bg-fire-02.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	overflow: hidden;	
+	height: 100%;
+	animation: fireA 13s;
+-moz-animation: fireA 13s;	/* Firefox */
+-webkit-animation: fireA 13s;	/* Safari 和 Chrome */
+-o-animation: fireA 13s;
 }
 
 @keyframes fireA
@@ -81,52 +79,52 @@ body{
 
 
 .main{
-  max-width: 370px;
-  margin: 30px auto 0 51%;
+	max-width: 370px;
+	margin: 30px auto 0 51%;
 }
 .incantation{
-  width: 271px;
-  height: 526px;
-  background: #fce003;
-  position: absolute;
-  right: 51%;
-  top: 30px;
-  background-size:cover;
-  background-repeat: no-repeat;
-  
+	width: 271px;
+	height: 526px;
+	background: #fce003;
+	position: absolute;
+	right: 51%;
+	top: 30px;
+	background-size:cover;
+	background-repeat: no-repeat;
+	
 }
 
 .incantation.inc-01{
-  background-image: url(/images/events/incantations/inc-01.gif);
+	background-image: url(/images/events/incantations/inc-01.gif);
 }
 
 .incantation.inc-02{
-  background-image: url(/images/events/incantations/inc-02.gif);
+	background-image: url(/images/events/incantations/inc-02.gif);
 }
 .incantation.inc-03{
-  background-image: url(/images/events/incantations/inc-03.gif);
+	background-image: url(/images/events/incantations/inc-03.gif);
 }
 .incantation.inc-04{
-  background-image: url(/images/events/incantations/inc-04.gif);
+	background-image: url(/images/events/incantations/inc-04.gif);
 }
 .incantation.inc-05{
-  background-image: url(/images/events/incantations/inc-05.gif);
+	background-image: url(/images/events/incantations/inc-05.gif);
 }
 .incantation.inc-06{
-  background-image: url(/images/events/incantations/inc-06.gif);
+	background-image: url(/images/events/incantations/inc-06.gif);
 }
 .incantation.inc-07{
-  background-image: url(/images/events/incantations/inc-07.gif);
+	background-image: url(/images/events/incantations/inc-07.gif);
 }
 .incantation.inc-08{
-  background-image: url(/images/events/incantations/inc-08.gif);
+	background-image: url(/images/events/incantations/inc-08.gif);
 }
 .incantation.inc-09{
-  background-image: url(/images/events/incantations/inc-09.gif);
+	background-image: url(/images/events/incantations/inc-09.gif);
 }
 .stitle,.inctitle,.incantation,.ftitle,.btn{
-  overflow: hidden;
-  text-indent: -1200px;
+	overflow: hidden;
+	text-indent: -1200px;
 }
 .stitle{width: 101px;height: 19px;
 background-image: url(/images/events/incantations/stitle.png);
@@ -134,154 +132,154 @@ margin-bottom: 10px;
 }
 
 .inctitle{
-  width: 455px;
-  height: 47px;
-  background-size:auto cover;
-  background-repeat: no-repeat;
-  margin-bottom: 90px;
+	width: 455px;
+	height: 47px;
+	background-size:auto cover;
+	background-repeat: no-repeat;
+	margin-bottom: 90px;
 }
 
 .inctitle.inc-01{
-  background-image: url(/images/events/incantations/inctitle-01.png);
+	background-image: url(/images/events/incantations/inctitle-01.png);
 }
 .inctitle.inc-02{
-  background-image: url(/images/events/incantations/inctitle-02.png);
+	background-image: url(/images/events/incantations/inctitle-02.png);
 }
 .inctitle.inc-03{
-  background-image: url(/images/events/incantations/inctitle-03.png);
+	background-image: url(/images/events/incantations/inctitle-03.png);
 }
 .inctitle.inc-04{
-  background-image: url(/images/events/incantations/inctitle-04.png);
+	background-image: url(/images/events/incantations/inctitle-04.png);
 }
 .inctitle.inc-05{
-  background-image: url(/images/events/incantations/inctitle-05.png);
+	background-image: url(/images/events/incantations/inctitle-05.png);
 }
 .inctitle.inc-06{
-  background-image: url(/images/events/incantations/inctitle-06.png);
+	background-image: url(/images/events/incantations/inctitle-06.png);
 }
 .inctitle.inc-07{
-  background-image: url(/images/events/incantations/inctitle-07.png);
+	background-image: url(/images/events/incantations/inctitle-07.png);
 }
 .inctitle.inc-08{
-  background-image: url(/images/events/incantations/inctitle-08.png);
+	background-image: url(/images/events/incantations/inctitle-08.png);
 }
 .inctitle.inc-09{
-  background-image: url(/images/events/incantations/inctitle-09.png);
+	background-image: url(/images/events/incantations/inctitle-09.png);
 }
 
 .ftitle{
-  width: 267px;
-  height: 36px;
-  background-image: url(/images/events/incantations/ftitle.png);
-  background-size:auto cover;
-  margin-bottom: 15px;
+	width: 267px;
+	height: 36px;
+	background-image: url(/images/events/incantations/ftitle.png);
+	background-size:auto cover;
+	margin-bottom: 15px;
 }
 
 
 .legislators-name-select{
-  width: 300px;
-  height: 70px;
-  font-size: 32px;
-  border-radius: 5px;
-  padding: 0 10px;
-  margin-bottom: 15px;
+	width: 300px;
+	height: 70px;
+	font-size: 32px;
+	border-radius: 5px;
+	padding: 0 10px;
+	margin-bottom: 15px;
 }
 .btn{width: 307px;
 height: 69px;
 background-image: url(/images/events/incantations/btn.png);
 display: block;
 background-size:auto cover;
-  background-repeat: no-repeat;}
+	background-repeat: no-repeat;}
 
 .result-main{
-  margin: 30px auto;
-  width: 370px;
+	margin: 30px auto;
+	width: 370px;
 }
 .result-inc-title{
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 .result-inc{
-  position: absolute;
-  width: 60px;
-  height: 117px;
-  left: 50%;
-  margin-left: -110px;
-  top: 300px;
-  transform:rotate(10deg);
+	position: absolute;
+	width: 60px;
+	height: 117px;
+	left: 50%;
+	margin-left: -110px;
+	top: 300px;
+	transform:rotate(10deg);
 }
 .legislators-info{
-  text-align: center;
+	text-align: center;
 }
 .legislators-info span,.legislators-info em{
-  display: block;
-  font-style: normal;
-  font-size: 15px;
+	display: block;
+	font-style: normal;
+	font-size: 15px;
 }
 .inc-word{
-  font-size: 13px;
-  height: 60px;
-  overflow: hidden;
+	font-size: 13px;
+	height: 60px;
+	overflow: hidden;
 }
 .legislators-info h3{
-  font-size: 35px;
-  height: 47px;
-  overflow: hidden;
-  
+	font-size: 35px;
+	height: 47px;
+	overflow: hidden;
+	
 }
 .legislators-photo{
-  width: 160px;
-  height: 214px;
-  background: #ccc;
-  display: block;
-  margin: 8px auto;
+	width: 160px;
+	height: 214px;
+	background: #ccc;
+	display: block;
+	margin: 8px auto;
 }
 .btn-gruop{
-  max-width: 370px;
-  margin: auto; 
+	max-width: 370px;
+	margin: auto;	
 }
 .history-btn{
-  display: block;
-  width: 50%;
-  height: 50px;
-  overflow: hidden;
-  text-indent: -1000px;
-  background-image: url(/images/events/incantations/history-btn.png);
-  background-repeat: no-repeat;
-  background-size: 90% auto;
-  background-position: center;
-  float: left;
-  margin-bottom: 30px;
+	display: block;
+	width: 50%;
+	height: 50px;
+	overflow: hidden;
+	text-indent: -1000px;
+	background-image: url(/images/events/incantations/history-btn.png);
+	background-repeat: no-repeat;
+	background-size: 90% auto;
+	background-position: center;
+	float: left;
+	margin-bottom: 30px;
 }
 .share-btn{
-  display: block;
-  width: 50%;
-  height: 50px;
-  overflow: hidden;
-  text-indent: -1000px;
-  background-image: url(/images/events/incantations/share-btn.png);
-  background-repeat: no-repeat;
-  background-size: 90% auto;
-  background-position: center;
-  float: right;
-  margin-bottom: 30px;  
+	display: block;
+	width: 50%;
+	height: 50px;
+	overflow: hidden;
+	text-indent: -1000px;
+	background-image: url(/images/events/incantations/share-btn.png);
+	background-repeat: no-repeat;
+	background-size: 90% auto;
+	background-position: center;
+	float: right;
+	margin-bottom: 30px;	
 }
 .buy-btn{
-  display: block;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  line-height: 50px;
-  clear: both;
-  width: 95%;
-  margin:auto;  
+	display: block;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	line-height: 50px;
+	clear: both;
+	width: 95%;
+	margin:auto;	
 }
 .fade-in{
-  animation: fade-in 3s;
--moz-animation: fade-in 3s; /* Firefox */
--webkit-animation: fade-in 3s;  /* Safari 和 Chrome */
--o-animation: fade-in 3s;
+	animation: fade-in 9s;
+-moz-animation: fade-in 9s;	/* Firefox */
+-webkit-animation: fade-in 9s;	/* Safari 和 Chrome */
+-o-animation: fade-in 9s;
 }
 
 @keyframes fade-in
@@ -349,10 +347,10 @@ background-size:auto cover;
 }
 
 .fly-in{
-  animation: fly-in 4.5s;
--moz-animation: fly-in 4.5s;  /* Firefox */
--webkit-animation: fly-in 4.5s; /* Safari 和 Chrome */
--o-animation: fly-in 4.5s;
+	animation: fly-in 13s;
+-moz-animation: fly-in 13s;	/* Firefox */
+-webkit-animation: fly-in 13s;	/* Safari 和 Chrome */
+-o-animation: fly-in 13s;
 }
 
 @keyframes fly-in
@@ -400,97 +398,97 @@ background-size:auto cover;
 }
 
 #opps-bg{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0%,0%,0%,0.8);
-  display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0%,0%,0%,0.8);
+	display: none;
 }
 
 #opps-box{
-  width: 300px;
-  min-height: 80px;
-  position: fixed;
-  left: 50%;
-  top: 15%;
-  margin-left: -150px;
-  background: #fff;
-  border-radius: 5px;
-  color: #000;
-  text-align: center;
-  box-sizing: border-box;
-  padding: 15px 0;
+	width: 300px;
+	min-height: 80px;
+	position: fixed;
+	left: 50%;
+	top: 15%;
+	margin-left: -150px;
+	background: #fff;
+	border-radius: 5px;
+	color: #000;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 15px 0;
 }
 #opps-box p{
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 .sbtn{
-  display: block;
-  width: 80px;
-  margin: auto;
-  background: #999;
-  padding: 7px 12px;
-  border-radius: 5px;
-  text-decoration: none;
-  color: #fff;
+	display: block;
+	width: 80px;
+	margin: auto;
+	background: #999;
+	padding: 7px 12px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #fff;
 }
 
 @media screen and (max-width: 780px){
-  .main{
-  margin: 5px auto 0 auto;}
+	.main{
+	margin: 5px auto 0 auto;}
 .result-main{
-  margin: 5px auto;
-  width: auto;
+	margin: 5px auto;
+	width: auto;
 }
-  .incantation{
-  position: relative;
-  right: auto;
-  top: auto;
-  margin: 15px auto;
-  
+	.incantation{
+	position: relative;
+	right: auto;
+	top: auto;
+	margin: 15px auto;
+	
 }
 
 .result-inc{
-  position: absolute;
-  margin-left: -110px;
-  top: 300px;
+	position: absolute;
+	margin-left: -110px;
+	top: 300px;
 }
 
 .stitle,.ftitle{
-  background-position: top center; 
-  width: 100%;
-  background-repeat: no-repeat;
+	background-position: top center; 
+	width: 100%;
+	background-repeat: no-repeat;
 }
 
 .ftitle{
-  background-size: auto 25px;
-  height: 25px;
+	background-size: auto 25px;
+	height: 25px;
 }
 
 .inctitle{
-  height: 47px;
-  background-size: 95% auto;
-  background-position: top center; 
-  width: 100%;
-  max-width: 320px;
-  margin:0 auto 30px auto;
+	height: 47px;
+	background-size: 95% auto;
+	background-position: top center; 
+	width: 100%;
+	max-width: 320px;
+	margin:0 auto 30px auto;
 }
 .legislators-name-select{
-  display: block;
-  margin: 15px auto;
+	display: block;
+	margin: 15px auto;
 }
 .btn{
-  margin: auto;
+	margin: auto;
 }
 .inc-word{
-  width: 80%;
-  max-width: 400px;
-  margin: auto;
+	width: 80%;
+	max-width: 400px;
+	margin: auto;
 }
 .result-inc-title{
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 }
 
@@ -499,18 +497,18 @@ background-size:auto cover;
 
 
 .legislators-name-select{
-  width: 280px;
-  font-size: 28px;
-  height: 50px;
+	width: 280px;
+	font-size: 28px;
+	height: 50px;
 }
 .btn{
-  width: 280px;
-  background-size: auto 62px;
-  height: 62px;
+	width: 280px;
+	background-size: auto 62px;
+	height: 62px;
 }
 .inctitle{
-  height: 1px;
-  padding-top: 12%;
+	height: 1px;
+	padding-top: 12%;
 }
 
 }
