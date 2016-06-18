@@ -101,6 +101,7 @@ var ready = function(){
     $('.tsu').show();
     $('.null').show();
     $('.mkt').show();
+    $('.npp').show();
     $('.all_party_button').addClass('current');
     $('.kmt_party_button').removeClass('current');
     $('.dpp_party_button').removeClass('current');
@@ -108,6 +109,7 @@ var ready = function(){
     $('.nsu_party_button').removeClass('current');
     $('.tsu_party_button').removeClass('current');
     $('.null_party_button').removeClass('current');
+    $('.npp_party_button').removeClass('current');
   });
   $('.kmt_party_button').click(function(){
     $('.kmt').show();
@@ -117,6 +119,7 @@ var ready = function(){
     $('.tsu').hide();
     $('.null').hide();
     $('.mkt').hide();
+    $('.npp').hide();
     $('.all_party_button').removeClass('current');
     $('.kmt_party_button').addClass('current');
     $('.dpp_party_button').removeClass('current');
@@ -125,6 +128,7 @@ var ready = function(){
     $('.tsu_party_button').removeClass('current');
     $('.null_party_button').removeClass('current');
     $('.mkt_party_button').removeClass('current');
+    $('.npp_party_button').removeClass('current');
   });
   $('.dpp_party_button').click(function(){
     $('.kmt').hide();
@@ -134,6 +138,7 @@ var ready = function(){
     $('.tsu').hide();
     $('.null').hide();
     $('.mkt').hide();
+    $('.npp').hide();
     $('.all_party_button').removeClass('current');
     $('.kmt_party_button').removeClass('current');
     $('.dpp_party_button').addClass('current');
@@ -142,6 +147,7 @@ var ready = function(){
     $('.tsu_party_button').removeClass('current');
     $('.null_party_button').removeClass('current');
     $('.mkt_party_button').removeClass('current');
+    $('.npp_party_button').removeClass('current');
   });
   $('.pfp_party_button').click(function(){
     $('.kmt').hide();
@@ -151,6 +157,7 @@ var ready = function(){
     $('.tsu').hide();
     $('.null').hide();
     $('.mkt').hide();
+    $('.npp').hide();
     $('.all_party_button').removeClass('current');
     $('.kmt_party_button').removeClass('current');
     $('.dpp_party_button').removeClass('current');
@@ -159,6 +166,7 @@ var ready = function(){
     $('.tsu_party_button').removeClass('current');
     $('.null_party_button').removeClass('current');
     $('.mkt_party_button').removeClass('current');
+    $('.npp_party_button').removeClass('current');
   });
   $('.nsu_party_button').click(function(){
     $('.kmt').hide();
@@ -168,6 +176,7 @@ var ready = function(){
     $('.tsu').hide();
     $('.null').hide();
     $('.mkt').hide();
+    $('.npp').hide();
     $('.all_party_button').removeClass('current');
     $('.kmt_party_button').removeClass('current');
     $('.dpp_party_button').removeClass('current');
@@ -176,6 +185,7 @@ var ready = function(){
     $('.tsu_party_button').removeClass('current');
     $('.null_party_button').removeClass('current');
     $('.mkt_party_button').removeClass('current');
+    $('.npp_party_button').removeClass('current');
   });
   $('.tsu_party_button').click(function(){
     $('.kmt').hide();
@@ -185,6 +195,7 @@ var ready = function(){
     $('.tsu').show();
     $('.null').hide();
     $('.mkt').hide();
+    $('.npp').hide();
     $('.all_party_button').removeClass('current');
     $('.kmt_party_button').removeClass('current');
     $('.dpp_party_button').removeClass('current');
@@ -193,6 +204,7 @@ var ready = function(){
     $('.tsu_party_button').addClass('current');
     $('.null_party_button').removeClass('current');
     $('.mkt_party_button').removeClass('current');
+    $('.npp_party_button').removeClass('current');
   });
   $('.mkt_party_button').click(function(){
     $('.kmt').hide();
@@ -202,6 +214,7 @@ var ready = function(){
     $('.tsu').hide();
     $('.null').hide();
     $('.mkt').show();
+    $('.npp').hide();
     $('.all_party_button').removeClass('current');
     $('.kmt_party_button').removeClass('current');
     $('.dpp_party_button').removeClass('current');
@@ -210,6 +223,26 @@ var ready = function(){
     $('.tsu_party_button').removeClass('current');
     $('.null_party_button').removeClass('current');
     $('.mkt_party_button').addClass('current');
+    $('.npp_party_button').removeClass('current');
+  });
+  $('.npp_party_button').click(function(){
+    $('.kmt').hide();
+    $('.dpp').hide();
+    $('.pfp').hide();
+    $('.nsu').hide();
+    $('.tsu').hide();
+    $('.null').hide();
+    $('.mkt').hide();
+    $('.npp').show();
+    $('.all_party_button').removeClass('current');
+    $('.kmt_party_button').removeClass('current');
+    $('.dpp_party_button').removeClass('current');
+    $('.pfp_party_button').removeClass('current');
+    $('.nsu_party_button').removeClass('current');
+    $('.tsu_party_button').removeClass('current');
+    $('.null_party_button').removeClass('current');
+    $('.mkt_party_button').removeClass('current');
+    $('.npp_party_button').addClass('current');
   });
   $('.null_party_button').click(function(){
     $('.kmt').hide();
@@ -219,6 +252,7 @@ var ready = function(){
     $('.tsu').hide();
     $('.null').show();
     $('.mkt').hide();
+    $('.npp').hide();
     $('.all_party_button').removeClass('current');
     $('.kmt_party_button').removeClass('current');
     $('.dpp_party_button').removeClass('current');
@@ -227,6 +261,7 @@ var ready = function(){
     $('.tsu_party_button').removeClass('current');
     $('.null_party_button').addClass('current');
     $('.mkt_party_button').removeClass('current');
+    $('.npp_party_button').removeClass('current');
   });
 
   $('.check_all_box').change(function(){
