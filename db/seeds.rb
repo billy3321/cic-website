@@ -258,7 +258,7 @@ ads.each do |ad|
   legislators = JSON.parse(File.read(legislators_filepath))
   legislator_links = JSON.parse(File.read(legislators_links_filepath))
   legislators.each do |l|
-    vote_guide_data = get_vote_guide_legislator_term_data(l['id'], ad[:id])
+    vote_guide_data = get_vote_guide_legislator_term_data(l['uid'], ad[:id])
     unless vote_guide_data.blank?
       l['county'] = vote_guide_data['county'] unless vote_guide_data['county'].blank?
       if ad[:id] == 8 and l['county'] == "桃園市"
@@ -280,20 +280,20 @@ ads.each do |ad|
         l['district'] = vote_guide_data['district'].split('，')
       end
     end
-    if Legislator.exists? l['id']
-      legislator = Legislator.find(l['id'])
+    if Legislator.exists? l['uid']
+      legislator = Legislator.find(l['uid'])
     else
       legislator = Legislator.new()
-      legislator.id = l['id']
+      legislator.id = l['uid']
       # if l['id'] == 1747
         # 徐欣瑩現在屬於民國黨
         # legislator.now_party_id = 7
       # end
       legislator.name = l['name']
       legislator.in_office = l['in_office']
-      legislator.image = l['id'].to_s + '.jpg'
+      legislator.image = l['uid'].to_s + '.jpg'
       legislator_links.each do |links|
-        if links[0].to_i == l['id']
+        if links[0].to_i == l['uid']
           legislator.fb_link = links[2] unless links[2].blank?
           legislator.wiki_link = links[3] unless links[3].blank?
           legislator.musou_link = links[4] unless links[4].blank?
@@ -303,7 +303,7 @@ ads.each do |ad|
       end
     end
     election = Election.new()
-    election.legislator_id = l['id']
+    election.legislator_id = l['uid']
     election.ad_id = ad[:id]
     election.party_id = Party.where(abbreviation: l['party']).first.id
     constituency = constituency_parser(l['constituency'])
