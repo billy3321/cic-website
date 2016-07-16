@@ -31,6 +31,18 @@ defaults: &defaults
   rollbar:
     access_token: ''
 
+  email:
+    sender: ""
+    contact: ""
+
+  smtp_settings:
+    port: ""
+    address: ""
+    domain: ""
+    user_name: ""
+    password: ""
+    authentication: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"
