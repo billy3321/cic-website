@@ -61,13 +61,15 @@ gem 'oj', '~> 2.12.14'
 gem 'canonical-rails'
 # gem "skylight"
 
+# Access an IRB console on exception pages or by using <%= console %> in views
+gem 'web-console', '~> 2.0', group: :development
+
 group :development, :test do
   gem 'minitest'
   gem "capybara"
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem "bullet"
-  gem 'web-console', '~> 2.0'
   gem 'byebug'
   gem 'simplecov'
 end
