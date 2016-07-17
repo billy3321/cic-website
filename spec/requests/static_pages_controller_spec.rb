@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Static pages" do
+describe "Static Pages" do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
@@ -78,6 +78,16 @@ describe "Static pages" do
     describe "#tutorial" do
       it "success" do
         get "/tutorial"
+        expect(response).to be_success
+      end
+    end
+
+    describe "#sitemap" do
+      it "success" do
+        3.times { FactoryGirl.create :entry }
+        3.times { FactoryGirl.create :interpellation_record }
+        3.times { FactoryGirl.create :video_news }
+        get "/sitemap.xml"
         expect(response).to be_success
       end
     end
