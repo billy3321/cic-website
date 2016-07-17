@@ -10,7 +10,7 @@ defaults: &defaults
     client_secret: ''
 
   google_public_key:
-    api_key: 'AIzaSyCtv186K8_3kLjAMRIDulHynuJ-EW4sWfg'
+    api_key: <%= ENV['GOOGLE_PUBLIC_KEY'] %>
 
   facebook_auth_key:
     app_id: ""

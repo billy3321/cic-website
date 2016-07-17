@@ -10,7 +10,8 @@ rvm:
   - 2.2.2
   # Add more Ruby versions to list if supported,
   # Travis supports these versions: http://rubies.travis-ci.org/
-
+env:
+  secure: "mbxf2DobnXiCFOcZskpgISY+H0yrA/R8yz5LDEB1yBdxiB0JTbzyB9CurmO3+HZEpGc2xmKOHWYokF4pT4saCgSMUE4o4YrmBdd8xxSm45idQHHSGaFxwz3fySyeM3r2qB6W8kwb33n3ZoTZunBwelCh/zBNdbfXHpk6VVZi+Sc="
 # addons:
 #   firefox: "38.0.5" # Set Firefox Version if needed.
 
@@ -32,6 +33,7 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - cp config/config.yml.travis config/config.yml
+
 
 # 4. OPTIONAL Only customize the `script` option if needed.
 
