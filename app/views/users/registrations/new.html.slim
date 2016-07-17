@@ -31,8 +31,8 @@
 
   #out-login
     p 您也可以使用以下帳號登入
-    = link_to image_tag('login-fb.png', width: "151", height: "64"), user_omniauth_authorize_path(:facebook), class: "f"
-    = link_to image_tag('login-google.png', width: "151", height: "64"), user_omniauth_authorize_path(:google_oauth2), class: "g"
+    = link_to image_tag('login-fb.png', width: "151", height: "64"), user_facebook_omniauth_authorize_path, class: "f"
+    = link_to image_tag('login-google.png', width: "151", height: "64"), user_google_oauth2_omniauth_authorize_path, class: "g"
   #regist-txt
 
 - set_meta_tags({title: "加入兵團", og: {title: "加入兵團"}})
