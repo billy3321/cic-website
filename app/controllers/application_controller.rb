@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     if params[:action] == 'create'
       devise_parameter_sanitizer.permit(:sign_up) do |user|
         user.permit(registration_params)
-      }
+      end
     end
   end
 
