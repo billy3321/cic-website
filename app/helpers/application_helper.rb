@@ -38,16 +38,22 @@ module ApplicationHelper
       site: '國會調查兵團 CIC',
       reverse: true,
       description: '',
+      canonical: request.url,
+      publisher: Setting.google.pages,
       og: {
         title: '國會調查兵團 CIC',
         description: '',
         type: 'website',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/FB-img-default.gif",
-        site_name: '國會調查兵團'
+        site_name: '國會調查兵團',
+        url: request.url
       },
       twitter: {
         card: 'summary_large_image',
         image: "#{Setting.url.protocol}://#{Setting.url.host}/images/FB-img-default.gif"
+      },
+      fb: {
+        pages: Setting.fb.pages
       }
     }
   end

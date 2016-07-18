@@ -43,6 +43,12 @@ defaults: &defaults
   rollbar:
     access_token: ""
 
+  fb:
+    pages: ""
+
+  google:
+    pages: ""
+
 development:
   <<: *defaults
   admin_email: "admin@test.com"

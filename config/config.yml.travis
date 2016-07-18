@@ -6,8 +6,8 @@ defaults: &defaults
     timeout: 5
 
   google_auth_key:
-    client_id: ''
-    client_secret: ''
+    client_id: ""
+    client_secret: ""
 
   google_public_key:
     api_key: <%= ENV['GOOGLE_PUBLIC_KEY'] %>
@@ -17,25 +17,28 @@ defaults: &defaults
     app_secret: ""
 
   recaptcha:
-    public_key: ''
-    private_key: ''
+    public_key: ""
+    private_key: ""
 
   google_analytics:
     id: ""
 
   google_gtm: 
-    id: "GTM-T2CN7K"
+    id: ""
 
   url:
     host: "localhost:3000"
     protocol: "http"
-    fb: "https://facebook.com/cic-tw"
+    fb: ""
 
   fb:
     pages: ""
 
   rollbar:
-    access_token: ''
+    access_token: ""
+
+  google:
+    pages: ""
 
   email:
     sender: ""
