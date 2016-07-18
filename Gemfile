@@ -58,7 +58,6 @@ gem 'swagger-docs', git: 'git://github.com/billy3321/swagger-docs.git'
 gem 'lograge'
 gem 'rollbar', '~>2.11.3'
 gem 'oj', '~> 2.12.14'
-gem 'canonical-rails'
 # gem "skylight"
 
 # Access an IRB console on exception pages or by using <%= console %> in views
