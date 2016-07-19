@@ -4,10 +4,8 @@ html lang="zh-Hant-TW"
     meta charset="utf-8"
     - if ['events/incantations'].include?(params[:controller])
       = stylesheet_link_tag    'events_incantations', media: 'all', 'data-turbolinks-track' => true
-      = javascript_include_tag 'events_incantations', 'data-turbolinks-track' => true
     - else
       = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-      = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = display_meta_tags(default_meta_tags)
     /[if lt IE9]
@@ -34,3 +32,8 @@ html lang="zh-Hant-TW"
 
           = render 'layouts/footer'
           = debug(params) if Rails.env.development?
+    - console if Rails.env.development?
+    - if ['events/incantations'].include?(params[:controller])
+      = javascript_include_tag 'events_incantations', 'data-turbolinks-track' => true
+    - else
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
