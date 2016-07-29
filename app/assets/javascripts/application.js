@@ -22,8 +22,14 @@
 //= require ckeditor/init
 //= require social-share-button
 
+var ready_ran = 0;
 
 var ready = function(){
+  if (ready_ran == 1){
+    return;
+  }else{
+    ready_ran = 1;
+  }
   // datepicker
   $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
   // timepicker
