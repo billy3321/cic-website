@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* CSS Document */
+
+.party-dpp{
+	background:url(../images/parties/dpp.gif);
+	}
+.party-kmt{
+	background:url(../images/parties/kmt.gif);}
+.party-nsu{
+	background:url(../images/parties/nsu.gif);}
+.party-tsu{
+	background:url(../images/parties/tsu.gif);}
+.party-pfp{
+	background:url(../images/parties/pfp.gif);}
+.party-null{
+	background:url(../images/parties/null.gif);}
+.party-mkt{
+	background:url(../images/parties/mkt.gif);}
+.party-npp{
+	background:url(../images/parties/npp.gif);}
+
+/*依區域找立委搜尋結果黨籍*/
+.slegislator .party-kmt{
+	background:url(../images/parties/kmt2.png);}
+.slegislator .party-null{
+	background:url(../images/parties/null2.png);}
+.slegislator .party-pfp{
+	background:url(../images/parties/pfp2.png);}
+.slegislator .party-nsu{
+	background:url(../images/parties/nsu2.png);}
+.slegislator  .party-dpp{
+	background:url(../images/parties/dpp2.png);
+	}
+.slegislator  .party-tsu{
+	background:url(../images/parties/tsu2.png);}
+.slegislator  .party-mkt{
+	background:url(../images/parties/mkt2.png);}	
+.slegislator  .party-npp{
+	background:url(../images/parties/npp2.png);}	
+
+/*立委個人區塊黨籍*/
+.legislators-block .party-kmt{
+	background:#f3f3f3 url(../images/parties/kmt2.png) no-repeat right bottom;}
+.legislators-block .party-null{
+	background:#f3f3f3 url(../images/parties/null2.png) no-repeat right bottom;}
+.legislators-block .party-pfp{
+	background:#f3f3f3 url(../images/parties/pfp2.png) no-repeat right bottom;}
+.legislators-block .party-nsu{
+	background:#f3f3f3 url(../images/parties/nsu2.png) no-repeat right bottom;}
+.legislators-block  .party-dpp{
+	background:#f3f3f3 url(../images/parties/dpp2.png) no-repeat right bottom;
+	}
+.legislators-block  .party-tsu{
+	background:#f3f3f3 url(../images/parties/tsu2.png) no-repeat right bottom;}
+.legislators-block  .party-mkt{
+	background:#f3f3f3 url(../images/parties/mkt2.png) no-repeat right bottom;}	
+.legislators-block  .party-npp{
+	background:#f3f3f3 url(../images/parties/npp2.png) no-repeat right bottom;}	
